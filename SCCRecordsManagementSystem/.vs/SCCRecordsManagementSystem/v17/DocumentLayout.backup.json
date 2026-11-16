@@ -1,0 +1,220 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\attachments\\nocos\\sccrecordsmanagementsystem\\rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Form1.cs [Design]*",
+              "RelativeToolTip": "Form1.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-12T01:41:25.885Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-12T02:35:03.778Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Departments.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Departments.cs",
+              "RelativeDocumentMoniker": "Departments.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Departments.cs [Design]",
+              "RelativeToolTip": "Departments.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T06:37:22.941Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{de1fc918-f32e-4dd7-a915-1792a051f26b}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Registration.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Registration.cs",
+              "RelativeDocumentMoniker": "Registration.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Registration.cs [Design]",
+              "RelativeToolTip": "Registration.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-16T01:58:03.944Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RulesPermission.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\RulesPermission.cs",
+              "RelativeDocumentMoniker": "RulesPermission.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\RulesPermission.cs [Design]",
+              "RelativeToolTip": "RulesPermission.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-14T09:29:07.012Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FaceRecognition.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\FaceRecognition.cs",
+              "RelativeDocumentMoniker": "FaceRecognition.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\FaceRecognition.cs [Design]",
+              "RelativeToolTip": "FaceRecognition.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-14T08:52:15.26Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ReportsAndAnalysis.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs",
+              "RelativeDocumentMoniker": "ReportsAndAnalysis.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs [Design]",
+              "RelativeToolTip": "ReportsAndAnalysis.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-14T07:45:30.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Obligations.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Obligations.cs",
+              "RelativeDocumentMoniker": "Obligations.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Obligations.cs [Design]",
+              "RelativeToolTip": "Obligations.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-14T06:05:12.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AttendanceMonitoring.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs",
+              "RelativeDocumentMoniker": "AttendanceMonitoring.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs [Design]",
+              "RelativeToolTip": "AttendanceMonitoring.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T07:42:34.945Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Event Management.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Event Management.cs",
+              "RelativeDocumentMoniker": "Event Management.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Event Management.cs [Design]",
+              "RelativeToolTip": "Event Management.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T07:31:40.396Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Officerr Records.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Officerr Records.cs",
+              "RelativeDocumentMoniker": "Officerr Records.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\Officerr Records.cs [Design]",
+              "RelativeToolTip": "Officerr Records.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T07:14:33.308Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "StudentRecords.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\StudentRecords.cs",
+              "RelativeDocumentMoniker": "StudentRecords.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Attachments\\NOCOS\\SCCRecordsManagementSystem\\StudentRecords.cs [Design]",
+              "RelativeToolTip": "StudentRecords.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T06:49:58.36Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
