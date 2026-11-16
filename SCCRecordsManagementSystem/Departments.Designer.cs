@@ -44,6 +44,8 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,13 +80,13 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(562, 484);
+            this.dataGridView1.Size = new System.Drawing.Size(603, 484);
             this.dataGridView1.TabIndex = 24;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(359, 72);
+            this.button1.Location = new System.Drawing.Point(744, 72);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(218, 36);
             this.button1.TabIndex = 25;
@@ -296,6 +298,23 @@
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button22.UseVisualStyleBackColor = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(474, 82);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(174, 22);
+            this.textBox1.TabIndex = 27;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(654, 72);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 36);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "Search";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // Departments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -304,6 +323,8 @@
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._903375047_2169860083631994_8617979005398290656_n;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -316,6 +337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -337,5 +359,7 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
