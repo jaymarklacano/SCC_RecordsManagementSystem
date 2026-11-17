@@ -28,487 +28,466 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.sidebarMenu = new SidebarMenu();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblPageTitle = new System.Windows.Forms.Label();
+            this.windowButtons = new WindowButtons();
+            this.pnlCameraStatus = new System.Windows.Forms.Panel();
+            this.lblCameraStatus = new System.Windows.Forms.Label();
+            this.pnlResultBanner = new System.Windows.Forms.Panel();
+            this.lblBanner = new System.Windows.Forms.Label();
+            this.pnlCamera = new System.Windows.Forms.Panel();
+            this.picCamera = new System.Windows.Forms.PictureBox();
+            this.pnlInfo = new System.Windows.Forms.Panel();
+            this.picStudent = new System.Windows.Forms.PictureBox();
+            this.lblInfoTitle = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblStudentNumberCaption = new System.Windows.Forms.Label();
+            this.lblStudentNumber = new System.Windows.Forms.Label();
+            this.lblCourseCaption = new System.Windows.Forms.Label();
+            this.lblCourse = new System.Windows.Forms.Label();
+            this.lblYearCaption = new System.Windows.Forms.Label();
+            this.lblYear = new System.Windows.Forms.Label();
+            this.lblStatusCaption = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblTimeCaption = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.lblResultMessage = new System.Windows.Forms.Label();
+            this.lblFaceStats = new System.Windows.Forms.Label();
+            this.lblHint = new System.Windows.Forms.Label();
+            this.btnNextStudent = new System.Windows.Forms.Button();
+            this.btnRestart = new System.Windows.Forms.Button();
+            this.timerCamera = new System.Windows.Forms.Timer(this.components);
+            this.pnlHeader.SuspendLayout();
+            this.pnlCameraStatus.SuspendLayout();
+            this.pnlResultBanner.SuspendLayout();
+            this.pnlCamera.SuspendLayout();
+            this.pnlInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // sidebarMenu
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
-            this.panel1.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._904439575_1911191946735306_1039497458727327980_n1;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button20);
-            this.panel1.Controls.Add(this.button21);
-            this.panel1.Controls.Add(this.button22);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(330, 633);
-            this.panel1.TabIndex = 27;
+            this.sidebarMenu.Location = new System.Drawing.Point(0, 0);
+            this.sidebarMenu.Size = new System.Drawing.Size(320, 619);
+            this.sidebarMenu.CurrentPage = SCCRecordsManagementSystem.SidebarPage.FaceRecognition;
+            this.sidebarMenu.Name = "sidebarMenu";
+            this.sidebarMenu.TabIndex = 0;
             // 
-            // button12
+            // pnlHeader
             // 
-            this.button12.BackColor = System.Drawing.Color.Transparent;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.button12.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(22, 560);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(277, 38);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "   LogOut";
-            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button12.UseVisualStyleBackColor = false;
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            this.pnlHeader.Location = new System.Drawing.Point(320, 0);
+            this.pnlHeader.Size = new System.Drawing.Size(985, 50);
+            this.pnlHeader.Controls.Add(this.lblPageTitle);
+            this.pnlHeader.Controls.Add(this.windowButtons);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.TabIndex = 1;
             // 
-            // button13
+            // lblPageTitle
             // 
-            this.button13.BackColor = System.Drawing.Color.Transparent;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(22, 123);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(277, 36);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "   Dashboard";
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button13.UseVisualStyleBackColor = false;
+            this.lblPageTitle.AutoSize = true;
+            this.lblPageTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblPageTitle.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPageTitle.ForeColor = System.Drawing.Color.GhostWhite;
+            this.lblPageTitle.Location = new System.Drawing.Point(24, 13);
+            this.lblPageTitle.Text = "Face Recognition Attendance";
+            this.lblPageTitle.Name = "lblPageTitle";
+            this.lblPageTitle.TabIndex = 0;
             // 
-            // button14
+            // windowButtons
             // 
-            this.button14.BackColor = System.Drawing.Color.Transparent;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(22, 465);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(277, 36);
-            this.button14.TabIndex = 10;
-            this.button14.Text = "   Rules and Permission";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button14.UseVisualStyleBackColor = false;
+            this.windowButtons.Location = new System.Drawing.Point(891, 8);
+            this.windowButtons.Size = new System.Drawing.Size(90, 34);
+            this.windowButtons.Name = "windowButtons";
+            this.windowButtons.TabIndex = 1;
             // 
-            // button15
+            // pnlCameraStatus
             // 
-            this.button15.BackColor = System.Drawing.Color.Transparent;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
-            this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.Location = new System.Drawing.Point(22, 427);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(277, 36);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "Obligations";
-            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button15.UseVisualStyleBackColor = false;
+            this.pnlCameraStatus.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.pnlCameraStatus.Location = new System.Drawing.Point(348, 62);
+            this.pnlCameraStatus.Size = new System.Drawing.Size(461, 82);
+            this.pnlCameraStatus.Controls.Add(this.lblCameraStatus);
+            this.pnlCameraStatus.Name = "pnlCameraStatus";
+            this.pnlCameraStatus.TabIndex = 2;
             // 
-            // button16
+            // lblCameraStatus
             // 
-            this.button16.BackColor = System.Drawing.Color.Transparent;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
-            this.button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.Location = new System.Drawing.Point(22, 389);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(277, 36);
-            this.button16.TabIndex = 8;
-            this.button16.Text = "   Reports and Analysis";
-            this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button16.UseVisualStyleBackColor = false;
+            this.lblCameraStatus.AutoSize = false;
+            this.lblCameraStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblCameraStatus.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCameraStatus.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblCameraStatus.Location = new System.Drawing.Point(12, 8);
+            this.lblCameraStatus.Text = "Starting...";
+            this.lblCameraStatus.Size = new System.Drawing.Size(437, 66);
+            this.lblCameraStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCameraStatus.Name = "lblCameraStatus";
+            this.lblCameraStatus.TabIndex = 0;
             // 
-            // button17
+            // pnlResultBanner
             // 
-            this.button17.BackColor = System.Drawing.Color.Transparent;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
-            this.button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.Location = new System.Drawing.Point(22, 351);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(277, 36);
-            this.button17.TabIndex = 7;
-            this.button17.Text = "   Attendance Monitoring";
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button17.UseVisualStyleBackColor = false;
+            this.pnlResultBanner.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.pnlResultBanner.Location = new System.Drawing.Point(817, 62);
+            this.pnlResultBanner.Size = new System.Drawing.Size(468, 82);
+            this.pnlResultBanner.Controls.Add(this.lblBanner);
+            this.pnlResultBanner.Name = "pnlResultBanner";
+            this.pnlResultBanner.TabIndex = 3;
             // 
-            // button18
+            // lblBanner
             // 
-            this.button18.BackColor = System.Drawing.Color.Transparent;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
-            this.button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.Location = new System.Drawing.Point(22, 313);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(277, 36);
-            this.button18.TabIndex = 6;
-            this.button18.Text = "   Event Management";
-            this.button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button18.UseVisualStyleBackColor = false;
+            this.lblBanner.AutoSize = false;
+            this.lblBanner.BackColor = System.Drawing.Color.Transparent;
+            this.lblBanner.Font = new System.Drawing.Font("Cambria", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBanner.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblBanner.Location = new System.Drawing.Point(0, 0);
+            this.lblBanner.Text = "WAITING FOR A STUDENT";
+            this.lblBanner.Size = new System.Drawing.Size(468, 82);
+            this.lblBanner.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBanner.Name = "lblBanner";
+            this.lblBanner.TabIndex = 0;
             // 
-            // button19
+            // pnlCamera
             // 
-            this.button19.BackColor = System.Drawing.Color.Transparent;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
-            this.button19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.Location = new System.Drawing.Point(22, 275);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(277, 36);
-            this.button19.TabIndex = 5;
-            this.button19.Text = "   Face Recognition";
-            this.button19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button19.UseVisualStyleBackColor = false;
+            this.pnlCamera.BackColor = System.Drawing.Color.Black;
+            this.pnlCamera.Location = new System.Drawing.Point(348, 150);
+            this.pnlCamera.Size = new System.Drawing.Size(461, 346);
+            this.pnlCamera.Controls.Add(this.picCamera);
+            this.pnlCamera.Name = "pnlCamera";
+            this.pnlCamera.TabIndex = 4;
             // 
-            // button20
+            // picCamera
             // 
-            this.button20.BackColor = System.Drawing.Color.Transparent;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
-            this.button20.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.Location = new System.Drawing.Point(22, 237);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(277, 36);
-            this.button20.TabIndex = 4;
-            this.button20.Text = "   Officer Records";
-            this.button20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button20.UseVisualStyleBackColor = false;
+            this.picCamera.BackColor = System.Drawing.Color.Black;
+            this.picCamera.Location = new System.Drawing.Point(0, 0);
+            this.picCamera.Size = new System.Drawing.Size(461, 346);
+            this.picCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCamera.Name = "picCamera";
+            this.picCamera.TabIndex = 0;
             // 
-            // button21
+            // pnlInfo
             // 
-            this.button21.BackColor = System.Drawing.Color.Transparent;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
-            this.button21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button21.Location = new System.Drawing.Point(22, 199);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(277, 36);
-            this.button21.TabIndex = 3;
-            this.button21.Text = "   Student Records";
-            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button21.UseVisualStyleBackColor = false;
+            this.pnlInfo.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.pnlInfo.Location = new System.Drawing.Point(817, 150);
+            this.pnlInfo.Size = new System.Drawing.Size(468, 346);
+            this.pnlInfo.Controls.Add(this.picStudent);
+            this.pnlInfo.Controls.Add(this.lblInfoTitle);
+            this.pnlInfo.Controls.Add(this.lblName);
+            this.pnlInfo.Controls.Add(this.lblStudentNumberCaption);
+            this.pnlInfo.Controls.Add(this.lblStudentNumber);
+            this.pnlInfo.Controls.Add(this.lblCourseCaption);
+            this.pnlInfo.Controls.Add(this.lblCourse);
+            this.pnlInfo.Controls.Add(this.lblYearCaption);
+            this.pnlInfo.Controls.Add(this.lblYear);
+            this.pnlInfo.Controls.Add(this.lblStatusCaption);
+            this.pnlInfo.Controls.Add(this.lblStatus);
+            this.pnlInfo.Controls.Add(this.lblTimeCaption);
+            this.pnlInfo.Controls.Add(this.lblTime);
+            this.pnlInfo.Controls.Add(this.lblResultMessage);
+            this.pnlInfo.Name = "pnlInfo";
+            this.pnlInfo.TabIndex = 5;
             // 
-            // button22
+            // picStudent
             // 
-            this.button22.BackColor = System.Drawing.Color.Transparent;
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
-            this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(22, 161);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(277, 36);
-            this.button22.TabIndex = 2;
-            this.button22.Text = "   Departments";
-            this.button22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button22.UseVisualStyleBackColor = false;
+            this.picStudent.BackColor = System.Drawing.Color.White;
+            this.picStudent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picStudent.Location = new System.Drawing.Point(20, 16);
+            this.picStudent.Size = new System.Drawing.Size(170, 210);
+            this.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picStudent.Name = "picStudent";
+            this.picStudent.TabIndex = 0;
             // 
-            // panel5
+            // lblInfoTitle
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(326, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(979, 48);
-            this.panel5.TabIndex = 28;
+            this.lblInfoTitle.AutoSize = true;
+            this.lblInfoTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblInfoTitle.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoTitle.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblInfoTitle.Location = new System.Drawing.Point(205, 16);
+            this.lblInfoTitle.Text = "Student Information";
+            this.lblInfoTitle.Name = "lblInfoTitle";
+            this.lblInfoTitle.TabIndex = 1;
             // 
-            // label1
+            // lblName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.GhostWhite;
-            this.label1.Location = new System.Drawing.Point(68, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Face Recognition";
+            this.lblName.AutoSize = false;
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.Black;
+            this.lblName.Location = new System.Drawing.Point(205, 44);
+            this.lblName.Text = "-";
+            this.lblName.Size = new System.Drawing.Size(250, 48);
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.lblName.Name = "lblName";
+            this.lblName.TabIndex = 2;
             // 
-            // panel2
+            // lblStudentNumberCaption
             // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(348, 62);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(475, 82);
-            this.panel2.TabIndex = 29;
+            this.lblStudentNumberCaption.AutoSize = true;
+            this.lblStudentNumberCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblStudentNumberCaption.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStudentNumberCaption.ForeColor = System.Drawing.Color.Black;
+            this.lblStudentNumberCaption.Location = new System.Drawing.Point(205, 100);
+            this.lblStudentNumberCaption.Text = "Student ID:";
+            this.lblStudentNumberCaption.Name = "lblStudentNumberCaption";
+            this.lblStudentNumberCaption.TabIndex = 3;
             // 
-            // label2
+            // lblStudentNumber
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(145, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 27);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Camera Active";
+            this.lblStudentNumber.AutoSize = false;
+            this.lblStudentNumber.BackColor = System.Drawing.Color.Transparent;
+            this.lblStudentNumber.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStudentNumber.ForeColor = System.Drawing.Color.Black;
+            this.lblStudentNumber.Location = new System.Drawing.Point(295, 100);
+            this.lblStudentNumber.Text = "-";
+            this.lblStudentNumber.Size = new System.Drawing.Size(160, 22);
+            this.lblStudentNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblStudentNumber.AutoEllipsis = true;
+            this.lblStudentNumber.Name = "lblStudentNumber";
+            this.lblStudentNumber.TabIndex = 4;
             // 
-            // panel3
+            // lblCourseCaption
             // 
-            this.panel3.Controls.Add(this.comboBox1);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(817, 62);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(476, 82);
-            this.panel3.TabIndex = 30;
+            this.lblCourseCaption.AutoSize = true;
+            this.lblCourseCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblCourseCaption.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCourseCaption.ForeColor = System.Drawing.Color.Black;
+            this.lblCourseCaption.Location = new System.Drawing.Point(205, 128);
+            this.lblCourseCaption.Text = "Course:";
+            this.lblCourseCaption.Name = "lblCourseCaption";
+            this.lblCourseCaption.TabIndex = 5;
             // 
-            // comboBox1
+            // lblCourse
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(97, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(337, 24);
-            this.comboBox1.TabIndex = 2;
+            this.lblCourse.AutoSize = false;
+            this.lblCourse.BackColor = System.Drawing.Color.Transparent;
+            this.lblCourse.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCourse.ForeColor = System.Drawing.Color.Black;
+            this.lblCourse.Location = new System.Drawing.Point(295, 128);
+            this.lblCourse.Text = "-";
+            this.lblCourse.Size = new System.Drawing.Size(160, 22);
+            this.lblCourse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCourse.AutoEllipsis = true;
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.TabIndex = 6;
             // 
-            // label3
+            // lblYearCaption
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 17);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Event :";
+            this.lblYearCaption.AutoSize = true;
+            this.lblYearCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblYearCaption.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYearCaption.ForeColor = System.Drawing.Color.Black;
+            this.lblYearCaption.Location = new System.Drawing.Point(205, 156);
+            this.lblYearCaption.Text = "Year Level:";
+            this.lblYearCaption.Name = "lblYearCaption";
+            this.lblYearCaption.TabIndex = 7;
             // 
-            // panel4
+            // lblYear
             // 
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(350, 150);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(461, 365);
-            this.panel4.TabIndex = 31;
+            this.lblYear.AutoSize = false;
+            this.lblYear.BackColor = System.Drawing.Color.Transparent;
+            this.lblYear.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYear.ForeColor = System.Drawing.Color.Black;
+            this.lblYear.Location = new System.Drawing.Point(295, 156);
+            this.lblYear.Text = "-";
+            this.lblYear.Size = new System.Drawing.Size(160, 22);
+            this.lblYear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblYear.AutoEllipsis = true;
+            this.lblYear.Name = "lblYear";
+            this.lblYear.TabIndex = 8;
             // 
-            // label4
+            // lblStatusCaption
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(145, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 16);
-            this.label4.TabIndex = 0;
+            this.lblStatusCaption.AutoSize = true;
+            this.lblStatusCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblStatusCaption.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatusCaption.ForeColor = System.Drawing.Color.Black;
+            this.lblStatusCaption.Location = new System.Drawing.Point(205, 184);
+            this.lblStatusCaption.Text = "Status:";
+            this.lblStatusCaption.Name = "lblStatusCaption";
+            this.lblStatusCaption.TabIndex = 9;
             // 
-            // panel6
+            // lblStatus
             // 
-            this.panel6.Controls.Add(this.label9);
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Controls.Add(this.label6);
-            this.panel6.Controls.Add(this.label5);
-            this.panel6.Controls.Add(this.pictureBox1);
-            this.panel6.Location = new System.Drawing.Point(817, 150);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(476, 365);
-            this.panel6.TabIndex = 32;
+            this.lblStatus.AutoSize = false;
+            this.lblStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblStatus.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Black;
+            this.lblStatus.Location = new System.Drawing.Point(295, 184);
+            this.lblStatus.Text = "-";
+            this.lblStatus.Size = new System.Drawing.Size(160, 22);
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblStatus.AutoEllipsis = true;
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.TabIndex = 10;
             // 
-            // label9
+            // lblTimeCaption
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(231, 213);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 17);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Time:";
+            this.lblTimeCaption.AutoSize = true;
+            this.lblTimeCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblTimeCaption.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeCaption.ForeColor = System.Drawing.Color.Black;
+            this.lblTimeCaption.Location = new System.Drawing.Point(205, 212);
+            this.lblTimeCaption.Text = "Time:";
+            this.lblTimeCaption.Name = "lblTimeCaption";
+            this.lblTimeCaption.TabIndex = 11;
             // 
-            // label8
+            // lblTime
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(231, 175);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 17);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Year Level:";
+            this.lblTime.AutoSize = false;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ForeColor = System.Drawing.Color.Black;
+            this.lblTime.Location = new System.Drawing.Point(295, 212);
+            this.lblTime.Text = "-";
+            this.lblTime.Size = new System.Drawing.Size(160, 22);
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTime.AutoEllipsis = true;
+            this.lblTime.Name = "lblTime";
+            this.lblTime.TabIndex = 12;
             // 
-            // label7
+            // lblResultMessage
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(231, 137);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 17);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Department:";
+            this.lblResultMessage.AutoSize = false;
+            this.lblResultMessage.BackColor = System.Drawing.Color.Transparent;
+            this.lblResultMessage.Font = new System.Drawing.Font("Cambria", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResultMessage.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblResultMessage.Location = new System.Drawing.Point(20, 240);
+            this.lblResultMessage.Text = "";
+            this.lblResultMessage.Size = new System.Drawing.Size(428, 90);
+            this.lblResultMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblResultMessage.Name = "lblResultMessage";
+            this.lblResultMessage.TabIndex = 13;
             // 
-            // label6
+            // lblFaceStats
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(231, 106);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 17);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "ID Number:";
+            this.lblFaceStats.AutoSize = false;
+            this.lblFaceStats.BackColor = System.Drawing.Color.Transparent;
+            this.lblFaceStats.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFaceStats.ForeColor = System.Drawing.Color.DimGray;
+            this.lblFaceStats.Location = new System.Drawing.Point(348, 502);
+            this.lblFaceStats.Text = "";
+            this.lblFaceStats.Size = new System.Drawing.Size(461, 22);
+            this.lblFaceStats.Name = "lblFaceStats";
+            this.lblFaceStats.TabIndex = 6;
             // 
-            // label5
+            // lblHint
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(231, 68);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Full Name:";
+            this.lblHint.AutoSize = false;
+            this.lblHint.BackColor = System.Drawing.Color.Transparent;
+            this.lblHint.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHint.ForeColor = System.Drawing.Color.DimGray;
+            this.lblHint.Location = new System.Drawing.Point(817, 502);
+            this.lblHint.Text = "Stand in front of the camera and look straight at it. Attendance is recorded automatically.";
+            this.lblHint.Size = new System.Drawing.Size(468, 36);
+            this.lblHint.Name = "lblHint";
+            this.lblHint.TabIndex = 7;
             // 
-            // pictureBox1
+            // btnNextStudent
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(21, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(195, 258);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.btnNextStudent.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            this.btnNextStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextStudent.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextStudent.ForeColor = System.Drawing.Color.White;
+            this.btnNextStudent.Location = new System.Drawing.Point(450, 540);
+            this.btnNextStudent.Size = new System.Drawing.Size(253, 45);
+            this.btnNextStudent.Text = "NEXT STUDENT";
+            this.btnNextStudent.UseVisualStyleBackColor = false;
+            this.btnNextStudent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNextStudent.FlatAppearance.BorderSize = 0;
+            this.btnNextStudent.Name = "btnNextStudent";
+            this.btnNextStudent.TabIndex = 8;
+            this.btnNextStudent.Click += new System.EventHandler(this.btnNextStudent_Click);
             // 
-            // button1
+            // btnRestart
             // 
-            this.button1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(450, 532);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(253, 45);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Another Person";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRestart.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRestart.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestart.ForeColor = System.Drawing.Color.Black;
+            this.btnRestart.Location = new System.Drawing.Point(936, 540);
+            this.btnRestart.Size = new System.Drawing.Size(253, 45);
+            this.btnRestart.Text = "RESTART CAMERA";
+            this.btnRestart.UseVisualStyleBackColor = false;
+            this.btnRestart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRestart.FlatAppearance.BorderSize = 0;
+            this.btnRestart.Name = "btnRestart";
+            this.btnRestart.TabIndex = 9;
+            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
-            // button2
+            // timerCamera
             // 
-            this.button2.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(936, 532);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(253, 45);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "Retry";
-            this.button2.UseVisualStyleBackColor = true;
+            this.timerCamera.Interval = 100;
+            this.timerCamera.Enabled = false;
+            this.timerCamera.Tick += new System.EventHandler(this.timerCamera_Tick);
             // 
             // FaceRecognition
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._891752403_1143943308365188_7410099486200290872_n2;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FaceRecognition";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FaceRecognition";
-            this.panel1.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Controls.Add(this.sidebarMenu);
+            this.Controls.Add(this.pnlHeader);
+            this.Controls.Add(this.pnlCameraStatus);
+            this.Controls.Add(this.pnlResultBanner);
+            this.Controls.Add(this.pnlCamera);
+            this.Controls.Add(this.pnlInfo);
+            this.Controls.Add(this.lblFaceStats);
+            this.Controls.Add(this.lblHint);
+            this.Controls.Add(this.btnNextStudent);
+            this.Controls.Add(this.btnRestart);
+            this.Load += new System.EventHandler(this.FaceRecognition_Load);
+            this.Shown += new System.EventHandler(this.FaceRecognition_Shown);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FaceRecognition_FormClosed);
+            this.Name = "FaceRecognition";
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
+            this.pnlCameraStatus.ResumeLayout(false);
+            this.pnlCameraStatus.PerformLayout();
+            this.pnlResultBanner.ResumeLayout(false);
+            this.pnlResultBanner.PerformLayout();
+            this.pnlCamera.ResumeLayout(false);
+            this.pnlCamera.PerformLayout();
+            this.pnlInfo.ResumeLayout(false);
+            this.pnlInfo.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private SidebarMenu sidebarMenu;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblPageTitle;
+        private WindowButtons windowButtons;
+        private System.Windows.Forms.Panel pnlCameraStatus;
+        private System.Windows.Forms.Label lblCameraStatus;
+        private System.Windows.Forms.Panel pnlResultBanner;
+        private System.Windows.Forms.Label lblBanner;
+        private System.Windows.Forms.Panel pnlCamera;
+        private System.Windows.Forms.PictureBox picCamera;
+        private System.Windows.Forms.Panel pnlInfo;
+        private System.Windows.Forms.PictureBox picStudent;
+        private System.Windows.Forms.Label lblInfoTitle;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblStudentNumberCaption;
+        private System.Windows.Forms.Label lblStudentNumber;
+        private System.Windows.Forms.Label lblCourseCaption;
+        private System.Windows.Forms.Label lblCourse;
+        private System.Windows.Forms.Label lblYearCaption;
+        private System.Windows.Forms.Label lblYear;
+        private System.Windows.Forms.Label lblStatusCaption;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblTimeCaption;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblResultMessage;
+        private System.Windows.Forms.Label lblFaceStats;
+        private System.Windows.Forms.Label lblHint;
+        private System.Windows.Forms.Button btnNextStudent;
+        private System.Windows.Forms.Button btnRestart;
+        private System.Windows.Forms.Timer timerCamera;
     }
 }

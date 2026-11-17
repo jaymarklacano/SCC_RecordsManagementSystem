@@ -1,397 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{600E0184-88AC-41B8-8B73-A20197450D57}</ProjectGuid>
     <OutputType>WinExe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>SCCRecordsManagementSystem</RootNamespace>
     <AssemblyName>SCCRecordsManagementSystem</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <LangVersion>7.3</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
+  <!-- NuGet packages (exact versions are listed in README.md). They are restored automatically. -->
   <ItemGroup>
-    <Reference Include="BCrypt-Net-Next, Version=4.2.0.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
-      <HintPath>packages\BCrypt.Net-Next.4.2.0\lib\net472\BCrypt-Net-Next.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\Database\MySql.Data\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+    <PackageReference Include="MySql.Data" Version="6.9.12" />
+    <PackageReference Include="OpenCvSharp4" Version="4.11.0.20250507" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.11.0.20250507" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="AddDepartment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddDepartment.Designer.cs">
-      <DependentUpon>AddDepartment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddEvent.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddEvent.Designer.cs">
-      <DependentUpon>AddEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AttendanceMonitoring.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AttendanceMonitoring.Designer.cs">
-      <DependentUpon>AttendanceMonitoring.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CreateAccount.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateAccount.Designer.cs">
-      <DependentUpon>CreateAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dashboard.Designer.cs">
-      <DependentUpon>Dashboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Database.cs" />
-    <Compile Include="Departments.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Departments.Designer.cs">
-      <DependentUpon>Departments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Event Management.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Event Management.Designer.cs">
-      <DependentUpon>Event Management.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FaceRecognition.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FaceRecognition.Designer.cs">
-      <DependentUpon>FaceRecognition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ForgotPassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ForgotPassword.Designer.cs">
-      <DependentUpon>ForgotPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoginHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginHistory.Designer.cs">
-      <DependentUpon>LoginHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Obligations.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Obligations.Designer.cs">
-      <DependentUpon>Obligations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Officerr Records.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Officerr Records.Designer.cs">
-      <DependentUpon>Officerr Records.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registration.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Registration.Designer.cs">
-      <DependentUpon>Registration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportsAndAnalysis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReportsAndAnalysis.Designer.cs">
-      <DependentUpon>ReportsAndAnalysis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RulesPermission.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RulesPermission.Designer.cs">
-      <DependentUpon>RulesPermission.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StudentRecords.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StudentRecords.Designer.cs">
-      <DependentUpon>StudentRecords.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AddDepartment.resx">
-      <DependentUpon>AddDepartment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddEvent.resx">
-      <DependentUpon>AddEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AttendanceMonitoring.resx">
-      <DependentUpon>AttendanceMonitoring.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CreateAccount.resx">
-      <DependentUpon>CreateAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard.resx">
-      <DependentUpon>Dashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Departments.resx">
-      <DependentUpon>Departments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Event Management.resx">
-      <DependentUpon>Event Management.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FaceRecognition.resx">
-      <DependentUpon>FaceRecognition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ForgotPassword.resx">
-      <DependentUpon>ForgotPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoginHistory.resx">
-      <DependentUpon>LoginHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Obligations.resx">
-      <DependentUpon>Obligations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Officerr Records.resx">
-      <DependentUpon>Officerr Records.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+  </ItemGroup>
+
+  <!-- The Haar cascade file is used to detect faces. It is copied next to the .exe. -->
+  <ItemGroup>
+    <None Update="Data\haarcascade_frontalface_default.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Registration.resx">
-      <DependentUpon>Registration.cs</DependentUpon>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportsAndAnalysis.resx">
-      <DependentUpon>ReportsAndAnalysis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RulesPermission.resx">
-      <DependentUpon>RulesPermission.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StudentRecords.resx">
-      <DependentUpon>StudentRecords.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dashboard-panel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\monitor-activity.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\monitor-activity %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\building-complex.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\clipboard-list.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Biometric Face Scan Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\900331939_1145850661353513_2576951378793102717_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\900331939_1145850661353513_2576951378793102717_n1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\user-round.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\user-round1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\house.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\house1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\house %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-building-80.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-building-801.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-building-802.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-building-100.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-building-16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-building-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-building-24 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-what-i-do-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-what-i-do-241.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-facial-recognition-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-edit-calendar-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-event-accepted-tentatively-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-list-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-pass-fail-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-analysis-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-management-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\889761978_4248165508650016_6229347011679911557_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-password-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-password-24 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-user-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-rules-book-24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-log-out-24 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-log-out-24 %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\890410457_28463085843365401_1086666007497239010_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\906731512_1495989352393249_1671008954414898167_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\906731512_1495989352393249_1671008954414898167_n%281%29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\904439575_1911191946735306_1039497458727327980_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\904243995_1151826443998915_6274108228379186578_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\904439575_1911191946735306_1039497458727327980_n1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\903375047_2169860083631994_8617979005398290656_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\891752403_1143943308365188_7410099486200290872_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\891752403_1143943308365188_7410099486200290872_n1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\891752403_1143943308365188_7410099486200290872_n2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\912147272_1154852157235963_8896177691660798247_n.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\createAcc.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\forgotPass.jpg" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

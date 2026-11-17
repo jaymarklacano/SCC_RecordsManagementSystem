@@ -28,288 +28,359 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel5.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlInformation = new System.Windows.Forms.Panel();
+            this.pnlInformationTitle = new System.Windows.Forms.Panel();
+            this.lblInformationTitle = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblCode = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.lblHead = new System.Windows.Forms.Label();
+            this.txtHead = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.pnlAcademic = new System.Windows.Forms.Panel();
+            this.pnlAcademicTitle = new System.Windows.Forms.Panel();
+            this.lblAcademicTitle = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.cmbLevel = new System.Windows.Forms.ComboBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.pnlHeader.SuspendLayout();
+            this.pnlInformation.SuspendLayout();
+            this.pnlInformationTitle.SuspendLayout();
+            this.pnlAcademic.SuspendLayout();
+            this.pnlAcademicTitle.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // pnlHeader
             // 
-            this.button2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(649, 399);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 35);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "Save Event";
-            this.button2.UseVisualStyleBackColor = true;
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Size = new System.Drawing.Size(783, 41);
+            this.pnlHeader.Controls.Add(this.lblTitle);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.TabIndex = 0;
             // 
-            // button1
+            // lblTitle
             // 
-            this.button1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(531, 399);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 35);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Reset";
-            this.button1.UseVisualStyleBackColor = true;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.GhostWhite;
+            this.lblTitle.Location = new System.Drawing.Point(23, 9);
+            this.lblTitle.Text = "Add Department";
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.TabIndex = 0;
             // 
-            // panel5
+            // pnlInformation
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(-1, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(784, 41);
-            this.panel5.TabIndex = 34;
+            this.pnlInformation.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.pnlInformation.Location = new System.Drawing.Point(12, 56);
+            this.pnlInformation.Size = new System.Drawing.Size(759, 218);
+            this.pnlInformation.Controls.Add(this.pnlInformationTitle);
+            this.pnlInformation.Controls.Add(this.lblName);
+            this.pnlInformation.Controls.Add(this.txtName);
+            this.pnlInformation.Controls.Add(this.lblCode);
+            this.pnlInformation.Controls.Add(this.txtCode);
+            this.pnlInformation.Controls.Add(this.lblHead);
+            this.pnlInformation.Controls.Add(this.txtHead);
+            this.pnlInformation.Controls.Add(this.lblEmail);
+            this.pnlInformation.Controls.Add(this.txtEmail);
+            this.pnlInformation.Controls.Add(this.lblDescription);
+            this.pnlInformation.Controls.Add(this.txtDescription);
+            this.pnlInformation.Name = "pnlInformation";
+            this.pnlInformation.TabIndex = 1;
             // 
-            // label1
+            // pnlInformationTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.GhostWhite;
-            this.label1.Location = new System.Drawing.Point(23, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Add Department";
+            this.pnlInformationTitle.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.pnlInformationTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlInformationTitle.Size = new System.Drawing.Size(759, 41);
+            this.pnlInformationTitle.Controls.Add(this.lblInformationTitle);
+            this.pnlInformationTitle.Name = "pnlInformationTitle";
+            this.pnlInformationTitle.TabIndex = 0;
             // 
-            // panel2
+            // lblInformationTitle
             // 
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(12, 56);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(759, 218);
-            this.panel2.TabIndex = 35;
+            this.lblInformationTitle.AutoSize = true;
+            this.lblInformationTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblInformationTitle.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInformationTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblInformationTitle.Location = new System.Drawing.Point(11, 12);
+            this.lblInformationTitle.Text = "Department Information";
+            this.lblInformationTitle.Name = "lblInformationTitle";
+            this.lblInformationTitle.TabIndex = 0;
             // 
-            // panel3
+            // lblName
             // 
-            this.panel3.BackColor = System.Drawing.Color.Azure;
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(759, 41);
-            this.panel3.TabIndex = 30;
+            this.lblName.AutoSize = true;
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.Black;
+            this.lblName.Location = new System.Drawing.Point(17, 50);
+            this.lblName.Text = "Department Name : *";
+            this.lblName.Name = "lblName";
+            this.lblName.TabIndex = 1;
             // 
-            // label2
+            // txtName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(157, 15);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "Department Information";
+            this.txtName.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(17, 68);
+            this.txtName.Size = new System.Drawing.Size(344, 24);
+            this.txtName.MaxLength = 100;
+            this.txtName.Name = "txtName";
+            this.txtName.TabIndex = 2;
             // 
-            // textBox1
+            // lblCode
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 67);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(344, 23);
-            this.textBox1.TabIndex = 42;
+            this.lblCode.AutoSize = true;
+            this.lblCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblCode.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCode.ForeColor = System.Drawing.Color.Black;
+            this.lblCode.Location = new System.Drawing.Point(413, 50);
+            this.lblCode.Text = "Department Code : *";
+            this.lblCode.Name = "lblCode";
+            this.lblCode.TabIndex = 3;
             // 
-            // label6
+            // txtCode
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(410, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 15);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "Department Code :";
+            this.txtCode.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCode.Location = new System.Drawing.Point(413, 68);
+            this.txtCode.Size = new System.Drawing.Size(321, 24);
+            this.txtCode.MaxLength = 20;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.TabIndex = 4;
             // 
-            // label5
+            // lblHead
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(413, 109);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(155, 15);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Contact Email (Optional)";
+            this.lblHead.AutoSize = true;
+            this.lblHead.BackColor = System.Drawing.Color.Transparent;
+            this.lblHead.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHead.ForeColor = System.Drawing.Color.Black;
+            this.lblHead.Location = new System.Drawing.Point(17, 110);
+            this.lblHead.Text = "Department Head / Dean :";
+            this.lblHead.Name = "lblHead";
+            this.lblHead.TabIndex = 5;
             // 
-            // label4
+            // txtHead
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(166, 15);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Department Head / Dean :";
+            this.txtHead.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHead.Location = new System.Drawing.Point(17, 128);
+            this.txtHead.Size = new System.Drawing.Size(344, 24);
+            this.txtHead.MaxLength = 100;
+            this.txtHead.Name = "txtHead";
+            this.txtHead.TabIndex = 6;
             // 
-            // label3
+            // lblEmail
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 15);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Department Name :";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.BackColor = System.Drawing.Color.Transparent;
+            this.lblEmail.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.ForeColor = System.Drawing.Color.Black;
+            this.lblEmail.Location = new System.Drawing.Point(413, 110);
+            this.lblEmail.Text = "Contact Email (Optional) :";
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.TabIndex = 7;
             // 
-            // textBox2
+            // txtEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(413, 126);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(321, 23);
-            this.textBox2.TabIndex = 46;
+            this.txtEmail.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(413, 128);
+            this.txtEmail.Size = new System.Drawing.Size(321, 24);
+            this.txtEmail.MaxLength = 100;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.TabIndex = 8;
             // 
-            // textBox4
+            // lblDescription
             // 
-            this.textBox4.Location = new System.Drawing.Point(14, 126);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(347, 23);
-            this.textBox4.TabIndex = 47;
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.BackColor = System.Drawing.Color.Transparent;
+            this.lblDescription.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblDescription.Location = new System.Drawing.Point(17, 162);
+            this.lblDescription.Text = "Description :";
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.TabIndex = 9;
             // 
-            // label7
+            // txtDescription
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 162);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 15);
-            this.label7.TabIndex = 48;
-            this.label7.Text = "Description :";
+            this.txtDescription.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(17, 180);
+            this.txtDescription.Size = new System.Drawing.Size(717, 24);
+            this.txtDescription.MaxLength = 255;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.TabIndex = 10;
             // 
-            // textBox3
+            // pnlAcademic
             // 
-            this.textBox3.Location = new System.Drawing.Point(17, 179);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(710, 23);
-            this.textBox3.TabIndex = 49;
+            this.pnlAcademic.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.pnlAcademic.Location = new System.Drawing.Point(12, 289);
+            this.pnlAcademic.Size = new System.Drawing.Size(759, 100);
+            this.pnlAcademic.Controls.Add(this.pnlAcademicTitle);
+            this.pnlAcademic.Controls.Add(this.lblLevel);
+            this.pnlAcademic.Controls.Add(this.cmbLevel);
+            this.pnlAcademic.Name = "pnlAcademic";
+            this.pnlAcademic.TabIndex = 2;
             // 
-            // panel1
+            // pnlAcademicTitle
             // 
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 289);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(759, 104);
-            this.panel1.TabIndex = 38;
+            this.pnlAcademicTitle.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.pnlAcademicTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlAcademicTitle.Size = new System.Drawing.Size(759, 41);
+            this.pnlAcademicTitle.Controls.Add(this.lblAcademicTitle);
+            this.pnlAcademicTitle.Name = "pnlAcademicTitle";
+            this.pnlAcademicTitle.TabIndex = 0;
             // 
-            // comboBox1
+            // lblAcademicTitle
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(14, 70);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(347, 23);
-            this.comboBox1.TabIndex = 32;
+            this.lblAcademicTitle.AutoSize = true;
+            this.lblAcademicTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblAcademicTitle.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAcademicTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblAcademicTitle.Location = new System.Drawing.Point(11, 12);
+            this.lblAcademicTitle.Text = "Academic Information";
+            this.lblAcademicTitle.Name = "lblAcademicTitle";
+            this.lblAcademicTitle.TabIndex = 0;
             // 
-            // label8
+            // lblLevel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 52);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 15);
-            this.label8.TabIndex = 50;
-            this.label8.Text = "Academic Level :";
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevel.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLevel.ForeColor = System.Drawing.Color.Black;
+            this.lblLevel.Location = new System.Drawing.Point(17, 52);
+            this.lblLevel.Text = "Academic Level : *";
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.TabIndex = 1;
             // 
-            // textBox5
+            // cmbLevel
             // 
-            this.textBox5.Location = new System.Drawing.Point(413, 67);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(321, 23);
-            this.textBox5.TabIndex = 50;
+            this.cmbLevel.Items.AddRange(new object[] {
+            "Undergraduate",
+            "Graduate",
+            "Senior High School"});
+            this.cmbLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLevel.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLevel.FormattingEnabled = true;
+            this.cmbLevel.Location = new System.Drawing.Point(17, 69);
+            this.cmbLevel.Size = new System.Drawing.Size(344, 25);
+            this.cmbLevel.Name = "cmbLevel";
+            this.cmbLevel.TabIndex = 2;
             // 
-            // panel4
+            // btnCancel
             // 
-            this.panel4.BackColor = System.Drawing.Color.Azure;
-            this.panel4.Controls.Add(this.label9);
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(759, 44);
-            this.panel4.TabIndex = 51;
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.Black;
+            this.btnCancel.Location = new System.Drawing.Point(413, 399);
+            this.btnCancel.Size = new System.Drawing.Size(112, 35);
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label9
+            // btnReset
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 15);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "Event Information";
+            this.btnReset.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.Black;
+            this.btnReset.Location = new System.Drawing.Point(531, 399);
+            this.btnReset.Size = new System.Drawing.Size(112, 35);
+            this.btnReset.Text = "RESET";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.Name = "btnReset";
+            this.btnReset.TabIndex = 4;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(649, 399);
+            this.btnSave.Size = new System.Drawing.Size(122, 35);
+            this.btnSave.Text = "SAVE DEPARTMENT";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // AddDepartment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(783, 446);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel2);
-            this.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "AddDepartment";
-            this.Text = "AddDepartment";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Department";
+            this.AcceptButton = this.btnSave;
+            this.CancelButton = this.btnCancel;
+            this.Controls.Add(this.pnlHeader);
+            this.Controls.Add(this.pnlInformation);
+            this.Controls.Add(this.pnlAcademic);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnSave);
             this.Load += new System.EventHandler(this.AddDepartment_Load);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.Name = "AddDepartment";
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
+            this.pnlInformation.ResumeLayout(false);
+            this.pnlInformation.PerformLayout();
+            this.pnlInformationTitle.ResumeLayout(false);
+            this.pnlInformationTitle.PerformLayout();
+            this.pnlAcademic.ResumeLayout(false);
+            this.pnlAcademic.PerformLayout();
+            this.pnlAcademicTitle.ResumeLayout(false);
+            this.pnlAcademicTitle.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Panel pnlInformation;
+        private System.Windows.Forms.Panel pnlInformationTitle;
+        private System.Windows.Forms.Label lblInformationTitle;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblCode;
+        private System.Windows.Forms.TextBox txtCode;
+        private System.Windows.Forms.Label lblHead;
+        private System.Windows.Forms.TextBox txtHead;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Panel pnlAcademic;
+        private System.Windows.Forms.Panel pnlAcademicTitle;
+        private System.Windows.Forms.Label lblAcademicTitle;
+        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.ComboBox cmbLevel;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnSave;
     }
 }

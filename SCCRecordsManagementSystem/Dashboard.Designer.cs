@@ -28,461 +28,512 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.sidebarMenu = new SidebarMenu();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblPageTitle = new System.Windows.Forms.Label();
+            this.windowButtons = new WindowButtons();
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.lblDateTime = new System.Windows.Forms.Label();
+            this.btnStartAttendance = new System.Windows.Forms.Button();
+            this.pnlTotalCard = new System.Windows.Forms.Panel();
+            this.pnlTotalCardCaption = new System.Windows.Forms.Label();
+            this.lblTotalStudents = new System.Windows.Forms.Label();
+            this.lblTotalNote = new System.Windows.Forms.Label();
+            this.pnlPresentCard = new System.Windows.Forms.Panel();
+            this.pnlPresentCardCaption = new System.Windows.Forms.Label();
+            this.lblPresentToday = new System.Windows.Forms.Label();
+            this.lblPresentNote = new System.Windows.Forms.Label();
+            this.pnlAbsentCard = new System.Windows.Forms.Panel();
+            this.pnlAbsentCardCaption = new System.Windows.Forms.Label();
+            this.lblAbsentToday = new System.Windows.Forms.Label();
+            this.lblAbsentNote = new System.Windows.Forms.Label();
+            this.lblChartTitle = new System.Windows.Forms.Label();
+            this.pnlChart = new System.Windows.Forms.Panel();
+            this.chartAttendance = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblChartEmpty = new System.Windows.Forms.Label();
+            this.lblTodayTitle = new System.Windows.Forms.Label();
+            this.lblEmptyToday = new System.Windows.Forms.Label();
+            this.dgvToday = new System.Windows.Forms.DataGridView();
+            this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStudentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCourse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.timerClock = new System.Windows.Forms.Timer(this.components);
+            this.timerRefresh = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.chartAttendance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvToday)).BeginInit();
+            this.pnlHeader.SuspendLayout();
+            this.pnlTotalCard.SuspendLayout();
+            this.pnlPresentCard.SuspendLayout();
+            this.pnlAbsentCard.SuspendLayout();
+            this.pnlChart.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel2
+            // sidebarMenu
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(358, 121);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(281, 136);
-            this.panel2.TabIndex = 1;
+            this.sidebarMenu.Location = new System.Drawing.Point(0, 0);
+            this.sidebarMenu.Size = new System.Drawing.Size(320, 619);
+            this.sidebarMenu.CurrentPage = SCCRecordsManagementSystem.SidebarPage.Dashboard;
+            this.sidebarMenu.Name = "sidebarMenu";
+            this.sidebarMenu.TabIndex = 0;
             // 
-            // label2
+            // pnlHeader
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(104, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Total Students ";
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            this.pnlHeader.Location = new System.Drawing.Point(320, 0);
+            this.pnlHeader.Size = new System.Drawing.Size(985, 50);
+            this.pnlHeader.Controls.Add(this.lblPageTitle);
+            this.pnlHeader.Controls.Add(this.windowButtons);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.TabIndex = 1;
             // 
-            // panel3
+            // lblPageTitle
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(663, 121);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(291, 136);
-            this.panel3.TabIndex = 2;
+            this.lblPageTitle.AutoSize = true;
+            this.lblPageTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblPageTitle.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPageTitle.ForeColor = System.Drawing.Color.GhostWhite;
+            this.lblPageTitle.Location = new System.Drawing.Point(24, 13);
+            this.lblPageTitle.Text = "Dashboard";
+            this.lblPageTitle.Name = "lblPageTitle";
+            this.lblPageTitle.TabIndex = 0;
             // 
-            // label3
+            // windowButtons
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(129, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 23);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Total Officers";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.windowButtons.Location = new System.Drawing.Point(891, 8);
+            this.windowButtons.Size = new System.Drawing.Size(90, 34);
+            this.windowButtons.Name = "windowButtons";
+            this.windowButtons.TabIndex = 1;
             // 
-            // panel4
+            // lblWelcome
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(986, 121);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(284, 136);
-            this.panel4.TabIndex = 3;
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
+            this.lblWelcome.Font = new System.Drawing.Font("Cambria", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblWelcome.Location = new System.Drawing.Point(340, 62);
+            this.lblWelcome.Text = "Welcome, admin!";
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.TabIndex = 2;
             // 
-            // label4
+            // lblDateTime
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(129, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 23);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Total Events";
+            this.lblDateTime.AutoSize = true;
+            this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblDateTime.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTime.ForeColor = System.Drawing.Color.FromArgb(60, 60, 60);
+            this.lblDateTime.Location = new System.Drawing.Point(342, 102);
+            this.lblDateTime.Text = "";
+            this.lblDateTime.Name = "lblDateTime";
+            this.lblDateTime.TabIndex = 3;
             // 
-            // panel5
+            // btnStartAttendance
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(320, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(989, 50);
-            this.panel5.TabIndex = 4;
+            this.btnStartAttendance.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            this.btnStartAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartAttendance.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartAttendance.ForeColor = System.Drawing.Color.White;
+            this.btnStartAttendance.Location = new System.Drawing.Point(1045, 66);
+            this.btnStartAttendance.Size = new System.Drawing.Size(240, 40);
+            this.btnStartAttendance.Text = "START FACE RECOGNITION";
+            this.btnStartAttendance.UseVisualStyleBackColor = false;
+            this.btnStartAttendance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStartAttendance.FlatAppearance.BorderSize = 0;
+            this.btnStartAttendance.Name = "btnStartAttendance";
+            this.btnStartAttendance.TabIndex = 4;
+            this.btnStartAttendance.Click += new System.EventHandler(this.btnStartAttendance_Click);
             // 
-            // label1
+            // pnlTotalCard
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.GhostWhite;
-            this.label1.Location = new System.Drawing.Point(56, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Dashboard";
+            this.pnlTotalCard.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.pnlTotalCard.Location = new System.Drawing.Point(340, 142);
+            this.pnlTotalCard.Size = new System.Drawing.Size(295, 96);
+            this.pnlTotalCard.Controls.Add(this.pnlTotalCardCaption);
+            this.pnlTotalCard.Controls.Add(this.lblTotalStudents);
+            this.pnlTotalCard.Controls.Add(this.lblTotalNote);
+            this.pnlTotalCard.Name = "pnlTotalCard";
+            this.pnlTotalCard.TabIndex = 5;
             // 
-            // label5
+            // pnlTotalCardCaption
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Cambria", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label5.Location = new System.Drawing.Point(352, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(328, 36);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Welcome, Admin User!";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.pnlTotalCardCaption.AutoSize = true;
+            this.pnlTotalCardCaption.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTotalCardCaption.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlTotalCardCaption.ForeColor = System.Drawing.Color.Black;
+            this.pnlTotalCardCaption.Location = new System.Drawing.Point(14, 8);
+            this.pnlTotalCardCaption.Text = "Total Students";
+            this.pnlTotalCardCaption.Name = "pnlTotalCardCaption";
+            this.pnlTotalCardCaption.TabIndex = 0;
             // 
-            // panel6
+            // lblTotalStudents
             // 
-            this.panel6.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel6.Controls.Add(this.chart1);
-            this.panel6.Location = new System.Drawing.Point(358, 293);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(442, 305);
-            this.panel6.TabIndex = 6;
+            this.lblTotalStudents.AutoSize = true;
+            this.lblTotalStudents.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalStudents.Font = new System.Drawing.Font("Cambria", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalStudents.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblTotalStudents.Location = new System.Drawing.Point(12, 28);
+            this.lblTotalStudents.Text = "0";
+            this.lblTotalStudents.Name = "lblTotalStudents";
+            this.lblTotalStudents.TabIndex = 1;
             // 
-            // chart1
+            // lblTotalNote
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(22, 17);
-            this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(406, 265);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.lblTotalNote.AutoSize = true;
+            this.lblTotalNote.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalNote.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalNote.ForeColor = System.Drawing.Color.FromArgb(60, 60, 60);
+            this.lblTotalNote.Location = new System.Drawing.Point(16, 72);
+            this.lblTotalNote.Text = "";
+            this.lblTotalNote.Name = "lblTotalNote";
+            this.lblTotalNote.TabIndex = 2;
             // 
-            // groupBox1
+            // pnlPresentCard
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.groupBox1.Location = new System.Drawing.Point(817, 293);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(453, 305);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.pnlPresentCard.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.pnlPresentCard.Location = new System.Drawing.Point(665, 142);
+            this.pnlPresentCard.Size = new System.Drawing.Size(295, 96);
+            this.pnlPresentCard.Controls.Add(this.pnlPresentCardCaption);
+            this.pnlPresentCard.Controls.Add(this.lblPresentToday);
+            this.pnlPresentCard.Controls.Add(this.lblPresentNote);
+            this.pnlPresentCard.Name = "pnlPresentCard";
+            this.pnlPresentCard.TabIndex = 6;
             // 
-            // label6
+            // pnlPresentCardCaption
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(355, 273);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(155, 17);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Attendance Overview";
+            this.pnlPresentCardCaption.AutoSize = true;
+            this.pnlPresentCardCaption.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPresentCardCaption.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlPresentCardCaption.ForeColor = System.Drawing.Color.Black;
+            this.pnlPresentCardCaption.Location = new System.Drawing.Point(14, 8);
+            this.pnlPresentCardCaption.Text = "Present Today";
+            this.pnlPresentCardCaption.Name = "pnlPresentCardCaption";
+            this.pnlPresentCardCaption.TabIndex = 0;
             // 
-            // label7
+            // lblPresentToday
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(814, 273);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 17);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Recent Activities";
+            this.lblPresentToday.AutoSize = true;
+            this.lblPresentToday.BackColor = System.Drawing.Color.Transparent;
+            this.lblPresentToday.Font = new System.Drawing.Font("Cambria", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPresentToday.ForeColor = System.Drawing.Color.SeaGreen;
+            this.lblPresentToday.Location = new System.Drawing.Point(12, 28);
+            this.lblPresentToday.Text = "0";
+            this.lblPresentToday.Name = "lblPresentToday";
+            this.lblPresentToday.TabIndex = 1;
             // 
-            // panel1
+            // lblPresentNote
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
-            this.panel1.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._904439575_1911191946735306_1039497458727327980_n1;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button20);
-            this.panel1.Controls.Add(this.button21);
-            this.panel1.Controls.Add(this.button22);
-            this.panel1.Location = new System.Drawing.Point(-3, -5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(326, 624);
-            this.panel1.TabIndex = 25;
+            this.lblPresentNote.AutoSize = true;
+            this.lblPresentNote.BackColor = System.Drawing.Color.Transparent;
+            this.lblPresentNote.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPresentNote.ForeColor = System.Drawing.Color.FromArgb(60, 60, 60);
+            this.lblPresentNote.Location = new System.Drawing.Point(16, 72);
+            this.lblPresentNote.Text = "";
+            this.lblPresentNote.Name = "lblPresentNote";
+            this.lblPresentNote.TabIndex = 2;
             // 
-            // button12
+            // pnlAbsentCard
             // 
-            this.button12.BackColor = System.Drawing.Color.Transparent;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.DarkRed;
-            this.button12.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(22, 560);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(277, 38);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "   LogOut";
-            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button12.UseVisualStyleBackColor = false;
+            this.pnlAbsentCard.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.pnlAbsentCard.Location = new System.Drawing.Point(990, 142);
+            this.pnlAbsentCard.Size = new System.Drawing.Size(295, 96);
+            this.pnlAbsentCard.Controls.Add(this.pnlAbsentCardCaption);
+            this.pnlAbsentCard.Controls.Add(this.lblAbsentToday);
+            this.pnlAbsentCard.Controls.Add(this.lblAbsentNote);
+            this.pnlAbsentCard.Name = "pnlAbsentCard";
+            this.pnlAbsentCard.TabIndex = 7;
             // 
-            // button13
+            // pnlAbsentCardCaption
             // 
-            this.button13.BackColor = System.Drawing.Color.Transparent;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(22, 123);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(277, 36);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "   Dashboard";
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button13.UseVisualStyleBackColor = false;
+            this.pnlAbsentCardCaption.AutoSize = true;
+            this.pnlAbsentCardCaption.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAbsentCardCaption.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlAbsentCardCaption.ForeColor = System.Drawing.Color.Black;
+            this.pnlAbsentCardCaption.Location = new System.Drawing.Point(14, 8);
+            this.pnlAbsentCardCaption.Text = "Absent Today";
+            this.pnlAbsentCardCaption.Name = "pnlAbsentCardCaption";
+            this.pnlAbsentCardCaption.TabIndex = 0;
             // 
-            // button14
+            // lblAbsentToday
             // 
-            this.button14.BackColor = System.Drawing.Color.Transparent;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(22, 465);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(277, 36);
-            this.button14.TabIndex = 10;
-            this.button14.Text = "   Rules and Permission";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button14.UseVisualStyleBackColor = false;
+            this.lblAbsentToday.AutoSize = true;
+            this.lblAbsentToday.BackColor = System.Drawing.Color.Transparent;
+            this.lblAbsentToday.Font = new System.Drawing.Font("Cambria", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbsentToday.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblAbsentToday.Location = new System.Drawing.Point(12, 28);
+            this.lblAbsentToday.Text = "0";
+            this.lblAbsentToday.Name = "lblAbsentToday";
+            this.lblAbsentToday.TabIndex = 1;
             // 
-            // button15
+            // lblAbsentNote
             // 
-            this.button15.BackColor = System.Drawing.Color.Transparent;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
-            this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.Location = new System.Drawing.Point(22, 427);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(277, 36);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "Obligations";
-            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button15.UseVisualStyleBackColor = false;
+            this.lblAbsentNote.AutoSize = true;
+            this.lblAbsentNote.BackColor = System.Drawing.Color.Transparent;
+            this.lblAbsentNote.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbsentNote.ForeColor = System.Drawing.Color.FromArgb(60, 60, 60);
+            this.lblAbsentNote.Location = new System.Drawing.Point(16, 72);
+            this.lblAbsentNote.Text = "";
+            this.lblAbsentNote.Name = "lblAbsentNote";
+            this.lblAbsentNote.TabIndex = 2;
             // 
-            // button16
+            // lblChartTitle
             // 
-            this.button16.BackColor = System.Drawing.Color.Transparent;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
-            this.button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.Location = new System.Drawing.Point(22, 389);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(277, 36);
-            this.button16.TabIndex = 8;
-            this.button16.Text = "   Reports and Analysis";
-            this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button16.UseVisualStyleBackColor = false;
+            this.lblChartTitle.AutoSize = true;
+            this.lblChartTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblChartTitle.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChartTitle.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblChartTitle.Location = new System.Drawing.Point(340, 252);
+            this.lblChartTitle.Text = "Attendance Overview";
+            this.lblChartTitle.Name = "lblChartTitle";
+            this.lblChartTitle.TabIndex = 8;
             // 
-            // button17
+            // pnlChart
             // 
-            this.button17.BackColor = System.Drawing.Color.Transparent;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
-            this.button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.Location = new System.Drawing.Point(22, 351);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(277, 36);
-            this.button17.TabIndex = 7;
-            this.button17.Text = "   Attendance Monitoring";
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button17.UseVisualStyleBackColor = false;
+            this.pnlChart.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.pnlChart.Location = new System.Drawing.Point(340, 276);
+            this.pnlChart.Size = new System.Drawing.Size(330, 314);
+            this.pnlChart.Controls.Add(this.chartAttendance);
+            this.pnlChart.Controls.Add(this.lblChartEmpty);
+            this.pnlChart.Name = "pnlChart";
+            this.pnlChart.TabIndex = 9;
             // 
-            // button18
+            // chartAttendance
             // 
-            this.button18.BackColor = System.Drawing.Color.Transparent;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
-            this.button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.Location = new System.Drawing.Point(22, 313);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(277, 36);
-            this.button18.TabIndex = 6;
-            this.button18.Text = "   Event Management";
-            this.button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button18.UseVisualStyleBackColor = false;
+            this.chartAttendance.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.chartAttendance.Location = new System.Drawing.Point(10, 10);
+            this.chartAttendance.Size = new System.Drawing.Size(310, 294);
+            this.chartAttendance.Name = "chartAttendance";
+            this.chartAttendance.TabIndex = 0;
             // 
-            // button19
+            // lblChartEmpty
             // 
-            this.button19.BackColor = System.Drawing.Color.Transparent;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
-            this.button19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.Location = new System.Drawing.Point(22, 275);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(277, 36);
-            this.button19.TabIndex = 5;
-            this.button19.Text = "   Face Recognition";
-            this.button19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button19.UseVisualStyleBackColor = false;
+            this.lblChartEmpty.AutoSize = false;
+            this.lblChartEmpty.BackColor = System.Drawing.Color.Transparent;
+            this.lblChartEmpty.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChartEmpty.ForeColor = System.Drawing.Color.FromArgb(90, 90, 90);
+            this.lblChartEmpty.Location = new System.Drawing.Point(10, 10);
+            this.lblChartEmpty.Text = "No students yet.";
+            this.lblChartEmpty.Size = new System.Drawing.Size(310, 294);
+            this.lblChartEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblChartEmpty.Visible = false;
+            this.lblChartEmpty.Name = "lblChartEmpty";
+            this.lblChartEmpty.TabIndex = 1;
             // 
-            // button20
+            // lblTodayTitle
             // 
-            this.button20.BackColor = System.Drawing.Color.Transparent;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
-            this.button20.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.Location = new System.Drawing.Point(22, 237);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(277, 36);
-            this.button20.TabIndex = 4;
-            this.button20.Text = "   Officer Records";
-            this.button20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button20.UseVisualStyleBackColor = false;
+            this.lblTodayTitle.AutoSize = true;
+            this.lblTodayTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTodayTitle.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTodayTitle.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblTodayTitle.Location = new System.Drawing.Point(690, 252);
+            this.lblTodayTitle.Text = "Today's Attendance";
+            this.lblTodayTitle.Name = "lblTodayTitle";
+            this.lblTodayTitle.TabIndex = 10;
             // 
-            // button21
+            // lblEmptyToday
             // 
-            this.button21.BackColor = System.Drawing.Color.Transparent;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
-            this.button21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button21.Location = new System.Drawing.Point(22, 199);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(277, 36);
-            this.button21.TabIndex = 3;
-            this.button21.Text = "   Student Records";
-            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button21.UseVisualStyleBackColor = false;
+            this.lblEmptyToday.AutoSize = false;
+            this.lblEmptyToday.BackColor = System.Drawing.Color.White;
+            this.lblEmptyToday.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmptyToday.ForeColor = System.Drawing.Color.FromArgb(90, 90, 90);
+            this.lblEmptyToday.Location = new System.Drawing.Point(691, 311);
+            this.lblEmptyToday.Text = "No attendance has been recorded today.";
+            this.lblEmptyToday.Size = new System.Drawing.Size(593, 245);
+            this.lblEmptyToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblEmptyToday.Visible = false;
+            this.lblEmptyToday.Name = "lblEmptyToday";
+            this.lblEmptyToday.TabIndex = 11;
             // 
-            // button22
+            // dgvToday
             // 
-            this.button22.BackColor = System.Drawing.Color.Transparent;
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
-            this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(22, 161);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(277, 36);
-            this.button22.TabIndex = 2;
-            this.button22.Text = "   Departments";
-            this.button22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button22.UseVisualStyleBackColor = false;
+            System.Windows.Forms.DataGridViewCellStyle dgvTodayHeaderStyle = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dgvTodayCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dgvTodayAltStyle = new System.Windows.Forms.DataGridViewCellStyle();
+            dgvTodayHeaderStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dgvTodayHeaderStyle.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            dgvTodayHeaderStyle.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dgvTodayHeaderStyle.ForeColor = System.Drawing.Color.White;
+            dgvTodayHeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            dgvTodayHeaderStyle.SelectionForeColor = System.Drawing.Color.White;
+            dgvTodayCellStyle.BackColor = System.Drawing.Color.White;
+            dgvTodayCellStyle.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dgvTodayCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvTodayCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            dgvTodayCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            dgvTodayAltStyle.BackColor = System.Drawing.Color.FromArgb(238, 244, 249);
+            dgvTodayAltStyle.SelectionBackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            dgvTodayAltStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvToday.ColumnHeadersDefaultCellStyle = dgvTodayHeaderStyle;
+            this.dgvToday.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvToday.DefaultCellStyle = dgvTodayCellStyle;
+            this.dgvToday.AlternatingRowsDefaultCellStyle = dgvTodayAltStyle;
+            this.dgvToday.RowTemplate.Height = 28;
+            this.dgvToday.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colTime,
+            this.colStudentNumber,
+            this.colName,
+            this.colCourse,
+            this.colYear});
+            this.dgvToday.Location = new System.Drawing.Point(690, 276);
+            this.dgvToday.Size = new System.Drawing.Size(595, 284);
+            this.dgvToday.AllowUserToAddRows = false;
+            this.dgvToday.AllowUserToDeleteRows = false;
+            this.dgvToday.AllowUserToResizeRows = false;
+            this.dgvToday.AutoGenerateColumns = false;
+            this.dgvToday.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvToday.BackgroundColor = System.Drawing.Color.White;
+            this.dgvToday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dgvToday.ColumnHeadersHeight = 34;
+            this.dgvToday.EnableHeadersVisualStyles = false;
+            this.dgvToday.MultiSelect = false;
+            this.dgvToday.ReadOnly = true;
+            this.dgvToday.RowHeadersVisible = false;
+            this.dgvToday.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvToday.Name = "dgvToday";
+            this.dgvToday.TabIndex = 12;
+            // 
+            // colTime
+            // 
+            this.colTime.DataPropertyName = "time_text";
+            this.colTime.FillWeight = 18F;
+            this.colTime.HeaderText = "Time In";
+            this.colTime.Name = "colTime";
+            this.colTime.ReadOnly = true;
+            // 
+            // colStudentNumber
+            // 
+            this.colStudentNumber.DataPropertyName = "student_number";
+            this.colStudentNumber.FillWeight = 22F;
+            this.colStudentNumber.HeaderText = "Student ID";
+            this.colStudentNumber.Name = "colStudentNumber";
+            this.colStudentNumber.ReadOnly = true;
+            // 
+            // colName
+            // 
+            this.colName.DataPropertyName = "full_name";
+            this.colName.FillWeight = 38F;
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            // 
+            // colCourse
+            // 
+            this.colCourse.DataPropertyName = "department_code";
+            this.colCourse.FillWeight = 14F;
+            this.colCourse.HeaderText = "Course";
+            this.colCourse.Name = "colCourse";
+            this.colCourse.ReadOnly = true;
+            // 
+            // colYear
+            // 
+            this.colYear.DataPropertyName = "year_level";
+            this.colYear.FillWeight = 16F;
+            this.colYear.HeaderText = "Year";
+            this.colYear.Name = "colYear";
+            this.colYear.ReadOnly = true;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = false;
+            this.lblStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblStatus.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.DimGray;
+            this.lblStatus.Location = new System.Drawing.Point(690, 568);
+            this.lblStatus.Text = "";
+            this.lblStatus.Size = new System.Drawing.Size(595, 20);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.TabIndex = 13;
+            // 
+            // timerClock
+            // 
+            this.timerClock.Interval = 1000;
+            this.timerClock.Enabled = true;
+            this.timerClock.Tick += new System.EventHandler(this.timerClock_Tick);
+            // 
+            // timerRefresh
+            // 
+            this.timerRefresh.Interval = 15000;
+            this.timerRefresh.Enabled = true;
+            this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
             // Dashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Azure;
-            this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._891752403_1143943308365188_7410099486200290872_n1;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.ImeMode = System.Windows.Forms.ImeMode.Katakana;
-            this.Name = "Dashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.Controls.Add(this.sidebarMenu);
+            this.Controls.Add(this.pnlHeader);
+            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.lblDateTime);
+            this.Controls.Add(this.btnStartAttendance);
+            this.Controls.Add(this.pnlTotalCard);
+            this.Controls.Add(this.pnlPresentCard);
+            this.Controls.Add(this.pnlAbsentCard);
+            this.Controls.Add(this.lblChartTitle);
+            this.Controls.Add(this.pnlChart);
+            this.Controls.Add(this.lblTodayTitle);
+            this.Controls.Add(this.lblEmptyToday);
+            this.Controls.Add(this.dgvToday);
+            this.Controls.Add(this.lblStatus);
+            this.Load += new System.EventHandler(this.Dashboard_Load);
+            this.Name = "Dashboard";
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
+            this.pnlTotalCard.ResumeLayout(false);
+            this.pnlTotalCard.PerformLayout();
+            this.pnlPresentCard.ResumeLayout(false);
+            this.pnlPresentCard.PerformLayout();
+            this.pnlAbsentCard.ResumeLayout(false);
+            this.pnlAbsentCard.PerformLayout();
+            this.pnlChart.ResumeLayout(false);
+            this.pnlChart.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartAttendance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvToday)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
+
+        private SidebarMenu sidebarMenu;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblPageTitle;
+        private WindowButtons windowButtons;
+        private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Label lblDateTime;
+        private System.Windows.Forms.Button btnStartAttendance;
+        private System.Windows.Forms.Panel pnlTotalCard;
+        private System.Windows.Forms.Label pnlTotalCardCaption;
+        private System.Windows.Forms.Label lblTotalStudents;
+        private System.Windows.Forms.Label lblTotalNote;
+        private System.Windows.Forms.Panel pnlPresentCard;
+        private System.Windows.Forms.Label pnlPresentCardCaption;
+        private System.Windows.Forms.Label lblPresentToday;
+        private System.Windows.Forms.Label lblPresentNote;
+        private System.Windows.Forms.Panel pnlAbsentCard;
+        private System.Windows.Forms.Label pnlAbsentCardCaption;
+        private System.Windows.Forms.Label lblAbsentToday;
+        private System.Windows.Forms.Label lblAbsentNote;
+        private System.Windows.Forms.Label lblChartTitle;
+        private System.Windows.Forms.Panel pnlChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartAttendance;
+        private System.Windows.Forms.Label lblChartEmpty;
+        private System.Windows.Forms.Label lblTodayTitle;
+        private System.Windows.Forms.Label lblEmptyToday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStudentNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCourse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
+        private System.Windows.Forms.DataGridView dgvToday;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Timer timerClock;
+        private System.Windows.Forms.Timer timerRefresh;
     }
 }

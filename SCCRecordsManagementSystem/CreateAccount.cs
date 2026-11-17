@@ -1,17 +1,9 @@
-﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BCrypt.Net;
 
 namespace SCCRecordsManagementSystem
 {
+    // Creates a new login account (the password is saved as a BCrypt hash).
     public partial class CreateAccount : Form
     {
         public CreateAccount()
@@ -19,69 +11,64 @@ namespace SCCRecordsManagementSystem
             InitializeComponent();
         }
 
-        private void CreateAccount_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
-            string username = txtCreateUsername.Text.Trim();
-            string password = txtCreatePassword.Text;
-            string confirmPassword = txtConfrmPassword.Text;
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text;
+            string confirmPassword = txtConfirmPassword.Text;
 
-            // 1. Basic validation
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+            if (Validator.IsEmpty(username) || password.Length == 0 || confirmPassword.Length == 0)
             {
-                MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowWarning("Please fill in all the fields.");
                 return;
             }
 
-            // 2. Check if passwords match
+            if (!Validator.IsValidUsername(username))
+            {
+                ShowWarning("The username must be 4 to 30 characters long and use only letters, numbers, dots or underscores.");
+                txtUsername.Focus();
+                return;
+            }
+
+            if (!Validator.IsValidPassword(password))
+            {
+                ShowWarning("The password must have at least 6 characters.");
+                txtPassword.Focus();
+                return;
+            }
+
             if (password != confirmPassword)
             {
-                MessageBox.Show("Passwords do not match!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowWarning("The passwords do not match.");
+                txtConfirmPassword.Focus();
                 return;
             }
 
-            // 3. Hash the password securely using BCrypt
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-
-            // 4. Save to database
-            using (var conn = Database.GetConnection())
+            try
             {
-                try
+                if (AccountService.UsernameExists(username))
                 {
-                    conn.Open();
-                    string query = "INSERT INTO accounts (username, password) VALUES (@username, @password)";
-
-                    using (var cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", hashedPassword);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    MessageBox.Show("Account created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Clear fields after success
-                    txtCreateUsername.Clear();
-                    txtCreatePassword.Clear();
-                    txtConfrmPassword.Clear();
+                    ShowWarning("That username is already taken. Please choose another one.");
+                    txtUsername.Focus();
+                    return;
                 }
-                catch (MySqlException ex)
-                {
-                    // Error code 1062 handles duplicate entry (username already exists)
-                    if (ex.Number == 1062)
-                    {
-                        MessageBox.Show("That username is already taken. Please choose another one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+
+                AccountService.CreateAccount(username, password);
+
+                MessageBox.Show("Account created successfully. You can now log in.", "Create Account",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Database.GetFriendlyMessage(ex), "Create Account",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ShowWarning(string message)
+        {
+            MessageBox.Show(message, "Create Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

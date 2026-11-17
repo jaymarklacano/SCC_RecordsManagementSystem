@@ -28,72 +28,133 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.pnlUsername = new System.Windows.Forms.Panel();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.pnlPassword = new System.Windows.Forms.Panel();
+            this.txtNewPassword = new System.Windows.Forms.TextBox();
+            this.pnlConfirmPassword = new System.Windows.Forms.Panel();
+            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
+            this.btnResetPassword = new System.Windows.Forms.Button();
+            this.pnlUsername.SuspendLayout();
+            this.pnlPassword.SuspendLayout();
+            this.pnlConfirmPassword.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlUsername
             // 
-            this.panel1.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel1.Location = new System.Drawing.Point(176, 196);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(301, 24);
-            this.panel1.TabIndex = 0;
+            this.pnlUsername.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlUsername.Location = new System.Drawing.Point(176, 196);
+            this.pnlUsername.Size = new System.Drawing.Size(301, 24);
+            this.pnlUsername.Controls.Add(this.txtUsername);
+            this.pnlUsername.Name = "pnlUsername";
+            this.pnlUsername.TabIndex = 0;
             // 
-            // panel2
+            // txtUsername
             // 
-            this.panel2.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel2.Location = new System.Drawing.Point(176, 256);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(301, 24);
-            this.panel2.TabIndex = 1;
+            this.txtUsername.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(4, 3);
+            this.txtUsername.Size = new System.Drawing.Size(293, 24);
+            this.txtUsername.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsername.MaxLength = 50;
+            this.txtUsername.UseSystemPasswordChar = false;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.TabIndex = 0;
             // 
-            // panel3
+            // pnlPassword
             // 
-            this.panel3.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel3.Location = new System.Drawing.Point(176, 324);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(301, 24);
-            this.panel3.TabIndex = 2;
+            this.pnlPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlPassword.Location = new System.Drawing.Point(176, 256);
+            this.pnlPassword.Size = new System.Drawing.Size(301, 24);
+            this.pnlPassword.Controls.Add(this.txtNewPassword);
+            this.pnlPassword.Name = "pnlPassword";
+            this.pnlPassword.TabIndex = 1;
             // 
-            // button2
+            // txtNewPassword
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(65)))), ((int)(((byte)(116)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.button2.Location = new System.Drawing.Point(224, 363);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(189, 36);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "RESET PASSWORD";
-            this.button2.UseVisualStyleBackColor = false;
+            this.txtNewPassword.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewPassword.Location = new System.Drawing.Point(4, 3);
+            this.txtNewPassword.Size = new System.Drawing.Size(293, 24);
+            this.txtNewPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtNewPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNewPassword.MaxLength = 50;
+            this.txtNewPassword.UseSystemPasswordChar = true;
+            this.txtNewPassword.Name = "txtNewPassword";
+            this.txtNewPassword.TabIndex = 0;
+            // 
+            // pnlConfirmPassword
+            // 
+            this.pnlConfirmPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlConfirmPassword.Location = new System.Drawing.Point(176, 324);
+            this.pnlConfirmPassword.Size = new System.Drawing.Size(301, 24);
+            this.pnlConfirmPassword.Controls.Add(this.txtConfirmPassword);
+            this.pnlConfirmPassword.Name = "pnlConfirmPassword";
+            this.pnlConfirmPassword.TabIndex = 2;
+            // 
+            // txtConfirmPassword
+            // 
+            this.txtConfirmPassword.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmPassword.Location = new System.Drawing.Point(4, 3);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(293, 24);
+            this.txtConfirmPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtConfirmPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConfirmPassword.MaxLength = 50;
+            this.txtConfirmPassword.UseSystemPasswordChar = true;
+            this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.TabIndex = 0;
+            // 
+            // btnResetPassword
+            // 
+            this.btnResetPassword.BackColor = System.Drawing.Color.FromArgb(0, 29, 57);
+            this.btnResetPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetPassword.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetPassword.ForeColor = System.Drawing.Color.White;
+            this.btnResetPassword.Location = new System.Drawing.Point(224, 362);
+            this.btnResetPassword.Size = new System.Drawing.Size(189, 36);
+            this.btnResetPassword.Text = "RESET PASSWORD";
+            this.btnResetPassword.UseVisualStyleBackColor = false;
+            this.btnResetPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnResetPassword.Name = "btnResetPassword";
+            this.btnResetPassword.TabIndex = 3;
+            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
             // 
             // ForgotPassword
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources.forgotPass;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(634, 472);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Forgot Password";
+            this.AcceptButton = this.btnResetPassword;
+            this.Controls.Add(this.pnlUsername);
+            this.Controls.Add(this.pnlPassword);
+            this.Controls.Add(this.pnlConfirmPassword);
+            this.Controls.Add(this.btnResetPassword);
             this.Name = "ForgotPassword";
-            this.Text = "ForgotPassword";
+            this.pnlUsername.ResumeLayout(false);
+            this.pnlUsername.PerformLayout();
+            this.pnlPassword.ResumeLayout(false);
+            this.pnlPassword.PerformLayout();
+            this.pnlConfirmPassword.ResumeLayout(false);
+            this.pnlConfirmPassword.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel pnlUsername;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Panel pnlPassword;
+        private System.Windows.Forms.TextBox txtNewPassword;
+        private System.Windows.Forms.Panel pnlConfirmPassword;
+        private System.Windows.Forms.TextBox txtConfirmPassword;
+        private System.Windows.Forms.Button btnResetPassword;
     }
 }

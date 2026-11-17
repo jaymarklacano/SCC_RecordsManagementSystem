@@ -28,121 +28,133 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlUsername = new System.Windows.Forms.Panel();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.pnlPassword = new System.Windows.Forms.Panel();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.pnlConfirmPassword = new System.Windows.Forms.Panel();
+            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
-            this.txtConfrmPassword = new System.Windows.Forms.TextBox();
-            this.txtCreatePassword = new System.Windows.Forms.TextBox();
-            this.txtCreateUsername = new System.Windows.Forms.TextBox();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlUsername.SuspendLayout();
+            this.pnlPassword.SuspendLayout();
+            this.pnlConfirmPassword.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlUsername
             // 
-            this.panel1.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel1.Controls.Add(this.txtCreateUsername);
-            this.panel1.Location = new System.Drawing.Point(176, 196);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(301, 24);
-            this.panel1.TabIndex = 1;
+            this.pnlUsername.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlUsername.Location = new System.Drawing.Point(176, 196);
+            this.pnlUsername.Size = new System.Drawing.Size(301, 24);
+            this.pnlUsername.Controls.Add(this.txtUsername);
+            this.pnlUsername.Name = "pnlUsername";
+            this.pnlUsername.TabIndex = 0;
             // 
-            // panel2
+            // txtUsername
             // 
-            this.panel2.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel2.Controls.Add(this.txtCreatePassword);
-            this.panel2.Location = new System.Drawing.Point(176, 256);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(301, 24);
-            this.panel2.TabIndex = 2;
+            this.txtUsername.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(4, 3);
+            this.txtUsername.Size = new System.Drawing.Size(293, 24);
+            this.txtUsername.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsername.MaxLength = 50;
+            this.txtUsername.UseSystemPasswordChar = false;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.TabIndex = 0;
             // 
-            // panel3
+            // pnlPassword
             // 
-            this.panel3.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel3.Controls.Add(this.txtConfrmPassword);
-            this.panel3.Location = new System.Drawing.Point(176, 323);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(301, 24);
-            this.panel3.TabIndex = 3;
+            this.pnlPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlPassword.Location = new System.Drawing.Point(176, 256);
+            this.pnlPassword.Size = new System.Drawing.Size(301, 24);
+            this.pnlPassword.Controls.Add(this.txtPassword);
+            this.pnlPassword.Name = "pnlPassword";
+            this.pnlPassword.TabIndex = 1;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(4, 3);
+            this.txtPassword.Size = new System.Drawing.Size(293, 24);
+            this.txtPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassword.MaxLength = 50;
+            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.TabIndex = 0;
+            // 
+            // pnlConfirmPassword
+            // 
+            this.pnlConfirmPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlConfirmPassword.Location = new System.Drawing.Point(176, 323);
+            this.pnlConfirmPassword.Size = new System.Drawing.Size(301, 24);
+            this.pnlConfirmPassword.Controls.Add(this.txtConfirmPassword);
+            this.pnlConfirmPassword.Name = "pnlConfirmPassword";
+            this.pnlConfirmPassword.TabIndex = 2;
+            // 
+            // txtConfirmPassword
+            // 
+            this.txtConfirmPassword.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmPassword.Location = new System.Drawing.Point(4, 3);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(293, 24);
+            this.txtConfirmPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtConfirmPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConfirmPassword.MaxLength = 50;
+            this.txtConfirmPassword.UseSystemPasswordChar = true;
+            this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.TabIndex = 0;
             // 
             // btnCreateAccount
             // 
-            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(65)))), ((int)(((byte)(116)))));
+            this.btnCreateAccount.BackColor = System.Drawing.Color.FromArgb(0, 29, 57);
             this.btnCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateAccount.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateAccount.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnCreateAccount.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateAccount.ForeColor = System.Drawing.Color.White;
             this.btnCreateAccount.Location = new System.Drawing.Point(224, 362);
-            this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(189, 36);
-            this.btnCreateAccount.TabIndex = 4;
             this.btnCreateAccount.Text = "CREATE ACCOUNT";
             this.btnCreateAccount.UseVisualStyleBackColor = false;
+            this.btnCreateAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreateAccount.Name = "btnCreateAccount";
+            this.btnCreateAccount.TabIndex = 3;
             this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
-            // 
-            // txtConfrmPassword
-            // 
-            this.txtConfrmPassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtConfrmPassword.Location = new System.Drawing.Point(0, -1);
-            this.txtConfrmPassword.Multiline = true;
-            this.txtConfrmPassword.Name = "txtConfrmPassword";
-            this.txtConfrmPassword.Size = new System.Drawing.Size(304, 22);
-            this.txtConfrmPassword.TabIndex = 2;
-            // 
-            // txtCreatePassword
-            // 
-            this.txtCreatePassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtCreatePassword.Location = new System.Drawing.Point(0, -1);
-            this.txtCreatePassword.Multiline = true;
-            this.txtCreatePassword.Name = "txtCreatePassword";
-            this.txtCreatePassword.Size = new System.Drawing.Size(304, 22);
-            this.txtCreatePassword.TabIndex = 1;
-            // 
-            // txtCreateUsername
-            // 
-            this.txtCreateUsername.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtCreateUsername.Location = new System.Drawing.Point(0, 0);
-            this.txtCreateUsername.Multiline = true;
-            this.txtCreateUsername.Name = "txtCreateUsername";
-            this.txtCreateUsername.Size = new System.Drawing.Size(304, 22);
-            this.txtCreateUsername.TabIndex = 2;
             // 
             // CreateAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources.createAcc;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(634, 472);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Create Account";
+            this.AcceptButton = this.btnCreateAccount;
+            this.Controls.Add(this.pnlUsername);
+            this.Controls.Add(this.pnlPassword);
+            this.Controls.Add(this.pnlConfirmPassword);
             this.Controls.Add(this.btnCreateAccount);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "CreateAccount";
-            this.Text = "CreateAccount";
-            this.Load += new System.EventHandler(this.CreateAccount_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlUsername.ResumeLayout(false);
+            this.pnlUsername.PerformLayout();
+            this.pnlPassword.ResumeLayout(false);
+            this.pnlPassword.PerformLayout();
+            this.pnlConfirmPassword.ResumeLayout(false);
+            this.pnlConfirmPassword.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlUsername;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Panel pnlPassword;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Panel pnlConfirmPassword;
+        private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Button btnCreateAccount;
-        private System.Windows.Forms.TextBox txtCreateUsername;
-        private System.Windows.Forms.TextBox txtCreatePassword;
-        private System.Windows.Forms.TextBox txtConfrmPassword;
     }
 }
