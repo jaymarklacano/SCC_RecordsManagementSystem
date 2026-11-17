@@ -193,6 +193,16 @@ namespace SCCRecordsManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _912147272_1154852157235963_8896177691660798247_n {
+            get {
+                object obj = ResourceManager.GetObject("912147272_1154852157235963_8896177691660798247_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Biometric_Face_Scan_Icon {
             get {
                 object obj = ResourceManager.GetObject("Biometric Face Scan Icon", resourceCulture);
@@ -223,9 +233,29 @@ namespace SCCRecordsManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap createAcc {
+            get {
+                object obj = ResourceManager.GetObject("createAcc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dashboard_panel {
             get {
                 object obj = ResourceManager.GetObject("dashboard-panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap forgotPass {
+            get {
+                object obj = ResourceManager.GetObject("forgotPass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

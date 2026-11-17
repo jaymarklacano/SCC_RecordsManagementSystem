@@ -1,62 +1,82 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\",
+  "WorkspaceRootPath": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\createaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\createaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:createaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\addevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:addevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\adddepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:adddepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\shella mae nocos\\onedrive\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\loginhistory.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:loginhistory.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,51 +86,117 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 17,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-12T01:41:25.885Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 18,
               "Title": "Dashboard.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs",
               "RelativeDocumentMoniker": "Dashboard.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs [Design]",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs [Design]",
               "RelativeToolTip": "Dashboard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-12T02:35:03.778Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Departments.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Departments.cs",
+              "RelativeDocumentMoniker": "Departments.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Departments.cs [Design]",
+              "RelativeToolTip": "Departments.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T06:37:22.941Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Departments.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Departments.cs",
-              "RelativeDocumentMoniker": "Departments.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Departments.cs [Design]",
-              "RelativeToolTip": "Departments.cs [Design]",
+              "Title": "LoginHistory.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.Designer.cs",
+              "RelativeDocumentMoniker": "LoginHistory.Designer.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.Designer.cs",
+              "RelativeToolTip": "LoginHistory.Designer.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAqwE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T06:37:22.941Z",
-              "IsPinned": true
+              "WhenOpened": "2026-11-17T09:08:30.469Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
+              "Title": "LoginHistory.cs",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.cs",
+              "RelativeDocumentMoniker": "LoginHistory.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.cs",
+              "RelativeToolTip": "LoginHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T09:08:14.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginHistory.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.cs",
+              "RelativeDocumentMoniker": "LoginHistory.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.cs [Design]",
+              "RelativeToolTip": "LoginHistory.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T07:52:20.202Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddDepartment.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddDepartment.cs",
+              "RelativeDocumentMoniker": "AddDepartment.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddDepartment.cs [Design]",
+              "RelativeToolTip": "AddDepartment.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T07:13:22.253Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddEvent.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddEvent.cs",
+              "RelativeDocumentMoniker": "AddEvent.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddEvent.cs [Design]",
+              "RelativeToolTip": "AddEvent.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T05:48:27.346Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CreateAccount.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\CreateAccount.cs",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\CreateAccount.cs",
               "RelativeDocumentMoniker": "CreateAccount.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\CreateAccount.cs [Design]",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\CreateAccount.cs [Design]",
               "RelativeToolTip": "CreateAccount.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-16T15:03:50.095Z",
@@ -118,114 +204,131 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Event Management.cs",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Event Management.cs",
-              "RelativeDocumentMoniker": "Event Management.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Event Management.cs",
-              "RelativeToolTip": "Event Management.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAowB0AAAAHAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ForgotPassword.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ForgotPassword.cs",
+              "RelativeDocumentMoniker": "ForgotPassword.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ForgotPassword.cs [Design]",
+              "RelativeToolTip": "ForgotPassword.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T14:41:43.24Z"
+              "WhenOpened": "2026-11-17T05:02:36.935Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{de1fc918-f32e-4dd7-a915-1792a051f26b}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "Registration.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs",
               "RelativeDocumentMoniker": "Registration.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs [Design]",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs [Design]",
               "RelativeToolTip": "Registration.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T01:58:03.944Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RulesPermission.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\RulesPermission.cs",
-              "RelativeDocumentMoniker": "RulesPermission.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\RulesPermission.cs [Design]",
-              "RelativeToolTip": "RulesPermission.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T09:29:07.012Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FaceRecognition.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\FaceRecognition.cs",
-              "RelativeDocumentMoniker": "FaceRecognition.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\FaceRecognition.cs [Design]",
-              "RelativeToolTip": "FaceRecognition.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T08:52:15.26Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ReportsAndAnalysis.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs",
-              "RelativeDocumentMoniker": "ReportsAndAnalysis.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs [Design]",
-              "RelativeToolTip": "ReportsAndAnalysis.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T07:45:30.95Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Obligations.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Obligations.cs",
-              "RelativeDocumentMoniker": "Obligations.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Obligations.cs [Design]",
-              "RelativeToolTip": "Obligations.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T06:05:12.133Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AttendanceMonitoring.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs",
-              "RelativeDocumentMoniker": "AttendanceMonitoring.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs [Design]",
-              "RelativeToolTip": "AttendanceMonitoring.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T07:42:34.945Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Event Management.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Event Management.cs",
-              "RelativeDocumentMoniker": "Event Management.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Event Management.cs [Design]",
-              "RelativeToolTip": "Event Management.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T07:31:40.396Z"
+              "WhenOpened": "2026-11-16T01:58:03.944Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Officerr Records.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Officerr Records.cs",
-              "RelativeDocumentMoniker": "Officerr Records.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Officerr Records.cs [Design]",
-              "RelativeToolTip": "Officerr Records.cs [Design]",
+              "Title": "RulesPermission.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\RulesPermission.cs",
+              "RelativeDocumentMoniker": "RulesPermission.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\RulesPermission.cs [Design]",
+              "RelativeToolTip": "RulesPermission.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T07:14:33.308Z"
+              "WhenOpened": "2026-11-14T09:29:07.012Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FaceRecognition.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\FaceRecognition.cs",
+              "RelativeDocumentMoniker": "FaceRecognition.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\FaceRecognition.cs [Design]",
+              "RelativeToolTip": "FaceRecognition.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-14T08:52:15.26Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReportsAndAnalysis.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs",
+              "RelativeDocumentMoniker": "ReportsAndAnalysis.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs [Design]",
+              "RelativeToolTip": "ReportsAndAnalysis.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-14T07:45:30.95Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Obligations.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Obligations.cs",
+              "RelativeDocumentMoniker": "Obligations.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Obligations.cs [Design]",
+              "RelativeToolTip": "Obligations.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-14T06:05:12.133Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AttendanceMonitoring.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs",
+              "RelativeDocumentMoniker": "AttendanceMonitoring.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs [Design]",
+              "RelativeToolTip": "AttendanceMonitoring.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T07:42:34.945Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Event Management.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Event Management.cs",
+              "RelativeDocumentMoniker": "Event Management.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Event Management.cs [Design]",
+              "RelativeToolTip": "Event Management.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T07:31:40.396Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Officerr Records.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Officerr Records.cs",
+              "RelativeDocumentMoniker": "Officerr Records.cs",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Officerr Records.cs [Design]",
+              "RelativeToolTip": "Officerr Records.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T07:14:33.308Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "StudentRecords.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\StudentRecords.cs",
+              "DocumentMoniker": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\StudentRecords.cs",
               "RelativeDocumentMoniker": "StudentRecords.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\StudentRecords.cs [Design]",
+              "ToolTip": "C:\\Users\\SHELLA MAE NOCOS\\OneDrive\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\StudentRecords.cs [Design]",
               "RelativeToolTip": "StudentRecords.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T06:49:58.36Z"
+              "WhenOpened": "2026-11-13T06:49:58.36Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
