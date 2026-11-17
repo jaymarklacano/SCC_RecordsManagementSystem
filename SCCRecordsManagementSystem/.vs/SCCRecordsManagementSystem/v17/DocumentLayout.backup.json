@@ -23,7 +23,7 @@
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -39,7 +39,7 @@
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -78,8 +78,7 @@
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-12T01:41:25.885Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -91,8 +90,7 @@
               "RelativeToolTip": "Dashboard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-12T02:35:03.778Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -104,8 +102,7 @@
               "RelativeToolTip": "Departments.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-13T06:37:22.941Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -129,8 +126,7 @@
               "RelativeToolTip": "Event Management.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAowB0AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T14:41:43.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T14:41:43.24Z"
             },
             {
               "$type": "Document",
@@ -141,8 +137,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs [Design]",
               "RelativeToolTip": "Registration.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T01:58:03.944Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-16T01:58:03.944Z"
             },
             {
               "$type": "Document",
@@ -153,8 +148,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\RulesPermission.cs [Design]",
               "RelativeToolTip": "RulesPermission.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T09:29:07.012Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-14T09:29:07.012Z"
             },
             {
               "$type": "Document",
@@ -165,8 +159,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\FaceRecognition.cs [Design]",
               "RelativeToolTip": "FaceRecognition.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T08:52:15.26Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-14T08:52:15.26Z"
             },
             {
               "$type": "Document",
@@ -177,8 +170,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs [Design]",
               "RelativeToolTip": "ReportsAndAnalysis.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T07:45:30.95Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-14T07:45:30.95Z"
             },
             {
               "$type": "Document",
@@ -189,8 +181,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Obligations.cs [Design]",
               "RelativeToolTip": "Obligations.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-14T06:05:12.133Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-14T06:05:12.133Z"
             },
             {
               "$type": "Document",
@@ -201,8 +192,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs [Design]",
               "RelativeToolTip": "AttendanceMonitoring.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T07:42:34.945Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-13T07:42:34.945Z"
             },
             {
               "$type": "Document",
@@ -213,8 +203,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Event Management.cs [Design]",
               "RelativeToolTip": "Event Management.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T07:31:40.396Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-13T07:31:40.396Z"
             },
             {
               "$type": "Document",
@@ -225,8 +214,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Officerr Records.cs [Design]",
               "RelativeToolTip": "Officerr Records.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T07:14:33.308Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-13T07:14:33.308Z"
             },
             {
               "$type": "Document",
@@ -237,8 +225,7 @@
               "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\StudentRecords.cs [Design]",
               "RelativeToolTip": "StudentRecords.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-13T06:49:58.36Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-13T06:49:58.36Z"
             }
           ]
         }
