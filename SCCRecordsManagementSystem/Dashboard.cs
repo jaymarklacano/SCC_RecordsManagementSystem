@@ -50,16 +50,37 @@ namespace SCCRecordsManagementSystem
         {
             try
             {
-                int activeStudents, presentToday, absentToday;
-                AttendanceService.GetSummary(DateTime.Today, out activeStudents, out presentToday, out absentToday);
-                DataTable todayRecords = AttendanceService.GetTodayRecords();
+                int activeStudents = Database.GetCount("SELECT COUNT(*) FROM students WHERE status = 'Active'");
+                int presentToday = 0;
+                int absentToday = 0;
+                DataTable todayRecords = new DataTable();
+                DataRow activeSession = EventService.GetCurrentSession();
 
-                lblTotalStudents.Text = StudentService.CountAll().ToString();
-                lblTotalNote.Text = activeStudents + " active students";
+                if (activeSession != null)
+                {
+                    int sessionId = Convert.ToInt32(activeSession["session_id"]);
+                    DataTable summary = AttendanceService.GetSessionSummary(sessionId);
+                    if (summary.Rows.Count > 0)
+                    {
+                        presentToday = summary.Rows[0]["present"] == DBNull.Value ? 0 : Convert.ToInt32(summary.Rows[0]["present"]);
+                        absentToday = summary.Rows[0]["absent"] == DBNull.Value ? 0 : Convert.ToInt32(summary.Rows[0]["absent"]);
+                    }
+                    todayRecords = AttendanceService.GetSessionPresentRecords(sessionId);
+                    lblTodayTitle.Text = activeSession["display_name"].ToString();
+                    lblPresentNote.Text = "logged in this session";
+                    lblAbsentNote.Text = "after session end";
+                }
+                else
+                {
+                    lblTodayTitle.Text = "No active event session";
+                    lblPresentNote.Text = "no session is open now";
+                    lblAbsentNote.Text = "shown after a session ends";
+                }
+
+                lblTotalStudents.Text = activeStudents.ToString();
+                lblTotalNote.Text = "active students | " + ReportService.GetOutstandingPoints() + " points due";
                 lblPresentToday.Text = presentToday.ToString();
-                lblPresentNote.Text = "recorded by face recognition";
                 lblAbsentToday.Text = absentToday.ToString();
-                lblAbsentNote.Text = "not recorded yet today";
 
                 dgvToday.DataSource = todayRecords;
                 lblEmptyToday.Visible = (todayRecords.Rows.Count == 0);

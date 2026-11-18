@@ -1,220 +1,184 @@
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SCCRecordsManagementSystem
 {
-    // Shows the attendance records. The user can filter by date, student, course, year level,
-    // status (Present / Absent) and search by name or student ID.
     public partial class AttendanceMonitoring : Form
     {
-        // True while the form changes its own controls, so the filters do not run too early.
-        private bool isLoading = true;
+        private ComboBox cmbEventFilter;
+        private ComboBox cmbSessionFilter;
+        private ComboBox cmbDepartmentFilter;
+        private ComboBox cmbYearFilter;
+        private ComboBox cmbStatusFilter;
+        private DateTimePicker dtpSessionDate;
+        private TextBox txtSearchFilter;
+        private DataGridView eventGrid;
+        private Label lblEventSummary;
+        private Label lblEventCount;
+        private bool loadingEventFilters;
 
         public AttendanceMonitoring()
         {
             InitializeComponent();
             NavigationHelper.ExitWhenClosed(this);
+            BuildEventAttendanceView();
         }
 
         private void AttendanceMonitoring_Load(object sender, EventArgs e)
         {
             try
             {
-                // Student filter: the first item means "all students"
-                DataTable students = StudentService.GetStudentChoices();
-                DataRow allStudents = students.NewRow();
-                allStudents["student_id"] = 0;
-                allStudents["display_name"] = "All Students";
-                students.Rows.InsertAt(allStudents, 0);
-
-                cmbStudent.DataSource = students;
-                cmbStudent.ValueMember = "student_id";
-                cmbStudent.DisplayMember = "display_name";
-
-                // Course filter: the first item means "all courses"
-                DataTable departments = DepartmentService.GetAll();
-                DataTable courseChoices = new DataTable();
-                courseChoices.Columns.Add("department_id", typeof(int));
-                courseChoices.Columns.Add("department_code", typeof(string));
-                courseChoices.Rows.Add(0, "All Courses");
-                foreach (DataRow row in departments.Rows)
-                {
-                    courseChoices.Rows.Add(row["department_id"], row["department_code"]);
-                }
-
-                cmbDepartment.DataSource = courseChoices;
-                cmbDepartment.ValueMember = "department_id";
-                cmbDepartment.DisplayMember = "department_code";
+                loadingEventFilters = true;
+                PageControls.BindChoices(cmbEventFilter, EventService.GetChoices(),
+                    "event_id", "display_name", "All Events");
+                PageControls.BindChoices(cmbDepartmentFilter, DepartmentService.GetAll(),
+                    "department_id", "department_code", "All Departments");
+                LoadSessionChoices();
+                loadingEventFilters = false;
+                LoadEventRecords();
             }
             catch (Exception ex)
             {
-                lblEmpty.Text = Database.GetFriendlyMessage(ex);
-                lblEmpty.Visible = true;
-            }
-
-            cmbYear.SelectedIndex = 0;
-            dtpDate.Value = DateTime.Today;
-            dtpDate.Checked = true;
-            isLoading = false;
-
-            LoadRecords();
-        }
-
-        private void Filter_Changed(object sender, EventArgs e)
-        {
-            if (!isLoading)
-            {
-                LoadRecords();
+                loadingEventFilters = false;
+                lblEventSummary.Text = Database.GetFriendlyMessage(ex);
             }
         }
 
-        private void btnToday_Click(object sender, EventArgs e)
+        private void BuildEventAttendanceView()
         {
-            isLoading = true;
-            dtpDate.Value = DateTime.Today;
-            dtpDate.Checked = true;
-            isLoading = false;
-
-            LoadRecords();
-        }
-
-        private void btnAllDates_Click(object sender, EventArgs e)
-        {
-            // Without a date the grid shows the whole attendance history
-            dtpDate.Checked = false;
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            isLoading = true;
-            dtpDate.Value = DateTime.Today;
-            dtpDate.Checked = true;
-            txtSearch.Clear();
-            if (cmbStudent.Items.Count > 0)
+            foreach (Control control in Controls)
             {
-                cmbStudent.SelectedIndex = 0;
-            }
-            if (cmbDepartment.Items.Count > 0)
-            {
-                cmbDepartment.SelectedIndex = 0;
-            }
-            cmbYear.SelectedIndex = 0;
-            chkPresent.Checked = true;
-            chkAbsent.Checked = true;
-            isLoading = false;
-
-            LoadRecords();
-        }
-
-        // Reads the filters, gets the records from the database and shows them.
-        private void LoadRecords()
-        {
-            // "Absent" only makes sense for one chosen date
-            bool hasDate = dtpDate.Checked;
-            chkAbsent.Enabled = hasDate;
-
-            try
-            {
-                DateTime? date = null;
-                if (hasDate)
+                if (control != sidebarMenu && control != pnlHeader)
                 {
-                    date = dtpDate.Value.Date;
+                    control.Visible = false;
                 }
-
-                int studentId = (cmbStudent.SelectedValue == null) ? 0 : Convert.ToInt32(cmbStudent.SelectedValue);
-                int departmentId = (cmbDepartment.SelectedValue == null) ? 0 : Convert.ToInt32(cmbDepartment.SelectedValue);
-                string yearLevel = (cmbYear.SelectedIndex > 0) ? cmbYear.Text : "";
-
-                DataTable table = AttendanceService.GetRecords(date, studentId, txtSearch.Text, departmentId, yearLevel,
-                    chkPresent.Checked, chkAbsent.Checked && hasDate);
-
-                dgvAttendance.DataSource = table;
-                dgvAttendance.ClearSelection();
-                ColorStatusColumn();
-
-                ShowEmptyMessage(table.Rows.Count, hasDate);
-                lblCount.Text = "Showing " + table.Rows.Count + " record(s)";
-                ShowSummary(date, table);
             }
-            catch (Exception ex)
+
+            Controls.Add(PageControls.Label("Event:", 340, 66, 50));
+            cmbEventFilter = PageControls.Combo(390, 64, 230);
+            cmbEventFilter.SelectedIndexChanged += EventFilterChanged;
+            Controls.Add(cmbEventFilter);
+
+            Controls.Add(PageControls.Label("Session:", 635, 66, 60));
+            cmbSessionFilter = PageControls.Combo(695, 64, 255);
+            cmbSessionFilter.SelectedIndexChanged += EventFilterChanged;
+            Controls.Add(cmbSessionFilter);
+
+            Controls.Add(PageControls.Label("Date:", 965, 66, 40));
+            dtpSessionDate = new DateTimePicker
             {
-                // Show the problem inside the page, because this method also runs while typing in the search box.
-                dgvAttendance.DataSource = null;
-                lblEmpty.Text = Database.GetFriendlyMessage(ex);
-                lblEmpty.Visible = true;
-                lblCount.Text = "";
-            }
+                Format = DateTimePickerFormat.Short,
+                Location = new Point(1005, 64),
+                ShowCheckBox = true,
+                Checked = false,
+                Size = new Size(145, 25)
+            };
+            dtpSessionDate.ValueChanged += EventFilterChanged;
+            Controls.Add(dtpSessionDate);
+
+            Controls.Add(PageControls.Label("Department:", 340, 105, 85));
+            cmbDepartmentFilter = PageControls.Combo(425, 103, 155);
+            cmbDepartmentFilter.SelectedIndexChanged += EventFilterChanged;
+            Controls.Add(cmbDepartmentFilter);
+            Controls.Add(PageControls.Label("Year:", 590, 105, 40));
+            cmbYearFilter = PageControls.Combo(630, 103, 110);
+            cmbYearFilter.Items.AddRange(new object[] { "All Years", "1st Year", "2nd Year", "3rd Year", "4th Year" });
+            cmbYearFilter.SelectedIndex = 0;
+            cmbYearFilter.SelectedIndexChanged += EventFilterChanged;
+            Controls.Add(cmbYearFilter);
+            Controls.Add(PageControls.Label("Status:", 750, 105, 50));
+            cmbStatusFilter = PageControls.Combo(800, 103, 110);
+            cmbStatusFilter.Items.AddRange(new object[] { "All", "Present", "Absent" });
+            cmbStatusFilter.SelectedIndex = 0;
+            cmbStatusFilter.SelectedIndexChanged += EventFilterChanged;
+            Controls.Add(cmbStatusFilter);
+            Controls.Add(PageControls.Label("Search:", 920, 105, 55));
+            txtSearchFilter = PageControls.TextBox(975, 103, 310);
+            txtSearchFilter.TextChanged += EventFilterChanged;
+            Controls.Add(txtSearchFilter);
+
+            lblEventSummary = PageControls.Label("", 340, 142, 945, 38);
+            lblEventSummary.BackColor = Color.FromArgb(189, 216, 233);
+            Controls.Add(lblEventSummary);
+            eventGrid = PageControls.Grid(340, 188, 945, 385);
+            Controls.Add(eventGrid);
+            lblEventCount = PageControls.Label("", 340, 578, 945, 20);
+            lblEventCount.Font = new Font("Cambria", 9F, FontStyle.Italic);
+            lblEventCount.ForeColor = Color.DimGray;
+            Controls.Add(lblEventCount);
         }
 
-        // The summary bar above the grid
-        private void ShowSummary(DateTime? date, DataTable table)
+        private void LoadSessionChoices()
         {
-            int totalStudents = StudentService.CountAll();
-
-            if (date.HasValue)
-            {
-                int total, present, absent;
-                AttendanceService.GetSummary(date.Value, out total, out present, out absent);
-
-                lblSummaryDate.Text = "Date: " + date.Value.ToString("MMM d, yyyy");
-                lblSummaryTotal.Text = "Total Students: " + total;
-                lblSummaryPresent.Text = "Present: " + present;
-                lblSummaryAbsent.Text = "Absent: " + absent;
-            }
-            else
-            {
-                int presentRecords = 0;
-                foreach (DataRow row in table.Rows)
-                {
-                    if (row["status"].ToString() == "Present")
-                    {
-                        presentRecords++;
-                    }
-                }
-
-                lblSummaryDate.Text = "Date: All dates";
-                lblSummaryTotal.Text = "Total Students: " + totalStudents;
-                lblSummaryPresent.Text = "Present records: " + presentRecords;
-                lblSummaryAbsent.Text = "Absent: choose a date";
-            }
+            int eventId = PageControls.SelectedId(cmbEventFilter);
+            DataTable sessions = EventService.GetSessions(eventId);
+            PageControls.BindChoices(cmbSessionFilter, sessions, "session_id", "display_name", "All Sessions");
         }
 
-        private void ShowEmptyMessage(int rowCount, bool hasDate)
+        private void EventFilterChanged(object sender, EventArgs e)
         {
-            lblEmpty.Visible = (rowCount == 0);
-            if (rowCount > 0)
+            if (loadingEventFilters || !IsHandleCreated)
             {
                 return;
             }
-
-            if (!chkPresent.Checked && !(chkAbsent.Checked && hasDate))
+            if (sender == cmbEventFilter)
             {
-                lblEmpty.Text = "Tick Present or Absent to see records.";
+                try
+                {
+                    loadingEventFilters = true;
+                    LoadSessionChoices();
+                }
+                catch (Exception ex)
+                {
+                    lblEventSummary.Text = Database.GetFriendlyMessage(ex);
+                }
+                finally
+                {
+                    loadingEventFilters = false;
+                }
             }
-            else if (hasDate && dtpDate.Value.Date == DateTime.Today && IsNotFiltered())
-            {
-                lblEmpty.Text = "No attendance has been recorded today yet.";
-            }
-            else
-            {
-                lblEmpty.Text = "No attendance records match your filters.";
-            }
+            LoadEventRecords();
         }
 
-        private bool IsNotFiltered()
+        private void LoadEventRecords()
         {
-            return txtSearch.Text.Trim().Length == 0 && cmbStudent.SelectedIndex <= 0 &&
-                   cmbDepartment.SelectedIndex <= 0 && cmbYear.SelectedIndex <= 0;
-        }
-
-        // Green text for Present, red text for Absent
-        private void ColorStatusColumn()
-        {
-            foreach (DataGridViewRow row in dgvAttendance.Rows)
+            try
             {
-                bool isPresent = (row.Cells["colStatus"].Value.ToString() == "Present");
-                row.Cells["colStatus"].Style.ForeColor = isPresent ? System.Drawing.Color.DarkGreen : System.Drawing.Color.Firebrick;
+                DateTime? date = dtpSessionDate.Checked ? (DateTime?)dtpSessionDate.Value.Date : null;
+                string year = cmbYearFilter.SelectedIndex <= 0 ? "" : cmbYearFilter.Text;
+                DataTable table = AttendanceService.GetRecords(
+                    PageControls.SelectedId(cmbEventFilter),
+                    PageControls.SelectedId(cmbSessionFilter),
+                    date,
+                    PageControls.SelectedId(cmbDepartmentFilter),
+                    year,
+                    txtSearchFilter.Text,
+                    cmbStatusFilter.Text);
+                eventGrid.DataSource = table;
+                eventGrid.ClearSelection();
+                if (eventGrid.Columns.Contains("session_id"))
+                {
+                    eventGrid.Columns["session_id"].Visible = false;
+                }
+
+                int present = 0;
+                int absent = 0;
+                foreach (DataRow row in table.Rows)
+                {
+                    if (row["status"].ToString() == "Present") present++;
+                    else absent++;
+                }
+                lblEventSummary.Text = "Present: " + present + "      Absent: " + absent +
+                    "      Absences appear after each session ends; incomplete sessions show present scans only.";
+                lblEventCount.Text = "Showing " + table.Rows.Count + " event attendance row(s)";
+            }
+            catch (Exception ex)
+            {
+                eventGrid.DataSource = null;
+                lblEventSummary.Text = Database.GetFriendlyMessage(ex);
+                lblEventCount.Text = "";
             }
         }
     }

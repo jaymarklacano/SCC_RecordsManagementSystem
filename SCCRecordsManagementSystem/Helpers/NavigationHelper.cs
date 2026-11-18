@@ -40,6 +40,8 @@ namespace SCCRecordsManagementSystem
             }
 
             Session.Username = "";
+            Session.Role = "";
+            Session.AccountId = 0;
 
             LoginForm loginForm = Application.OpenForms.OfType<LoginForm>().FirstOrDefault();
             if (loginForm == null)

@@ -1,7 +1,7 @@
 # SCC Records Management System
 
 A Windows Forms desktop application for the Supreme Student Council (SSC) of Southern Leyte State University.
-It manages **student records** and records **attendance using face recognition** through the computer's webcam.
+It manages **student records**, **multi-session events**, **student officer accounts**, and **attendance using face recognition** through the computer's webcam.
 
 Everything is written in **C# (Windows Forms, .NET Framework 4.7.2)** with a **MySQL/MariaDB** database.
 Face detection and recognition use the **OpenCvSharp4** NuGet package, so no other programming language is needed.
@@ -37,8 +37,11 @@ The system lets the Student Council:
 
 - keep a list of students (with their course, year level, and contact details),
 - register 5 face pictures of every student,
-- record attendance automatically when a registered student stands in front of the webcam,
-- review the attendance records by date, student, course, or year level.
+- schedule events with morning and afternoon attendance sessions on each event day,
+- record log in and optional log out attendance automatically when a registered student stands in front of the webcam,
+- review attendance by event/session and calculate absences only after a session ends,
+- track 10 obligation points per absent session, with recorded deductions and zero-balance adjustments,
+- create officer login accounts that use the same sign-in screen but cannot manage officer accounts.
 
 Default login after importing the database: **username `admin`, password `admin123`**.
 
@@ -46,16 +49,19 @@ Default login after importing the database: **username `admin`, password `admin1
 
 | Area | What it does |
 |------|--------------|
-| **Login / Create Account / Forgot Password** | Accounts are stored in the database. Passwords are saved as BCrypt hashes (never as plain text). |
-| **Dashboard** | Total students, present today, absent today, today's attendance list, a small chart, and the current date and time. |
+| **Login / Forgot Password** | Admin and officer accounts use the same login screen. Passwords are BCrypt hashes; password resets must be handled by the admin. |
+| **Dashboard** | Active student total, present and absent counts for the active event session, current session's attendance, a chart, and current time. |
 | **Student Records** | Add, view, edit, and delete students. Search by name or ID and filter by course, year level, or face status. Shows the student's photo. |
 | **Student Registration** | Required-field checks, duplicate prevention (ID number, email, same full name), and **webcam registration of exactly 5 face pictures**. A student cannot be saved without all 5 faces. Editing lets you re-register the faces. |
-| **Face Recognition** | Opens the webcam, detects a face, recognizes the student, and records attendance automatically. Handles unknown faces, no face, many faces, poor pictures, and webcam problems with clear messages. |
-| **Attendance Records** | Filter by date, student, course, year level, and Present/Absent status. Shows time in and a summary count. |
+| **Event Management** | Create, edit, search, and delete events. Set dates, venue, participating department or all departments, and optional log out. Each event day can include morning and afternoon sessions with configurable times. |
+| **Face Recognition** | Scan only during an active event session; choose Log In or Log Out. The database permits one login and one optional logout per student/session. |
+| **Attendance Records** | Filter by event, session, date, department, year, status, or student. Shows event/session, time in, time out, and computed absences. |
 | **Departments** | Add, edit, delete, and search the courses/departments. A department that still has students cannot be deleted. |
+| **Officer Records** | Admin-only CRUD for officer information and their username/password. Officers sign in through the standard login screen. |
+| **Student Obligations** | Every completed absent session adds 10 points. Search and filter by event, department and year; deduct points or clear a balance to zero with a required reason and history. |
+| **Reports & Analysis** | Attendance percentage and present/absent totals by event session and department, most-absent students, point totals, date filters, and CSV export. |
 
-Attendance rule (kept simple): **one attendance record per student per day**. Scanning the same student again on the same day shows
-*"Attendance already recorded at 7:53 AM."* and does not create a second record. A student with no record on a chosen date is shown as **Absent**.
+Attendance is keyed to the **event session**, not the calendar day. A 2-day event can have four sessions (morning and afternoon on each day). A student can log in once per session and may log out once if needed. Missing attendance is counted as absent only after that session ends.
 
 ## 3. System Requirements
 
@@ -119,14 +125,17 @@ The file is `scc_records_management.sql` (in the same folder as this README).
 | Table | Purpose |
 |-------|---------|
 | `accounts` | Login accounts (BCrypt password hash). The `admin` account is added for you. |
-| `password_resets` | Kept from the original database. The app resets passwords directly, so it is not used. |
+| `password_resets` | Retained for future use; the current app directs forgotten-password requests to the administrator. |
 | `departments` | Courses/departments. 4 sample departments are added. |
 | `students` | Student records. Linked to `departments`. |
+| `officers` | Officer details linked to an Officer-role account and a department. |
 | `face_images` | The 5 face pictures of each student (saved as JPEG data). Linked to `students` with `ON DELETE CASCADE`. |
-| `attendance` | One row per student per day (`UNIQUE (student_id, attendance_date)`). Linked to `students` with `ON DELETE CASCADE`. |
+| `attendance_events` | Event dates, department scope, log-out requirement, and default morning/afternoon times. |
+| `event_sessions` | One row per enabled morning/afternoon session on each event date. |
+| `event_attendance` | One row per student/session, with `time_in` and optional `time_out`; a unique key prevents duplicates. |
+| `obligation_adjustments` | Event-specific point deductions/clearings with reason, time, and account history. |
 
-Because of the foreign keys, **deleting a student automatically deletes that student's face pictures and attendance records**,
-and a department that still has students cannot be deleted. No orphan rows are left behind.
+Deleting a student cascades their face and event attendance records, and deleting an event cascades its sessions, attendance, and event-specific obligation history. A department that still has students or officers cannot be deleted.
 
 ## 8. How to Configure the Database Connection
 
@@ -203,8 +212,8 @@ The build copies the face detector file `Data\haarcascade_frontalface_default.xm
 
 1. Make sure XAMPP **MySQL is running** and the SQL file was imported.
 2. In Visual Studio press **F5** (or click **Start**).
-3. Log in with **admin / admin123** (or click **Create Account** to make a new one).
-4. Use the left menu to move between **Dashboard**, **Student Records**, **Departments**, **Face Recognition**, and **Attendance Records**.
+3. Log in with **admin / admin123**.
+4. Use the left menu to move between Dashboard, Student Records, Departments, Face Recognition, Attendance Records, Event Management, Student Obligations, and Reports & Analysis. Admins also see Officer Records.
 
 If the database is not running, the program shows a clear message instead of crashing.
 
@@ -276,27 +285,34 @@ recognizes the wrong people, lower it (for example 60).
 
 ## 16. How to Record Attendance
 
-1. Click **Face Recognition** in the left menu (or **START FACE RECOGNITION** on the Dashboard).
-2. The webcam starts and the screen shows **WAITING FOR A STUDENT**.
-3. The student stands in front of the camera and looks straight at it.
-4. When a registered student is recognized, the screen shows:
+1. In **Event Management**, create an event with a start and end date, choose a department or **All Departments**, and enable Morning and/or Afternoon. Set each session's start and end times. For a 2-day event, the chosen sessions are generated for both days.
+2. Open **Face Recognition during one of the scheduled session times**. The session selector lists event sessions currently in progress.
+3. Choose **Log In** when students arrive. The webcam starts; the student stands in front of it and looks at the camera.
+4. When a registered student is recognized, the screen shows their name and the successful log-in time.
 
    ```
    Student Recognized
    Name: Juan Dela Cruz
    Student ID: 2026-001
+   Event Session: Campus Clean-up - Nov 18 - Morning
    Status: Present
-   Time: 7:53 AM
-   Attendance Successfully Recorded
+   Log In: 7:53 AM
+   Log In successfully recorded.
    ```
 
-5. The next student can step in front of the camera. You can click **NEXT STUDENT** to clear the screen at once.
+5. To record a departure time, choose **Log Out** and scan the student again before the session ends. If **Require students to log out** was selected for the event, explain that to attendees. Logging out is still optional for a session's Present status; the setting is for event instructions and the UI.
+6. Click **NEXT STUDENT** to clear the screen for the next person. Each student can log in only once and log out only once per session.
 
 What the screen tells you in other situations:
 
 | Situation | Message |
 |-----------|---------|
-| Already recorded today | *Attendance already recorded at 7:53 AM.* (no second record is created) |
+| Login already recorded in the session | *Already logged in at 7:53 AM.* (no duplicate record is created) |
+| Logout already recorded | The existing logout time is shown; no duplicate is created. |
+| Log out without logging in first | The system explains that the student must log in first. |
+| Scan outside the scheduled session | Attendance is refused; open the scan screen during the session time. |
+| Student is not included in the event department | Attendance is refused and no record is created. |
+| No event session is currently open | The screen asks the operator to create or wait for an active session. |
 | Face not registered | *Unknown face. This person is not registered in the system.* |
 | No face in front of the camera | *No face detected. Please stand in front of the camera.* |
 | Two or more people | *Multiple faces detected. Only one student can stand in front of the camera.* |
@@ -306,24 +322,30 @@ What the screen tells you in other situations:
 | Webcam unplugged or in use | *The webcam was disconnected...* or *No webcam was found or it cannot be opened.* Then click **RESTART CAMERA**. |
 | Database stopped | A database message is shown on the screen; recording continues once MySQL is back |
 
-Click **RESTART CAMERA** after a student was added or re-registered, or after the webcam was reconnected. It also reloads the saved faces.
+Click **RESTART CAMERA** after a student was added or re-registered, or after the webcam was reconnected. It also reloads the saved faces. Every morning and afternoon block is a separate attendance session, so students need to log in again when the next session starts.
 
 ## 17. How to View Attendance Records
 
 1. Click **Attendance Records** in the left menu.
 2. Use the filters:
-   - **Date** - tick the box and choose a date (TODAY jumps to the current date). Unticked means all dates.
-   - **Student** - choose one student.
-   - **Search** - type a name or ID number.
-   - **Course** and **Year** - narrow the list.
-   - **Present / Absent** - choose which status to show. **Absent** can only be shown for one chosen date.
-3. The table shows date, student ID, name, course, year level, time in, and status (**Present** in green, **Absent** in red).
-4. The summary bar shows the number of Present and Absent students and the total shown.
-5. Click **RESET** to clear every filter, or **ALL DATES** to see the complete history.
+   - **Event** and **Session** choose one event/session or all matching sessions.
+   - **Date** optionally limits the table to one date.
+   - **Department**, **Year**, **Status**, and **Search** narrow the results.
+3. The table shows event, date, session, student, time in, time out, Present/Absent, and whether required logout is Pending, Complete, or Missing.
+4. An absent row is produced only after the session end time. A student registered after the session date, inactive students, and students outside the event's department scope are not counted absent.
+5. The **Dashboard** summarizes the current active session. The **Reports & Analysis** page provides date range and department filters, attendance rates, absence points, a most-absent list, and CSV export.
 
-*Absent is calculated:* an **Active** student with no attendance record on the chosen date is Absent. Inactive students are not counted.
+### Event Management
 
-The **Dashboard** also shows Total Students, Present Today, Absent Today, and today's attendance list.
+Create, search, edit, or delete events from the left menu. Each event has a date range, venue, participating department or All Departments, and an optional log-out requirement. Morning and afternoon sessions can be toggled independently and their times can be changed. All enabled sessions are created for every date in the range. After attendance, obligation adjustments, or completed sessions exist, only the event name and venue can be edited so historical attendance and absence calculations remain consistent. Create a replacement event or delete the event after confirming its records should be removed if the schedule must change.
+
+### Officer Records and login roles
+
+Only an Admin sees **Officer Records** and can create, edit, delete, or reset an officer's login. Officer details include officer number, name, department, year level, gender, email, contact, position, and school year. The officer username and password are created by the admin. Officers use the same login screen; they cannot open Officer Records. A forgotten password must be reset by the administrator.
+
+### Student Obligations
+
+Each absent student-session adds **10 points**. The Absences count is derived from completed event sessions; it is not erased when points are adjusted. Select one event to deduct points or clear a balance to zero. Every adjustment requires a reason and is stored in the history. The All Events filter is for viewing totals; adjustments require one selected event so the ledger remains attributable.
 
 ## 18. Common Errors and Troubleshooting
 
@@ -333,7 +355,7 @@ The **Dashboard** also shows Total Students, Present Today, Absent Today, and to
 | *"The database username or password is wrong"* | Fix `Uid` and `Pwd` in the connection string (section 8). |
 | *"Cannot connect to the database"* even though MySQL is running, and you use **MySQL 8** | Use XAMPP's MariaDB (or MySQL 5.7). `MySql.Data 6.9.12` cannot use MySQL 8's default login method. |
 | *"The database 'scc_records_management' was not found"* or *"A database table is missing"* | Import the SQL file (section 7). |
-| Wrong username or password | Default is `admin` / `admin123`. If you changed it and forgot it, re-import the SQL file (this erases all data) or use **Forgot Password**. |
+| Wrong username or password | Default is `admin` / `admin123`. An officer must ask the admin to reset their password. If the admin password is lost, re-importing the SQL file restores the default but erases all data. |
 | NuGet packages are missing or red in **References** | Right-click the solution > **Restore NuGet Packages**, or install them as in section 9. |
 | *"The camera library could not be loaded"* or `DllNotFoundException` for `OpenCvSharpExtern` | Install the **Microsoft Visual C++ Redistributable 2015-2022 (x64)** (section 4). Check that the `dll` folder is next to the `.exe`. Do not change the platform to x86. |
 | *"No webcam was found or it cannot be opened"* | Plug in the webcam, close Zoom/Teams/Camera/browser tabs that use it, and allow camera access in **Windows Settings > Privacy & security > Camera**. Then click **START CAMERA** / **RESTART CAMERA**. |
@@ -356,14 +378,15 @@ SCC_RecordsManagementSystem/
 |-- Sample Code/                          <- style reference (not part of the build)
 `-- SCCRecordsManagementSystem/
     |-- Database.cs                       <- connection + simple helper methods (like the sample code)
-    |-- Models/                           <- Student, Department, AttendanceRecord, ...
-    |-- Services/                         <- database + logic: StudentService, AttendanceService,
-    |                                        DepartmentService, AccountService, FaceService
+    |-- Models/                           <- Student, Department, face and session attendance results
+    |-- Services/                         <- student, event/session attendance, event, officer, obligation,
+    |                                        report, department, account and face logic
     |-- Helpers/                          <- Validator, CameraHelper, ImageHelper, NavigationHelper
     |-- Data/haarcascade_frontalface_default.xml   <- face detector file
     |-- LoginForm / CreateAccount / ForgotPassword
     |-- Dashboard, StudentRecords, Registration
-    |-- FaceRecognition, AttendanceMonitoring, Departments, AddDepartment
+    |-- FaceRecognition, AttendanceMonitoring, EventManagement
+    |-- OfficerRecords, Obligations, ReportsAndAnalysis
     `-- SidebarMenu, WindowButtons        <- shared menu and window buttons
 ```
 
@@ -372,7 +395,9 @@ How the code is divided (each part is small and simple):
 - **Database** - `Database.cs` opens connections, runs queries with `Dictionary<string, object>` parameters, and turns database errors into friendly messages.
 - **Student operations** - `StudentService` (add, edit, delete, search, duplicate checks, saving the 5 faces).
 - **Face detection / recognition** - `FaceService` (detect, quality check, train, recognize) and `CameraHelper` (webcam).
-- **Attendance logic** - `AttendanceService` (record once per day, list records, summary counts).
+- **Event and session logic** - `EventService` generates daily sessions for each event date; `AttendanceService` enforces one login and one optional logout per student/session and calculates completed-session absences.
+- **Officer accounts** - `OfficerService` restricts account creation, edits and deletion to admins.
+- **Obligations and reporting** - `ObligationService` calculates 10 points per completed absent session and stores reasoned adjustments; `ReportService` builds session/department summaries for display and CSV export.
 - **Validation** - `Validator` (required fields, email, contact number, ID number).
 - **UI** - the `.cs` form files only react to buttons and show messages; the `.Designer.cs` files hold the generated layout.
 
@@ -380,8 +405,7 @@ How the code is divided (each part is small and simple):
 
 - The face recognition is simple on purpose (Haar + LBPH). It works best in steady lighting and when students look at the camera.
   It is not designed to stop someone holding up a photo of a student.
-- **Forgot Password** lets anyone reset an account's password by typing its username. This follows the original design of the project
-  and is acceptable for a classroom project, but it is not secure for real use.
+- Officer accounts are managed by an Admin. The app does not provide email-based password recovery; forgotten passwords must be reset by an Admin from Officer Records.
 - The connection string (including the empty root password) is stored in the source code, which is fine for this project.
-- Only the pages listed above are included. The old, empty placeholder pages (Officer Records, Obligations, Reports and Analysis,
-  Rules and Permission, Login History, Event Management, Add Event) were removed because they had no database or logic behind them.
+- Face recognition is a classroom-level Haar/LBPH system and is not spoof-proof; its thresholds should be checked with the actual webcam and lighting.
+- Attendance can only be recorded during the configured session times. A required logout that is missed is reported as Missing, but a successful login remains Present.

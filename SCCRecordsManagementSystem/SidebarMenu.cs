@@ -13,18 +13,52 @@ namespace SCCRecordsManagementSystem
         Students,
         Departments,
         FaceRecognition,
-        Attendance
+        Attendance,
+        Events,
+        Officers,
+        Obligations,
+        Reports
     }
 
     // The left menu used by every page. It is a UserControl so we write it only once.
     public partial class SidebarMenu : UserControl
     {
         private SidebarPage currentPage = SidebarPage.None;
+        private readonly System.Collections.Generic.Dictionary<SidebarPage, Button> extraButtons =
+            new System.Collections.Generic.Dictionary<SidebarPage, Button>();
 
         public SidebarMenu()
         {
             InitializeComponent();
-            lblUser.Text = "Signed in as " + Session.Username;
+            lblUser.Text = "Signed in as " + Session.Username + " (" + Session.Role + ")";
+            AddExtraButton(SidebarPage.Events, "Event Management", 343, delegate
+            {
+                if (!(FindForm() is EventManagement))
+                {
+                    NavigationHelper.OpenPage(FindForm(), new EventManagement());
+                }
+            });
+            AddExtraButton(SidebarPage.Officers, "Officer Records", 387, delegate
+            {
+                if (!(FindForm() is OfficerRecords))
+                {
+                    NavigationHelper.OpenPage(FindForm(), new OfficerRecords());
+                }
+            });
+            AddExtraButton(SidebarPage.Obligations, "Student Obligations", 431, delegate
+            {
+                if (!(FindForm() is Obligations))
+                {
+                    NavigationHelper.OpenPage(FindForm(), new Obligations());
+                }
+            });
+            AddExtraButton(SidebarPage.Reports, "Reports & Analysis", 475, delegate
+            {
+                if (!(FindForm() is ReportsAndAnalysis))
+                {
+                    NavigationHelper.OpenPage(FindForm(), new ReportsAndAnalysis());
+                }
+            });
         }
 
         // The button of this page is shown in a different color.
@@ -40,12 +74,36 @@ namespace SCCRecordsManagementSystem
                 HighlightButton(btnDepartments, SidebarPage.Departments);
                 HighlightButton(btnFaceRecognition, SidebarPage.FaceRecognition);
                 HighlightButton(btnAttendance, SidebarPage.Attendance);
+                foreach (System.Collections.Generic.KeyValuePair<SidebarPage, Button> item in extraButtons)
+                {
+                    HighlightButton(item.Value, item.Key);
+                }
             }
         }
 
         private void HighlightButton(Button button, SidebarPage page)
         {
             button.BackColor = (currentPage == page) ? Color.FromArgb(73, 118, 159) : Color.Transparent;
+        }
+
+        private void AddExtraButton(SidebarPage page, string text, int top, EventHandler click)
+        {
+            Button button = new Button();
+            button.BackColor = Color.Transparent;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.FlatAppearance.MouseOverBackColor = Color.FromArgb(40, 80, 120);
+            button.Font = new Font("Cambria", 11F, FontStyle.Bold);
+            button.ForeColor = Color.White;
+            button.Location = new Point(22, top);
+            button.Size = new Size(277, 38);
+            button.Text = "   " + text;
+            button.TextAlign = ContentAlignment.MiddleLeft;
+            button.Cursor = Cursors.Hand;
+            button.Visible = page != SidebarPage.Officers || Session.IsAdmin;
+            button.Click += click;
+            Controls.Add(button);
+            extraButtons.Add(page, button);
         }
 
         // Each button opens its page, unless we are already on that page.

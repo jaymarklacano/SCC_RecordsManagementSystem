@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -33,17 +34,34 @@ namespace SCCRecordsManagementSystem
         private int shownStudentId = 0;              // the student whose card is on the screen (0 = none)
         private bool unknownShown = false;           // true while the "unknown face" message is shown
         private DateTime lastFaceSeen = DateTime.MinValue;
+        private ComboBox cmbSession;
+        private ComboBox cmbAction;
+        private bool loadingSessionChoices;
 
         public FaceRecognition()
         {
             InitializeComponent();
             NavigationHelper.ExitWhenClosed(this);
+            AddAttendanceSelection();
         }
 
         private void FaceRecognition_Load(object sender, EventArgs e)
         {
             ClearCard();
-            ShowCameraStatus("Starting the camera, please wait...", Color.MidnightBlue);
+            bool sessionsLoaded = false;
+            try
+            {
+                LoadActiveSessions();
+                sessionsLoaded = true;
+            }
+            catch (Exception ex)
+            {
+                ShowCameraStatus(Database.GetFriendlyMessage(ex), Color.Firebrick);
+            }
+            if (sessionsLoaded)
+            {
+                ShowCameraStatus("Choose the active event session and Log In or Log Out.", Color.MidnightBlue);
+            }
         }
 
         // The camera starts after the window is visible, so the window does not freeze while opening.
@@ -76,6 +94,13 @@ namespace SCCRecordsManagementSystem
 
             try
             {
+                if (SelectedSessionId() <= 0)
+                {
+                    ShowCameraStatus("No event session is currently open. Create or wait for an active session.", Color.Firebrick);
+                    ShowBanner("NO ACTIVE SESSION", ErrorBack, Color.White);
+                    return;
+                }
+
                 ShowCameraStatus("Loading the registered faces, please wait...", Color.MidnightBlue);
                 Application.DoEvents();   // lets the message above appear before the slow work starts
 
@@ -315,21 +340,58 @@ namespace SCCRecordsManagementSystem
                     return;
                 }
 
-                AttendanceResult result = AttendanceService.RecordAttendance(studentId);
-                lblStatus.Text = "Present";
-                lblTime.Text = result.TimeText;
+                EventAttendanceResult result;
+                string action = cmbAction.SelectedItem == null ? "Log In" : cmbAction.SelectedItem.ToString();
+                try
+                {
+                    result = AttendanceService.RecordSessionAttendance(studentId, SelectedSessionId(), action);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    lblStatus.Text = "Not recorded";
+                    lblTime.Text = "-";
+                    ShowBanner("ATTENDANCE NOT RECORDED", ErrorBack, Color.White);
+                    ShowResultMessage(ex.Message, Color.Firebrick);
+                    ShowCameraStatus(ex.Message, Color.Firebrick);
+                    return;
+                }
 
+                lblStatus.Text = action == "Log In" ? "Present" : "Logged Out";
+                lblTime.Text = action == "Log In" ? result.TimeInText : result.TimeOutText;
                 if (result.AlreadyRecorded)
                 {
                     ShowBanner("STUDENT RECOGNIZED", InfoBack, Color.White);
-                    ShowResultMessage("Attendance already recorded at " + result.TimeText + ".", Color.MidnightBlue);
-                    ShowCameraStatus(student.FullName + " was already recorded today.", Color.MidnightBlue);
+                    if (result.AlreadyLoggedOut)
+                    {
+                        ShowResultMessage("Already logged out at " + result.TimeOutText + ".", Color.MidnightBlue);
+                        ShowCameraStatus(student.FullName + " already logged out for this session.", Color.MidnightBlue);
+                    }
+                    else if (action == "Log In")
+                    {
+                        string alreadyLoggedIn = "Already logged in at " + result.TimeInText + ".";
+                        if (result.RequiresLogout && !result.TimeOut.HasValue)
+                        {
+                            alreadyLoggedIn += "\nThis event requires a log out when leaving.";
+                        }
+                        ShowResultMessage(alreadyLoggedIn, Color.MidnightBlue);
+                        ShowCameraStatus(student.FullName + " was already logged in for this session.", Color.MidnightBlue);
+                    }
+                    else
+                    {
+                        ShowResultMessage("Already logged in at " + result.TimeInText + ".", Color.MidnightBlue);
+                        ShowCameraStatus("This student is already logged in for the selected session.", Color.MidnightBlue);
+                    }
                 }
                 else
                 {
                     ShowBanner("STUDENT RECOGNIZED", SuccessBack, Color.White);
-                    ShowResultMessage("Attendance Successfully Recorded", Color.DarkGreen);
-                    ShowCameraStatus("Attendance recorded for " + student.FullName + ".", Color.DarkGreen);
+                    string successMessage = action + " successfully recorded.";
+                    if (action == "Log In" && result.RequiresLogout)
+                    {
+                        successMessage += "\nThis event requires a log out when leaving.";
+                    }
+                    ShowResultMessage(successMessage, Color.DarkGreen);
+                    ShowCameraStatus(action + " recorded for " + student.FullName + ".", Color.DarkGreen);
                 }
             }
             catch (Exception ex)
@@ -455,6 +517,96 @@ namespace SCCRecordsManagementSystem
             {
                 oldImage.Dispose();
             }
+        }
+
+        private void AddAttendanceSelection()
+        {
+        lblCameraStatus.Location = new Point(12, 42);
+        lblCameraStatus.Size = new Size(437, 32);
+
+        Label sessionLabel = new Label
+            {
+            AutoSize = true,
+            Font = new Font("Cambria", 9F, FontStyle.Bold),
+            Location = new Point(10, 10),
+            Text = "Session:"
+        };
+        cmbSession = new ComboBox
+        {
+            DropDownStyle = ComboBoxStyle.DropDownList,
+            Font = new Font("Cambria", 9F),
+            Location = new Point(70, 7),
+            Size = new Size(250, 25)
+        };
+        Label actionLabel = new Label
+        {
+            AutoSize = true,
+            Font = new Font("Cambria", 9F, FontStyle.Bold),
+            Location = new Point(325, 10),
+            Text = "Action:"
+        };
+        cmbAction = new ComboBox
+        {
+            DropDownStyle = ComboBoxStyle.DropDownList,
+            Font = new Font("Cambria", 9F),
+            Location = new Point(380, 7),
+            Size = new Size(72, 25)
+        };
+        cmbAction.Items.AddRange(new object[] { "Log In", "Log Out" });
+        cmbAction.SelectedIndex = 0;
+        cmbAction.SelectedIndexChanged += AttendanceSelectionChanged;
+        cmbSession.SelectedIndexChanged += AttendanceSelectionChanged;
+        pnlCameraStatus.Controls.Add(sessionLabel);
+        pnlCameraStatus.Controls.Add(cmbSession);
+        pnlCameraStatus.Controls.Add(actionLabel);
+        pnlCameraStatus.Controls.Add(cmbAction);
+        }
+
+        private void LoadActiveSessions()
+        {
+        loadingSessionChoices = true;
+        try
+        {
+            DataTable sessions = EventService.GetActiveSessionChoices();
+            DataRow empty = sessions.NewRow();
+            empty["session_id"] = 0;
+            empty["display_name"] = sessions.Rows.Count == 0 ? "No active event session" : "Select active session";
+            sessions.Rows.InsertAt(empty, 0);
+            cmbSession.DataSource = sessions;
+            cmbSession.ValueMember = "session_id";
+            cmbSession.DisplayMember = "display_name";
+            cmbSession.SelectedIndex = 0;
+        }
+        finally
+        {
+            loadingSessionChoices = false;
+        }
+        }
+
+        private int SelectedSessionId()
+        {
+        if (cmbSession == null || cmbSession.SelectedValue == null || cmbSession.SelectedValue is DataRowView)
+        {
+            return 0;
+        }
+        return Convert.ToInt32(cmbSession.SelectedValue);
+        }
+
+        private void AttendanceSelectionChanged(object sender, EventArgs e)
+        {
+        if (loadingSessionChoices || !IsHandleCreated)
+        {
+            return;
+        }
+        if (sender == cmbSession)
+        {
+            StartRecognition();
+        }
+        else
+        {
+            ClearCard();
+            ShowCameraStatus("Action changed to " + cmbAction.Text + ".", Color.MidnightBlue);
+        }
         }
     }
 }

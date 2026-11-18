@@ -125,7 +125,6 @@
             this.dtpDate.Size = new System.Drawing.Size(170, 24);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.TabIndex = 3;
-            this.dtpDate.ValueChanged += new System.EventHandler(this.Filter_Changed);
             // 
             // lblStudent
             // 
@@ -149,7 +148,6 @@
             this.cmbStudent.Size = new System.Drawing.Size(310, 25);
             this.cmbStudent.Name = "cmbStudent";
             this.cmbStudent.TabIndex = 5;
-            this.cmbStudent.SelectedIndexChanged += new System.EventHandler(this.Filter_Changed);
             // 
             // lblSearch
             // 
@@ -169,7 +167,6 @@
             this.txtSearch.Size = new System.Drawing.Size(255, 24);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.TabIndex = 7;
-            this.txtSearch.TextChanged += new System.EventHandler(this.Filter_Changed);
             // 
             // lblCourse
             // 
@@ -193,7 +190,6 @@
             this.cmbDepartment.Size = new System.Drawing.Size(165, 25);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.TabIndex = 9;
-            this.cmbDepartment.SelectedIndexChanged += new System.EventHandler(this.Filter_Changed);
             // 
             // lblYear
             // 
@@ -221,7 +217,6 @@
             this.cmbYear.Size = new System.Drawing.Size(105, 25);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.TabIndex = 11;
-            this.cmbYear.SelectedIndexChanged += new System.EventHandler(this.Filter_Changed);
             // 
             // chkPresent
             // 
@@ -233,7 +228,6 @@
             this.chkPresent.UseVisualStyleBackColor = true;
             this.chkPresent.Name = "chkPresent";
             this.chkPresent.TabIndex = 12;
-            this.chkPresent.CheckedChanged += new System.EventHandler(this.Filter_Changed);
             // 
             // chkAbsent
             // 
@@ -245,7 +239,6 @@
             this.chkAbsent.UseVisualStyleBackColor = true;
             this.chkAbsent.Name = "chkAbsent";
             this.chkAbsent.TabIndex = 13;
-            this.chkAbsent.CheckedChanged += new System.EventHandler(this.Filter_Changed);
             // 
             // btnToday
             // 
@@ -261,7 +254,6 @@
             this.btnToday.FlatAppearance.BorderSize = 0;
             this.btnToday.Name = "btnToday";
             this.btnToday.TabIndex = 14;
-            this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
             // 
             // btnAllDates
             // 
@@ -277,7 +269,6 @@
             this.btnAllDates.FlatAppearance.BorderSize = 0;
             this.btnAllDates.Name = "btnAllDates";
             this.btnAllDates.TabIndex = 15;
-            this.btnAllDates.Click += new System.EventHandler(this.btnAllDates_Click);
             // 
             // btnClear
             // 
@@ -293,7 +284,6 @@
             this.btnClear.FlatAppearance.BorderSize = 0;
             this.btnClear.Name = "btnClear";
             this.btnClear.TabIndex = 16;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // pnlSummary
             // 

@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -12,13 +14,22 @@ namespace SCCRecordsManagementSystem
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@username", username.Trim());
 
-            object savedHash = Database.GetValue("SELECT password FROM accounts WHERE username = @username", parameters);
-            if (savedHash == null)
+            DataTable accounts = Database.GetTable(
+                "SELECT account_id, password, role FROM accounts WHERE username = @username", parameters);
+            if (accounts.Rows.Count == 0)
             {
                 return false;
             }
 
-            return BCrypt.Net.BCrypt.Verify(password, savedHash.ToString());
+            DataRow account = accounts.Rows[0];
+            if (!BCrypt.Net.BCrypt.Verify(password, account["password"].ToString()))
+            {
+                return false;
+            }
+
+            Session.AccountId = Convert.ToInt32(account["account_id"]);
+            Session.Role = account["role"].ToString();
+            return true;
         }
 
         public static bool UsernameExists(string username)
@@ -30,19 +41,16 @@ namespace SCCRecordsManagementSystem
 
         public static void CreateAccount(string username, string password)
         {
+            if (!Session.IsAdmin)
+            {
+                throw new UnauthorizedAccessException("Only an administrator can create accounts.");
+            }
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@username", username.Trim());
             parameters.Add("@password", BCrypt.Net.BCrypt.HashPassword(password));
-            Database.RunCommand("INSERT INTO accounts (username, password) VALUES (@username, @password)", parameters);
+            parameters.Add("@role", "Admin");
+            Database.RunCommand("INSERT INTO accounts (username, password, role) VALUES (@username, @password, @role)", parameters);
         }
 
-        // Returns false when no account has this username.
-        public static bool ResetPassword(string username, string newPassword)
-        {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@username", username.Trim());
-            parameters.Add("@password", BCrypt.Net.BCrypt.HashPassword(newPassword));
-            return Database.RunCommand("UPDATE accounts SET password = @password WHERE username = @username", parameters) > 0;
-        }
     }
 }
