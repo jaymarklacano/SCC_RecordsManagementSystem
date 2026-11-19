@@ -127,6 +127,34 @@ namespace SCCRecordsManagementSystem
                 PageControls.ShowError(ex, "Delete Officer");
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ContentPanel
+            // 
+            this.ContentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ContentPanel_Paint);
+            // 
+            // OfficerRecords
+            // 
+            this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Name = "OfficerRecords";
+            this.Load += new System.EventHandler(this.OfficerRecords_Load);
+            this.Controls.SetChildIndex(this.ContentPanel, 0);
+            this.ResumeLayout(false);
+
+        }
+
+        private void ContentPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void OfficerRecords_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     internal sealed class OfficerEditor : Form

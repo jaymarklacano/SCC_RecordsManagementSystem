@@ -775,5 +775,10 @@ namespace SCCRecordsManagementSystem
             return "Face detection could not be started. Please install the Microsoft Visual C++ Redistributable (x64) " +
                    "and check the troubleshooting section of README.md.";
         }
+
+        private void progressFaces_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

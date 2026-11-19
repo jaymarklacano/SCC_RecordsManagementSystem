@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.sidebarMenu = new SidebarMenu();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceMonitoring));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.sidebarMenu = new SCCRecordsManagementSystem.SidebarMenu();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblPageTitle = new System.Windows.Forms.Label();
-            this.windowButtons = new WindowButtons();
+            this.windowButtons = new SCCRecordsManagementSystem.WindowButtons();
             this.lblDate = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.lblStudent = new System.Windows.Forms.Label();
@@ -54,35 +58,32 @@
             this.lblSummaryAbsent = new System.Windows.Forms.Label();
             this.lblEmpty = new System.Windows.Forms.Label();
             this.dgvAttendance = new System.Windows.Forms.DataGridView();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCourse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCount = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAttendance)).BeginInit();
             this.pnlHeader.SuspendLayout();
             this.pnlSummary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAttendance)).BeginInit();
             this.SuspendLayout();
             // 
             // sidebarMenu
             // 
-            this.sidebarMenu.Location = new System.Drawing.Point(0, 0);
-            this.sidebarMenu.Size = new System.Drawing.Size(320, 619);
+            this.sidebarMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
+            this.sidebarMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sidebarMenu.BackgroundImage")));
+            this.sidebarMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.sidebarMenu.CurrentPage = SCCRecordsManagementSystem.SidebarPage.Attendance;
+            this.sidebarMenu.Location = new System.Drawing.Point(0, 0);
             this.sidebarMenu.Name = "sidebarMenu";
+            this.sidebarMenu.Size = new System.Drawing.Size(320, 619);
             this.sidebarMenu.TabIndex = 0;
+            this.sidebarMenu.Load += new System.EventHandler(this.sidebarMenu_Load);
             // 
             // pnlHeader
             // 
-            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
-            this.pnlHeader.Location = new System.Drawing.Point(320, 0);
-            this.pnlHeader.Size = new System.Drawing.Size(985, 50);
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
             this.pnlHeader.Controls.Add(this.lblPageTitle);
             this.pnlHeader.Controls.Add(this.windowButtons);
+            this.pnlHeader.Location = new System.Drawing.Point(320, 0);
             this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(985, 50);
             this.pnlHeader.TabIndex = 1;
             // 
             // lblPageTitle
@@ -92,15 +93,17 @@
             this.lblPageTitle.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPageTitle.ForeColor = System.Drawing.Color.GhostWhite;
             this.lblPageTitle.Location = new System.Drawing.Point(24, 13);
-            this.lblPageTitle.Text = "Attendance Records";
             this.lblPageTitle.Name = "lblPageTitle";
+            this.lblPageTitle.Size = new System.Drawing.Size(224, 27);
             this.lblPageTitle.TabIndex = 0;
+            this.lblPageTitle.Text = "Attendance Records";
             // 
             // windowButtons
             // 
+            this.windowButtons.BackColor = System.Drawing.Color.Transparent;
             this.windowButtons.Location = new System.Drawing.Point(891, 8);
-            this.windowButtons.Size = new System.Drawing.Size(90, 34);
             this.windowButtons.Name = "windowButtons";
+            this.windowButtons.Size = new System.Drawing.Size(90, 34);
             this.windowButtons.TabIndex = 1;
             // 
             // lblDate
@@ -110,20 +113,20 @@
             this.lblDate.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.Black;
             this.lblDate.Location = new System.Drawing.Point(340, 70);
-            this.lblDate.Text = "Date:";
             this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(50, 20);
             this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "Date:";
             // 
             // dtpDate
             // 
+            this.dtpDate.CustomFormat = "MMM d, yyyy";
             this.dtpDate.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.CustomFormat = "MMM d, yyyy";
-            this.dtpDate.ShowCheckBox = true;
-            this.dtpDate.Checked = true;
             this.dtpDate.Location = new System.Drawing.Point(385, 66);
-            this.dtpDate.Size = new System.Drawing.Size(170, 24);
             this.dtpDate.Name = "dtpDate";
+            this.dtpDate.ShowCheckBox = true;
+            this.dtpDate.Size = new System.Drawing.Size(170, 28);
             this.dtpDate.TabIndex = 3;
             // 
             // lblStudent
@@ -133,20 +136,19 @@
             this.lblStudent.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStudent.ForeColor = System.Drawing.Color.Black;
             this.lblStudent.Location = new System.Drawing.Point(572, 70);
-            this.lblStudent.Text = "Student:";
             this.lblStudent.Name = "lblStudent";
+            this.lblStudent.Size = new System.Drawing.Size(74, 20);
             this.lblStudent.TabIndex = 4;
+            this.lblStudent.Text = "Student:";
             // 
             // cmbStudent
             // 
-            this.cmbStudent.Items.AddRange(new object[] {
-            });
             this.cmbStudent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStudent.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStudent.FormattingEnabled = true;
             this.cmbStudent.Location = new System.Drawing.Point(640, 66);
-            this.cmbStudent.Size = new System.Drawing.Size(310, 25);
             this.cmbStudent.Name = "cmbStudent";
+            this.cmbStudent.Size = new System.Drawing.Size(310, 28);
             this.cmbStudent.TabIndex = 5;
             // 
             // lblSearch
@@ -156,16 +158,17 @@
             this.lblSearch.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearch.ForeColor = System.Drawing.Color.Black;
             this.lblSearch.Location = new System.Drawing.Point(965, 70);
-            this.lblSearch.Text = "Search:";
             this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(67, 20);
             this.lblSearch.TabIndex = 6;
+            this.lblSearch.Text = "Search:";
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(1030, 66);
-            this.txtSearch.Size = new System.Drawing.Size(255, 24);
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(255, 28);
             this.txtSearch.TabIndex = 7;
             // 
             // lblCourse
@@ -175,20 +178,19 @@
             this.lblCourse.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCourse.ForeColor = System.Drawing.Color.Black;
             this.lblCourse.Location = new System.Drawing.Point(340, 108);
-            this.lblCourse.Text = "Course:";
             this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(69, 20);
             this.lblCourse.TabIndex = 8;
+            this.lblCourse.Text = "Course:";
             // 
             // cmbDepartment
             // 
-            this.cmbDepartment.Items.AddRange(new object[] {
-            });
             this.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartment.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDepartment.FormattingEnabled = true;
             this.cmbDepartment.Location = new System.Drawing.Point(400, 104);
-            this.cmbDepartment.Size = new System.Drawing.Size(165, 25);
             this.cmbDepartment.Name = "cmbDepartment";
+            this.cmbDepartment.Size = new System.Drawing.Size(165, 28);
             this.cmbDepartment.TabIndex = 9;
             // 
             // lblYear
@@ -198,103 +200,108 @@
             this.lblYear.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblYear.ForeColor = System.Drawing.Color.Black;
             this.lblYear.Location = new System.Drawing.Point(580, 108);
-            this.lblYear.Text = "Year:";
             this.lblYear.Name = "lblYear";
+            this.lblYear.Size = new System.Drawing.Size(49, 20);
             this.lblYear.TabIndex = 10;
+            this.lblYear.Text = "Year:";
             // 
             // cmbYear
             // 
+            this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbYear.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbYear.FormattingEnabled = true;
             this.cmbYear.Items.AddRange(new object[] {
             "All Years",
             "1st Year",
             "2nd Year",
             "3rd Year",
             "4th Year"});
-            this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbYear.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbYear.FormattingEnabled = true;
             this.cmbYear.Location = new System.Drawing.Point(625, 104);
-            this.cmbYear.Size = new System.Drawing.Size(105, 25);
             this.cmbYear.Name = "cmbYear";
+            this.cmbYear.Size = new System.Drawing.Size(105, 28);
             this.cmbYear.TabIndex = 11;
             // 
             // chkPresent
             // 
             this.chkPresent.AutoSize = true;
             this.chkPresent.Checked = true;
+            this.chkPresent.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPresent.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkPresent.Location = new System.Drawing.Point(745, 107);
+            this.chkPresent.Name = "chkPresent";
+            this.chkPresent.Size = new System.Drawing.Size(91, 24);
+            this.chkPresent.TabIndex = 12;
             this.chkPresent.Text = "Present";
             this.chkPresent.UseVisualStyleBackColor = true;
-            this.chkPresent.Name = "chkPresent";
-            this.chkPresent.TabIndex = 12;
             // 
             // chkAbsent
             // 
             this.chkAbsent.AutoSize = true;
             this.chkAbsent.Checked = true;
+            this.chkAbsent.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAbsent.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkAbsent.Location = new System.Drawing.Point(830, 107);
+            this.chkAbsent.Name = "chkAbsent";
+            this.chkAbsent.Size = new System.Drawing.Size(85, 24);
+            this.chkAbsent.TabIndex = 13;
             this.chkAbsent.Text = "Absent";
             this.chkAbsent.UseVisualStyleBackColor = true;
-            this.chkAbsent.Name = "chkAbsent";
-            this.chkAbsent.TabIndex = 13;
             // 
             // btnToday
             // 
-            this.btnToday.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
+            this.btnToday.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
+            this.btnToday.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnToday.FlatAppearance.BorderSize = 0;
             this.btnToday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToday.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToday.ForeColor = System.Drawing.Color.White;
             this.btnToday.Location = new System.Drawing.Point(930, 102);
+            this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(100, 30);
+            this.btnToday.TabIndex = 14;
             this.btnToday.Text = "TODAY";
             this.btnToday.UseVisualStyleBackColor = false;
-            this.btnToday.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnToday.FlatAppearance.BorderSize = 0;
-            this.btnToday.Name = "btnToday";
-            this.btnToday.TabIndex = 14;
             // 
             // btnAllDates
             // 
-            this.btnAllDates.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.btnAllDates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            this.btnAllDates.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAllDates.FlatAppearance.BorderSize = 0;
             this.btnAllDates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAllDates.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAllDates.ForeColor = System.Drawing.Color.Black;
             this.btnAllDates.Location = new System.Drawing.Point(1040, 102);
+            this.btnAllDates.Name = "btnAllDates";
             this.btnAllDates.Size = new System.Drawing.Size(120, 30);
+            this.btnAllDates.TabIndex = 15;
             this.btnAllDates.Text = "ALL DATES";
             this.btnAllDates.UseVisualStyleBackColor = false;
-            this.btnAllDates.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAllDates.FlatAppearance.BorderSize = 0;
-            this.btnAllDates.Name = "btnAllDates";
-            this.btnAllDates.TabIndex = 15;
             // 
             // btnClear
             // 
-            this.btnClear.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClear.FlatAppearance.BorderSize = 0;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.Black;
             this.btnClear.Location = new System.Drawing.Point(1170, 102);
+            this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(115, 30);
+            this.btnClear.TabIndex = 16;
             this.btnClear.Text = "RESET";
             this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.Name = "btnClear";
-            this.btnClear.TabIndex = 16;
             // 
             // pnlSummary
             // 
-            this.pnlSummary.BackColor = System.Drawing.Color.FromArgb(189, 216, 233);
-            this.pnlSummary.Location = new System.Drawing.Point(340, 142);
-            this.pnlSummary.Size = new System.Drawing.Size(945, 44);
+            this.pnlSummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
             this.pnlSummary.Controls.Add(this.lblSummaryDate);
             this.pnlSummary.Controls.Add(this.lblSummaryTotal);
             this.pnlSummary.Controls.Add(this.lblSummaryPresent);
             this.pnlSummary.Controls.Add(this.lblSummaryAbsent);
+            this.pnlSummary.Location = new System.Drawing.Point(340, 142);
             this.pnlSummary.Name = "pnlSummary";
+            this.pnlSummary.Size = new System.Drawing.Size(945, 44);
             this.pnlSummary.TabIndex = 17;
             // 
             // lblSummaryDate
@@ -304,8 +311,8 @@
             this.lblSummaryDate.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSummaryDate.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lblSummaryDate.Location = new System.Drawing.Point(14, 13);
-            this.lblSummaryDate.Text = "";
             this.lblSummaryDate.Name = "lblSummaryDate";
+            this.lblSummaryDate.Size = new System.Drawing.Size(0, 21);
             this.lblSummaryDate.TabIndex = 0;
             // 
             // lblSummaryTotal
@@ -315,8 +322,8 @@
             this.lblSummaryTotal.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSummaryTotal.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lblSummaryTotal.Location = new System.Drawing.Point(330, 13);
-            this.lblSummaryTotal.Text = "";
             this.lblSummaryTotal.Name = "lblSummaryTotal";
+            this.lblSummaryTotal.Size = new System.Drawing.Size(0, 21);
             this.lblSummaryTotal.TabIndex = 1;
             // 
             // lblSummaryPresent
@@ -326,8 +333,8 @@
             this.lblSummaryPresent.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSummaryPresent.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblSummaryPresent.Location = new System.Drawing.Point(540, 13);
-            this.lblSummaryPresent.Text = "";
             this.lblSummaryPresent.Name = "lblSummaryPresent";
+            this.lblSummaryPresent.Size = new System.Drawing.Size(0, 21);
             this.lblSummaryPresent.TabIndex = 2;
             // 
             // lblSummaryAbsent
@@ -337,140 +344,71 @@
             this.lblSummaryAbsent.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSummaryAbsent.ForeColor = System.Drawing.Color.Firebrick;
             this.lblSummaryAbsent.Location = new System.Drawing.Point(720, 13);
-            this.lblSummaryAbsent.Text = "";
             this.lblSummaryAbsent.Name = "lblSummaryAbsent";
+            this.lblSummaryAbsent.Size = new System.Drawing.Size(0, 21);
             this.lblSummaryAbsent.TabIndex = 3;
             // 
             // lblEmpty
             // 
-            this.lblEmpty.AutoSize = false;
             this.lblEmpty.BackColor = System.Drawing.Color.White;
             this.lblEmpty.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpty.ForeColor = System.Drawing.Color.FromArgb(90, 90, 90);
+            this.lblEmpty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.lblEmpty.Location = new System.Drawing.Point(341, 231);
-            this.lblEmpty.Text = "No attendance records found.";
+            this.lblEmpty.Name = "lblEmpty";
             this.lblEmpty.Size = new System.Drawing.Size(943, 344);
+            this.lblEmpty.TabIndex = 18;
+            this.lblEmpty.Text = "No attendance records found.";
             this.lblEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEmpty.Visible = false;
-            this.lblEmpty.Name = "lblEmpty";
-            this.lblEmpty.TabIndex = 18;
             // 
             // dgvAttendance
             // 
-            System.Windows.Forms.DataGridViewCellStyle dgvAttendanceHeaderStyle = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dgvAttendanceCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dgvAttendanceAltStyle = new System.Windows.Forms.DataGridViewCellStyle();
-            dgvAttendanceHeaderStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dgvAttendanceHeaderStyle.BackColor = System.Drawing.Color.FromArgb(73, 118, 159);
-            dgvAttendanceHeaderStyle.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dgvAttendanceHeaderStyle.ForeColor = System.Drawing.Color.White;
-            dgvAttendanceHeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(73, 118, 159);
-            dgvAttendanceHeaderStyle.SelectionForeColor = System.Drawing.Color.White;
-            dgvAttendanceCellStyle.BackColor = System.Drawing.Color.White;
-            dgvAttendanceCellStyle.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dgvAttendanceCellStyle.ForeColor = System.Drawing.Color.Black;
-            dgvAttendanceCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(189, 216, 233);
-            dgvAttendanceCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            dgvAttendanceAltStyle.BackColor = System.Drawing.Color.FromArgb(238, 244, 249);
-            dgvAttendanceAltStyle.SelectionBackColor = System.Drawing.Color.FromArgb(189, 216, 233);
-            dgvAttendanceAltStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvAttendance.ColumnHeadersDefaultCellStyle = dgvAttendanceHeaderStyle;
-            this.dgvAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvAttendance.DefaultCellStyle = dgvAttendanceCellStyle;
-            this.dgvAttendance.AlternatingRowsDefaultCellStyle = dgvAttendanceAltStyle;
-            this.dgvAttendance.RowTemplate.Height = 28;
-            this.dgvAttendance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colDate,
-            this.colNumber,
-            this.colName,
-            this.colCourse,
-            this.colYear,
-            this.colTime,
-            this.colStatus});
-            this.dgvAttendance.Location = new System.Drawing.Point(340, 196);
-            this.dgvAttendance.Size = new System.Drawing.Size(945, 380);
             this.dgvAttendance.AllowUserToAddRows = false;
             this.dgvAttendance.AllowUserToDeleteRows = false;
             this.dgvAttendance.AllowUserToResizeRows = false;
-            this.dgvAttendance.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(244)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvAttendance.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAttendance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAttendance.BackgroundColor = System.Drawing.Color.White;
-            this.dgvAttendance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvAttendance.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAttendance.ColumnHeadersHeight = 34;
+            this.dgvAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAttendance.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAttendance.EnableHeadersVisualStyles = false;
+            this.dgvAttendance.Location = new System.Drawing.Point(340, 196);
             this.dgvAttendance.MultiSelect = false;
+            this.dgvAttendance.Name = "dgvAttendance";
             this.dgvAttendance.ReadOnly = true;
             this.dgvAttendance.RowHeadersVisible = false;
+            this.dgvAttendance.RowHeadersWidth = 51;
+            this.dgvAttendance.RowTemplate.Height = 28;
             this.dgvAttendance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAttendance.Name = "dgvAttendance";
+            this.dgvAttendance.Size = new System.Drawing.Size(945, 380);
             this.dgvAttendance.TabIndex = 19;
-            // 
-            // colDate
-            // 
-            this.colDate.DataPropertyName = "date_text";
-            this.colDate.FillWeight = 15F;
-            this.colDate.HeaderText = "Date";
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
-            // 
-            // colNumber
-            // 
-            this.colNumber.DataPropertyName = "student_number";
-            this.colNumber.FillWeight = 14F;
-            this.colNumber.HeaderText = "Student ID";
-            this.colNumber.Name = "colNumber";
-            this.colNumber.ReadOnly = true;
-            // 
-            // colName
-            // 
-            this.colName.DataPropertyName = "full_name";
-            this.colName.FillWeight = 30F;
-            this.colName.HeaderText = "Full Name";
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            // 
-            // colCourse
-            // 
-            this.colCourse.DataPropertyName = "department_code";
-            this.colCourse.FillWeight = 10F;
-            this.colCourse.HeaderText = "Course";
-            this.colCourse.Name = "colCourse";
-            this.colCourse.ReadOnly = true;
-            // 
-            // colYear
-            // 
-            this.colYear.DataPropertyName = "year_level";
-            this.colYear.FillWeight = 11F;
-            this.colYear.HeaderText = "Year Level";
-            this.colYear.Name = "colYear";
-            this.colYear.ReadOnly = true;
-            // 
-            // colTime
-            // 
-            this.colTime.DataPropertyName = "time_text";
-            this.colTime.FillWeight = 10F;
-            this.colTime.HeaderText = "Time In";
-            this.colTime.Name = "colTime";
-            this.colTime.ReadOnly = true;
-            // 
-            // colStatus
-            // 
-            this.colStatus.DataPropertyName = "status";
-            this.colStatus.FillWeight = 10F;
-            this.colStatus.HeaderText = "Status";
-            this.colStatus.Name = "colStatus";
-            this.colStatus.ReadOnly = true;
             // 
             // lblCount
             // 
-            this.lblCount.AutoSize = false;
             this.lblCount.BackColor = System.Drawing.Color.Transparent;
             this.lblCount.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCount.ForeColor = System.Drawing.Color.DimGray;
             this.lblCount.Location = new System.Drawing.Point(340, 580);
-            this.lblCount.Text = "";
-            this.lblCount.Size = new System.Drawing.Size(945, 20);
             this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(945, 20);
             this.lblCount.TabIndex = 20;
             // 
             // AttendanceMonitoring
@@ -478,9 +416,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AttendanceMonitoring";
             this.Controls.Add(this.sidebarMenu);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.lblDate);
@@ -502,8 +437,11 @@
             this.Controls.Add(this.lblEmpty);
             this.Controls.Add(this.dgvAttendance);
             this.Controls.Add(this.lblCount);
-            this.Load += new System.EventHandler(this.AttendanceMonitoring_Load);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AttendanceMonitoring";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "AttendanceMonitoring";
+            this.Load += new System.EventHandler(this.AttendanceMonitoring_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlSummary.ResumeLayout(false);

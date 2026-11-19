@@ -203,6 +203,28 @@ namespace SCCRecordsManagementSystem
                 dialog.ShowDialog(this);
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ContentPanel
+            // 
+            this.ContentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ContentPanel_Paint);
+            // 
+            // Obligations
+            // 
+            this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Name = "Obligations";
+            this.Controls.SetChildIndex(this.ContentPanel, 0);
+            this.ResumeLayout(false);
+
+        }
+
+        private void ContentPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
     internal sealed class PointAdjustmentDialog : Form

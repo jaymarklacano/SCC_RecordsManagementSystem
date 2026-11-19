@@ -123,6 +123,25 @@ namespace SCCRecordsManagementSystem
                 PageControls.ShowError(ex, "Delete Event");
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // EventManagement
+            // 
+            this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Name = "EventManagement";
+            this.Load += new System.EventHandler(this.EventManagement_Load);
+            this.Controls.SetChildIndex(this.ContentPanel, 0);
+            this.ResumeLayout(false);
+
+        }
+
+        private void EventManagement_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     internal sealed class EventEditor : Form

@@ -157,5 +157,10 @@ namespace SCCRecordsManagementSystem
                 NavigationHelper.Logout(FindForm());
             }
         }
+
+        private void SidebarMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

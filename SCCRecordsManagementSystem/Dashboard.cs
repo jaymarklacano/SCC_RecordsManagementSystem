@@ -148,5 +148,10 @@ namespace SCCRecordsManagementSystem
                 series.Points[index].Color = Color.Firebrick;
             }
         }
+
+        private void sidebarMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

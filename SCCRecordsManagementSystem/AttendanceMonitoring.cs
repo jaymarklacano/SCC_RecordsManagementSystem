@@ -181,5 +181,10 @@ namespace SCCRecordsManagementSystem
                 lblEventCount.Text = "";
             }
         }
+
+        private void sidebarMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

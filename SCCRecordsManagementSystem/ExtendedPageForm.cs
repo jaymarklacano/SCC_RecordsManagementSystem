@@ -7,6 +7,12 @@ namespace SCCRecordsManagementSystem
     {
         protected readonly Panel ContentPanel;
 
+
+        public ExtendedPageForm(): this("Extended Page", SidebarPage.None)
+        {
+
+        }
+
         public ExtendedPageForm(string title, SidebarPage page)
         {
             AutoScaleMode = AutoScaleMode.None;
@@ -48,6 +54,24 @@ namespace SCCRecordsManagementSystem
             Controls.Add(ContentPanel);
 
             NavigationHelper.ExitWhenClosed(this);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ExtendedPageForm
+            // 
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Name = "ExtendedPageForm";
+            this.Load += new System.EventHandler(this.ExtendedPageForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void ExtendedPageForm_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 
