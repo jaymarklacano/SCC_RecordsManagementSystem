@@ -17,16 +17,22 @@ namespace SCCRecordsManagementSystem
     {
         private readonly PictureBox preview = new PictureBox { Dock = DockStyle.Fill, SizeMode = PictureBoxSizeMode.Zoom, BackColor = Color.Black };
         private readonly ComboBox action = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-        private readonly System.Windows.Forms.Timer scanTimer = new System.Windows.Forms.Timer { Interval = 120 };
+        private readonly System.Windows.Forms.Timer scanTimer = new System.Windows.Forms.Timer { Interval = 100 };
         private VideoCapture camera;
         private CascadeClassifier detector;
         private LBPHFaceRecognizer recognizer;
         private Mat frame;
-        private Label message;
-        private int candidate, consecutive, lastStudent, missedFrames;
+        private Label message, faceInfo;
+        private int candidate, consecutive, unknownFrames, lastStudent, missedFrames;
+        private bool unknownShown;
         private DateTime lastFace = DateTime.MinValue;
         private DateTime nextAttempt = DateTime.MinValue;
+        // A face is accepted as a student when the LBPH distance is at most this number (lower = stricter).
         internal const double MatchThreshold = 70;
+        // The same student must be matched in this many pictures in a row before attendance is recorded.
+        private const int FramesNeeded = 3;
+        // After this many pictures in a row without a match, the face is called "unknown".
+        private const int UnknownFramesNeeded = 5;
         public FaceRecognition()
         {
             InitializeComponent();
@@ -37,6 +43,7 @@ namespace SCCRecordsManagementSystem
             panel2.Controls.Add(action); Program.AddLabel(panel2, "Action:", 12, 46, 80);
             label3.Text = "Session:"; label3.Left = 10; comboBox1.Left = 80; comboBox1.Width = 385;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            faceInfo = Program.AddLabel(panel3, "", 10, 56, 455, 22); faceInfo.Font = new Font("Cambria", 9);
             comboBox1.SelectionChangeCommitted += delegate { ResetRecognition(); };
             action.SelectedIndexChanged += delegate { ResetRecognition(); };
             message = Program.AddLabel(panel6, "Waiting for a student.", 15, 292, 450, 70);
@@ -58,41 +65,55 @@ namespace SCCRecordsManagementSystem
             try
             {
                 Database.Require("Face Recognition");
-                Stop(); ResetRecognition();
+                Stop(); ResetRecognition(); faceInfo.Text = "";
+                Status("Loading active sessions and registered faces, please wait...", Color.MidnightBlue);
+                label2.Refresh(); Cursor = Cursors.WaitCursor;
                 Program.Choices(comboBox1, Database.GetData(@"SELECT es.session_id,CONCAT(e.event_name,' - ',DATE_FORMAT(es.starts_at,'%b %e'),' ',es.session_name) AS name
                     FROM event_sessions es JOIN attendance_events e ON e.event_id=es.event_id
                     WHERE NOW()>=es.starts_at AND NOW()<es.ends_at ORDER BY es.starts_at"), "session_id", "name");
                 if (comboBox1.Items.Count == 0) throw new InvalidOperationException("No active session. Create an event or wait for its start, then click Restart / Reload.");
                 detector = Registration.CreateDetector();
-                recognizer = LBPHFaceRecognizer.Create();
+                // Only active students with all 5 pictures are loaded into the recognizer.
                 DataTable data = Database.GetData(@"SELECT s.student_id,f.image_data FROM students s JOIN face_images f ON f.student_id=s.student_id
-                    WHERE s.status='Active' AND s.face_registered=1 ORDER BY s.student_id,f.image_number");
-                if (data.Rows.Count == 0) throw new InvalidOperationException("No registered faces. Add students with five face pictures first.");
-                foreach (var group in data.AsEnumerable().GroupBy(r => Convert.ToInt32(r["student_id"])))
-                    if (group.Count() != 5) throw new InvalidOperationException("Student " + group.Key + " has incomplete face data. Re-register that student.");
-                List<Mat> training = new List<Mat>(); List<int> ids = new List<int>();
+                    WHERE s.status='Active' AND s.face_registered=1 AND (SELECT COUNT(*) FROM face_images x WHERE x.student_id=s.student_id)=5
+                    ORDER BY s.student_id,f.image_number");
+                List<Mat> training = new List<Mat>(); List<int> ids = new List<int>(); int damaged = 0;
                 try
                 {
                     foreach (DataRow row in data.Rows)
                     {
                         using (Mat image = Cv2.ImDecode((byte[])row["image_data"], ImreadModes.Color))
                         {
-                            if (image.Empty()) throw new InvalidOperationException("A registered picture is damaged. Re-register student " + row["student_id"] + ".");
+                            // A damaged picture is skipped so one bad record does not stop attendance for everybody.
+                            if (image.Empty()) { damaged++; continue; }
                             training.Add(Registration.PrepareFace(image)); ids.Add(Convert.ToInt32(row["student_id"]));
                         }
                     }
+                    if (training.Count == 0) throw new InvalidOperationException("No registered faces. Add students with five face pictures first.");
+                    // The label of each picture is the student_id, so the answer tells us who it is.
+                    recognizer = LBPHFaceRecognizer.Create();
                     recognizer.Train(training, ids);
                 }
                 finally { foreach (Mat image in training) image.Dispose(); }
+                faceInfo.Text = ids.Distinct().Count() + " student(s) with registered faces (" + training.Count + " face pictures loaded)" +
+                    (damaged > 0 ? " - " + damaged + " damaged picture(s) skipped, re-register them." : ".");
+                faceInfo.ForeColor = damaged > 0 ? Color.Firebrick : Color.MidnightBlue;
+                Status("Starting the webcam, please wait...", Color.MidnightBlue); label2.Refresh();
                 camera = Registration.OpenCamera(); frame = new Mat(); missedFrames = 0;
-                scanTimer.Start(); label2.Text = "Camera ready. One person at a time.";
+                scanTimer.Start(); Status("Camera is on. Waiting for a student... (one person at a time)", Color.MidnightBlue);
             }
-            catch (Exception ex) { Stop(); label2.Text = Database.ErrorMessage(ex); message.Text = label2.Text; }
+            catch (Exception ex)
+            {
+                Stop(); Status(Database.ErrorMessage(ex), Color.Firebrick);
+                message.Text = label2.Text; message.ForeColor = Color.Firebrick;
+            }
+            finally { Cursor = Cursors.Default; }
         }
 
         private void ResetRecognition()
         {
-            candidate = consecutive = lastStudent = 0;
+            candidate = consecutive = unknownFrames = lastStudent = 0;
+            unknownShown = false;
             nextAttempt = DateTime.MinValue;
             message.Text = "Waiting for a student.";
             message.ForeColor = Color.MidnightBlue;
@@ -100,73 +121,108 @@ namespace SCCRecordsManagementSystem
             Registration.ReplaceImage(pictureBox1, null);
         }
 
+        private void Status(string text, Color color)
+        {
+            label2.Text = text; label2.ForeColor = color;
+        }
+
+        // Runs about 10 times per second while the webcam is on.
         private void Scan(object sender, EventArgs e)
         {
             try
             {
                 if (!camera.Read(frame) || frame.Empty())
                 {
-                    if (++missedFrames >= 10) throw new InvalidOperationException("Webcam disconnected. Reconnect it and click Restart.");
+                    if (++missedFrames >= 10) throw new InvalidOperationException("Webcam disconnected. Reconnect it and click Restart / Reload.");
                     return;
                 }
                 missedFrames = 0;
-                Registration.ReplaceImage(preview, Registration.ToBitmap(frame));
                 Rect[] faces = Registration.Detect(detector, frame);
-                if (faces.Length != 1)
-                {
-                    candidate = consecutive = 0;
-                    label2.Text = faces.Length == 0 ? "No face detected. Look at the camera." : "Multiple faces detected. One person only.";
-                    if (DateTime.Now - lastFace > TimeSpan.FromSeconds(3)) ResetRecognition();
-                    return;
-                }
-                lastFace = DateTime.Now;
-                using (Mat crop = new Mat(frame, faces[0]))
-                {
-                    try { Registration.CheckFace(crop); }
-                    catch (InvalidOperationException ex) { label2.Text = ex.Message; candidate = consecutive = 0; return; }
-                    using (Mat prepared = Registration.PrepareFace(crop))
-                    {
-                        int id; double distance; recognizer.Predict(prepared, out id, out distance);
-                        if (id <= 0 || distance > MatchThreshold)
-                        {
-                            ResetRecognition();
-                            label2.Text = "Unknown face. This student is not registered or the face is not clear.";
-                            message.Text = "Unknown face. No attendance recorded.";
-                            return;
-                        }
-                        if (id == candidate) consecutive++; else { candidate = id; consecutive = 1; }
-                        if (id == lastStudent)
-                        {
-                            label2.Text = "Attendance checked. Step away for the next student, or change action to Log Out.";
-                            return;
-                        }
-                        label2.Text = "Recognizing... " + Math.Min(consecutive, 3) + "/3";
-                        if (consecutive < 3 || DateTime.Now < nextAttempt) return;
-                        DataTable found = Database.GetData(@"SELECT s.*,d.department_code FROM students s JOIN departments d ON d.department_id=s.department_id
-                            WHERE student_id=@id", new Dictionary<string, object> { { "@id", id } });
-                        if (found.Rows.Count == 0)
-                        {
-                            ResetRecognition(); message.Text = "This student was deleted. Click Restart / Reload to refresh the face list."; return;
-                        }
-                        DataRow student = found.Rows[0];
-                        label5.Text = "Name: " + student["first_name"] + " " + student["last_name"];
-                        label6.Text = "ID: " + student["student_number"]; label7.Text = "Department: " + student["department_code"]; label8.Text = "Year: " + student["year_level"];
-                        Registration.ReplaceImage(pictureBox1, Registration.ToBitmap(crop));
-                        try
-                        {
-                            string result = RecordAttendance(id, Program.SelectedId(comboBox1), action.Text);
-                            message.Text = "Student Recognized\n" + result; message.ForeColor = Color.DarkGreen;
-                            label9.Text = "Status: Present"; lastStudent = id; label2.Text = "Student recognized. Ready for the next student.";
-                        }
-                        catch (Exception ex)
-                        {
-                            message.Text = Database.ErrorMessage(ex); message.ForeColor = Color.Firebrick;
-                            label9.Text = "Status: Not recorded"; nextAttempt = DateTime.Now.AddSeconds(5);
-                        }
-                    }
-                }
+                Scalar boxColor = Recognize(faces);
+                Registration.ShowFrame(preview, frame, faces, boxColor);
             }
-            catch (Exception ex) { Stop(); label2.Text = Database.ErrorMessage(ex); message.Text = label2.Text; }
+            catch (Exception ex)
+            {
+                Stop(); Status(Database.ErrorMessage(ex), Color.Firebrick);
+                message.Text = label2.Text; message.ForeColor = Color.Firebrick;
+            }
+        }
+
+        // Decides what to do with the faces in the current camera picture.
+        // Returns the color of the box drawn around the face: gray/orange = problem, gold = checking,
+        // red = unknown, green = recognized.
+        private Scalar Recognize(Rect[] faces)
+        {
+            if (faces.Length > 0) lastFace = DateTime.Now;
+            string problem = Registration.CheckFace(frame, faces);
+            if (problem != "")
+            {
+                candidate = consecutive = unknownFrames = 0;
+                Status(problem, faces.Length == 0 ? Color.DimGray : Color.Firebrick);
+                // The student card stays until nobody has been in front of the camera for 3 seconds.
+                if (faces.Length == 0 && (lastStudent != 0 || unknownShown) && DateTime.Now - lastFace > TimeSpan.FromSeconds(3)) ResetRecognition();
+                return faces.Length == 0 ? Scalar.Gray : Scalar.Orange;
+            }
+            int id; double distance;
+            using (Mat crop = new Mat(frame, faces[0]))
+            using (Mat prepared = Registration.PrepareFace(crop))
+                recognizer.Predict(prepared, out id, out distance);
+            if (id <= 0 || distance > MatchThreshold)
+            {
+                // One unclear picture is normal, so wait for several in a row before calling the face unknown.
+                candidate = consecutive = 0;
+                if (++unknownFrames < UnknownFramesNeeded) { Status("Recognizing your face...", Color.MidnightBlue); return Scalar.Gold; }
+                if (!unknownShown)
+                {
+                    ResetRecognition(); unknownShown = true; unknownFrames = UnknownFramesNeeded;
+                    message.Text = "UNKNOWN FACE\nThis face is not registered. No attendance recorded."; message.ForeColor = Color.Firebrick;
+                }
+                Status("Unknown face. This person is not registered or the face is not clear.", Color.Firebrick);
+                return Scalar.Red;
+            }
+            unknownFrames = 0;
+            if (id == candidate) consecutive++; else { candidate = id; consecutive = 1; }
+            if (consecutive < FramesNeeded) { Status("Recognizing your face... " + consecutive + "/" + FramesNeeded, Color.MidnightBlue); return Scalar.Gold; }
+            // This student's card is already shown: do nothing, so attendance is not recorded again and again.
+            if (id == lastStudent)
+            {
+                Status("Attendance checked. Step away for the next student, or change the action to Log Out.", Color.DarkGreen);
+                return Scalar.LimeGreen;
+            }
+            if (DateTime.Now < nextAttempt) return Scalar.Gold;
+            ShowStudent(id, faces[0]);
+            return Scalar.LimeGreen;
+        }
+
+        // Shows the recognized student and records the attendance.
+        private void ShowStudent(int id, Rect face)
+        {
+            DataTable found = Database.GetData(@"SELECT s.*,d.department_code FROM students s JOIN departments d ON d.department_id=s.department_id
+                WHERE student_id=@id", new Dictionary<string, object> { { "@id", id } });
+            if (found.Rows.Count == 0)
+            {
+                ResetRecognition(); message.Text = "This student was deleted. Click Restart / Reload to refresh the face list.";
+                nextAttempt = DateTime.Now.AddSeconds(5); return;
+            }
+            DataRow student = found.Rows[0];
+            unknownShown = false;
+            label5.Text = "Name: " + student["first_name"] + " " + student["last_name"];
+            label6.Text = "ID: " + student["student_number"]; label7.Text = "Department: " + student["department_code"]; label8.Text = "Year: " + student["year_level"];
+            using (Mat crop = new Mat(frame, face)) Registration.ReplaceImage(pictureBox1, Registration.ToBitmap(crop));
+            try
+            {
+                string result = RecordAttendance(id, Program.SelectedId(comboBox1), action.Text);
+                message.Text = "Student Recognized\n" + result; message.ForeColor = Color.DarkGreen;
+                label9.Text = "Status: Present"; lastStudent = id;
+                Status("Student recognized. Ready for the next student.", Color.DarkGreen);
+            }
+            catch (Exception ex)
+            {
+                // Try again after 5 seconds (for example when the database was busy).
+                message.Text = Database.ErrorMessage(ex); message.ForeColor = Color.Firebrick;
+                label9.Text = "Status: Not recorded"; nextAttempt = DateTime.Now.AddSeconds(5);
+                Status("Attendance was not recorded. Trying again in 5 seconds...", Color.Firebrick);
+            }
         }
 
         public static string RecordAttendance(int studentId, int sessionId, string actionName)

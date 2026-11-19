@@ -20,12 +20,16 @@ namespace SCCRecordsManagementSystem
         private readonly PictureBox[] thumbnails = new PictureBox[5];
         private readonly CheckBox replaceFaces = new CheckBox { Text = "Re-register all 5 face pictures", AutoSize = true };
         private readonly ComboBox status = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-        private readonly System.Windows.Forms.Timer cameraTimer = new System.Windows.Forms.Timer { Interval = 120 };
+        private readonly System.Windows.Forms.Timer cameraTimer = new System.Windows.Forms.Timer { Interval = 50 };
+        // Short tips shown to the student for each of the 5 pictures.
+        private static readonly string[] PoseTips = { "look straight at the camera", "turn your head slightly to the left",
+            "turn your head slightly to the right", "tilt your head slightly up", "look at the camera normally or smile" };
         private Label captureStatus;
         private VideoCapture camera;
         private CascadeClassifier detector;
         private Mat frame;
         private int failedFrames;
+        private DateTime holdMessageUntil = DateTime.MinValue;
         public Registration() : this(0) { }
         public Registration(int id)
         {
@@ -48,7 +52,7 @@ namespace SCCRecordsManagementSystem
             replaceFaces.Location = new System.Drawing.Point(173, 474); panel1.Controls.Add(replaceFaces);
             replaceFaces.Checked = id == 0; replaceFaces.Enabled = id > 0;
             pictureBox1.SetBounds(20, 10, 580, 320); pictureBox1.SizeMode = PictureBoxSizeMode.Zoom; pictureBox1.BackColor = Color.Black;
-            captureStatus = Program.AddLabel(panel2, "Start camera. Look straight, then turn slightly left/right/up and look straight again.", 20, 335, 580, 65);
+            captureStatus = Program.AddLabel(panel2, "Click START CAMERA. Look straight, then turn slightly left/right/up and look straight again.", 20, 335, 580, 65);
             for (int i = 0; i < 5; i++)
             {
                 thumbnails[i] = new PictureBox { Location = new System.Drawing.Point(20 + i * 115, 410),
@@ -57,13 +61,29 @@ namespace SCCRecordsManagementSystem
             }
             button5.SetBounds(664, 551, 185, 45); button5.Text = "START CAMERA";
             button4.SetBounds(857, 551, 185, 45);
-            Button retake = Program.AddButton(this, "RETAKE ALL", 1050, 551, 190, delegate { ClearPictures(); replaceFaces.Checked = true; });
+            Button retake = Program.AddButton(this, "RETAKE ALL", 1050, 551, 190, delegate {
+                if (pictures.Count > 0 && MessageBox.Show("Delete the captured face pictures and capture them again?", "Retake Faces",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+                ClearPictures(); replaceFaces.Checked = true;
+                if (camera == null) StartCamera(null, null);
+            });
             retake.Height = button4.Height; retake.BackColor = button4.BackColor; retake.Font = button4.Font;
             button5.Click += StartCamera; button4.Click += CaptureFace;
             button1.Click += SaveClick;
             button2.Click += delegate { textBox1.Clear(); textBox2.Clear(); textBox3.Clear(); textBox4.Clear(); textBox5.Clear(); textBox6.Clear(); ClearPictures(); };
             button3.Click += delegate { Close(); };
             cameraTimer.Tick += ReadCamera;
+            // A new student needs the camera, so start it as soon as the window is visible.
+            Shown += delegate { if (studentId == 0) StartCamera(null, null); };
+            replaceFaces.Click += delegate
+            {
+                try
+                {
+                    if (replaceFaces.Checked) { if (camera == null) StartCamera(null, null); }
+                    else ShowSavedPictures();   // keep the saved pictures, so show them again
+                }
+                catch (Exception ex) { SetStatus(Database.ErrorMessage(ex), Color.Firebrick); }
+            };
             FormClosed += delegate { StopCamera(); ClearPictures(); ReplaceImage(pictureBox1, null); cameraTimer.Dispose(); };
             if (id > 0) LoadStudent();
         }
@@ -76,8 +96,15 @@ namespace SCCRecordsManagementSystem
             textBox5.Text = row["email"].ToString(); textBox6.Text = row["contact_number"].ToString();
             comboBox1.SelectedValue = row["department_id"]; comboBox2.Text = row["year_level"].ToString();
             comboBox3.Text = row["gender"].ToString(); status.Text = row["status"].ToString();
+            ShowSavedPictures();
+        }
+
+        // Shows the 5 pictures that are already saved in the database for this student.
+        private void ShowSavedPictures()
+        {
             DataTable saved = Database.GetData("SELECT image_data FROM face_images WHERE student_id=@id ORDER BY image_number",
                 new Dictionary<string, object> { { "@id", studentId } });
+            ClearPictures();
             replaceFaces.Checked = saved.Rows.Count != 5;
             try
             {
@@ -85,7 +112,7 @@ namespace SCCRecordsManagementSystem
                     using (MemoryStream stream = new MemoryStream((byte[])saved.Rows[i]["image_data"]))
                     using (Bitmap image = new Bitmap(stream))
                         ReplaceImage(thumbnails[i], new Bitmap(image));
-                captureStatus.Text = saved.Rows.Count + " saved pictures. Check re-register to replace them with 5 new captures.";
+                SetStatus(saved.Rows.Count + " saved pictures. Check re-register to replace them with 5 new captures.", Color.MidnightBlue);
             }
             catch (ArgumentException ex) { DamagedPictures(ex); }
             catch (OutOfMemoryException ex) { DamagedPictures(ex); }
@@ -95,20 +122,24 @@ namespace SCCRecordsManagementSystem
         {
             System.Diagnostics.Trace.WriteLine(error);
             ClearPictures(); replaceFaces.Checked = true; replaceFaces.Enabled = false;
-            captureStatus.Text = "A saved picture is damaged. Capture five new pictures to repair this student's registration.";
+            SetStatus("A saved picture is damaged. Click START CAMERA and capture five new pictures to repair this student's registration.", Color.Firebrick);
         }
 
         private void StartCamera(object sender, EventArgs e)
         {
             try
             {
-                StopCamera(); detector = CreateDetector(); camera = OpenCamera(); frame = new Mat();
-                failedFrames = 0; cameraTimer.Start();
-                captureStatus.Text = "Look at the camera. One face only. Capture 5 slightly different poses.";
+                StopCamera();
+                SetStatus("Starting the webcam, please wait...", Color.MidnightBlue);
+                captureStatus.Refresh(); Cursor = Cursors.WaitCursor;
+                detector = CreateDetector(); camera = OpenCamera(); frame = new Mat();
+                failedFrames = 0; holdMessageUntil = DateTime.MinValue; cameraTimer.Start();
             }
-            catch (Exception ex) { StopCamera(); captureStatus.Text = Database.ErrorMessage(ex); }
+            catch (Exception ex) { StopCamera(); SetStatus(Database.ErrorMessage(ex), Color.Firebrick); }
+            finally { Cursor = Cursors.Default; }
         }
 
+        // Runs about 20 times per second: shows the camera and tells the student if the face is good.
         private void ReadCamera(object sender, EventArgs e)
         {
             try
@@ -119,9 +150,16 @@ namespace SCCRecordsManagementSystem
                     return;
                 }
                 failedFrames = 0;
-                ReplaceImage(pictureBox1, ToBitmap(frame));
+                Rect[] faces = Detect(detector, frame);
+                string problem = CheckFace(frame, faces);
+                // Green box = good face, orange box = something must be fixed.
+                ShowFrame(pictureBox1, frame, faces, problem == "" ? Scalar.LimeGreen : Scalar.Orange);
+                if (DateTime.Now < holdMessageUntil) return;   // keep the last capture message visible for a moment
+                if (problem != "") SetStatus(problem, Color.Firebrick);
+                else if (pictures.Count < 5) SetStatus("Good! Please " + PoseTips[pictures.Count] + ", then click CAPTURE.", Color.DarkGreen);
+                else SetStatus("All 5 face pictures are captured. Click SAVE REGISTRATION.", Color.DarkGreen);
             }
-            catch (Exception ex) { StopCamera(); captureStatus.Text = Database.ErrorMessage(ex); }
+            catch (Exception ex) { StopCamera(); SetStatus(Database.ErrorMessage(ex), Color.Firebrick); }
         }
 
         private void CaptureFace(object sender, EventArgs e)
@@ -129,32 +167,44 @@ namespace SCCRecordsManagementSystem
             try
             {
                 if (!cameraTimer.Enabled || failedFrames > 0 || frame == null || frame.Empty())
-                    throw new InvalidOperationException("Wait for a live webcam frame, or restart the camera.");
+                    throw new InvalidOperationException("The webcam is not running. Click START CAMERA first.");
                 if (pictures.Count == 5) throw new InvalidOperationException("All 5 pictures are captured. Save or choose Retake All.");
                 Rect[] faces = Detect(detector, frame);
-                if (faces.Length != 1) throw new InvalidOperationException(faces.Length == 0 ? "No face detected. Look at the camera." : "Multiple faces detected. Only one person may be in view.");
+                string problem = CheckFace(frame, faces);
+                if (problem != "") throw new InvalidOperationException(problem + " The picture was not saved.");
+                // Replacing saved pictures: remove the old thumbnails so old and new pictures are never mixed.
+                if (pictures.Count == 0) foreach (PictureBox thumbnail in thumbnails) ReplaceImage(thumbnail, null);
                 using (Mat crop = new Mat(frame, faces[0]))
+                using (Mat saved = new Mat())
                 {
-                    CheckFace(crop);
-                    using (Mat saved = new Mat())
-                    {
-                        Cv2.Resize(crop, saved, new OpenCvSharp.Size(160, 160));
-                        byte[] bytes = saved.ImEncode(".png");
-                        if (pictures.Any(p => p.SequenceEqual(bytes))) throw new InvalidOperationException("This is the same frame. Move slightly and capture a new picture.");
-                        pictures.Add(bytes); ReplaceImage(thumbnails[pictures.Count - 1], ToBitmap(saved));
-                    }
+                    Cv2.Resize(crop, saved, new OpenCvSharp.Size(160, 160));
+                    byte[] bytes = saved.ImEncode(".png");
+                    if (pictures.Any(p => p.SequenceEqual(bytes))) throw new InvalidOperationException("This is the same frame. Move slightly and capture a new picture.");
+                    pictures.Add(bytes); ReplaceImage(thumbnails[pictures.Count - 1], ToBitmap(saved));
                 }
                 replaceFaces.Checked = true;
-                captureStatus.Text = "Face " + pictures.Count + " of 5 captured. " + (pictures.Count == 5 ? "Ready to save." : "Turn slightly, then capture again.");
+                HoldStatus("Face " + pictures.Count + " of 5 captured. " + (pictures.Count == 5 ? "You can save the student now." : "Next: " + PoseTips[pictures.Count] + "."), Color.DarkGreen);
             }
-            catch (Exception ex) { captureStatus.Text = Database.ErrorMessage(ex); }
+            catch (Exception ex) { HoldStatus(Database.ErrorMessage(ex), Color.Firebrick); }
+        }
+
+        private void SetStatus(string text, Color color)
+        {
+            captureStatus.Text = text; captureStatus.ForeColor = color;
+        }
+
+        // Shows a message that the live camera tips will not replace for 2 seconds.
+        private void HoldStatus(string text, Color color)
+        {
+            SetStatus(text, color); holdMessageUntil = DateTime.Now.AddSeconds(2);
         }
 
         private void ClearPictures()
         {
             pictures.Clear();
             foreach (PictureBox thumbnail in thumbnails) if (thumbnail != null) ReplaceImage(thumbnail, null);
-            captureStatus.Text = "Face 0 of 5 captured.";
+            holdMessageUntil = DateTime.MinValue;
+            if (captureStatus != null) SetStatus("Face 0 of 5 captured. Look straight at the camera and capture face 1.", Color.MidnightBlue);
         }
 
         private void StopCamera()
@@ -163,6 +213,7 @@ namespace SCCRecordsManagementSystem
             if (camera != null) { camera.Dispose(); camera = null; }
             if (detector != null) { detector.Dispose(); detector = null; }
             if (frame != null) { frame.Dispose(); frame = null; }
+            ReplaceImage(pictureBox1, null);
         }
 
         private void SaveClick(object sender, EventArgs e)
@@ -265,34 +316,74 @@ namespace SCCRecordsManagementSystem
 
         internal static VideoCapture OpenCamera()
         {
-            VideoCapture capture = new VideoCapture(0, VideoCaptureAPIs.DSHOW);
-            if (!capture.IsOpened()) { capture.Dispose(); throw new InvalidOperationException("Webcam unavailable. Connect it, allow camera access in Windows Settings and close other camera apps."); }
-            capture.Set(VideoCaptureProperties.FrameWidth, 640); capture.Set(VideoCaptureProperties.FrameHeight, 480);
-            return capture;
+            // Try the built-in webcam first (0), then USB webcams (1 and 2).
+            for (int index = 0; index < 3; index++)
+            {
+                VideoCapture capture = new VideoCapture(index, VideoCaptureAPIs.DSHOW);
+                if (capture.IsOpened())
+                {
+                    capture.Set(VideoCaptureProperties.FrameWidth, 640); capture.Set(VideoCaptureProperties.FrameHeight, 480);
+                    // Some webcams need a moment before the first real picture arrives.
+                    using (Mat test = new Mat())
+                        for (int attempt = 0; attempt < 30; attempt++)
+                        {
+                            if (capture.Read(test) && !test.Empty()) return capture;
+                            System.Threading.Thread.Sleep(50);
+                        }
+                }
+                capture.Dispose();
+            }
+            throw new InvalidOperationException("Webcam unavailable. Connect it, allow camera access in Windows Settings > Privacy > Camera, and close Zoom/Teams/Camera.");
         }
 
         internal static Rect[] Detect(CascadeClassifier classifier, Mat image)
         {
+            Rect[] found;
             using (Mat gray = new Mat())
             {
                 Cv2.CvtColor(image, gray, ColorConversionCodes.BGR2GRAY); Cv2.EqualizeHist(gray, gray);
-                return classifier.DetectMultiScale(gray, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(40, 40));
+                found = classifier.DetectMultiScale(gray, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(60, 60));
             }
+            // The detector sometimes finds tiny "faces" in the background or on clothes.
+            // A real second person has a face of similar size, so faces under 60% of the biggest one are ignored.
+            int biggest = found.Length == 0 ? 0 : found.Max(face => face.Width);
+            return found.Where(face => face.Width >= biggest * 0.6).ToArray();
         }
 
-        internal static void CheckFace(Mat face)
+        // Returns "" when the picture has exactly one clear face, otherwise a message telling the user what to fix.
+        internal static string CheckFace(Mat frame, Rect[] faces)
         {
-            if (face.Width < 90 || face.Height < 90) throw new InvalidOperationException("Move closer so your face is clear.");
+            if (faces.Length == 0) return "No face detected. Please look at the camera.";
+            if (faces.Length > 1) return "Multiple faces detected. Only one person may be in front of the camera.";
+            Rect face = faces[0];
+            if (face.Width < 90) return "Your face is too small. Please move closer to the camera.";
+            if (face.X < 3 || face.Y < 3 || face.Right > frame.Width - 3 || face.Bottom > frame.Height - 3)
+                return "Your face is too close to the edge. Please move to the center of the camera.";
+            using (Mat crop = new Mat(frame, face))
             using (Mat gray = new Mat())
             using (Mat edges = new Mat())
             {
-                Cv2.CvtColor(face, gray, ColorConversionCodes.BGR2GRAY);
+                Cv2.CvtColor(crop, gray, ColorConversionCodes.BGR2GRAY);
                 double light = Cv2.Mean(gray).Val0;
-                if (light < 50 || light > 210) throw new InvalidOperationException("Improve the lighting: the face is too dark or too bright.");
+                if (light < 60) return "The picture is too dark. Please turn on more light.";
+                if (light > 200) return "The picture is too bright. Avoid strong light behind or on your face.";
+                // Sharpness = how much detail the face has. A blurry face has very little.
                 Cv2.Resize(gray, gray, new OpenCvSharp.Size(100, 100));
                 Cv2.Laplacian(gray, edges, MatType.CV_64F);
                 Scalar mean, deviation; Cv2.MeanStdDev(edges, out mean, out deviation);
-                if (deviation.Val0 * deviation.Val0 < 15) throw new InvalidOperationException("The face is blurry. Hold still and try again.");
+                if (deviation.Val0 * deviation.Val0 < 15) return "The picture is blurry. Please hold still and look at the camera.";
+            }
+            return "";
+        }
+
+        // Shows the camera picture like a mirror, with a colored box around every detected face.
+        internal static void ShowFrame(PictureBox box, Mat frame, Rect[] faces, Scalar color)
+        {
+            using (Mat display = frame.Clone())
+            {
+                foreach (Rect face in faces) Cv2.Rectangle(display, face, color, 3);
+                Cv2.Flip(display, display, FlipMode.Y);
+                ReplaceImage(box, ToBitmap(display));
             }
         }
 

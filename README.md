@@ -230,22 +230,30 @@ Do not run an old executable from the repository's previously checked-in build f
 2. Open **Student Records > Add Students**.
 3. Enter unique student ID, first/last names, department, year and gender.
    Middle name, email and contact number are optional. Email/phone formats are validated.
-4. Click **Start Camera**. Windows Settings > Privacy & security > Camera must allow
-   camera access and access for desktop applications. Close Teams/Zoom/Camera if they hold the webcam.
-5. Only one person should be visible. Use steady, even lighting and keep the full face in view.
-6. Click **Capture** five times, with slightly different poses: straight, slightly left,
-   slightly right, slightly up, and straight again.
-7. Check the five previews and the **Face N of 5 captured** message.
-   No face, multiple faces, small/dark/bright/blurry faces and repeated identical frames are rejected.
-8. **Retake All** resets captured images. **Reset** clears inputs and new captures.
+4. The webcam starts automatically when the Add Student window opens (or click **Start Camera**).
+   The app tries the built-in camera first, then USB cameras 1 and 2.
+   Windows Settings > Privacy & security > Camera must allow camera access and access for
+   desktop applications. Close Teams/Zoom/Camera if they hold the webcam.
+5. The preview works like a mirror. A **green box** means the face is good; an **orange box**
+   means the message under the preview tells you what to fix (move closer, move to the center,
+   more light, less light, hold still, only one person). Small faces far in the background
+   (posters, people walking behind) are ignored, so they do not cause "multiple faces".
+6. Follow the live tip, then click **Capture**. Five poses are suggested in order: straight,
+   slightly left, slightly right, slightly up, and normal/smile.
+7. After each capture the message shows **Face N of 5 captured. Next: ...** for two seconds.
+   No face, multiple faces, small/edge/dark/bright/blurry faces and repeated identical frames are
+   rejected with "The picture was not saved."
+8. **Retake All** asks for confirmation, clears the captured images and starts the camera again.
+   **Reset** clears inputs and new captures.
 9. **Save Registration** is rejected until all five pictures are present.
    Cancel closes without saving.
 
 Select a row in Student Records to view its picture and details. The details panel also shows an
 attendance summary: present and absent sessions, current obligation balance and last scan time.
 Search by name/ID; filter by department, year or Active/Inactive.
-Use **Edit** or double-click to update details. Check **Re-register all 5 face pictures**
-to replace faces. Otherwise existing saved faces are retained.
+Use **Edit** or double-click to update details. Checking **Re-register all 5 face pictures**
+starts the camera; the first new capture clears the old thumbnails so old and new pictures are
+never mixed. Unchecking it shows the saved pictures again, and saving keeps them.
 If a saved picture is damaged, the editor still opens and requires five new captures to repair it.
 Capture is blocked while the camera is stopped or its latest frame read has failed.
 **Delete** asks for confirmation and removes related records; use Inactive instead to keep history.
@@ -262,11 +270,17 @@ Capture is blocked while the camera is stopped or its latest frame read has fail
    The editor previews the number of sessions. After the event starts, protected schedule controls
    are disabled; only name and venue remain editable.
 6. Open **Face Recognition** during a session. The first active session is selected automatically.
-   If multiple sessions/events are open, select the correct one.
-7. Choose **Log In**. Face recognition automatically records a student after three consecutive matches.
+   If multiple sessions/events are open, select the correct one. The line under the session list
+   shows how many students and face pictures were loaded (for example
+   "3 student(s) with registered faces (15 face pictures loaded)").
+7. Choose **Log In**. Stand alone in front of the camera. The box around the face shows what is
+   happening: **gray** = no face, **orange** = fix the face (message shown), **gold** = recognizing
+   (1/3, 2/3), **green** = recognized, **red** = unknown face.
+   Attendance is recorded automatically after three consecutive matching frames.
 8. The result card shows **Student Recognized**, the student's information, **Status: Present**
    and the saved time. If it was already recorded, it shows the original time instead.
-   The camera stays running for others.
+   The card stays while the student is in front of the camera and clears about 3 seconds after
+   they leave, so the same student is not processed again and again. The camera keeps running.
 9. For departure, choose **Log Out** and scan again **before the session end time**.
 10. **Another Person** clears the card. **Restart / Reload** reloads active sessions and trained faces.
     Use it after registration changes, a session transition or reconnecting the camera.
@@ -285,12 +299,23 @@ Double-click an event to edit it. The roster also shows each participant's curre
 
 ### How recognition works
 
-The Haar classifier detects faces. The selected face is checked for size, lighting and sharpness.
-Registration saves five 160 x 160 color PNG crops in the database.
-For training and matching, each face becomes grayscale, 100 x 100, with equalized contrast.
-LBPH trains on all active students' saved samples, labeled by student ID.
-Lower match distance is better; `MatchThreshold = 70` in `FaceRecognition.cs` is the current cutoff.
-Three consecutive matching frames are required before a database write.
+Both screens use the same helper methods in `Registration.cs` (`Detect`, `CheckFace`, `PrepareFace`).
+
+1. **Detect:** the Haar classifier finds faces of at least 60 x 60 pixels. Faces smaller than 60%
+   of the biggest face are ignored (background faces), so only a real second person counts as
+   "multiple faces".
+2. **Check:** exactly one face, at least 90 pixels wide, not touching the edge of the picture,
+   brightness between 60 and 200, and sharp enough (not blurry).
+3. **Register:** five 160 x 160 color PNG crops are saved in the database.
+4. **Prepare:** for training and matching, each face becomes grayscale, 100 x 100, with equalized contrast.
+5. **Train:** LBPH trains on the saved pictures of Active students who have all five pictures,
+   labeled by student ID. A damaged picture is skipped and reported instead of stopping attendance.
+6. **Match:** lower distance is better; `MatchThreshold = 70` in `FaceRecognition.cs` is the cutoff.
+   The same student must match in three frames in a row before the database is written.
+   A face is only called **unknown** after five non-matching frames in a row, so one unclear frame
+   does not show a wrong "unknown" message.
+
+The preview is mirrored only on screen; the saved and compared pictures are not mirrored.
 
 This is a classroom-level recognizer, **not biometric identity proof or liveness detection**.
 Printed photos may fool it, similar faces may be confused, and the threshold must be evaluated
@@ -387,11 +412,12 @@ closing or crashing the application also leaves the logout time empty.
 | Cannot delete department | It is referenced by students, officers or event history; keep it or remove dependent records intentionally. |
 | Face detector missing | Rebuild and keep `haarcascade_frontalface_default.xml` beside the executable. |
 | Camera library could not load | Restore both matching OpenCvSharp packages, use Windows x64, install Visual C++ 2015-2022 x64. |
-| Webcam unavailable | Connect the first/default camera, allow Windows desktop camera access, close other camera apps. |
+| Webcam unavailable | Connect a camera (cameras 0, 1 and 2 are tried), allow Windows desktop camera access, close other camera apps. |
 | Webcam disconnected | Reconnect and use Start Camera / Restart. |
-| No face / multiple faces / poor quality | Face camera, remove other people from view, move closer and improve lighting. |
+| No face / multiple faces / poor quality | Follow the message under the preview: face the camera, remove other people from view, move closer, move to the center, improve or soften the lighting, hold still. |
+| Box stays gold ("Recognizing your face...") | Look straight at the camera with similar lighting to registration; if it never turns green, re-register the student. |
 | Unknown face | Check Active status and five pictures; re-register under similar lighting, then Restart / Reload. |
-| Missing/incomplete saved faces | Edit student and capture five new images. Damaged training data is reported, not silently skipped. |
+| Missing/incomplete saved faces | Students without exactly five pictures are not loaded. Damaged pictures are skipped and counted in red under the session list; edit the student and capture five new images. |
 | No active event | Check database server time and session times; wait/start correct event, then Restart / Reload. |
 | Student not on roster | Check the event's department scope and the student's Active status/five pictures, then save the student again. Completed events never add new students. |
 | Cannot edit schedule | Event has already started. Its history is protected; create a replacement event if necessary. |
@@ -407,15 +433,25 @@ Verified in the development environment:
 - All original form source compiles together: **0 compiler errors and warnings**.
   Linux compilation used a temporary resource-build compatibility package, not added to this project.
 - Fresh and repeated SQL imports on MariaDB 10.4.34 (14 tables, 2 views, 16 foreign keys).
-- **106 C# database workflow checks passed** (0 failed) against the final code: five-image requirement,
+- **106 C# database workflow checks passed** (0 failed): five-image requirement,
   validation, duplicates, student CRUD/re-registration, multi-day sessions, automatic roster updates,
   absence cutoff for late registrations, login/logout duplicates, every attendance filter, absence points,
   deductions/clearing/history, report filters, officers, permissions, account deletion rules, cascades
   and CSV safety. These used a temporary C# harness and synthetic images, not live face recognition.
+  They were run before the face detection update, which did not change the database or save code.
 - **27 Mono form checks passed** (0 failed): original forms open, student attendance summary, saved face
   thumbnails, event status list, locked-schedule notice, attendance/obligation/login-history grids,
   Manage Accounts button and friendly missing-camera-library feedback.
   Dashboard and Reports and Analysis were skipped (2) because Mono does not implement Windows charts.
+- After the face detection update:
+  - **13 real OpenCV checks passed** (0 failed) using the exact `Detect`/`CheckFace`/`PrepareFace` code,
+    OpenCvSharp 4.11.0.20250507 (Linux runtime) and public OpenCV sample photos: one face accepted;
+    no face, two people, dark, blurry, edge and far-away faces rejected; a small background face ignored;
+    five pictures registered for two people; both recognized (distance 45 and 34); 11 unregistered
+    people from a group photo all stayed unknown.
+  - **9 Mono form checks passed** (0 failed) for Add/Edit Student and Face Recognition: automatic camera
+    start, damaged/valid saved pictures, re-register check/uncheck, no-session and camera-library messages.
+  - SQL file re-imported on MariaDB 10.4; the new training query loads only Active students with five pictures.
 - All original files remain; there are no deleted original forms or separated sidebar files.
 
 **Not claimed as verified:** real webcam recognition accuracy, Windows chart rendering,
