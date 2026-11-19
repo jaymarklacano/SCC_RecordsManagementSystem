@@ -148,7 +148,7 @@
             // LoginHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(970, 519);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);

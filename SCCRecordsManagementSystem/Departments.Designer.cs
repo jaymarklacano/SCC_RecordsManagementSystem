@@ -318,7 +318,7 @@
             // Departments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Azure;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._903375047_2169860083631994_8617979005398290656_n;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;

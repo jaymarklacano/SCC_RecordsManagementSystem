@@ -16,6 +16,11 @@ namespace SCCRecordsManagementSystem
         public lnkCreateAccount()
         {
             InitializeComponent();
+            Program.PrepareWindow(this);
+            txtUsername.MaxLength = 50;
+            txtPassword.UseSystemPasswordChar = true;
+            AcceptButton = btnLogIn;
+            linkLabel1.Text = "Accounts are created by the administrator";
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -25,8 +30,7 @@ namespace SCCRecordsManagementSystem
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CreateAccount account= new CreateAccount();
-            account.Show();
+            MessageBox.Show("Ask the administrator to create your account in Officer Records.");
             
         }
 
@@ -46,29 +50,35 @@ namespace SCCRecordsManagementSystem
                 try
                 {
                     conn.Open();
-                    string query = "SELECT password FROM accounts WHERE username = @username";
+                    string query = "SELECT account_id,username,password,role FROM accounts WHERE username = @username";
 
-                    string storedHash = null;
+                    DataTable accounts = new DataTable();
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
-                        var result = cmd.ExecuteScalar();
-                        if (result != null)
-                        {
-                            storedHash = result.ToString();
-                        }
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd)) adapter.Fill(accounts);
                     }
 
                     // 1. Check if user exists and verify the password hash
-                    if (storedHash != null && BCrypt.Net.BCrypt.Verify(plainPassword, storedHash))
+                    if (accounts.Rows.Count == 1 && BCrypt.Net.BCrypt.Verify(plainPassword, accounts.Rows[0]["password"].ToString()))
                     {
-                        MessageBox.Show("Login successful! Welcome back, " + username + ".", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
+                        DataRow row = accounts.Rows[0];
+                        using (MySqlCommand log = new MySqlCommand(
+                            "INSERT INTO login_history(account_id,username,logged_in) VALUES(@id,@name,NOW())", conn))
+                        {
+                            log.Parameters.AddWithValue("@id", row["account_id"]);
+                            log.Parameters.AddWithValue("@name", row["username"]);
+                            log.ExecuteNonQuery();
+                            Database.LoginId = Convert.ToInt32(log.LastInsertedId);
+                        }
+                        Database.AccountId = Convert.ToInt32(row["account_id"]);
+                        Database.Username = row["username"].ToString();
+                        Database.Role = row["role"].ToString();
                         Dashboard dashboard = new Dashboard();
                         dashboard.Show();
                         this.Hide();
+                        txtPassword.Clear();
                        
                     }
                     else
@@ -78,14 +88,15 @@ namespace SCCRecordsManagementSystem
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Database connection error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Database.AccountId = Database.LoginId = 0; Database.Role = Database.Username = "";
+                    Program.Error(ex);
                 }
             }
         }
 
         private void btnForgotPassword_Click(object sender, EventArgs e)
         {
-
+            using (ForgotPassword form = new ForgotPassword()) form.ShowDialog(this);
         }
     }
 }
