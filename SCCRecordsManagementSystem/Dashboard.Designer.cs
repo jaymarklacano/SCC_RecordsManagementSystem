@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTotalAll = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblTotalOfficer = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblAllEvent = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +46,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.chtAttendanceOverview = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtgRecentEvent = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,10 +61,6 @@
             this.btnOfficer = new System.Windows.Forms.Button();
             this.btnStudentRecords = new System.Windows.Forms.Button();
             this.btnDepartment = new System.Windows.Forms.Button();
-            this.lblTotalAll = new System.Windows.Forms.Label();
-            this.lblTotalOfficer = new System.Windows.Forms.Label();
-            this.lblAllEvent = new System.Windows.Forms.Label();
-            this.dtgRecentEvent = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -68,8 +68,8 @@
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtAttendanceOverview)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRecentEvent)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -81,6 +81,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(281, 136);
             this.panel2.TabIndex = 1;
+            // 
+            // lblTotalAll
+            // 
+            this.lblTotalAll.AutoSize = true;
+            this.lblTotalAll.Location = new System.Drawing.Point(119, 86);
+            this.lblTotalAll.Name = "lblTotalAll";
+            this.lblTotalAll.Size = new System.Drawing.Size(44, 16);
+            this.lblTotalAll.TabIndex = 1;
+            this.lblTotalAll.Text = "label8";
             // 
             // label2
             // 
@@ -102,6 +111,15 @@
             this.panel3.Size = new System.Drawing.Size(291, 136);
             this.panel3.TabIndex = 2;
             // 
+            // lblTotalOfficer
+            // 
+            this.lblTotalOfficer.AutoSize = true;
+            this.lblTotalOfficer.Location = new System.Drawing.Point(130, 86);
+            this.lblTotalOfficer.Name = "lblTotalOfficer";
+            this.lblTotalOfficer.Size = new System.Drawing.Size(44, 16);
+            this.lblTotalOfficer.TabIndex = 2;
+            this.lblTotalOfficer.Text = "label8";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -121,6 +139,15 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(284, 136);
             this.panel4.TabIndex = 3;
+            // 
+            // lblAllEvent
+            // 
+            this.lblAllEvent.AutoSize = true;
+            this.lblAllEvent.Location = new System.Drawing.Point(114, 86);
+            this.lblAllEvent.Name = "lblAllEvent";
+            this.lblAllEvent.Size = new System.Drawing.Size(44, 16);
+            this.lblAllEvent.TabIndex = 3;
+            this.lblAllEvent.Text = "label8";
             // 
             // label4
             // 
@@ -175,16 +202,16 @@
             // 
             // chtAttendanceOverview
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chtAttendanceOverview.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chtAttendanceOverview.Legends.Add(legend1);
+            chartArea8.Name = "ChartArea1";
+            this.chtAttendanceOverview.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chtAttendanceOverview.Legends.Add(legend8);
             this.chtAttendanceOverview.Location = new System.Drawing.Point(22, 17);
             this.chtAttendanceOverview.Name = "chtAttendanceOverview";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chtAttendanceOverview.Series.Add(series1);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chtAttendanceOverview.Series.Add(series8);
             this.chtAttendanceOverview.Size = new System.Drawing.Size(406, 265);
             this.chtAttendanceOverview.TabIndex = 0;
             this.chtAttendanceOverview.Text = "chart1";
@@ -198,6 +225,16 @@
             this.groupBox1.Size = new System.Drawing.Size(453, 305);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
+            // 
+            // dtgRecentEvent
+            // 
+            this.dtgRecentEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgRecentEvent.Location = new System.Drawing.Point(6, 21);
+            this.dtgRecentEvent.Name = "dtgRecentEvent";
+            this.dtgRecentEvent.RowHeadersWidth = 51;
+            this.dtgRecentEvent.RowTemplate.Height = 24;
+            this.dtgRecentEvent.Size = new System.Drawing.Size(441, 261);
+            this.dtgRecentEvent.TabIndex = 0;
             // 
             // label6
             // 
@@ -290,6 +327,7 @@
             this.btnRulesPermission.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRulesPermission.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRulesPermission.UseVisualStyleBackColor = false;
+            this.btnRulesPermission.Click += new System.EventHandler(this.btnRulesPermission_Click);
             // 
             // btnObligation
             // 
@@ -307,6 +345,7 @@
             this.btnObligation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnObligation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnObligation.UseVisualStyleBackColor = false;
+            this.btnObligation.Click += new System.EventHandler(this.btnObligation_Click);
             // 
             // btnReportAnalysis
             // 
@@ -324,6 +363,7 @@
             this.btnReportAnalysis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportAnalysis.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportAnalysis.UseVisualStyleBackColor = false;
+            this.btnReportAnalysis.Click += new System.EventHandler(this.btnReportAnalysis_Click);
             // 
             // btnAttendanceMonitoring
             // 
@@ -341,6 +381,7 @@
             this.btnAttendanceMonitoring.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAttendanceMonitoring.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAttendanceMonitoring.UseVisualStyleBackColor = false;
+            this.btnAttendanceMonitoring.Click += new System.EventHandler(this.btnAttendanceMonitoring_Click);
             // 
             // btnEventManagement
             // 
@@ -358,6 +399,7 @@
             this.btnEventManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEventManagement.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEventManagement.UseVisualStyleBackColor = false;
+            this.btnEventManagement.Click += new System.EventHandler(this.btnEventManagement_Click);
             // 
             // btnFaceRecognition
             // 
@@ -375,6 +417,7 @@
             this.btnFaceRecognition.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceRecognition.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFaceRecognition.UseVisualStyleBackColor = false;
+            this.btnFaceRecognition.Click += new System.EventHandler(this.btnFaceRecognition_Click);
             // 
             // btnOfficer
             // 
@@ -392,6 +435,7 @@
             this.btnOfficer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOfficer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOfficer.UseVisualStyleBackColor = false;
+            this.btnOfficer.Click += new System.EventHandler(this.btnOfficer_Click);
             // 
             // btnStudentRecords
             // 
@@ -408,6 +452,7 @@
             this.btnStudentRecords.Text = "   Student Records";
             this.btnStudentRecords.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStudentRecords.UseVisualStyleBackColor = false;
+            this.btnStudentRecords.Click += new System.EventHandler(this.btnStudentRecords_Click);
             // 
             // btnDepartment
             // 
@@ -426,43 +471,6 @@
             this.btnDepartment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDepartment.UseVisualStyleBackColor = false;
             this.btnDepartment.Click += new System.EventHandler(this.btnDepartment_Click);
-            // 
-            // lblTotalAll
-            // 
-            this.lblTotalAll.AutoSize = true;
-            this.lblTotalAll.Location = new System.Drawing.Point(119, 86);
-            this.lblTotalAll.Name = "lblTotalAll";
-            this.lblTotalAll.Size = new System.Drawing.Size(44, 16);
-            this.lblTotalAll.TabIndex = 1;
-            this.lblTotalAll.Text = "label8";
-            // 
-            // lblTotalOfficer
-            // 
-            this.lblTotalOfficer.AutoSize = true;
-            this.lblTotalOfficer.Location = new System.Drawing.Point(130, 86);
-            this.lblTotalOfficer.Name = "lblTotalOfficer";
-            this.lblTotalOfficer.Size = new System.Drawing.Size(44, 16);
-            this.lblTotalOfficer.TabIndex = 2;
-            this.lblTotalOfficer.Text = "label8";
-            // 
-            // lblAllEvent
-            // 
-            this.lblAllEvent.AutoSize = true;
-            this.lblAllEvent.Location = new System.Drawing.Point(114, 86);
-            this.lblAllEvent.Name = "lblAllEvent";
-            this.lblAllEvent.Size = new System.Drawing.Size(44, 16);
-            this.lblAllEvent.TabIndex = 3;
-            this.lblAllEvent.Text = "label8";
-            // 
-            // dtgRecentEvent
-            // 
-            this.dtgRecentEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgRecentEvent.Location = new System.Drawing.Point(6, 21);
-            this.dtgRecentEvent.Name = "dtgRecentEvent";
-            this.dtgRecentEvent.RowHeadersWidth = 51;
-            this.dtgRecentEvent.RowTemplate.Height = 24;
-            this.dtgRecentEvent.Size = new System.Drawing.Size(441, 261);
-            this.dtgRecentEvent.TabIndex = 0;
             // 
             // Dashboard
             // 
@@ -497,8 +505,8 @@
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chtAttendanceOverview)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgRecentEvent)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

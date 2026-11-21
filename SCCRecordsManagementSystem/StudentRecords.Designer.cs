@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
+            this.btnStudentLogout = new System.Windows.Forms.Button();
+            this.btnStudentDashboard = new System.Windows.Forms.Button();
+            this.btnStudentRules = new System.Windows.Forms.Button();
+            this.btnStudentObligation = new System.Windows.Forms.Button();
+            this.btnStudentReports = new System.Windows.Forms.Button();
+            this.btnStudentAttendance = new System.Windows.Forms.Button();
+            this.btnStudentEvent = new System.Windows.Forms.Button();
+            this.btnStudentFace = new System.Windows.Forms.Button();
+            this.btnStudentOfficer = new System.Windows.Forms.Button();
+            this.btnStudentRec = new System.Windows.Forms.Button();
+            this.btnStudentDepartment = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
@@ -92,205 +92,205 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
             this.panel1.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._904439575_1911191946735306_1039497458727327980_n1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button20);
-            this.panel1.Controls.Add(this.button21);
-            this.panel1.Controls.Add(this.button22);
+            this.panel1.Controls.Add(this.btnStudentLogout);
+            this.panel1.Controls.Add(this.btnStudentDashboard);
+            this.panel1.Controls.Add(this.btnStudentRules);
+            this.panel1.Controls.Add(this.btnStudentObligation);
+            this.panel1.Controls.Add(this.btnStudentReports);
+            this.panel1.Controls.Add(this.btnStudentAttendance);
+            this.panel1.Controls.Add(this.btnStudentEvent);
+            this.panel1.Controls.Add(this.btnStudentFace);
+            this.panel1.Controls.Add(this.btnStudentOfficer);
+            this.panel1.Controls.Add(this.btnStudentRec);
+            this.panel1.Controls.Add(this.btnStudentDepartment);
             this.panel1.Location = new System.Drawing.Point(-2, -3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 624);
             this.panel1.TabIndex = 24;
             // 
-            // button12
+            // btnStudentLogout
             // 
-            this.button12.BackColor = System.Drawing.Color.Transparent;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.button12.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(22, 560);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(277, 38);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "   LogOut";
-            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button12.UseVisualStyleBackColor = false;
+            this.btnStudentLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentLogout.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.btnStudentLogout.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
+            this.btnStudentLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentLogout.Location = new System.Drawing.Point(22, 560);
+            this.btnStudentLogout.Name = "btnStudentLogout";
+            this.btnStudentLogout.Size = new System.Drawing.Size(277, 38);
+            this.btnStudentLogout.TabIndex = 11;
+            this.btnStudentLogout.Text = "   LogOut";
+            this.btnStudentLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentLogout.UseVisualStyleBackColor = false;
             // 
-            // button13
+            // btnStudentDashboard
             // 
-            this.button13.BackColor = System.Drawing.Color.Transparent;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(22, 123);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(277, 36);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "   Dashboard";
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button13.UseVisualStyleBackColor = false;
+            this.btnStudentDashboard.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentDashboard.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentDashboard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentDashboard.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
+            this.btnStudentDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentDashboard.Location = new System.Drawing.Point(22, 123);
+            this.btnStudentDashboard.Name = "btnStudentDashboard";
+            this.btnStudentDashboard.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentDashboard.TabIndex = 1;
+            this.btnStudentDashboard.Text = "   Dashboard";
+            this.btnStudentDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentDashboard.UseVisualStyleBackColor = false;
             // 
-            // button14
+            // btnStudentRules
             // 
-            this.button14.BackColor = System.Drawing.Color.Transparent;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(22, 465);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(277, 36);
-            this.button14.TabIndex = 10;
-            this.button14.Text = "   Rules and Permission";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button14.UseVisualStyleBackColor = false;
+            this.btnStudentRules.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentRules.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentRules.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentRules.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
+            this.btnStudentRules.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentRules.Location = new System.Drawing.Point(22, 465);
+            this.btnStudentRules.Name = "btnStudentRules";
+            this.btnStudentRules.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentRules.TabIndex = 10;
+            this.btnStudentRules.Text = "   Rules and Permission";
+            this.btnStudentRules.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentRules.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentRules.UseVisualStyleBackColor = false;
             // 
-            // button15
+            // btnStudentObligation
             // 
-            this.button15.BackColor = System.Drawing.Color.Transparent;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
-            this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.Location = new System.Drawing.Point(22, 427);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(277, 36);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "Obligations";
-            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button15.UseVisualStyleBackColor = false;
+            this.btnStudentObligation.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentObligation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentObligation.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentObligation.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentObligation.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
+            this.btnStudentObligation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentObligation.Location = new System.Drawing.Point(22, 427);
+            this.btnStudentObligation.Name = "btnStudentObligation";
+            this.btnStudentObligation.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentObligation.TabIndex = 9;
+            this.btnStudentObligation.Text = "Obligations";
+            this.btnStudentObligation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentObligation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentObligation.UseVisualStyleBackColor = false;
             // 
-            // button16
+            // btnStudentReports
             // 
-            this.button16.BackColor = System.Drawing.Color.Transparent;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
-            this.button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.Location = new System.Drawing.Point(22, 389);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(277, 36);
-            this.button16.TabIndex = 8;
-            this.button16.Text = "   Reports and Analysis";
-            this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button16.UseVisualStyleBackColor = false;
+            this.btnStudentReports.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentReports.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentReports.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentReports.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
+            this.btnStudentReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentReports.Location = new System.Drawing.Point(22, 389);
+            this.btnStudentReports.Name = "btnStudentReports";
+            this.btnStudentReports.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentReports.TabIndex = 8;
+            this.btnStudentReports.Text = "   Reports and Analysis";
+            this.btnStudentReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentReports.UseVisualStyleBackColor = false;
             // 
-            // button17
+            // btnStudentAttendance
             // 
-            this.button17.BackColor = System.Drawing.Color.Transparent;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
-            this.button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.Location = new System.Drawing.Point(22, 351);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(277, 36);
-            this.button17.TabIndex = 7;
-            this.button17.Text = "   Attendance Monitoring";
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button17.UseVisualStyleBackColor = false;
+            this.btnStudentAttendance.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentAttendance.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentAttendance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentAttendance.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
+            this.btnStudentAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentAttendance.Location = new System.Drawing.Point(22, 351);
+            this.btnStudentAttendance.Name = "btnStudentAttendance";
+            this.btnStudentAttendance.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentAttendance.TabIndex = 7;
+            this.btnStudentAttendance.Text = "   Attendance Monitoring";
+            this.btnStudentAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentAttendance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentAttendance.UseVisualStyleBackColor = false;
             // 
-            // button18
+            // btnStudentEvent
             // 
-            this.button18.BackColor = System.Drawing.Color.Transparent;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
-            this.button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.Location = new System.Drawing.Point(22, 313);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(277, 36);
-            this.button18.TabIndex = 6;
-            this.button18.Text = "   Event Management";
-            this.button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button18.UseVisualStyleBackColor = false;
+            this.btnStudentEvent.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentEvent.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentEvent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentEvent.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
+            this.btnStudentEvent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentEvent.Location = new System.Drawing.Point(22, 313);
+            this.btnStudentEvent.Name = "btnStudentEvent";
+            this.btnStudentEvent.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentEvent.TabIndex = 6;
+            this.btnStudentEvent.Text = "   Event Management";
+            this.btnStudentEvent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentEvent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentEvent.UseVisualStyleBackColor = false;
             // 
-            // button19
+            // btnStudentFace
             // 
-            this.button19.BackColor = System.Drawing.Color.Transparent;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
-            this.button19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.Location = new System.Drawing.Point(22, 275);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(277, 36);
-            this.button19.TabIndex = 5;
-            this.button19.Text = "   Face Recognition";
-            this.button19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button19.UseVisualStyleBackColor = false;
+            this.btnStudentFace.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentFace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentFace.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentFace.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentFace.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
+            this.btnStudentFace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentFace.Location = new System.Drawing.Point(22, 275);
+            this.btnStudentFace.Name = "btnStudentFace";
+            this.btnStudentFace.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentFace.TabIndex = 5;
+            this.btnStudentFace.Text = "   Face Recognition";
+            this.btnStudentFace.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentFace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentFace.UseVisualStyleBackColor = false;
             // 
-            // button20
+            // btnStudentOfficer
             // 
-            this.button20.BackColor = System.Drawing.Color.Transparent;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
-            this.button20.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.Location = new System.Drawing.Point(22, 237);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(277, 36);
-            this.button20.TabIndex = 4;
-            this.button20.Text = "   Officer Records";
-            this.button20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button20.UseVisualStyleBackColor = false;
+            this.btnStudentOfficer.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentOfficer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentOfficer.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentOfficer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentOfficer.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
+            this.btnStudentOfficer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentOfficer.Location = new System.Drawing.Point(22, 237);
+            this.btnStudentOfficer.Name = "btnStudentOfficer";
+            this.btnStudentOfficer.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentOfficer.TabIndex = 4;
+            this.btnStudentOfficer.Text = "   Officer Records";
+            this.btnStudentOfficer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentOfficer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentOfficer.UseVisualStyleBackColor = false;
             // 
-            // button21
+            // btnStudentRec
             // 
-            this.button21.BackColor = System.Drawing.Color.Transparent;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
-            this.button21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button21.Location = new System.Drawing.Point(22, 199);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(277, 36);
-            this.button21.TabIndex = 3;
-            this.button21.Text = "   Student Records";
-            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button21.UseVisualStyleBackColor = false;
+            this.btnStudentRec.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentRec.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentRec.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentRec.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
+            this.btnStudentRec.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentRec.Location = new System.Drawing.Point(22, 199);
+            this.btnStudentRec.Name = "btnStudentRec";
+            this.btnStudentRec.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentRec.TabIndex = 3;
+            this.btnStudentRec.Text = "   Student Records";
+            this.btnStudentRec.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentRec.UseVisualStyleBackColor = false;
             // 
-            // button22
+            // btnStudentDepartment
             // 
-            this.button22.BackColor = System.Drawing.Color.Transparent;
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
-            this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(22, 161);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(277, 36);
-            this.button22.TabIndex = 2;
-            this.button22.Text = "   Departments";
-            this.button22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button22.UseVisualStyleBackColor = false;
+            this.btnStudentDepartment.BackColor = System.Drawing.Color.Transparent;
+            this.btnStudentDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentDepartment.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentDepartment.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStudentDepartment.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
+            this.btnStudentDepartment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentDepartment.Location = new System.Drawing.Point(22, 161);
+            this.btnStudentDepartment.Name = "btnStudentDepartment";
+            this.btnStudentDepartment.Size = new System.Drawing.Size(277, 36);
+            this.btnStudentDepartment.TabIndex = 2;
+            this.btnStudentDepartment.Text = "   Departments";
+            this.btnStudentDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentDepartment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStudentDepartment.UseVisualStyleBackColor = false;
             // 
             // panel5
             // 
@@ -564,10 +564,11 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(396, 68);
+            this.txtSearch.Location = new System.Drawing.Point(405, 68);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(260, 28);
             this.txtSearch.TabIndex = 40;
+            this.txtSearch.Text = "Search Name/ID Number";
             // 
             // pnlPhoto
             // 
@@ -687,7 +688,7 @@
             "All Face Status",
             "Registered",
             "Not Registered"});
-            this.cmbFace.Location = new System.Drawing.Point(959, 68);
+            this.cmbFace.Location = new System.Drawing.Point(972, 68);
             this.cmbFace.Name = "cmbFace";
             this.cmbFace.Size = new System.Drawing.Size(160, 28);
             this.cmbFace.TabIndex = 45;
@@ -703,7 +704,7 @@
             "2nd Year",
             "3rd Year",
             "4th Year"});
-            this.cmbYear.Location = new System.Drawing.Point(833, 68);
+            this.cmbYear.Location = new System.Drawing.Point(846, 68);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.Size = new System.Drawing.Size(115, 28);
             this.cmbYear.TabIndex = 44;
@@ -713,7 +714,7 @@
             this.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartment.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(662, 68);
+            this.cmbDepartment.Location = new System.Drawing.Point(675, 68);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(165, 28);
             this.cmbDepartment.TabIndex = 43;
@@ -723,29 +724,29 @@
             this.dgvStudents.AllowUserToAddRows = false;
             this.dgvStudents.AllowUserToDeleteRows = false;
             this.dgvStudents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(244)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(244)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStudents.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStudents.ColumnHeadersHeight = 34;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStudents.EnableHeadersVisualStyles = false;
             this.dgvStudents.Location = new System.Drawing.Point(610, 299);
             this.dgvStudents.MultiSelect = false;
@@ -808,17 +809,17 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button btnStudentLogout;
+        private System.Windows.Forms.Button btnStudentDashboard;
+        private System.Windows.Forms.Button btnStudentRules;
+        private System.Windows.Forms.Button btnStudentObligation;
+        private System.Windows.Forms.Button btnStudentReports;
+        private System.Windows.Forms.Button btnStudentAttendance;
+        private System.Windows.Forms.Button btnStudentEvent;
+        private System.Windows.Forms.Button btnStudentFace;
+        private System.Windows.Forms.Button btnStudentOfficer;
+        private System.Windows.Forms.Button btnStudentRec;
+        private System.Windows.Forms.Button btnStudentDepartment;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColorDialog colorDialog1;

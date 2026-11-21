@@ -112,11 +112,11 @@
     <Compile Include="Departments.Designer.cs">
       <DependentUpon>Departments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Event Management.cs">
+    <Compile Include="EventManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Event Management.Designer.cs">
-      <DependentUpon>Event Management.cs</DependentUpon>
+    <Compile Include="EventManagement.Designer.cs">
+      <DependentUpon>EventManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="FaceRecognition.cs">
       <SubType>Form</SubType>
@@ -148,11 +148,11 @@
     <Compile Include="Obligations.Designer.cs">
       <DependentUpon>Obligations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Officerr Records.cs">
+    <Compile Include="OfficerRecords.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Officerr Records.Designer.cs">
-      <DependentUpon>Officerr Records.cs</DependentUpon>
+    <Compile Include="OfficerRecords.Designer.cs">
+      <DependentUpon>OfficerRecords.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -198,8 +198,8 @@
     <EmbeddedResource Include="Departments.resx">
       <DependentUpon>Departments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Event Management.resx">
-      <DependentUpon>Event Management.cs</DependentUpon>
+    <EmbeddedResource Include="EventManagement.resx">
+      <DependentUpon>EventManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FaceRecognition.resx">
       <DependentUpon>FaceRecognition.cs</DependentUpon>
@@ -216,8 +216,8 @@
     <EmbeddedResource Include="Obligations.resx">
       <DependentUpon>Obligations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Officerr Records.resx">
-      <DependentUpon>Officerr Records.cs</DependentUpon>
+    <EmbeddedResource Include="OfficerRecords.resx">
+      <DependentUpon>OfficerRecords.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

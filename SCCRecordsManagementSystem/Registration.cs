@@ -14,7 +14,7 @@ namespace SCCRecordsManagementSystem
 {
     public partial class Registration : Form
     {
-        private const int RequiredFaces = StudentService.RequiredFaceImages;
+       
 
         public Registration()
         {

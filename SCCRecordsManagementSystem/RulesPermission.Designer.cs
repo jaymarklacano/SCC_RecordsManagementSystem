@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
+            this.btnRulesLogout = new System.Windows.Forms.Button();
+            this.btnRulesDash = new System.Windows.Forms.Button();
+            this.btnRulesPer = new System.Windows.Forms.Button();
+            this.btnRulesObli = new System.Windows.Forms.Button();
+            this.btnRulesReports = new System.Windows.Forms.Button();
+            this.btnRulAttendance = new System.Windows.Forms.Button();
+            this.btnRulEvent = new System.Windows.Forms.Button();
+            this.btnRulesFaceRecog = new System.Windows.Forms.Button();
+            this.btnRulesOfficer = new System.Windows.Forms.Button();
+            this.btnRulesStudent = new System.Windows.Forms.Button();
+            this.btnRulesDept = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dtgRules = new System.Windows.Forms.DataGridView();
@@ -74,205 +74,205 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
             this.panel1.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._904439575_1911191946735306_1039497458727327980_n1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button20);
-            this.panel1.Controls.Add(this.button21);
-            this.panel1.Controls.Add(this.button22);
+            this.panel1.Controls.Add(this.btnRulesLogout);
+            this.panel1.Controls.Add(this.btnRulesDash);
+            this.panel1.Controls.Add(this.btnRulesPer);
+            this.panel1.Controls.Add(this.btnRulesObli);
+            this.panel1.Controls.Add(this.btnRulesReports);
+            this.panel1.Controls.Add(this.btnRulAttendance);
+            this.panel1.Controls.Add(this.btnRulEvent);
+            this.panel1.Controls.Add(this.btnRulesFaceRecog);
+            this.panel1.Controls.Add(this.btnRulesOfficer);
+            this.panel1.Controls.Add(this.btnRulesStudent);
+            this.panel1.Controls.Add(this.btnRulesDept);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(326, 620);
             this.panel1.TabIndex = 26;
             // 
-            // button12
+            // btnRulesLogout
             // 
-            this.button12.BackColor = System.Drawing.Color.Transparent;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.DarkRed;
-            this.button12.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(22, 560);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(277, 38);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "   LogOut";
-            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button12.UseVisualStyleBackColor = false;
+            this.btnRulesLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesLogout.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesLogout.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnRulesLogout.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
+            this.btnRulesLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesLogout.Location = new System.Drawing.Point(22, 560);
+            this.btnRulesLogout.Name = "btnRulesLogout";
+            this.btnRulesLogout.Size = new System.Drawing.Size(277, 38);
+            this.btnRulesLogout.TabIndex = 11;
+            this.btnRulesLogout.Text = "   LogOut";
+            this.btnRulesLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesLogout.UseVisualStyleBackColor = false;
             // 
-            // button13
+            // btnRulesDash
             // 
-            this.button13.BackColor = System.Drawing.Color.Transparent;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(22, 123);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(277, 36);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "   Dashboard";
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button13.UseVisualStyleBackColor = false;
+            this.btnRulesDash.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesDash.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesDash.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesDash.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
+            this.btnRulesDash.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesDash.Location = new System.Drawing.Point(22, 123);
+            this.btnRulesDash.Name = "btnRulesDash";
+            this.btnRulesDash.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesDash.TabIndex = 1;
+            this.btnRulesDash.Text = "   Dashboard";
+            this.btnRulesDash.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesDash.UseVisualStyleBackColor = false;
             // 
-            // button14
+            // btnRulesPer
             // 
-            this.button14.BackColor = System.Drawing.Color.Transparent;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(22, 465);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(277, 36);
-            this.button14.TabIndex = 10;
-            this.button14.Text = "   Rules and Permission";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button14.UseVisualStyleBackColor = false;
+            this.btnRulesPer.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesPer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesPer.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesPer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesPer.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
+            this.btnRulesPer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesPer.Location = new System.Drawing.Point(22, 465);
+            this.btnRulesPer.Name = "btnRulesPer";
+            this.btnRulesPer.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesPer.TabIndex = 10;
+            this.btnRulesPer.Text = "   Rules and Permission";
+            this.btnRulesPer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesPer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesPer.UseVisualStyleBackColor = false;
             // 
-            // button15
+            // btnRulesObli
             // 
-            this.button15.BackColor = System.Drawing.Color.Transparent;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
-            this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.Location = new System.Drawing.Point(22, 427);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(277, 36);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "Obligations";
-            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button15.UseVisualStyleBackColor = false;
+            this.btnRulesObli.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesObli.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesObli.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesObli.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesObli.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
+            this.btnRulesObli.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesObli.Location = new System.Drawing.Point(22, 427);
+            this.btnRulesObli.Name = "btnRulesObli";
+            this.btnRulesObli.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesObli.TabIndex = 9;
+            this.btnRulesObli.Text = "Obligations";
+            this.btnRulesObli.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesObli.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesObli.UseVisualStyleBackColor = false;
             // 
-            // button16
+            // btnRulesReports
             // 
-            this.button16.BackColor = System.Drawing.Color.Transparent;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
-            this.button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.Location = new System.Drawing.Point(22, 389);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(277, 36);
-            this.button16.TabIndex = 8;
-            this.button16.Text = "   Reports and Analysis";
-            this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button16.UseVisualStyleBackColor = false;
+            this.btnRulesReports.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesReports.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesReports.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesReports.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
+            this.btnRulesReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesReports.Location = new System.Drawing.Point(22, 389);
+            this.btnRulesReports.Name = "btnRulesReports";
+            this.btnRulesReports.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesReports.TabIndex = 8;
+            this.btnRulesReports.Text = "   Reports and Analysis";
+            this.btnRulesReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesReports.UseVisualStyleBackColor = false;
             // 
-            // button17
+            // btnRulAttendance
             // 
-            this.button17.BackColor = System.Drawing.Color.Transparent;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
-            this.button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.Location = new System.Drawing.Point(22, 351);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(277, 36);
-            this.button17.TabIndex = 7;
-            this.button17.Text = "   Attendance Monitoring";
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button17.UseVisualStyleBackColor = false;
+            this.btnRulAttendance.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulAttendance.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulAttendance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulAttendance.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
+            this.btnRulAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulAttendance.Location = new System.Drawing.Point(22, 351);
+            this.btnRulAttendance.Name = "btnRulAttendance";
+            this.btnRulAttendance.Size = new System.Drawing.Size(277, 36);
+            this.btnRulAttendance.TabIndex = 7;
+            this.btnRulAttendance.Text = "   Attendance Monitoring";
+            this.btnRulAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulAttendance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulAttendance.UseVisualStyleBackColor = false;
             // 
-            // button18
+            // btnRulEvent
             // 
-            this.button18.BackColor = System.Drawing.Color.Transparent;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
-            this.button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.Location = new System.Drawing.Point(22, 313);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(277, 36);
-            this.button18.TabIndex = 6;
-            this.button18.Text = "   Event Management";
-            this.button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button18.UseVisualStyleBackColor = false;
+            this.btnRulEvent.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulEvent.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulEvent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulEvent.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
+            this.btnRulEvent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulEvent.Location = new System.Drawing.Point(22, 313);
+            this.btnRulEvent.Name = "btnRulEvent";
+            this.btnRulEvent.Size = new System.Drawing.Size(277, 36);
+            this.btnRulEvent.TabIndex = 6;
+            this.btnRulEvent.Text = "   Event Management";
+            this.btnRulEvent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulEvent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulEvent.UseVisualStyleBackColor = false;
             // 
-            // button19
+            // btnRulesFaceRecog
             // 
-            this.button19.BackColor = System.Drawing.Color.Transparent;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
-            this.button19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.Location = new System.Drawing.Point(22, 275);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(277, 36);
-            this.button19.TabIndex = 5;
-            this.button19.Text = "   Face Recognition";
-            this.button19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button19.UseVisualStyleBackColor = false;
+            this.btnRulesFaceRecog.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesFaceRecog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesFaceRecog.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesFaceRecog.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesFaceRecog.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
+            this.btnRulesFaceRecog.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesFaceRecog.Location = new System.Drawing.Point(22, 275);
+            this.btnRulesFaceRecog.Name = "btnRulesFaceRecog";
+            this.btnRulesFaceRecog.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesFaceRecog.TabIndex = 5;
+            this.btnRulesFaceRecog.Text = "   Face Recognition";
+            this.btnRulesFaceRecog.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesFaceRecog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesFaceRecog.UseVisualStyleBackColor = false;
             // 
-            // button20
+            // btnRulesOfficer
             // 
-            this.button20.BackColor = System.Drawing.Color.Transparent;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
-            this.button20.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.Location = new System.Drawing.Point(22, 237);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(277, 36);
-            this.button20.TabIndex = 4;
-            this.button20.Text = "   Officer Records";
-            this.button20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button20.UseVisualStyleBackColor = false;
+            this.btnRulesOfficer.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesOfficer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesOfficer.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesOfficer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesOfficer.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
+            this.btnRulesOfficer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesOfficer.Location = new System.Drawing.Point(22, 237);
+            this.btnRulesOfficer.Name = "btnRulesOfficer";
+            this.btnRulesOfficer.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesOfficer.TabIndex = 4;
+            this.btnRulesOfficer.Text = "   Officer Records";
+            this.btnRulesOfficer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesOfficer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesOfficer.UseVisualStyleBackColor = false;
             // 
-            // button21
+            // btnRulesStudent
             // 
-            this.button21.BackColor = System.Drawing.Color.Transparent;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
-            this.button21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button21.Location = new System.Drawing.Point(22, 199);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(277, 36);
-            this.button21.TabIndex = 3;
-            this.button21.Text = "   Student Records";
-            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button21.UseVisualStyleBackColor = false;
+            this.btnRulesStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesStudent.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesStudent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesStudent.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
+            this.btnRulesStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesStudent.Location = new System.Drawing.Point(22, 199);
+            this.btnRulesStudent.Name = "btnRulesStudent";
+            this.btnRulesStudent.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesStudent.TabIndex = 3;
+            this.btnRulesStudent.Text = "   Student Records";
+            this.btnRulesStudent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesStudent.UseVisualStyleBackColor = false;
             // 
-            // button22
+            // btnRulesDept
             // 
-            this.button22.BackColor = System.Drawing.Color.Transparent;
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
-            this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(22, 161);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(277, 36);
-            this.button22.TabIndex = 2;
-            this.button22.Text = "   Departments";
-            this.button22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button22.UseVisualStyleBackColor = false;
+            this.btnRulesDept.BackColor = System.Drawing.Color.Transparent;
+            this.btnRulesDept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRulesDept.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRulesDept.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRulesDept.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
+            this.btnRulesDept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesDept.Location = new System.Drawing.Point(22, 161);
+            this.btnRulesDept.Name = "btnRulesDept";
+            this.btnRulesDept.Size = new System.Drawing.Size(277, 36);
+            this.btnRulesDept.TabIndex = 2;
+            this.btnRulesDept.Text = "   Departments";
+            this.btnRulesDept.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRulesDept.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRulesDept.UseVisualStyleBackColor = false;
             // 
             // panel5
             // 
@@ -528,17 +528,17 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button btnRulesLogout;
+        private System.Windows.Forms.Button btnRulesDash;
+        private System.Windows.Forms.Button btnRulesPer;
+        private System.Windows.Forms.Button btnRulesObli;
+        private System.Windows.Forms.Button btnRulesReports;
+        private System.Windows.Forms.Button btnRulAttendance;
+        private System.Windows.Forms.Button btnRulEvent;
+        private System.Windows.Forms.Button btnRulesFaceRecog;
+        private System.Windows.Forms.Button btnRulesOfficer;
+        private System.Windows.Forms.Button btnRulesStudent;
+        private System.Windows.Forms.Button btnRulesDept;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dtgRules;

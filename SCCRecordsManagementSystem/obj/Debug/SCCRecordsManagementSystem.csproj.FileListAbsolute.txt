@@ -127,3 +127,9 @@ C:\Users\Jomari Lacano\Desktop\Database\SCCRecordsManagementSystem\bin\Debug\AFo
 C:\Users\Jomari Lacano\Desktop\Database\SCCRecordsManagementSystem\bin\Debug\AForge.xml
 C:\Users\Jomari Lacano\Desktop\Database\SCCRecordsManagementSystem\bin\Debug\AForge.Video.xml
 C:\Users\Jomari Lacano\Desktop\Database\SCCRecordsManagementSystem\bin\Debug\AForge.Video.DirectShow.xml
+C:\Users\Jomari Lacano\Desktop\SCC_RecordsManagementSystem\SCCRecordsManagementSystem\bin\Debug\AForge.dll
+C:\Users\Jomari Lacano\Desktop\SCC_RecordsManagementSystem\SCCRecordsManagementSystem\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\Jomari Lacano\Desktop\SCC_RecordsManagementSystem\SCCRecordsManagementSystem\bin\Debug\AForge.Video.dll
+C:\Users\Jomari Lacano\Desktop\SCC_RecordsManagementSystem\SCCRecordsManagementSystem\bin\Debug\AForge.xml
+C:\Users\Jomari Lacano\Desktop\SCC_RecordsManagementSystem\SCCRecordsManagementSystem\bin\Debug\AForge.Video.xml
+C:\Users\Jomari Lacano\Desktop\SCC_RecordsManagementSystem\SCCRecordsManagementSystem\bin\Debug\AForge.Video.DirectShow.xml

@@ -31,20 +31,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
+            this.btnObliLogout = new System.Windows.Forms.Button();
+            this.btnObliDash = new System.Windows.Forms.Button();
+            this.btnObliRules = new System.Windows.Forms.Button();
+            this.btnObli = new System.Windows.Forms.Button();
+            this.btnObliReport = new System.Windows.Forms.Button();
+            this.btnObliAttendance = new System.Windows.Forms.Button();
+            this.btnObliEvent = new System.Windows.Forms.Button();
+            this.btnObliFace = new System.Windows.Forms.Button();
+            this.btnObliOfficer = new System.Windows.Forms.Button();
+            this.btnObliStudent = new System.Windows.Forms.Button();
+            this.btnObliDept = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearchObli = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnShowAllRecord = new System.Windows.Forms.Button();
@@ -56,18 +57,19 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.lblTotalEvent = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.lblStudentNoAbsent = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.lblStudentAbsense = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
             this.lblStudent = new System.Windows.Forms.Label();
-            this.lblStudentAbsense = new System.Windows.Forms.Label();
-            this.lblStudentNoAbsent = new System.Windows.Forms.Label();
-            this.lblTotalEvent = new System.Windows.Forms.Label();
-            this.lblSearch = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnAddObligation = new System.Windows.Forms.Button();
+            this.btnCLearObligation = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,17 +89,17 @@
             this.panel1.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._904439575_1911191946735306_1039497458727327980_n1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button20);
-            this.panel1.Controls.Add(this.button21);
-            this.panel1.Controls.Add(this.button22);
+            this.panel1.Controls.Add(this.btnObliLogout);
+            this.panel1.Controls.Add(this.btnObliDash);
+            this.panel1.Controls.Add(this.btnObliRules);
+            this.panel1.Controls.Add(this.btnObli);
+            this.panel1.Controls.Add(this.btnObliReport);
+            this.panel1.Controls.Add(this.btnObliAttendance);
+            this.panel1.Controls.Add(this.btnObliEvent);
+            this.panel1.Controls.Add(this.btnObliFace);
+            this.panel1.Controls.Add(this.btnObliOfficer);
+            this.panel1.Controls.Add(this.btnObliStudent);
+            this.panel1.Controls.Add(this.btnObliDept);
             this.panel1.Location = new System.Drawing.Point(-2, -3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(331, 626);
@@ -123,189 +125,189 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Departments";
             // 
-            // button12
+            // btnObliLogout
             // 
-            this.button12.BackColor = System.Drawing.Color.Transparent;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.button12.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(22, 560);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(277, 38);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "   LogOut";
-            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button12.UseVisualStyleBackColor = false;
+            this.btnObliLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliLogout.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.btnObliLogout.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
+            this.btnObliLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliLogout.Location = new System.Drawing.Point(22, 560);
+            this.btnObliLogout.Name = "btnObliLogout";
+            this.btnObliLogout.Size = new System.Drawing.Size(277, 38);
+            this.btnObliLogout.TabIndex = 11;
+            this.btnObliLogout.Text = "   LogOut";
+            this.btnObliLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliLogout.UseVisualStyleBackColor = false;
             // 
-            // button13
+            // btnObliDash
             // 
-            this.button13.BackColor = System.Drawing.Color.Transparent;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(22, 123);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(277, 36);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "   Dashboard";
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button13.UseVisualStyleBackColor = false;
+            this.btnObliDash.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliDash.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliDash.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliDash.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
+            this.btnObliDash.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliDash.Location = new System.Drawing.Point(22, 123);
+            this.btnObliDash.Name = "btnObliDash";
+            this.btnObliDash.Size = new System.Drawing.Size(277, 36);
+            this.btnObliDash.TabIndex = 1;
+            this.btnObliDash.Text = "   Dashboard";
+            this.btnObliDash.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliDash.UseVisualStyleBackColor = false;
             // 
-            // button14
+            // btnObliRules
             // 
-            this.button14.BackColor = System.Drawing.Color.Transparent;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(22, 465);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(277, 36);
-            this.button14.TabIndex = 10;
-            this.button14.Text = "   Rules and Permission";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button14.UseVisualStyleBackColor = false;
+            this.btnObliRules.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliRules.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliRules.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliRules.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
+            this.btnObliRules.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliRules.Location = new System.Drawing.Point(22, 465);
+            this.btnObliRules.Name = "btnObliRules";
+            this.btnObliRules.Size = new System.Drawing.Size(277, 36);
+            this.btnObliRules.TabIndex = 10;
+            this.btnObliRules.Text = "   Rules and Permission";
+            this.btnObliRules.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliRules.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliRules.UseVisualStyleBackColor = false;
             // 
-            // button15
+            // btnObli
             // 
-            this.button15.BackColor = System.Drawing.Color.Transparent;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
-            this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.Location = new System.Drawing.Point(22, 427);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(277, 36);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "   Obligations";
-            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button15.UseVisualStyleBackColor = false;
+            this.btnObli.BackColor = System.Drawing.Color.Transparent;
+            this.btnObli.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObli.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObli.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObli.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
+            this.btnObli.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObli.Location = new System.Drawing.Point(22, 427);
+            this.btnObli.Name = "btnObli";
+            this.btnObli.Size = new System.Drawing.Size(277, 36);
+            this.btnObli.TabIndex = 9;
+            this.btnObli.Text = "   Obligations";
+            this.btnObli.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObli.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObli.UseVisualStyleBackColor = false;
             // 
-            // button16
+            // btnObliReport
             // 
-            this.button16.BackColor = System.Drawing.Color.Transparent;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
-            this.button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.Location = new System.Drawing.Point(22, 389);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(277, 36);
-            this.button16.TabIndex = 8;
-            this.button16.Text = "   Reports and Analysis";
-            this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button16.UseVisualStyleBackColor = false;
+            this.btnObliReport.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliReport.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliReport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliReport.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
+            this.btnObliReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliReport.Location = new System.Drawing.Point(22, 389);
+            this.btnObliReport.Name = "btnObliReport";
+            this.btnObliReport.Size = new System.Drawing.Size(277, 36);
+            this.btnObliReport.TabIndex = 8;
+            this.btnObliReport.Text = "   Reports and Analysis";
+            this.btnObliReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliReport.UseVisualStyleBackColor = false;
             // 
-            // button17
+            // btnObliAttendance
             // 
-            this.button17.BackColor = System.Drawing.Color.Transparent;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
-            this.button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.Location = new System.Drawing.Point(22, 351);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(277, 36);
-            this.button17.TabIndex = 7;
-            this.button17.Text = "   Attendance Monitoring";
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button17.UseVisualStyleBackColor = false;
+            this.btnObliAttendance.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliAttendance.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliAttendance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliAttendance.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
+            this.btnObliAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliAttendance.Location = new System.Drawing.Point(22, 351);
+            this.btnObliAttendance.Name = "btnObliAttendance";
+            this.btnObliAttendance.Size = new System.Drawing.Size(277, 36);
+            this.btnObliAttendance.TabIndex = 7;
+            this.btnObliAttendance.Text = "   Attendance Monitoring";
+            this.btnObliAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliAttendance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliAttendance.UseVisualStyleBackColor = false;
             // 
-            // button18
+            // btnObliEvent
             // 
-            this.button18.BackColor = System.Drawing.Color.Transparent;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
-            this.button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.Location = new System.Drawing.Point(22, 313);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(277, 36);
-            this.button18.TabIndex = 6;
-            this.button18.Text = "   Event Management";
-            this.button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button18.UseVisualStyleBackColor = false;
+            this.btnObliEvent.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliEvent.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliEvent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliEvent.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
+            this.btnObliEvent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliEvent.Location = new System.Drawing.Point(22, 313);
+            this.btnObliEvent.Name = "btnObliEvent";
+            this.btnObliEvent.Size = new System.Drawing.Size(277, 36);
+            this.btnObliEvent.TabIndex = 6;
+            this.btnObliEvent.Text = "   Event Management";
+            this.btnObliEvent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliEvent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliEvent.UseVisualStyleBackColor = false;
             // 
-            // button19
+            // btnObliFace
             // 
-            this.button19.BackColor = System.Drawing.Color.Transparent;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
-            this.button19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.Location = new System.Drawing.Point(22, 275);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(277, 36);
-            this.button19.TabIndex = 5;
-            this.button19.Text = "   Face Recognition";
-            this.button19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button19.UseVisualStyleBackColor = false;
+            this.btnObliFace.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliFace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliFace.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliFace.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliFace.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
+            this.btnObliFace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliFace.Location = new System.Drawing.Point(22, 275);
+            this.btnObliFace.Name = "btnObliFace";
+            this.btnObliFace.Size = new System.Drawing.Size(277, 36);
+            this.btnObliFace.TabIndex = 5;
+            this.btnObliFace.Text = "   Face Recognition";
+            this.btnObliFace.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliFace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliFace.UseVisualStyleBackColor = false;
             // 
-            // button20
+            // btnObliOfficer
             // 
-            this.button20.BackColor = System.Drawing.Color.Transparent;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
-            this.button20.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.Location = new System.Drawing.Point(22, 237);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(277, 36);
-            this.button20.TabIndex = 4;
-            this.button20.Text = "   Officer Records";
-            this.button20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button20.UseVisualStyleBackColor = false;
+            this.btnObliOfficer.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliOfficer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliOfficer.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliOfficer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliOfficer.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
+            this.btnObliOfficer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliOfficer.Location = new System.Drawing.Point(22, 237);
+            this.btnObliOfficer.Name = "btnObliOfficer";
+            this.btnObliOfficer.Size = new System.Drawing.Size(277, 36);
+            this.btnObliOfficer.TabIndex = 4;
+            this.btnObliOfficer.Text = "   Officer Records";
+            this.btnObliOfficer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliOfficer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliOfficer.UseVisualStyleBackColor = false;
             // 
-            // button21
+            // btnObliStudent
             // 
-            this.button21.BackColor = System.Drawing.Color.Transparent;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
-            this.button21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button21.Location = new System.Drawing.Point(22, 199);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(277, 36);
-            this.button21.TabIndex = 3;
-            this.button21.Text = "   Student Records";
-            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button21.UseVisualStyleBackColor = false;
+            this.btnObliStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliStudent.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliStudent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliStudent.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
+            this.btnObliStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliStudent.Location = new System.Drawing.Point(22, 199);
+            this.btnObliStudent.Name = "btnObliStudent";
+            this.btnObliStudent.Size = new System.Drawing.Size(277, 36);
+            this.btnObliStudent.TabIndex = 3;
+            this.btnObliStudent.Text = "   Student Records";
+            this.btnObliStudent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliStudent.UseVisualStyleBackColor = false;
             // 
-            // button22
+            // btnObliDept
             // 
-            this.button22.BackColor = System.Drawing.Color.Transparent;
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
-            this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(22, 161);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(277, 36);
-            this.button22.TabIndex = 2;
-            this.button22.Text = "   Departments";
-            this.button22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button22.UseVisualStyleBackColor = false;
+            this.btnObliDept.BackColor = System.Drawing.Color.Transparent;
+            this.btnObliDept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObliDept.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObliDept.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnObliDept.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
+            this.btnObliDept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliDept.Location = new System.Drawing.Point(22, 161);
+            this.btnObliDept.Name = "btnObliDept";
+            this.btnObliDept.Size = new System.Drawing.Size(277, 36);
+            this.btnObliDept.TabIndex = 2;
+            this.btnObliDept.Text = "   Departments";
+            this.btnObliDept.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnObliDept.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnObliDept.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -330,6 +332,8 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            this.panel4.Controls.Add(this.btnCLearObligation);
+            this.panel4.Controls.Add(this.btnAddObligation);
             this.panel4.Controls.Add(this.lblSearch);
             this.panel4.Controls.Add(this.txtSearchObli);
             this.panel4.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -338,12 +342,25 @@
             this.panel4.Size = new System.Drawing.Size(486, 157);
             this.panel4.TabIndex = 30;
             // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.BackColor = System.Drawing.Color.Transparent;
+            this.lblSearch.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.ForeColor = System.Drawing.Color.Black;
+            this.lblSearch.Location = new System.Drawing.Point(28, 27);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(67, 20);
+            this.lblSearch.TabIndex = 40;
+            this.lblSearch.Text = "Search:";
+            // 
             // txtSearchObli
             // 
             this.txtSearchObli.Location = new System.Drawing.Point(101, 24);
             this.txtSearchObli.Name = "txtSearchObli";
             this.txtSearchObli.Size = new System.Drawing.Size(250, 23);
             this.txtSearchObli.TabIndex = 0;
+            this.txtSearchObli.Text = "Search Name / ID NUmber";
             // 
             // panel3
             // 
@@ -374,7 +391,7 @@
             this.cmbYearLevelObli.FormattingEnabled = true;
             this.cmbYearLevelObli.Location = new System.Drawing.Point(291, 40);
             this.cmbYearLevelObli.Name = "cmbYearLevelObli";
-            this.cmbYearLevelObli.Size = new System.Drawing.Size(121, 23);
+            this.cmbYearLevelObli.Size = new System.Drawing.Size(183, 23);
             this.cmbYearLevelObli.TabIndex = 3;
             // 
             // cmbDepartmentObli
@@ -382,14 +399,14 @@
             this.cmbDepartmentObli.FormattingEnabled = true;
             this.cmbDepartmentObli.Location = new System.Drawing.Point(37, 40);
             this.cmbDepartmentObli.Name = "cmbDepartmentObli";
-            this.cmbDepartmentObli.Size = new System.Drawing.Size(121, 23);
+            this.cmbDepartmentObli.Size = new System.Drawing.Size(195, 23);
             this.cmbDepartmentObli.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(288, 21);
+            this.label4.Location = new System.Drawing.Point(288, 15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 17);
             this.label4.TabIndex = 1;
@@ -449,6 +466,15 @@
             this.panel10.Size = new System.Drawing.Size(220, 96);
             this.panel10.TabIndex = 1;
             // 
+            // lblTotalEvent
+            // 
+            this.lblTotalEvent.AutoSize = true;
+            this.lblTotalEvent.Location = new System.Drawing.Point(90, 49);
+            this.lblTotalEvent.Name = "lblTotalEvent";
+            this.lblTotalEvent.Size = new System.Drawing.Size(44, 16);
+            this.lblTotalEvent.TabIndex = 5;
+            this.lblTotalEvent.Text = "label6";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -468,6 +494,15 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(220, 96);
             this.panel9.TabIndex = 1;
+            // 
+            // lblStudentNoAbsent
+            // 
+            this.lblStudentNoAbsent.AutoSize = true;
+            this.lblStudentNoAbsent.Location = new System.Drawing.Point(82, 49);
+            this.lblStudentNoAbsent.Name = "lblStudentNoAbsent";
+            this.lblStudentNoAbsent.Size = new System.Drawing.Size(44, 16);
+            this.lblStudentNoAbsent.TabIndex = 4;
+            this.lblStudentNoAbsent.Text = "label6";
             // 
             // label9
             // 
@@ -489,6 +524,15 @@
             this.panel8.Size = new System.Drawing.Size(220, 96);
             this.panel8.TabIndex = 1;
             // 
+            // lblStudentAbsense
+            // 
+            this.lblStudentAbsense.AutoSize = true;
+            this.lblStudentAbsense.Location = new System.Drawing.Point(92, 49);
+            this.lblStudentAbsense.Name = "lblStudentAbsense";
+            this.lblStudentAbsense.Size = new System.Drawing.Size(44, 16);
+            this.lblStudentAbsense.TabIndex = 3;
+            this.lblStudentAbsense.Text = "label6";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -509,6 +553,15 @@
             this.panel7.Size = new System.Drawing.Size(220, 96);
             this.panel7.TabIndex = 0;
             // 
+            // lblStudent
+            // 
+            this.lblStudent.AutoSize = true;
+            this.lblStudent.Location = new System.Drawing.Point(82, 49);
+            this.lblStudent.Name = "lblStudent";
+            this.lblStudent.Size = new System.Drawing.Size(44, 16);
+            this.lblStudent.TabIndex = 2;
+            this.lblStudent.Text = "label6";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -519,53 +572,23 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "Total Students ";
             // 
-            // lblStudent
+            // btnAddObligation
             // 
-            this.lblStudent.AutoSize = true;
-            this.lblStudent.Location = new System.Drawing.Point(82, 49);
-            this.lblStudent.Name = "lblStudent";
-            this.lblStudent.Size = new System.Drawing.Size(44, 16);
-            this.lblStudent.TabIndex = 2;
-            this.lblStudent.Text = "label6";
+            this.btnAddObligation.Location = new System.Drawing.Point(32, 94);
+            this.btnAddObligation.Name = "btnAddObligation";
+            this.btnAddObligation.Size = new System.Drawing.Size(129, 46);
+            this.btnAddObligation.TabIndex = 41;
+            this.btnAddObligation.Text = "Add Obligation";
+            this.btnAddObligation.UseVisualStyleBackColor = true;
             // 
-            // lblStudentAbsense
+            // btnCLearObligation
             // 
-            this.lblStudentAbsense.AutoSize = true;
-            this.lblStudentAbsense.Location = new System.Drawing.Point(92, 49);
-            this.lblStudentAbsense.Name = "lblStudentAbsense";
-            this.lblStudentAbsense.Size = new System.Drawing.Size(44, 16);
-            this.lblStudentAbsense.TabIndex = 3;
-            this.lblStudentAbsense.Text = "label6";
-            // 
-            // lblStudentNoAbsent
-            // 
-            this.lblStudentNoAbsent.AutoSize = true;
-            this.lblStudentNoAbsent.Location = new System.Drawing.Point(82, 49);
-            this.lblStudentNoAbsent.Name = "lblStudentNoAbsent";
-            this.lblStudentNoAbsent.Size = new System.Drawing.Size(44, 16);
-            this.lblStudentNoAbsent.TabIndex = 4;
-            this.lblStudentNoAbsent.Text = "label6";
-            // 
-            // lblTotalEvent
-            // 
-            this.lblTotalEvent.AutoSize = true;
-            this.lblTotalEvent.Location = new System.Drawing.Point(90, 49);
-            this.lblTotalEvent.Name = "lblTotalEvent";
-            this.lblTotalEvent.Size = new System.Drawing.Size(44, 16);
-            this.lblTotalEvent.TabIndex = 5;
-            this.lblTotalEvent.Text = "label6";
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.BackColor = System.Drawing.Color.Transparent;
-            this.lblSearch.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.ForeColor = System.Drawing.Color.Black;
-            this.lblSearch.Location = new System.Drawing.Point(28, 27);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(67, 20);
-            this.lblSearch.TabIndex = 40;
-            this.lblSearch.Text = "Search:";
+            this.btnCLearObligation.Location = new System.Drawing.Point(167, 94);
+            this.btnCLearObligation.Name = "btnCLearObligation";
+            this.btnCLearObligation.Size = new System.Drawing.Size(129, 46);
+            this.btnCLearObligation.TabIndex = 42;
+            this.btnCLearObligation.Text = "Clear Obligation";
+            this.btnCLearObligation.UseVisualStyleBackColor = true;
             // 
             // Obligations
             // 
@@ -609,17 +632,17 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button btnObliLogout;
+        private System.Windows.Forms.Button btnObliDash;
+        private System.Windows.Forms.Button btnObliRules;
+        private System.Windows.Forms.Button btnObli;
+        private System.Windows.Forms.Button btnObliReport;
+        private System.Windows.Forms.Button btnObliAttendance;
+        private System.Windows.Forms.Button btnObliEvent;
+        private System.Windows.Forms.Button btnObliFace;
+        private System.Windows.Forms.Button btnObliOfficer;
+        private System.Windows.Forms.Button btnObliStudent;
+        private System.Windows.Forms.Button btnObliDept;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
@@ -648,5 +671,7 @@
         private System.Windows.Forms.Label lblStudentNoAbsent;
         private System.Windows.Forms.Label lblStudentAbsense;
         private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.Button btnCLearObligation;
+        private System.Windows.Forms.Button btnAddObligation;
     }
 }

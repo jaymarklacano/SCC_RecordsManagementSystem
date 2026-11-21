@@ -10,23 +10,11 @@ using System.Windows.Forms;
 
 namespace SCCRecordsManagementSystem
 {
-    public partial class Event_Management : Form
+    public partial class OfficerRecords : Form
     {
-        public Event_Management()
+        public OfficerRecords()
         {
             InitializeComponent();
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-       
     }
 }

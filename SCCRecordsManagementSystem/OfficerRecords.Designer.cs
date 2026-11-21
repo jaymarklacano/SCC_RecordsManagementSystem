@@ -1,6 +1,6 @@
 ﻿namespace SCCRecordsManagementSystem
 {
-    partial class Officerr_Records
+    partial class OfficerRecords
     {
         /// <summary>
         /// Required designer variable.
@@ -46,6 +46,8 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.btnDeleteOfficer = new System.Windows.Forms.Button();
+            this.btnEditOfficer = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgOfficer)).BeginInit();
             this.panel1.SuspendLayout();
@@ -85,7 +87,7 @@
             // btnAddOfficer
             // 
             this.btnAddOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOfficer.Location = new System.Drawing.Point(1154, 135);
+            this.btnAddOfficer.Location = new System.Drawing.Point(1164, 137);
             this.btnAddOfficer.Name = "btnAddOfficer";
             this.btnAddOfficer.Size = new System.Drawing.Size(129, 44);
             this.btnAddOfficer.TabIndex = 29;
@@ -317,12 +319,34 @@
             this.lblSearch.TabIndex = 40;
             this.lblSearch.Text = "Search:";
             // 
-            // Officerr_Records
+            // btnDeleteOfficer
+            // 
+            this.btnDeleteOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteOfficer.Location = new System.Drawing.Point(1029, 137);
+            this.btnDeleteOfficer.Name = "btnDeleteOfficer";
+            this.btnDeleteOfficer.Size = new System.Drawing.Size(129, 44);
+            this.btnDeleteOfficer.TabIndex = 41;
+            this.btnDeleteOfficer.Text = "Delete";
+            this.btnDeleteOfficer.UseVisualStyleBackColor = true;
+            // 
+            // btnEditOfficer
+            // 
+            this.btnEditOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditOfficer.Location = new System.Drawing.Point(894, 137);
+            this.btnEditOfficer.Name = "btnEditOfficer";
+            this.btnEditOfficer.Size = new System.Drawing.Size(129, 44);
+            this.btnEditOfficer.TabIndex = 42;
+            this.btnEditOfficer.Text = "Edit";
+            this.btnEditOfficer.UseVisualStyleBackColor = true;
+            // 
+            // OfficerRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Controls.Add(this.btnEditOfficer);
+            this.Controls.Add(this.btnDeleteOfficer);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtSearchOfficer);
@@ -330,7 +354,7 @@
             this.Controls.Add(this.dtgOfficer);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Officerr_Records";
+            this.Name = "OfficerRecords";
             this.Text = "Officerr_Records";
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -361,5 +385,7 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.Button btnDeleteOfficer;
+        private System.Windows.Forms.Button btnEditOfficer;
     }
 }

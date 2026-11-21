@@ -1,74 +1,82 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\",
+  "WorkspaceRootPath": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\scc_recordsmanagementsystem\\sccrecordsmanagementsystem\\studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\adddepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:adddepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\addevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:addevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:officerr records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:studentrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:event management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:obligations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:facerecognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\adddepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:adddepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:reportsandanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\eventmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:eventmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:attendancemonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:departments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|c:\\users\\jomari lacano\\desktop\\database\\sccrecordsmanagementsystem\\rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:rulespermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\officerrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:officerrecords.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:loginhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\addevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:addevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{600E0184-88AC-41B8-8B73-A20197450D57}|SCCRecordsManagementSystem.csproj|solutionrelative:database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,198 +86,206 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "LoginHistory.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\LoginHistory.cs",
-              "RelativeDocumentMoniker": "LoginHistory.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\LoginHistory.cs [Design]",
-              "RelativeToolTip": "LoginHistory.cs [Design]",
+              "DocumentIndex": 6,
+              "Title": "EventManagement.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\EventManagement.cs",
+              "RelativeDocumentMoniker": "EventManagement.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\EventManagement.cs [Design]",
+              "RelativeToolTip": "EventManagement.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T08:45:36.373Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Officerr Records.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Officerr Records.cs",
-              "RelativeDocumentMoniker": "Officerr Records.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Officerr Records.cs [Design]",
-              "RelativeToolTip": "Officerr Records.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T08:45:32.63Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "RulesPermission.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\RulesPermission.cs",
-              "RelativeDocumentMoniker": "RulesPermission.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\RulesPermission.cs [Design]",
-              "RelativeToolTip": "RulesPermission.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T08:28:51.958Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddEvent.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\AddEvent.cs",
-              "RelativeDocumentMoniker": "AddEvent.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\AddEvent.cs [Design]",
-              "RelativeToolTip": "AddEvent.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T08:08:28.932Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddDepartment.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\AddDepartment.cs",
-              "RelativeDocumentMoniker": "AddDepartment.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\AddDepartment.cs [Design]",
-              "RelativeToolTip": "AddDepartment.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T08:05:32.074Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "StudentRecords.cs",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\StudentRecords.cs",
-              "RelativeDocumentMoniker": "StudentRecords.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\StudentRecords.cs",
-              "RelativeToolTip": "StudentRecords.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAADgvx0AAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T08:02:38.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-21T11:24:07.071Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "Departments.cs",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Departments.cs",
-              "RelativeDocumentMoniker": "Departments.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Departments.cs",
-              "RelativeToolTip": "Departments.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAgwIkAAAAeAAAAAAAAAA==",
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:48:25.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-21T11:18:39.523Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "Departments.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Departments.cs",
-              "RelativeDocumentMoniker": "Departments.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Departments.cs [Design]",
-              "RelativeToolTip": "Departments.cs [Design]",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:41:21.658Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-21T11:17:53.486Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ReportsAndAnalysis.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs",
-              "RelativeDocumentMoniker": "ReportsAndAnalysis.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs [Design]",
-              "RelativeToolTip": "ReportsAndAnalysis.cs [Design]",
+              "DocumentIndex": 10,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs",
+              "RelativeToolTip": "Dashboard.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAewE8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T08:29:07.065Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-21T11:13:02.402Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Registration.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Registration.cs",
+              "DocumentIndex": 17,
+              "Title": "Registration.cs",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs",
               "RelativeDocumentMoniker": "Registration.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Registration.cs [Design]",
-              "RelativeToolTip": "Registration.cs [Design]",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs",
+              "RelativeToolTip": "Registration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T01:58:03.944Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Database.cs",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Database.cs",
-              "RelativeDocumentMoniker": "Database.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Database.cs",
-              "RelativeToolTip": "Database.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:41:18.703Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-21T11:05:22.693Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "Dashboard.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Dashboard.cs",
-              "RelativeDocumentMoniker": "Dashboard.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Dashboard.cs [Design]",
-              "RelativeToolTip": "Dashboard.cs [Design]",
+              "Title": "LoginHistory.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.cs",
+              "RelativeDocumentMoniker": "LoginHistory.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\LoginHistory.cs [Design]",
+              "RelativeToolTip": "LoginHistory.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:29:48.25Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-21T08:45:36.373Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AttendanceMonitoring.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs",
-              "RelativeDocumentMoniker": "AttendanceMonitoring.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs [Design]",
-              "RelativeToolTip": "AttendanceMonitoring.cs [Design]",
+              "DocumentIndex": 12,
+              "Title": "OfficerRecords.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\OfficerRecords.cs",
+              "RelativeDocumentMoniker": "OfficerRecords.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\OfficerRecords.cs [Design]",
+              "RelativeToolTip": "OfficerRecords.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:25:30.903Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-21T08:45:32.63Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Event Management.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Event Management.cs",
-              "RelativeDocumentMoniker": "Event Management.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Event Management.cs [Design]",
-              "RelativeToolTip": "Event Management.cs [Design]",
+              "DocumentIndex": 3,
+              "Title": "RulesPermission.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\RulesPermission.cs",
+              "RelativeDocumentMoniker": "RulesPermission.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\RulesPermission.cs [Design]",
+              "RelativeToolTip": "RulesPermission.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:18:28.291Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-21T08:28:51.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AddEvent.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddEvent.cs",
+              "RelativeDocumentMoniker": "AddEvent.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddEvent.cs [Design]",
+              "RelativeToolTip": "AddEvent.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-21T08:08:28.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AddDepartment.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddDepartment.cs",
+              "RelativeDocumentMoniker": "AddDepartment.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AddDepartment.cs [Design]",
+              "RelativeToolTip": "AddDepartment.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-21T08:05:32.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Departments.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Departments.cs",
+              "RelativeDocumentMoniker": "Departments.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Departments.cs [Design]",
+              "RelativeToolTip": "Departments.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-21T07:41:21.658Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "ReportsAndAnalysis.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs",
+              "RelativeDocumentMoniker": "ReportsAndAnalysis.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\ReportsAndAnalysis.cs [Design]",
+              "RelativeToolTip": "ReportsAndAnalysis.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-21T08:29:07.065Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Registration.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs",
+              "RelativeDocumentMoniker": "Registration.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Registration.cs [Design]",
+              "RelativeToolTip": "Registration.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-16T01:58:03.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Database.cs",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Database.cs",
+              "RelativeDocumentMoniker": "Database.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Database.cs",
+              "RelativeToolTip": "Database.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-21T07:41:18.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-21T07:29:48.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AttendanceMonitoring.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs",
+              "RelativeDocumentMoniker": "AttendanceMonitoring.cs",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\AttendanceMonitoring.cs [Design]",
+              "RelativeToolTip": "AttendanceMonitoring.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-21T07:25:30.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "FaceRecognition.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\FaceRecognition.cs",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\FaceRecognition.cs",
               "RelativeDocumentMoniker": "FaceRecognition.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\FaceRecognition.cs [Design]",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\FaceRecognition.cs [Design]",
               "RelativeToolTip": "FaceRecognition.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:15:18.077Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-21T07:15:18.077Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "StudentRecords.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\StudentRecords.cs",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\StudentRecords.cs",
               "RelativeDocumentMoniker": "StudentRecords.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\StudentRecords.cs [Design]",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\StudentRecords.cs [Design]",
               "RelativeToolTip": "StudentRecords.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-13T06:49:58.36Z",
@@ -277,15 +293,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
               "Title": "Obligations.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Obligations.cs",
+              "DocumentMoniker": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Obligations.cs",
               "RelativeDocumentMoniker": "Obligations.cs",
-              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\Database\\SCCRecordsManagementSystem\\Obligations.cs [Design]",
+              "ToolTip": "C:\\Users\\Jomari Lacano\\Desktop\\SCC_RecordsManagementSystem\\SCCRecordsManagementSystem\\Obligations.cs [Design]",
               "RelativeToolTip": "Obligations.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-21T07:25:57.187Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-11-21T07:25:57.187Z"
             }
           ]
         }
