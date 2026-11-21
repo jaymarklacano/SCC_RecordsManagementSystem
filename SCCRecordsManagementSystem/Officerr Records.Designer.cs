@@ -30,10 +30,9 @@
         {
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dtgOfficer = new System.Windows.Forms.DataGridView();
+            this.btnAddOfficer = new System.Windows.Forms.Button();
+            this.txtSearchOfficer = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -46,8 +45,9 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgOfficer)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,44 +71,34 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Officer Records";
             // 
-            // dataGridView1
+            // dtgOfficer
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightSteelBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(325, 187);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(968, 420);
-            this.dataGridView1.TabIndex = 28;
+            this.dtgOfficer.BackgroundColor = System.Drawing.Color.LightSteelBlue;
+            this.dtgOfficer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgOfficer.Location = new System.Drawing.Point(325, 187);
+            this.dtgOfficer.Name = "dtgOfficer";
+            this.dtgOfficer.RowHeadersWidth = 51;
+            this.dtgOfficer.RowTemplate.Height = 24;
+            this.dtgOfficer.Size = new System.Drawing.Size(968, 420);
+            this.dtgOfficer.TabIndex = 28;
             // 
-            // button1
+            // btnAddOfficer
             // 
-            this.button1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1154, 135);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 44);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Add Officers";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddOfficer.Location = new System.Drawing.Point(1154, 135);
+            this.btnAddOfficer.Name = "btnAddOfficer";
+            this.btnAddOfficer.Size = new System.Drawing.Size(129, 44);
+            this.btnAddOfficer.TabIndex = 29;
+            this.btnAddOfficer.Text = "Add Officers";
+            this.btnAddOfficer.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // txtSearchOfficer
             // 
-            this.button2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(325, 151);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(179, 30);
-            this.button2.TabIndex = 30;
-            this.button2.Text = "Search by Name: ";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(510, 151);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(381, 28);
-            this.textBox1.TabIndex = 31;
+            this.txtSearchOfficer.Location = new System.Drawing.Point(398, 147);
+            this.txtSearchOfficer.Multiline = true;
+            this.txtSearchOfficer.Name = "txtSearchOfficer";
+            this.txtSearchOfficer.Size = new System.Drawing.Size(381, 28);
+            this.txtSearchOfficer.TabIndex = 31;
             // 
             // panel1
             // 
@@ -315,24 +305,36 @@
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button22.UseVisualStyleBackColor = false;
             // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.BackColor = System.Drawing.Color.Transparent;
+            this.lblSearch.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.ForeColor = System.Drawing.Color.Black;
+            this.lblSearch.Location = new System.Drawing.Point(325, 158);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(67, 20);
+            this.lblSearch.TabIndex = 40;
+            this.lblSearch.Text = "Search:";
+            // 
             // Officerr_Records
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txtSearchOfficer);
+            this.Controls.Add(this.btnAddOfficer);
+            this.Controls.Add(this.dtgOfficer);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Officerr_Records";
             this.Text = "Officerr_Records";
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgOfficer)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -343,10 +345,9 @@
 
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dtgOfficer;
+        private System.Windows.Forms.Button btnAddOfficer;
+        private System.Windows.Forms.TextBox txtSearchOfficer;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
@@ -359,5 +360,6 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Label lblSearch;
     }
 }

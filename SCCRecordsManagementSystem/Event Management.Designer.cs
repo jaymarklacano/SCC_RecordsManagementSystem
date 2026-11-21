@@ -30,8 +30,8 @@
         {
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button12 = new System.Windows.Forms.Button();
+            this.dtgEventManagement = new System.Windows.Forms.DataGridView();
+            this.btnAddDepartment = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -44,10 +44,10 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtSearchDepartment = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgEventManagement)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,27 +71,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Event Management";
             // 
-            // dataGridView1
+            // dtgEventManagement
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightSteelBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(339, 159);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(954, 448);
-            this.dataGridView1.TabIndex = 28;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dtgEventManagement.BackgroundColor = System.Drawing.Color.LightSteelBlue;
+            this.dtgEventManagement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgEventManagement.Location = new System.Drawing.Point(339, 159);
+            this.dtgEventManagement.Name = "dtgEventManagement";
+            this.dtgEventManagement.RowHeadersWidth = 51;
+            this.dtgEventManagement.RowTemplate.Height = 24;
+            this.dtgEventManagement.Size = new System.Drawing.Size(954, 448);
+            this.dtgEventManagement.TabIndex = 28;
+            this.dtgEventManagement.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // button12
+            // btnAddDepartment
             // 
-            this.button12.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(1147, 110);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(146, 43);
-            this.button12.TabIndex = 29;
-            this.button12.Text = "Add Events";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnAddDepartment.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddDepartment.Location = new System.Drawing.Point(1112, 105);
+            this.btnAddDepartment.Name = "btnAddDepartment";
+            this.btnAddDepartment.Size = new System.Drawing.Size(181, 43);
+            this.btnAddDepartment.TabIndex = 29;
+            this.btnAddDepartment.Text = "Add Events";
+            this.btnAddDepartment.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -298,44 +298,45 @@
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button22.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtSearchDepartment
             // 
-            this.textBox1.Location = new System.Drawing.Point(339, 121);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 32);
-            this.textBox1.TabIndex = 31;
+            this.txtSearchDepartment.Location = new System.Drawing.Point(447, 116);
+            this.txtSearchDepartment.Multiline = true;
+            this.txtSearchDepartment.Name = "txtSearchDepartment";
+            this.txtSearchDepartment.Size = new System.Drawing.Size(362, 32);
+            this.txtSearchDepartment.TabIndex = 31;
             // 
-            // button2
+            // label2
             // 
-            this.button2.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(628, 121);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 32);
-            this.button2.TabIndex = 32;
-            this.button2.Text = "Search";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(363, 125);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 23);
+            this.label2.TabIndex = 32;
+            this.label2.Text = "Search:";
             // 
             // Event_Management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._891752403_1143943308365188_7410099486200290872_n;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtSearchDepartment);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnAddDepartment);
+            this.Controls.Add(this.dtgEventManagement);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Event_Management";
             this.Text = "Event_Management";
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgEventManagement)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -345,8 +346,8 @@
         #endregion
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.DataGridView dtgEventManagement;
+        private System.Windows.Forms.Button btnAddDepartment;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button13;
@@ -359,7 +360,7 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtSearchDepartment;
+        private System.Windows.Forms.Label label2;
     }
 }

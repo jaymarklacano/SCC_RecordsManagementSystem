@@ -45,7 +45,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbEvent = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,16 +55,24 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.pctStudentPic = new System.Windows.Forms.PictureBox();
+            this.btnNextPerson = new System.Windows.Forms.Button();
+            this.btnRetry = new System.Windows.Forms.Button();
+            this.pctAttendanceCap = new System.Windows.Forms.PictureBox();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.lblIDNumber = new System.Windows.Forms.Label();
+            this.lblDepartment = new System.Windows.Forms.Label();
+            this.lblYearLevel = new System.Windows.Forms.Label();
+            this.lblTIme = new System.Windows.Forms.Label();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctStudentPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctAttendanceCap)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -312,20 +320,20 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.cmbEvent);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(817, 62);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(476, 82);
             this.panel3.TabIndex = 30;
             // 
-            // comboBox1
+            // cmbEvent
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(97, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(337, 24);
-            this.comboBox1.TabIndex = 2;
+            this.cmbEvent.FormattingEnabled = true;
+            this.cmbEvent.Location = new System.Drawing.Point(97, 29);
+            this.cmbEvent.Name = "cmbEvent";
+            this.cmbEvent.Size = new System.Drawing.Size(337, 24);
+            this.cmbEvent.TabIndex = 2;
             // 
             // label3
             // 
@@ -339,6 +347,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.pctAttendanceCap);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Location = new System.Drawing.Point(350, 150);
             this.panel4.Name = "panel4";
@@ -355,12 +364,18 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.lblMessage);
+            this.panel6.Controls.Add(this.lblTIme);
+            this.panel6.Controls.Add(this.lblYearLevel);
+            this.panel6.Controls.Add(this.lblDepartment);
+            this.panel6.Controls.Add(this.lblIDNumber);
+            this.panel6.Controls.Add(this.lblFullName);
             this.panel6.Controls.Add(this.label9);
             this.panel6.Controls.Add(this.label8);
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.label5);
-            this.panel6.Controls.Add(this.pictureBox1);
+            this.panel6.Controls.Add(this.pctStudentPic);
             this.panel6.Location = new System.Drawing.Point(817, 150);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(476, 365);
@@ -416,43 +431,105 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Full Name:";
             // 
-            // pictureBox1
+            // pctStudentPic
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(21, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(195, 258);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pctStudentPic.Location = new System.Drawing.Point(21, 30);
+            this.pctStudentPic.Name = "pctStudentPic";
+            this.pctStudentPic.Size = new System.Drawing.Size(195, 258);
+            this.pctStudentPic.TabIndex = 0;
+            this.pctStudentPic.TabStop = false;
             // 
-            // button1
+            // btnNextPerson
             // 
-            this.button1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(450, 532);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(253, 45);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Another Person";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNextPerson.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextPerson.Location = new System.Drawing.Point(450, 532);
+            this.btnNextPerson.Name = "btnNextPerson";
+            this.btnNextPerson.Size = new System.Drawing.Size(253, 45);
+            this.btnNextPerson.TabIndex = 33;
+            this.btnNextPerson.Text = "Next Person";
+            this.btnNextPerson.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnRetry
             // 
-            this.button2.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(936, 532);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(253, 45);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "Retry";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRetry.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetry.Location = new System.Drawing.Point(936, 532);
+            this.btnRetry.Name = "btnRetry";
+            this.btnRetry.Size = new System.Drawing.Size(253, 45);
+            this.btnRetry.TabIndex = 34;
+            this.btnRetry.Text = "Retry";
+            this.btnRetry.UseVisualStyleBackColor = true;
+            // 
+            // pctAttendanceCap
+            // 
+            this.pctAttendanceCap.Location = new System.Drawing.Point(61, 21);
+            this.pctAttendanceCap.Name = "pctAttendanceCap";
+            this.pctAttendanceCap.Size = new System.Drawing.Size(326, 301);
+            this.pctAttendanceCap.TabIndex = 1;
+            this.pctAttendanceCap.TabStop = false;
+            // 
+            // lblFullName
+            // 
+            this.lblFullName.AutoSize = true;
+            this.lblFullName.Location = new System.Drawing.Point(332, 68);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(51, 16);
+            this.lblFullName.TabIndex = 6;
+            this.lblFullName.Text = "label10";
+            // 
+            // lblIDNumber
+            // 
+            this.lblIDNumber.AutoSize = true;
+            this.lblIDNumber.Location = new System.Drawing.Point(332, 106);
+            this.lblIDNumber.Name = "lblIDNumber";
+            this.lblIDNumber.Size = new System.Drawing.Size(51, 16);
+            this.lblIDNumber.TabIndex = 7;
+            this.lblIDNumber.Text = "label10";
+            // 
+            // lblDepartment
+            // 
+            this.lblDepartment.AutoSize = true;
+            this.lblDepartment.Location = new System.Drawing.Point(332, 138);
+            this.lblDepartment.Name = "lblDepartment";
+            this.lblDepartment.Size = new System.Drawing.Size(51, 16);
+            this.lblDepartment.TabIndex = 8;
+            this.lblDepartment.Text = "label10";
+            // 
+            // lblYearLevel
+            // 
+            this.lblYearLevel.AutoSize = true;
+            this.lblYearLevel.Location = new System.Drawing.Point(332, 175);
+            this.lblYearLevel.Name = "lblYearLevel";
+            this.lblYearLevel.Size = new System.Drawing.Size(51, 16);
+            this.lblYearLevel.TabIndex = 9;
+            this.lblYearLevel.Text = "label10";
+            // 
+            // lblTIme
+            // 
+            this.lblTIme.AutoSize = true;
+            this.lblTIme.Location = new System.Drawing.Point(332, 214);
+            this.lblTIme.Name = "lblTIme";
+            this.lblTIme.Size = new System.Drawing.Size(51, 16);
+            this.lblTIme.TabIndex = 10;
+            this.lblTIme.Text = "label10";
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(94, 315);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(51, 16);
+            this.lblMessage.TabIndex = 11;
+            this.lblMessage.Text = "label10";
             // 
             // FaceRecognition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._891752403_1143943308365188_7410099486200290872_n2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRetry);
+            this.Controls.Add(this.btnNextPerson);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -473,7 +550,8 @@
             this.panel4.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctStudentPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctAttendanceCap)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -498,7 +576,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbEvent;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label4;
@@ -507,8 +585,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pctStudentPic;
+        private System.Windows.Forms.Button btnNextPerson;
+        private System.Windows.Forms.Button btnRetry;
+        private System.Windows.Forms.PictureBox pctAttendanceCap;
+        private System.Windows.Forms.Label lblYearLevel;
+        private System.Windows.Forms.Label lblDepartment;
+        private System.Windows.Forms.Label lblIDNumber;
+        private System.Windows.Forms.Label lblFullName;
+        private System.Windows.Forms.Label lblTIme;
+        private System.Windows.Forms.Label lblMessage;
     }
 }

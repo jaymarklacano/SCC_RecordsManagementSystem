@@ -36,24 +36,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblOrganizer = new System.Windows.Forms.Label();
+            this.lblSchedule = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblVenue = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
+            this.dtpEventTime = new System.Windows.Forms.DateTimePicker();
+            this.cmpReportType = new System.Windows.Forms.ComboBox();
+            this.cmbEventSelect = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chtAttendanceDepartment = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgRecord = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -69,8 +69,8 @@
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtAttendanceDepartment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRecord)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,16 +115,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.lblOrganizer);
+            this.panel1.Controls.Add(this.lblSchedule);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.lblVenue);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.btnGenerateReport);
+            this.panel1.Controls.Add(this.dtpEventTime);
+            this.panel1.Controls.Add(this.cmpReportType);
+            this.panel1.Controls.Add(this.cmbEventSelect);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label5);
@@ -133,73 +133,23 @@
             this.panel1.Size = new System.Drawing.Size(963, 160);
             this.panel1.TabIndex = 12;
             // 
-            // label2
+            // lblOrganizer
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 16);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Select / Search Event Name :";
+            this.lblOrganizer.AutoSize = true;
+            this.lblOrganizer.Location = new System.Drawing.Point(648, 121);
+            this.lblOrganizer.Name = "lblOrganizer";
+            this.lblOrganizer.Size = new System.Drawing.Size(51, 16);
+            this.lblOrganizer.TabIndex = 22;
+            this.lblOrganizer.Text = "label10";
             // 
-            // comboBox1
+            // lblSchedule
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(47, 51);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(225, 24);
-            this.comboBox1.TabIndex = 13;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(574, 49);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 14;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(322, 51);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 15;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(802, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 58);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Generate Report";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 121);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 16);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Venue :";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(102, 121);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 16);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "label6";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(319, 121);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 16);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Schedule :";
+            this.lblSchedule.AutoSize = true;
+            this.lblSchedule.Location = new System.Drawing.Point(395, 121);
+            this.lblSchedule.Name = "lblSchedule";
+            this.lblSchedule.Size = new System.Drawing.Size(44, 16);
+            this.lblSchedule.TabIndex = 21;
+            this.lblSchedule.Text = "label9";
             // 
             // label8
             // 
@@ -210,34 +160,120 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "Organizer :";
             // 
-            // label9
+            // label7
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(395, 121);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 16);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "label9";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(319, 121);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(70, 16);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Schedule :";
             // 
-            // label10
+            // lblVenue
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(648, 121);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 16);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "label10";
+            this.lblVenue.AutoSize = true;
+            this.lblVenue.Location = new System.Drawing.Point(102, 121);
+            this.lblVenue.Name = "lblVenue";
+            this.lblVenue.Size = new System.Drawing.Size(44, 16);
+            this.lblVenue.TabIndex = 18;
+            this.lblVenue.Text = "label6";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(44, 121);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 16);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Venue :";
+            // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.Location = new System.Drawing.Point(802, 24);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(126, 58);
+            this.btnGenerateReport.TabIndex = 16;
+            this.btnGenerateReport.Text = "Generate Report";
+            this.btnGenerateReport.UseVisualStyleBackColor = true;
+            // 
+            // dtpEventTime
+            // 
+            this.dtpEventTime.Location = new System.Drawing.Point(322, 51);
+            this.dtpEventTime.Name = "dtpEventTime";
+            this.dtpEventTime.Size = new System.Drawing.Size(200, 22);
+            this.dtpEventTime.TabIndex = 15;
+            // 
+            // cmpReportType
+            // 
+            this.cmpReportType.FormattingEnabled = true;
+            this.cmpReportType.Location = new System.Drawing.Point(574, 49);
+            this.cmpReportType.Name = "cmpReportType";
+            this.cmpReportType.Size = new System.Drawing.Size(121, 24);
+            this.cmpReportType.TabIndex = 14;
+            // 
+            // cmbEventSelect
+            // 
+            this.cmbEventSelect.FormattingEnabled = true;
+            this.cmbEventSelect.Location = new System.Drawing.Point(47, 51);
+            this.cmbEventSelect.Name = "cmbEventSelect";
+            this.cmbEventSelect.Size = new System.Drawing.Size(225, 24);
+            this.cmbEventSelect.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(44, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(181, 16);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Select / Search Event Name :";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.checkBox2);
             this.panel3.Controls.Add(this.checkBox1);
-            this.panel3.Controls.Add(this.chart1);
+            this.panel3.Controls.Add(this.chtAttendanceDepartment);
             this.panel3.Location = new System.Drawing.Point(331, 288);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(962, 172);
             this.panel3.TabIndex = 28;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(843, 13);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(71, 20);
+            this.checkBox2.TabIndex = 2;
+            this.checkBox2.Text = "Absent";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(749, 13);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(75, 20);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Present";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // chtAttendanceDepartment
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chtAttendanceDepartment.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtAttendanceDepartment.Legends.Add(legend1);
+            this.chtAttendanceDepartment.Location = new System.Drawing.Point(9, 39);
+            this.chtAttendanceDepartment.Name = "chtAttendanceDepartment";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chtAttendanceDepartment.Series.Add(series1);
+            this.chtAttendanceDepartment.Size = new System.Drawing.Size(919, 124);
+            this.chtAttendanceDepartment.TabIndex = 0;
+            this.chtAttendanceDepartment.Text = "chart1";
             // 
             // label11
             // 
@@ -257,52 +293,16 @@
             this.label12.TabIndex = 29;
             this.label12.Text = "Attendance Per Department";
             // 
-            // chart1
+            // dtgRecord
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(9, 39);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(919, 124);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(749, 13);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(75, 20);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Present";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(843, 13);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(71, 20);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "Absent";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightSlateGray;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(330, 466);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(962, 141);
-            this.dataGridView1.TabIndex = 30;
+            this.dtgRecord.BackgroundColor = System.Drawing.Color.LightSlateGray;
+            this.dtgRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgRecord.Location = new System.Drawing.Point(330, 466);
+            this.dtgRecord.Name = "dtgRecord";
+            this.dtgRecord.RowHeadersWidth = 51;
+            this.dtgRecord.RowTemplate.Height = 24;
+            this.dtgRecord.Size = new System.Drawing.Size(962, 141);
+            this.dtgRecord.TabIndex = 30;
             // 
             // panel2
             // 
@@ -512,11 +512,11 @@
             // ReportsAndAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._891752403_1143943308365188_7410099486200290872_n;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgRecord);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel3);
@@ -532,8 +532,8 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtAttendanceDepartment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRecord)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -547,9 +547,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dtpEventTime;
+        private System.Windows.Forms.ComboBox cmpReportType;
+        private System.Windows.Forms.ComboBox cmbEventSelect;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button12;
@@ -563,19 +563,19 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblVenue;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblOrganizer;
+        private System.Windows.Forms.Label lblSchedule;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtAttendanceDepartment;
+        private System.Windows.Forms.DataGridView dtgRecord;
     }
 }

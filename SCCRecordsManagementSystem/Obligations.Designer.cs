@@ -45,15 +45,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearchObli = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnShowAllRecord = new System.Windows.Forms.Button();
+            this.cmbYearLevelObli = new System.Windows.Forms.ComboBox();
+            this.cmbDepartmentObli = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgObligation = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -64,12 +63,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblStudent = new System.Windows.Forms.Label();
+            this.lblStudentAbsense = new System.Windows.Forms.Label();
+            this.lblStudentNoAbsent = new System.Windows.Forms.Label();
+            this.lblTotalEvent = new System.Windows.Forms.Label();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgObligation)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -326,37 +330,27 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.textBox1);
+            this.panel4.Controls.Add(this.lblSearch);
+            this.panel4.Controls.Add(this.txtSearchObli);
             this.panel4.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel4.Location = new System.Drawing.Point(815, 54);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(486, 157);
             this.panel4.TabIndex = 30;
             // 
-            // button2
+            // txtSearchObli
             // 
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(16, 21);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 28);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Search";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(101, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(250, 23);
-            this.textBox1.TabIndex = 0;
+            this.txtSearchObli.Location = new System.Drawing.Point(101, 24);
+            this.txtSearchObli.Name = "txtSearchObli";
+            this.txtSearchObli.Size = new System.Drawing.Size(250, 23);
+            this.txtSearchObli.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.comboBox2);
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.btnShowAllRecord);
+            this.panel3.Controls.Add(this.cmbYearLevelObli);
+            this.panel3.Controls.Add(this.cmbDepartmentObli);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -365,31 +359,31 @@
             this.panel3.Size = new System.Drawing.Size(481, 157);
             this.panel3.TabIndex = 31;
             // 
-            // button1
+            // btnShowAllRecord
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(37, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 46);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Show All Records";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnShowAllRecord.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowAllRecord.Location = new System.Drawing.Point(37, 94);
+            this.btnShowAllRecord.Name = "btnShowAllRecord";
+            this.btnShowAllRecord.Size = new System.Drawing.Size(173, 46);
+            this.btnShowAllRecord.TabIndex = 4;
+            this.btnShowAllRecord.Text = "Show All Records";
+            this.btnShowAllRecord.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // cmbYearLevelObli
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(291, 40);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 3;
+            this.cmbYearLevelObli.FormattingEnabled = true;
+            this.cmbYearLevelObli.Location = new System.Drawing.Point(291, 40);
+            this.cmbYearLevelObli.Name = "cmbYearLevelObli";
+            this.cmbYearLevelObli.Size = new System.Drawing.Size(121, 23);
+            this.cmbYearLevelObli.TabIndex = 3;
             // 
-            // comboBox1
+            // cmbDepartmentObli
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(37, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 2;
+            this.cmbDepartmentObli.FormattingEnabled = true;
+            this.cmbDepartmentObli.Location = new System.Drawing.Point(37, 40);
+            this.cmbDepartmentObli.Name = "cmbDepartmentObli";
+            this.cmbDepartmentObli.Size = new System.Drawing.Size(121, 23);
+            this.cmbDepartmentObli.TabIndex = 2;
             // 
             // label4
             // 
@@ -411,16 +405,16 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Department :";
             // 
-            // dataGridView1
+            // dtgObligation
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightSteelBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(335, 217);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(965, 229);
-            this.dataGridView1.TabIndex = 32;
+            this.dtgObligation.BackgroundColor = System.Drawing.Color.LightSteelBlue;
+            this.dtgObligation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgObligation.Location = new System.Drawing.Point(335, 217);
+            this.dtgObligation.Name = "dtgObligation";
+            this.dtgObligation.RowHeadersWidth = 51;
+            this.dtgObligation.RowTemplate.Height = 24;
+            this.dtgObligation.Size = new System.Drawing.Size(965, 229);
+            this.dtgObligation.TabIndex = 32;
             // 
             // panel6
             // 
@@ -448,6 +442,7 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel10.Controls.Add(this.lblTotalEvent);
             this.panel10.Controls.Add(this.label10);
             this.panel10.Location = new System.Drawing.Point(728, 47);
             this.panel10.Name = "panel10";
@@ -467,6 +462,7 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel9.Controls.Add(this.lblStudentNoAbsent);
             this.panel9.Controls.Add(this.label9);
             this.panel9.Location = new System.Drawing.Point(496, 47);
             this.panel9.Name = "panel9";
@@ -486,6 +482,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel8.Controls.Add(this.lblStudentAbsense);
             this.panel8.Controls.Add(this.label8);
             this.panel8.Location = new System.Drawing.Point(261, 47);
             this.panel8.Name = "panel8";
@@ -505,6 +502,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel7.Controls.Add(this.lblStudent);
             this.panel7.Controls.Add(this.label7);
             this.panel7.Location = new System.Drawing.Point(22, 47);
             this.panel7.Name = "panel7";
@@ -521,14 +519,62 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "Total Students ";
             // 
+            // lblStudent
+            // 
+            this.lblStudent.AutoSize = true;
+            this.lblStudent.Location = new System.Drawing.Point(82, 49);
+            this.lblStudent.Name = "lblStudent";
+            this.lblStudent.Size = new System.Drawing.Size(44, 16);
+            this.lblStudent.TabIndex = 2;
+            this.lblStudent.Text = "label6";
+            // 
+            // lblStudentAbsense
+            // 
+            this.lblStudentAbsense.AutoSize = true;
+            this.lblStudentAbsense.Location = new System.Drawing.Point(92, 49);
+            this.lblStudentAbsense.Name = "lblStudentAbsense";
+            this.lblStudentAbsense.Size = new System.Drawing.Size(44, 16);
+            this.lblStudentAbsense.TabIndex = 3;
+            this.lblStudentAbsense.Text = "label6";
+            // 
+            // lblStudentNoAbsent
+            // 
+            this.lblStudentNoAbsent.AutoSize = true;
+            this.lblStudentNoAbsent.Location = new System.Drawing.Point(82, 49);
+            this.lblStudentNoAbsent.Name = "lblStudentNoAbsent";
+            this.lblStudentNoAbsent.Size = new System.Drawing.Size(44, 16);
+            this.lblStudentNoAbsent.TabIndex = 4;
+            this.lblStudentNoAbsent.Text = "label6";
+            // 
+            // lblTotalEvent
+            // 
+            this.lblTotalEvent.AutoSize = true;
+            this.lblTotalEvent.Location = new System.Drawing.Point(90, 49);
+            this.lblTotalEvent.Name = "lblTotalEvent";
+            this.lblTotalEvent.Size = new System.Drawing.Size(44, 16);
+            this.lblTotalEvent.TabIndex = 5;
+            this.lblTotalEvent.Text = "label6";
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.BackColor = System.Drawing.Color.Transparent;
+            this.lblSearch.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.ForeColor = System.Drawing.Color.Black;
+            this.lblSearch.Location = new System.Drawing.Point(28, 27);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(67, 20);
+            this.lblSearch.TabIndex = 40;
+            this.lblSearch.Text = "Search:";
+            // 
             // Obligations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgObligation);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
@@ -545,7 +591,7 @@
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgObligation)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel10.ResumeLayout(false);
@@ -580,15 +626,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgObligation;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbYearLevelObli;
+        private System.Windows.Forms.ComboBox cmbDepartmentObli;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtSearchObli;
+        private System.Windows.Forms.Button btnShowAllRecord;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel9;
@@ -598,5 +643,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblStudent;
+        private System.Windows.Forms.Label lblTotalEvent;
+        private System.Windows.Forms.Label lblStudentNoAbsent;
+        private System.Windows.Forms.Label lblStudentAbsense;
+        private System.Windows.Forms.Label lblSearch;
     }
 }

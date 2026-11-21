@@ -35,12 +35,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -52,9 +46,15 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
+            this.dtgAttendanceMon = new System.Windows.Forms.DataGridView();
+            this.chkPresent = new System.Windows.Forms.CheckBox();
+            this.chkAbsent = new System.Windows.Forms.CheckBox();
+            this.cmbDepartmentAttend = new System.Windows.Forms.ComboBox();
+            this.cmbYearLevelAttend = new System.Windows.Forms.ComboBox();
+            this.cmbSelectEvent = new System.Windows.Forms.ComboBox();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgAttendanceMon)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -137,63 +137,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(327, 627);
             this.panel1.TabIndex = 33;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightSteelBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(449, 133);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(844, 474);
-            this.dataGridView1.TabIndex = 37;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(346, 176);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(83, 21);
-            this.checkBox1.TabIndex = 38;
-            this.checkBox1.Text = "Present";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(346, 214);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(78, 21);
-            this.checkBox2.TabIndex = 39;
-            this.checkBox2.Text = "Absent";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(841, 103);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(175, 24);
-            this.comboBox1.TabIndex = 40;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1117, 103);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(167, 24);
-            this.comboBox2.TabIndex = 41;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(478, 103);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(216, 24);
-            this.comboBox3.TabIndex = 42;
             // 
             // button12
             // 
@@ -379,18 +322,75 @@
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button22.UseVisualStyleBackColor = false;
             // 
+            // dtgAttendanceMon
+            // 
+            this.dtgAttendanceMon.BackgroundColor = System.Drawing.Color.LightSteelBlue;
+            this.dtgAttendanceMon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgAttendanceMon.Location = new System.Drawing.Point(449, 133);
+            this.dtgAttendanceMon.Name = "dtgAttendanceMon";
+            this.dtgAttendanceMon.RowHeadersWidth = 51;
+            this.dtgAttendanceMon.RowTemplate.Height = 24;
+            this.dtgAttendanceMon.Size = new System.Drawing.Size(844, 474);
+            this.dtgAttendanceMon.TabIndex = 37;
+            // 
+            // chkPresent
+            // 
+            this.chkPresent.AutoSize = true;
+            this.chkPresent.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPresent.Location = new System.Drawing.Point(346, 176);
+            this.chkPresent.Name = "chkPresent";
+            this.chkPresent.Size = new System.Drawing.Size(83, 21);
+            this.chkPresent.TabIndex = 38;
+            this.chkPresent.Text = "Present";
+            this.chkPresent.UseVisualStyleBackColor = true;
+            // 
+            // chkAbsent
+            // 
+            this.chkAbsent.AutoSize = true;
+            this.chkAbsent.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAbsent.Location = new System.Drawing.Point(346, 214);
+            this.chkAbsent.Name = "chkAbsent";
+            this.chkAbsent.Size = new System.Drawing.Size(78, 21);
+            this.chkAbsent.TabIndex = 39;
+            this.chkAbsent.Text = "Absent";
+            this.chkAbsent.UseVisualStyleBackColor = true;
+            // 
+            // cmbDepartmentAttend
+            // 
+            this.cmbDepartmentAttend.FormattingEnabled = true;
+            this.cmbDepartmentAttend.Location = new System.Drawing.Point(841, 103);
+            this.cmbDepartmentAttend.Name = "cmbDepartmentAttend";
+            this.cmbDepartmentAttend.Size = new System.Drawing.Size(175, 24);
+            this.cmbDepartmentAttend.TabIndex = 40;
+            // 
+            // cmbYearLevelAttend
+            // 
+            this.cmbYearLevelAttend.FormattingEnabled = true;
+            this.cmbYearLevelAttend.Location = new System.Drawing.Point(1117, 103);
+            this.cmbYearLevelAttend.Name = "cmbYearLevelAttend";
+            this.cmbYearLevelAttend.Size = new System.Drawing.Size(167, 24);
+            this.cmbYearLevelAttend.TabIndex = 41;
+            // 
+            // cmbSelectEvent
+            // 
+            this.cmbSelectEvent.FormattingEnabled = true;
+            this.cmbSelectEvent.Location = new System.Drawing.Point(478, 103);
+            this.cmbSelectEvent.Name = "cmbSelectEvent";
+            this.cmbSelectEvent.Size = new System.Drawing.Size(216, 24);
+            this.cmbSelectEvent.TabIndex = 42;
+            // 
             // AttendanceMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.cmbSelectEvent);
+            this.Controls.Add(this.cmbYearLevelAttend);
+            this.Controls.Add(this.cmbDepartmentAttend);
+            this.Controls.Add(this.chkAbsent);
+            this.Controls.Add(this.chkPresent);
+            this.Controls.Add(this.dtgAttendanceMon);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -403,7 +403,7 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgAttendanceMon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,11 +428,11 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.DataGridView dtgAttendanceMon;
+        private System.Windows.Forms.CheckBox chkPresent;
+        private System.Windows.Forms.CheckBox chkAbsent;
+        private System.Windows.Forms.ComboBox cmbDepartmentAttend;
+        private System.Windows.Forms.ComboBox cmbYearLevelAttend;
+        private System.Windows.Forms.ComboBox cmbSelectEvent;
     }
 }

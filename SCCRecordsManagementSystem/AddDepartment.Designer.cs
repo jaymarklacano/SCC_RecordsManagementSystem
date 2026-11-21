@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddDept = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtDeptCode = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDeptHead = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDeptName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cmbAcademicLevel = new System.Windows.Forms.ComboBox();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -57,25 +57,27 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // btnAddDept
             // 
-            this.button2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(649, 399);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 35);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "Save Event";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAddDept.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddDept.Location = new System.Drawing.Point(649, 399);
+            this.btnAddDept.Name = "btnAddDept";
+            this.btnAddDept.Size = new System.Drawing.Size(122, 35);
+            this.btnAddDept.TabIndex = 37;
+            this.btnAddDept.Text = "Add Dept.";
+            this.btnAddDept.UseVisualStyleBackColor = true;
+            this.btnAddDept.Click += new System.EventHandler(this.btnAddDept_Click);
             // 
-            // button1
+            // btnReset
             // 
-            this.button1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(531, 399);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 35);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Reset";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReset.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(531, 399);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(112, 35);
+            this.btnReset.TabIndex = 36;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // panel5
             // 
@@ -99,13 +101,13 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.txtDeptCode);
+            this.panel2.Controls.Add(this.txtDescription);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.txtDeptHead);
+            this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtDeptName);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
@@ -114,6 +116,43 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(759, 218);
             this.panel2.TabIndex = 35;
+            // 
+            // txtDeptCode
+            // 
+            this.txtDeptCode.Location = new System.Drawing.Point(413, 67);
+            this.txtDeptCode.Name = "txtDeptCode";
+            this.txtDeptCode.Size = new System.Drawing.Size(321, 23);
+            this.txtDeptCode.TabIndex = 50;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(17, 179);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(710, 23);
+            this.txtDescription.TabIndex = 49;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 162);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 15);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "Description :";
+            // 
+            // txtDeptHead
+            // 
+            this.txtDeptHead.Location = new System.Drawing.Point(14, 126);
+            this.txtDeptHead.Name = "txtDeptHead";
+            this.txtDeptHead.Size = new System.Drawing.Size(347, 23);
+            this.txtDeptHead.TabIndex = 47;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(413, 126);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(321, 23);
+            this.txtEmail.TabIndex = 46;
             // 
             // panel3
             // 
@@ -133,12 +172,12 @@
             this.label2.TabIndex = 31;
             this.label2.Text = "Department Information";
             // 
-            // textBox1
+            // txtDeptName
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 67);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(344, 23);
-            this.textBox1.TabIndex = 42;
+            this.txtDeptName.Location = new System.Drawing.Point(17, 67);
+            this.txtDeptName.Name = "txtDeptName";
+            this.txtDeptName.Size = new System.Drawing.Size(344, 23);
+            this.txtDeptName.TabIndex = 42;
             // 
             // label6
             // 
@@ -176,69 +215,15 @@
             this.label3.TabIndex = 32;
             this.label3.Text = "Department Name :";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(413, 126);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(321, 23);
-            this.textBox2.TabIndex = 46;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(14, 126);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(347, 23);
-            this.textBox4.TabIndex = 47;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 162);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 15);
-            this.label7.TabIndex = 48;
-            this.label7.Text = "Description :";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(17, 179);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(710, 23);
-            this.textBox3.TabIndex = 49;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.cmbAcademicLevel);
             this.panel1.Location = new System.Drawing.Point(12, 289);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(759, 104);
             this.panel1.TabIndex = 38;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(14, 70);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(347, 23);
-            this.comboBox1.TabIndex = 32;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 52);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 15);
-            this.label8.TabIndex = 50;
-            this.label8.Text = "Academic Level :";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(413, 67);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(321, 23);
-            this.textBox5.TabIndex = 50;
             // 
             // panel4
             // 
@@ -258,21 +243,49 @@
             this.label9.TabIndex = 31;
             this.label9.Text = "Event Information";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 52);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 15);
+            this.label8.TabIndex = 50;
+            this.label8.Text = "Academic Level :";
+            // 
+            // cmbAcademicLevel
+            // 
+            this.cmbAcademicLevel.FormattingEnabled = true;
+            this.cmbAcademicLevel.Items.AddRange(new object[] {
+            "Undergraduate",
+            "",
+            "",
+            "",
+            "",
+            "Graduate",
+            "",
+            "",
+            "",
+            "",
+            "Postgraduate"});
+            this.cmbAcademicLevel.Location = new System.Drawing.Point(14, 70);
+            this.cmbAcademicLevel.Name = "cmbAcademicLevel";
+            this.cmbAcademicLevel.Size = new System.Drawing.Size(347, 23);
+            this.cmbAcademicLevel.TabIndex = 32;
+            // 
             // AddDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 446);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddDept);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "AddDepartment";
             this.Text = "AddDepartment";
-            this.Load += new System.EventHandler(this.AddDepartment_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -289,26 +302,26 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddDept;
+        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDeptName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtDeptHead;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox cmbAcademicLevel;
+        private System.Windows.Forms.TextBox txtDeptCode;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label9;
     }

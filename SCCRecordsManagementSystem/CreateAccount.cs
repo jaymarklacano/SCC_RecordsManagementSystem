@@ -17,11 +17,6 @@ namespace SCCRecordsManagementSystem
         public CreateAccount()
         {
             InitializeComponent();
-            Program.PrepareWindow(this);
-            txtCreateUsername.MaxLength = 50;
-            txtCreatePassword.MaxLength = txtConfrmPassword.MaxLength = 72;
-            AcceptButton = btnCreateAccount;
-            txtCreatePassword.UseSystemPasswordChar = txtConfrmPassword.UseSystemPasswordChar = true;
         }
 
         private void CreateAccount_Load(object sender, EventArgs e)
@@ -31,11 +26,6 @@ namespace SCCRecordsManagementSystem
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
-            if (!Database.IsAdmin)
-            {
-                MessageBox.Show("Only the administrator may create accounts. Use Officer Records for officer accounts.");
-                return;
-            }
             string username = txtCreateUsername.Text.Trim();
             string password = txtCreatePassword.Text;
             string confirmPassword = txtConfrmPassword.Text;
@@ -51,11 +41,6 @@ namespace SCCRecordsManagementSystem
             if (password != confirmPassword)
             {
                 MessageBox.Show("Passwords do not match!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (password.Length < 6 || password.Length > 72)
-            {
-                MessageBox.Show("Use a password of 6-72 characters.");
                 return;
             }
 
@@ -83,6 +68,7 @@ namespace SCCRecordsManagementSystem
                     txtCreateUsername.Clear();
                     txtCreatePassword.Clear();
                     txtConfrmPassword.Clear();
+                    this.Close();
                 }
                 catch (MySqlException ex)
                 {
@@ -93,7 +79,7 @@ namespace SCCRecordsManagementSystem
                     }
                     else
                     {
-                        Program.Error(ex);
+                        MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
