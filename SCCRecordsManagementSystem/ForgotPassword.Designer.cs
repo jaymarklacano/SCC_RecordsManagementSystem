@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlAdminPassword = new System.Windows.Forms.Panel();
+            this.txtAdminPassword = new System.Windows.Forms.TextBox();
+            this.lblAdminPassword = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnForgotPass = new System.Windows.Forms.Button();
@@ -38,6 +41,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlAdminPassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,6 +81,7 @@
             this.btnForgotPass.Name = "btnForgotPass";
             this.btnForgotPass.Size = new System.Drawing.Size(189, 36);
             this.btnForgotPass.TabIndex = 5;
+            this.btnForgotPass.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnForgotPass.Text = "RESET PASSWORD";
             this.btnForgotPass.UseVisualStyleBackColor = false;
             this.btnForgotPass.Click += new System.EventHandler(this.btnForgotPass_Click);
@@ -85,7 +90,7 @@
             // 
             this.txtUser.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtUser.Location = new System.Drawing.Point(-3, 0);
-            this.txtUser.Multiline = true;
+            this.txtUser.MaxLength = 50;
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(304, 22);
             this.txtUser.TabIndex = 3;
@@ -94,41 +99,82 @@
             // 
             this.txtNewPass.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtNewPass.Location = new System.Drawing.Point(-3, 0);
-            this.txtNewPass.Multiline = true;
+            this.txtNewPass.MaxLength = 100;
             this.txtNewPass.Name = "txtNewPass";
             this.txtNewPass.Size = new System.Drawing.Size(304, 22);
             this.txtNewPass.TabIndex = 6;
+            this.txtNewPass.UseSystemPasswordChar = true;
             // 
             // txtNewConfirmPass
             // 
             this.txtNewConfirmPass.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtNewConfirmPass.Location = new System.Drawing.Point(0, -1);
-            this.txtNewConfirmPass.Multiline = true;
+            this.txtNewConfirmPass.MaxLength = 100;
             this.txtNewConfirmPass.Name = "txtNewConfirmPass";
             this.txtNewConfirmPass.Size = new System.Drawing.Size(304, 22);
             this.txtNewConfirmPass.TabIndex = 6;
+            this.txtNewConfirmPass.UseSystemPasswordChar = true;
+            // 
+            // lblAdminPassword
+            // 
+            this.lblAdminPassword.AutoSize = true;
+            this.lblAdminPassword.BackColor = System.Drawing.Color.Transparent;
+            this.lblAdminPassword.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminPassword.ForeColor = System.Drawing.Color.White;
+            this.lblAdminPassword.Location = new System.Drawing.Point(124, 428);
+            this.lblAdminPassword.Name = "lblAdminPassword";
+            this.lblAdminPassword.Size = new System.Drawing.Size(132, 20);
+            this.lblAdminPassword.TabIndex = 6;
+            this.lblAdminPassword.Text = "Admin Password *";
+            // 
+            // pnlAdminPassword
+            // 
+            this.pnlAdminPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlAdminPassword.Controls.Add(this.txtAdminPassword);
+            this.pnlAdminPassword.Location = new System.Drawing.Point(262, 425);
+            this.pnlAdminPassword.Name = "pnlAdminPassword";
+            this.pnlAdminPassword.Size = new System.Drawing.Size(244, 24);
+            this.pnlAdminPassword.TabIndex = 4;
+            // 
+            // txtAdminPassword
+            // 
+            this.txtAdminPassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtAdminPassword.Location = new System.Drawing.Point(0, 0);
+            this.txtAdminPassword.MaxLength = 100;
+            this.txtAdminPassword.Name = "txtAdminPassword";
+            this.txtAdminPassword.Size = new System.Drawing.Size(244, 22);
+            this.txtAdminPassword.TabIndex = 0;
+            this.txtAdminPassword.UseSystemPasswordChar = true;
             // 
             // ForgotPassword
             // 
+            this.AcceptButton = this.btnForgotPass;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources.forgotPass;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(634, 472);
+            this.Controls.Add(this.lblAdminPassword);
+            this.Controls.Add(this.pnlAdminPassword);
             this.Controls.Add(this.btnForgotPass);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "ForgotPassword";
-            this.Text = "ForgotPassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Reset Password";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.pnlAdminPassword.ResumeLayout(false);
+            this.pnlAdminPassword.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,6 +183,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlAdminPassword;
+        private System.Windows.Forms.TextBox txtAdminPassword;
+        private System.Windows.Forms.Label lblAdminPassword;
         private System.Windows.Forms.Button btnForgotPass;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.TextBox txtNewPass;

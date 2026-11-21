@@ -28,50 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            this.lblNoRecord = new System.Windows.Forms.Label();
+            this.lblListInfo = new System.Windows.Forms.Label();
+            this.lblTotalOfficersTitle = new System.Windows.Forms.Label();
+            this.lblTotalOfficers = new System.Windows.Forms.Label();
+            this.pnlTotalOfficers = new System.Windows.Forms.Panel();
+            this.btnShowAllOfficers = new System.Windows.Forms.Button();
+            this.cmbSchoolYearOfficer = new System.Windows.Forms.ComboBox();
+            this.lblSchoolYear = new System.Windows.Forms.Label();
+            this.cmbPositionOfficer = new System.Windows.Forms.ComboBox();
+            this.lblPosition = new System.Windows.Forms.Label();
+            this.cmbDepartmentOfficer = new System.Windows.Forms.ComboBox();
+            this.lblDepartment = new System.Windows.Forms.Label();
+            this.pnlOfficerFilter = new System.Windows.Forms.Panel();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.dtgOfficer = new System.Windows.Forms.DataGridView();
             this.btnAddOfficer = new System.Windows.Forms.Button();
             this.txtSearchOfficer = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
+            this.btnOffLogout = new System.Windows.Forms.Button();
+            this.btnOffDash = new System.Windows.Forms.Button();
+            this.btnOffRules = new System.Windows.Forms.Button();
+            this.btnOffObligation = new System.Windows.Forms.Button();
+            this.btnOffReport = new System.Windows.Forms.Button();
+            this.btnOffAttendance = new System.Windows.Forms.Button();
+            this.btnOffEvent = new System.Windows.Forms.Button();
+            this.btnOffFace = new System.Windows.Forms.Button();
+            this.btnOffOfficer = new System.Windows.Forms.Button();
+            this.btnOffStudent = new System.Windows.Forms.Button();
+            this.btnOffDept = new System.Windows.Forms.Button();
             this.lblSearch = new System.Windows.Forms.Label();
             this.btnDeleteOfficer = new System.Windows.Forms.Button();
             this.btnEditOfficer = new System.Windows.Forms.Button();
-            this.panel5.SuspendLayout();
+            this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgOfficer)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel5
+            // pnlHeader
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(315, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(992, 49);
-            this.panel5.TabIndex = 26;
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
+            this.pnlHeader.Controls.Add(this.lblTitle);
+            this.pnlHeader.Location = new System.Drawing.Point(315, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(992, 49);
+            this.pnlHeader.TabIndex = 26;
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.GhostWhite;
-            this.label1.Location = new System.Drawing.Point(78, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Officer Records";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.GhostWhite;
+            this.lblTitle.Location = new System.Drawing.Point(78, 18);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(138, 21);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Officer Records";
             // 
             // dtgOfficer
             // 
@@ -79,27 +93,44 @@
             this.dtgOfficer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgOfficer.Location = new System.Drawing.Point(325, 187);
             this.dtgOfficer.Name = "dtgOfficer";
+            this.dtgOfficer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgOfficer_CellDoubleClick);
+            this.dtgOfficer.ReadOnly = true;
+            this.dtgOfficer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgOfficer.RowHeadersVisible = false;
+            this.dtgOfficer.MultiSelect = false;
+            this.dtgOfficer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgOfficer.AllowUserToResizeRows = false;
+            this.dtgOfficer.AllowUserToDeleteRows = false;
+            this.dtgOfficer.AllowUserToAddRows = false;
             this.dtgOfficer.RowHeadersWidth = 51;
             this.dtgOfficer.RowTemplate.Height = 24;
-            this.dtgOfficer.Size = new System.Drawing.Size(968, 420);
+            this.dtgOfficer.Size = new System.Drawing.Size(968, 395);
             this.dtgOfficer.TabIndex = 28;
             // 
             // btnAddOfficer
             // 
             this.btnAddOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOfficer.Location = new System.Drawing.Point(1164, 137);
+            this.btnAddOfficer.Location = new System.Drawing.Point(1164, 140);
             this.btnAddOfficer.Name = "btnAddOfficer";
-            this.btnAddOfficer.Size = new System.Drawing.Size(129, 44);
+            this.btnAddOfficer.Click += new System.EventHandler(this.btnAddOfficer_Click);
+            this.btnAddOfficer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
+            this.btnAddOfficer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddOfficer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddOfficer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            this.btnAddOfficer.Size = new System.Drawing.Size(129, 40);
             this.btnAddOfficer.TabIndex = 29;
-            this.btnAddOfficer.Text = "Add Officers";
-            this.btnAddOfficer.UseVisualStyleBackColor = true;
+            this.btnAddOfficer.Text = "Add Officer";
+            this.btnAddOfficer.UseVisualStyleBackColor = false;
             // 
             // txtSearchOfficer
             // 
-            this.txtSearchOfficer.Location = new System.Drawing.Point(398, 147);
-            this.txtSearchOfficer.Multiline = true;
+            this.txtSearchOfficer.Location = new System.Drawing.Point(398, 149);
+            this.txtSearchOfficer.Multiline = false;
             this.txtSearchOfficer.Name = "txtSearchOfficer";
-            this.txtSearchOfficer.Size = new System.Drawing.Size(381, 28);
+            this.txtSearchOfficer.TextChanged += new System.EventHandler(this.filter_Changed);
+            this.txtSearchOfficer.MaxLength = 60;
+            this.txtSearchOfficer.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchOfficer.Size = new System.Drawing.Size(480, 27);
             this.txtSearchOfficer.TabIndex = 31;
             // 
             // panel1
@@ -107,205 +138,227 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
             this.panel1.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._904439575_1911191946735306_1039497458727327980_n1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.button12);
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button14);
-            this.panel1.Controls.Add(this.button15);
-            this.panel1.Controls.Add(this.button16);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button20);
-            this.panel1.Controls.Add(this.button21);
-            this.panel1.Controls.Add(this.button22);
+            this.panel1.Controls.Add(this.btnOffLogout);
+            this.panel1.Controls.Add(this.btnOffDash);
+            this.panel1.Controls.Add(this.btnOffRules);
+            this.panel1.Controls.Add(this.btnOffObligation);
+            this.panel1.Controls.Add(this.btnOffReport);
+            this.panel1.Controls.Add(this.btnOffAttendance);
+            this.panel1.Controls.Add(this.btnOffEvent);
+            this.panel1.Controls.Add(this.btnOffFace);
+            this.panel1.Controls.Add(this.btnOffOfficer);
+            this.panel1.Controls.Add(this.btnOffStudent);
+            this.panel1.Controls.Add(this.btnOffDept);
             this.panel1.Location = new System.Drawing.Point(-4, -3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(323, 627);
             this.panel1.TabIndex = 32;
             // 
-            // button12
+            // btnOffLogout
             // 
-            this.button12.BackColor = System.Drawing.Color.Transparent;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.button12.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(22, 560);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(277, 38);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "   LogOut";
-            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button12.UseVisualStyleBackColor = false;
+            this.btnOffLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffLogout.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
+            this.btnOffLogout.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_log_out_24__2_;
+            this.btnOffLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffLogout.Location = new System.Drawing.Point(22, 560);
+            this.btnOffLogout.Name = "btnOffLogout";
+            this.btnOffLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffLogout.Click += new System.EventHandler(this.btnOffLogout_Click);
+            this.btnOffLogout.Size = new System.Drawing.Size(277, 38);
+            this.btnOffLogout.TabIndex = 11;
+            this.btnOffLogout.Text = "   LogOut";
+            this.btnOffLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffLogout.UseVisualStyleBackColor = false;
             // 
-            // button13
+            // btnOffDash
             // 
-            this.button13.BackColor = System.Drawing.Color.Transparent;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(22, 123);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(277, 36);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "   Dashboard";
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button13.UseVisualStyleBackColor = false;
+            this.btnOffDash.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffDash.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffDash.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffDash.Image = global::SCCRecordsManagementSystem.Properties.Resources.house__1_;
+            this.btnOffDash.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffDash.Location = new System.Drawing.Point(22, 123);
+            this.btnOffDash.Name = "btnOffDash";
+            this.btnOffDash.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffDash.Click += new System.EventHandler(this.btnOffDash_Click);
+            this.btnOffDash.Size = new System.Drawing.Size(277, 36);
+            this.btnOffDash.TabIndex = 1;
+            this.btnOffDash.Text = "   Dashboard";
+            this.btnOffDash.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffDash.UseVisualStyleBackColor = false;
             // 
-            // button14
+            // btnOffRules
             // 
-            this.button14.BackColor = System.Drawing.Color.Transparent;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(22, 465);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(277, 36);
-            this.button14.TabIndex = 10;
-            this.button14.Text = "   Rules and Permission";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button14.UseVisualStyleBackColor = false;
+            this.btnOffRules.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffRules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffRules.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffRules.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffRules.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_rules_book_24;
+            this.btnOffRules.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffRules.Location = new System.Drawing.Point(22, 465);
+            this.btnOffRules.Name = "btnOffRules";
+            this.btnOffRules.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffRules.Click += new System.EventHandler(this.btnOffRules_Click);
+            this.btnOffRules.Size = new System.Drawing.Size(277, 36);
+            this.btnOffRules.TabIndex = 10;
+            this.btnOffRules.Text = "   Rules and Permission";
+            this.btnOffRules.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffRules.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffRules.UseVisualStyleBackColor = false;
             // 
-            // button15
+            // btnOffObligation
             // 
-            this.button15.BackColor = System.Drawing.Color.Transparent;
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
-            this.button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.Location = new System.Drawing.Point(22, 427);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(277, 36);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "Obligations";
-            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button15.UseVisualStyleBackColor = false;
+            this.btnOffObligation.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffObligation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffObligation.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffObligation.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffObligation.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_user_24;
+            this.btnOffObligation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffObligation.Location = new System.Drawing.Point(22, 427);
+            this.btnOffObligation.Name = "btnOffObligation";
+            this.btnOffObligation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffObligation.Click += new System.EventHandler(this.btnOffObligation_Click);
+            this.btnOffObligation.Size = new System.Drawing.Size(277, 36);
+            this.btnOffObligation.TabIndex = 9;
+            this.btnOffObligation.Text = "   Obligations";
+            this.btnOffObligation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffObligation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffObligation.UseVisualStyleBackColor = false;
             // 
-            // button16
+            // btnOffReport
             // 
-            this.button16.BackColor = System.Drawing.Color.Transparent;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
-            this.button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.Location = new System.Drawing.Point(22, 389);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(277, 36);
-            this.button16.TabIndex = 8;
-            this.button16.Text = "   Reports and Analysis";
-            this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button16.UseVisualStyleBackColor = false;
+            this.btnOffReport.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffReport.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffReport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffReport.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_analysis_24;
+            this.btnOffReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffReport.Location = new System.Drawing.Point(22, 389);
+            this.btnOffReport.Name = "btnOffReport";
+            this.btnOffReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffReport.Click += new System.EventHandler(this.btnOffReport_Click);
+            this.btnOffReport.Size = new System.Drawing.Size(277, 36);
+            this.btnOffReport.TabIndex = 8;
+            this.btnOffReport.Text = "   Reports and Analysis";
+            this.btnOffReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffReport.UseVisualStyleBackColor = false;
             // 
-            // button17
+            // btnOffAttendance
             // 
-            this.button17.BackColor = System.Drawing.Color.Transparent;
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
-            this.button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.Location = new System.Drawing.Point(22, 351);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(277, 36);
-            this.button17.TabIndex = 7;
-            this.button17.Text = "   Attendance Monitoring";
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button17.UseVisualStyleBackColor = false;
+            this.btnOffAttendance.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffAttendance.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffAttendance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffAttendance.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
+            this.btnOffAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffAttendance.Location = new System.Drawing.Point(22, 351);
+            this.btnOffAttendance.Name = "btnOffAttendance";
+            this.btnOffAttendance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffAttendance.Click += new System.EventHandler(this.btnOffAttendance_Click);
+            this.btnOffAttendance.Size = new System.Drawing.Size(277, 36);
+            this.btnOffAttendance.TabIndex = 7;
+            this.btnOffAttendance.Text = "   Attendance Monitoring";
+            this.btnOffAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffAttendance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffAttendance.UseVisualStyleBackColor = false;
             // 
-            // button18
+            // btnOffEvent
             // 
-            this.button18.BackColor = System.Drawing.Color.Transparent;
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
-            this.button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.Location = new System.Drawing.Point(22, 313);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(277, 36);
-            this.button18.TabIndex = 6;
-            this.button18.Text = "   Event Management";
-            this.button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button18.UseVisualStyleBackColor = false;
+            this.btnOffEvent.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffEvent.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffEvent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffEvent.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_event_accepted_tentatively_24;
+            this.btnOffEvent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffEvent.Location = new System.Drawing.Point(22, 313);
+            this.btnOffEvent.Name = "btnOffEvent";
+            this.btnOffEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffEvent.Click += new System.EventHandler(this.btnOffEvent_Click);
+            this.btnOffEvent.Size = new System.Drawing.Size(277, 36);
+            this.btnOffEvent.TabIndex = 6;
+            this.btnOffEvent.Text = "   Event Management";
+            this.btnOffEvent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffEvent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffEvent.UseVisualStyleBackColor = false;
             // 
-            // button19
+            // btnOffFace
             // 
-            this.button19.BackColor = System.Drawing.Color.Transparent;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
-            this.button19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.Location = new System.Drawing.Point(22, 275);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(277, 36);
-            this.button19.TabIndex = 5;
-            this.button19.Text = "   Face Recognition";
-            this.button19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button19.UseVisualStyleBackColor = false;
+            this.btnOffFace.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffFace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffFace.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffFace.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffFace.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_facial_recognition_24;
+            this.btnOffFace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffFace.Location = new System.Drawing.Point(22, 275);
+            this.btnOffFace.Name = "btnOffFace";
+            this.btnOffFace.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffFace.Click += new System.EventHandler(this.btnOffFace_Click);
+            this.btnOffFace.Size = new System.Drawing.Size(277, 36);
+            this.btnOffFace.TabIndex = 5;
+            this.btnOffFace.Text = "   Face Recognition";
+            this.btnOffFace.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffFace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffFace.UseVisualStyleBackColor = false;
             // 
-            // button20
+            // btnOffOfficer
             // 
-            this.button20.BackColor = System.Drawing.Color.Transparent;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
-            this.button20.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.Location = new System.Drawing.Point(22, 237);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(277, 36);
-            this.button20.TabIndex = 4;
-            this.button20.Text = "   Officer Records";
-            this.button20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button20.UseVisualStyleBackColor = false;
+            this.btnOffOfficer.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffOfficer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffOfficer.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffOfficer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffOfficer.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_management_24;
+            this.btnOffOfficer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffOfficer.Location = new System.Drawing.Point(22, 237);
+            this.btnOffOfficer.Name = "btnOffOfficer";
+            this.btnOffOfficer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffOfficer.Click += new System.EventHandler(this.btnOffOfficer_Click);
+            this.btnOffOfficer.Size = new System.Drawing.Size(277, 36);
+            this.btnOffOfficer.TabIndex = 4;
+            this.btnOffOfficer.Text = "   Officer Records";
+            this.btnOffOfficer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffOfficer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffOfficer.UseVisualStyleBackColor = false;
             // 
-            // button21
+            // btnOffStudent
             // 
-            this.button21.BackColor = System.Drawing.Color.Transparent;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
-            this.button21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button21.Location = new System.Drawing.Point(22, 199);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(277, 36);
-            this.button21.TabIndex = 3;
-            this.button21.Text = "   Student Records";
-            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button21.UseVisualStyleBackColor = false;
+            this.btnOffStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffStudent.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffStudent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffStudent.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_what_i_do_241;
+            this.btnOffStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffStudent.Location = new System.Drawing.Point(22, 199);
+            this.btnOffStudent.Name = "btnOffStudent";
+            this.btnOffStudent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffStudent.Click += new System.EventHandler(this.btnOffStudent_Click);
+            this.btnOffStudent.Size = new System.Drawing.Size(277, 36);
+            this.btnOffStudent.TabIndex = 3;
+            this.btnOffStudent.Text = "   Student Records";
+            this.btnOffStudent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffStudent.UseVisualStyleBackColor = false;
             // 
-            // button22
+            // btnOffDept
             // 
-            this.button22.BackColor = System.Drawing.Color.Transparent;
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
-            this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(22, 161);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(277, 36);
-            this.button22.TabIndex = 2;
-            this.button22.Text = "   Departments";
-            this.button22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button22.UseVisualStyleBackColor = false;
+            this.btnOffDept.BackColor = System.Drawing.Color.Transparent;
+            this.btnOffDept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOffDept.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffDept.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOffDept.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_building_24__1_;
+            this.btnOffDept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffDept.Location = new System.Drawing.Point(22, 161);
+            this.btnOffDept.Name = "btnOffDept";
+            this.btnOffDept.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOffDept.Click += new System.EventHandler(this.btnOffDept_Click);
+            this.btnOffDept.Size = new System.Drawing.Size(277, 36);
+            this.btnOffDept.TabIndex = 2;
+            this.btnOffDept.Text = "   Departments";
+            this.btnOffDept.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOffDept.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOffDept.UseVisualStyleBackColor = false;
             // 
             // lblSearch
             // 
@@ -313,31 +366,195 @@
             this.lblSearch.BackColor = System.Drawing.Color.Transparent;
             this.lblSearch.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearch.ForeColor = System.Drawing.Color.Black;
-            this.lblSearch.Location = new System.Drawing.Point(325, 158);
+            this.lblSearch.Location = new System.Drawing.Point(325, 152);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(67, 20);
             this.lblSearch.TabIndex = 40;
-            this.lblSearch.Text = "Search:";
+            this.lblSearch.Text = "Search :";
             // 
             // btnDeleteOfficer
             // 
             this.btnDeleteOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteOfficer.Location = new System.Drawing.Point(1029, 137);
+            this.btnDeleteOfficer.Location = new System.Drawing.Point(1029, 140);
             this.btnDeleteOfficer.Name = "btnDeleteOfficer";
-            this.btnDeleteOfficer.Size = new System.Drawing.Size(129, 44);
+            this.btnDeleteOfficer.Click += new System.EventHandler(this.btnDeleteOfficer_Click);
+            this.btnDeleteOfficer.ForeColor = System.Drawing.Color.Firebrick;
+            this.btnDeleteOfficer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteOfficer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDeleteOfficer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            this.btnDeleteOfficer.Size = new System.Drawing.Size(129, 40);
             this.btnDeleteOfficer.TabIndex = 41;
             this.btnDeleteOfficer.Text = "Delete";
-            this.btnDeleteOfficer.UseVisualStyleBackColor = true;
+            this.btnDeleteOfficer.UseVisualStyleBackColor = false;
             // 
             // btnEditOfficer
             // 
             this.btnEditOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditOfficer.Location = new System.Drawing.Point(894, 137);
+            this.btnEditOfficer.Location = new System.Drawing.Point(894, 140);
             this.btnEditOfficer.Name = "btnEditOfficer";
-            this.btnEditOfficer.Size = new System.Drawing.Size(129, 44);
+            this.btnEditOfficer.Click += new System.EventHandler(this.btnEditOfficer_Click);
+            this.btnEditOfficer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
+            this.btnEditOfficer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditOfficer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditOfficer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            this.btnEditOfficer.Size = new System.Drawing.Size(129, 40);
             this.btnEditOfficer.TabIndex = 42;
             this.btnEditOfficer.Text = "Edit";
-            this.btnEditOfficer.UseVisualStyleBackColor = true;
+            this.btnEditOfficer.UseVisualStyleBackColor = false;
+            // 
+            // pnlOfficerFilter
+            // 
+            this.pnlOfficerFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(216)))), ((int)(((byte)(233)))));
+            this.pnlOfficerFilter.Controls.Add(this.pnlTotalOfficers);
+            this.pnlOfficerFilter.Controls.Add(this.btnShowAllOfficers);
+            this.pnlOfficerFilter.Controls.Add(this.cmbSchoolYearOfficer);
+            this.pnlOfficerFilter.Controls.Add(this.lblSchoolYear);
+            this.pnlOfficerFilter.Controls.Add(this.cmbPositionOfficer);
+            this.pnlOfficerFilter.Controls.Add(this.lblPosition);
+            this.pnlOfficerFilter.Controls.Add(this.cmbDepartmentOfficer);
+            this.pnlOfficerFilter.Controls.Add(this.lblDepartment);
+            this.pnlOfficerFilter.Location = new System.Drawing.Point(325, 57);
+            this.pnlOfficerFilter.Name = "pnlOfficerFilter";
+            this.pnlOfficerFilter.Size = new System.Drawing.Size(968, 76);
+            this.pnlOfficerFilter.TabIndex = 1;
+            // 
+            // lblDepartment
+            // 
+            this.lblDepartment.AutoSize = true;
+            this.lblDepartment.BackColor = System.Drawing.Color.Transparent;
+            this.lblDepartment.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepartment.Location = new System.Drawing.Point(15, 8);
+            this.lblDepartment.Name = "lblDepartment";
+            this.lblDepartment.Size = new System.Drawing.Size(95, 17);
+            this.lblDepartment.TabIndex = 0;
+            this.lblDepartment.Text = "Course :";
+            // 
+            // cmbDepartmentOfficer
+            // 
+            this.cmbDepartmentOfficer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDepartmentOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDepartmentOfficer.FormattingEnabled = true;
+            this.cmbDepartmentOfficer.Location = new System.Drawing.Point(15, 32);
+            this.cmbDepartmentOfficer.Name = "cmbDepartmentOfficer";
+            this.cmbDepartmentOfficer.Size = new System.Drawing.Size(200, 24);
+            this.cmbDepartmentOfficer.TabIndex = 0;
+            this.cmbDepartmentOfficer.SelectedIndexChanged += new System.EventHandler(this.filter_Changed);
+            // 
+            // lblPosition
+            // 
+            this.lblPosition.AutoSize = true;
+            this.lblPosition.BackColor = System.Drawing.Color.Transparent;
+            this.lblPosition.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPosition.Location = new System.Drawing.Point(230, 8);
+            this.lblPosition.Name = "lblPosition";
+            this.lblPosition.Size = new System.Drawing.Size(70, 17);
+            this.lblPosition.TabIndex = 0;
+            this.lblPosition.Text = "Position :";
+            // 
+            // cmbPositionOfficer
+            // 
+            this.cmbPositionOfficer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPositionOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPositionOfficer.FormattingEnabled = true;
+            this.cmbPositionOfficer.Location = new System.Drawing.Point(230, 32);
+            this.cmbPositionOfficer.Name = "cmbPositionOfficer";
+            this.cmbPositionOfficer.Size = new System.Drawing.Size(200, 24);
+            this.cmbPositionOfficer.TabIndex = 0;
+            this.cmbPositionOfficer.SelectedIndexChanged += new System.EventHandler(this.filter_Changed);
+            // 
+            // lblSchoolYear
+            // 
+            this.lblSchoolYear.AutoSize = true;
+            this.lblSchoolYear.BackColor = System.Drawing.Color.Transparent;
+            this.lblSchoolYear.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSchoolYear.Location = new System.Drawing.Point(445, 8);
+            this.lblSchoolYear.Name = "lblSchoolYear";
+            this.lblSchoolYear.Size = new System.Drawing.Size(95, 17);
+            this.lblSchoolYear.TabIndex = 0;
+            this.lblSchoolYear.Text = "School Year :";
+            // 
+            // cmbSchoolYearOfficer
+            // 
+            this.cmbSchoolYearOfficer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSchoolYearOfficer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSchoolYearOfficer.FormattingEnabled = true;
+            this.cmbSchoolYearOfficer.Location = new System.Drawing.Point(445, 32);
+            this.cmbSchoolYearOfficer.Name = "cmbSchoolYearOfficer";
+            this.cmbSchoolYearOfficer.Size = new System.Drawing.Size(170, 24);
+            this.cmbSchoolYearOfficer.TabIndex = 0;
+            this.cmbSchoolYearOfficer.SelectedIndexChanged += new System.EventHandler(this.filter_Changed);
+            // 
+            // btnShowAllOfficers
+            // 
+            this.btnShowAllOfficers.BackColor = System.Drawing.Color.White;
+            this.btnShowAllOfficers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShowAllOfficers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowAllOfficers.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowAllOfficers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
+            this.btnShowAllOfficers.Location = new System.Drawing.Point(630, 20);
+            this.btnShowAllOfficers.Name = "btnShowAllOfficers";
+            this.btnShowAllOfficers.Size = new System.Drawing.Size(150, 40);
+            this.btnShowAllOfficers.TabIndex = 0;
+            this.btnShowAllOfficers.Text = "Show All";
+            this.btnShowAllOfficers.UseVisualStyleBackColor = false;
+            this.btnShowAllOfficers.Click += new System.EventHandler(this.btnShowAllOfficers_Click);
+            // 
+            // pnlTotalOfficers
+            // 
+            this.pnlTotalOfficers.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlTotalOfficers.Controls.Add(this.lblTotalOfficersTitle);
+            this.pnlTotalOfficers.Controls.Add(this.lblTotalOfficers);
+            this.pnlTotalOfficers.Location = new System.Drawing.Point(795, 6);
+            this.pnlTotalOfficers.Name = "pnlTotalOfficers";
+            this.pnlTotalOfficers.Size = new System.Drawing.Size(160, 64);
+            this.pnlTotalOfficers.TabIndex = 0;
+            // 
+            // lblTotalOfficers
+            // 
+            this.lblTotalOfficers.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalOfficers.Font = new System.Drawing.Font("Cambria", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalOfficers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
+            this.lblTotalOfficers.Location = new System.Drawing.Point(0, 26);
+            this.lblTotalOfficers.Name = "lblTotalOfficers";
+            this.lblTotalOfficers.Size = new System.Drawing.Size(160, 34);
+            this.lblTotalOfficers.TabIndex = 0;
+            this.lblTotalOfficers.Text = "0";
+            this.lblTotalOfficers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTotalOfficersTitle
+            // 
+            this.lblTotalOfficersTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalOfficersTitle.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalOfficersTitle.Location = new System.Drawing.Point(0, 4);
+            this.lblTotalOfficersTitle.Name = "lblTotalOfficersTitle";
+            this.lblTotalOfficersTitle.Size = new System.Drawing.Size(160, 20);
+            this.lblTotalOfficersTitle.TabIndex = 0;
+            this.lblTotalOfficersTitle.Text = "Total Officers";
+            this.lblTotalOfficersTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblListInfo
+            // 
+            this.lblListInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblListInfo.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
+            this.lblListInfo.Location = new System.Drawing.Point(325, 588);
+            this.lblListInfo.Name = "lblListInfo";
+            this.lblListInfo.Size = new System.Drawing.Size(968, 22);
+            this.lblListInfo.TabIndex = 0;
+            this.lblListInfo.Text = "";
+            // 
+            // lblNoRecord
+            // 
+            this.lblNoRecord.BackColor = System.Drawing.Color.White;
+            this.lblNoRecord.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecord.ForeColor = System.Drawing.Color.DimGray;
+            this.lblNoRecord.Location = new System.Drawing.Point(560, 350);
+            this.lblNoRecord.Name = "lblNoRecord";
+            this.lblNoRecord.Size = new System.Drawing.Size(500, 40);
+            this.lblNoRecord.TabIndex = 0;
+            this.lblNoRecord.Text = "No officers found.";
+            this.lblNoRecord.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNoRecord.Visible = false;
             // 
             // OfficerRecords
             // 
@@ -345,6 +562,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Controls.Add(this.lblNoRecord);
+            this.Controls.Add(this.lblListInfo);
+            this.Controls.Add(this.pnlOfficerFilter);
             this.Controls.Add(this.btnEditOfficer);
             this.Controls.Add(this.btnDeleteOfficer);
             this.Controls.Add(this.lblSearch);
@@ -352,12 +572,15 @@
             this.Controls.Add(this.txtSearchOfficer);
             this.Controls.Add(this.btnAddOfficer);
             this.Controls.Add(this.dtgOfficer);
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OfficerRecords";
-            this.Text = "Officerr_Records";
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SCC Records Management System - Officer Records";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OfficerRecords_FormClosed);
+            this.Load += new System.EventHandler(this.OfficerRecords_Load);
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgOfficer)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -366,24 +589,37 @@
         }
 
         #endregion
+        private System.Windows.Forms.Label lblNoRecord;
+        private System.Windows.Forms.Label lblListInfo;
+        private System.Windows.Forms.Label lblTotalOfficersTitle;
+        private System.Windows.Forms.Label lblTotalOfficers;
+        private System.Windows.Forms.Panel pnlTotalOfficers;
+        private System.Windows.Forms.Button btnShowAllOfficers;
+        private System.Windows.Forms.ComboBox cmbSchoolYearOfficer;
+        private System.Windows.Forms.Label lblSchoolYear;
+        private System.Windows.Forms.ComboBox cmbPositionOfficer;
+        private System.Windows.Forms.Label lblPosition;
+        private System.Windows.Forms.ComboBox cmbDepartmentOfficer;
+        private System.Windows.Forms.Label lblDepartment;
+        private System.Windows.Forms.Panel pnlOfficerFilter;
 
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dtgOfficer;
         private System.Windows.Forms.Button btnAddOfficer;
         private System.Windows.Forms.TextBox txtSearchOfficer;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button btnOffLogout;
+        private System.Windows.Forms.Button btnOffDash;
+        private System.Windows.Forms.Button btnOffRules;
+        private System.Windows.Forms.Button btnOffObligation;
+        private System.Windows.Forms.Button btnOffReport;
+        private System.Windows.Forms.Button btnOffAttendance;
+        private System.Windows.Forms.Button btnOffEvent;
+        private System.Windows.Forms.Button btnOffFace;
+        private System.Windows.Forms.Button btnOffOfficer;
+        private System.Windows.Forms.Button btnOffStudent;
+        private System.Windows.Forms.Button btnOffDept;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Button btnDeleteOfficer;
         private System.Windows.Forms.Button btnEditOfficer;

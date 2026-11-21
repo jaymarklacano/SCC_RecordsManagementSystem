@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlAdminPassword = new System.Windows.Forms.Panel();
+            this.txtAdminPassword = new System.Windows.Forms.TextBox();
+            this.lblAdminPassword = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnCreateAccount = new System.Windows.Forms.Button();
@@ -38,6 +41,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlAdminPassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,7 +80,8 @@
             this.btnCreateAccount.Location = new System.Drawing.Point(224, 362);
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(189, 36);
-            this.btnCreateAccount.TabIndex = 4;
+            this.btnCreateAccount.TabIndex = 5;
+            this.btnCreateAccount.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreateAccount.Text = "CREATE ACCOUNT";
             this.btnCreateAccount.UseVisualStyleBackColor = false;
             this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
@@ -85,45 +90,83 @@
             // 
             this.txtConfrmPassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtConfrmPassword.Location = new System.Drawing.Point(0, -1);
-            this.txtConfrmPassword.Multiline = true;
+            this.txtConfrmPassword.MaxLength = 100;
             this.txtConfrmPassword.Name = "txtConfrmPassword";
             this.txtConfrmPassword.Size = new System.Drawing.Size(304, 22);
             this.txtConfrmPassword.TabIndex = 2;
+            this.txtConfrmPassword.UseSystemPasswordChar = true;
             // 
             // txtCreatePassword
             // 
             this.txtCreatePassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtCreatePassword.Location = new System.Drawing.Point(0, -1);
-            this.txtCreatePassword.Multiline = true;
+            this.txtCreatePassword.MaxLength = 100;
             this.txtCreatePassword.Name = "txtCreatePassword";
             this.txtCreatePassword.Size = new System.Drawing.Size(304, 22);
             this.txtCreatePassword.TabIndex = 1;
+            this.txtCreatePassword.UseSystemPasswordChar = true;
             // 
             // txtCreateUsername
             // 
             this.txtCreateUsername.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtCreateUsername.Location = new System.Drawing.Point(0, 0);
-            this.txtCreateUsername.Multiline = true;
+            this.txtCreateUsername.MaxLength = 50;
             this.txtCreateUsername.Name = "txtCreateUsername";
             this.txtCreateUsername.Size = new System.Drawing.Size(304, 22);
             this.txtCreateUsername.TabIndex = 2;
             // 
+            // lblAdminPassword
+            // 
+            this.lblAdminPassword.AutoSize = true;
+            this.lblAdminPassword.BackColor = System.Drawing.Color.Transparent;
+            this.lblAdminPassword.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminPassword.ForeColor = System.Drawing.Color.White;
+            this.lblAdminPassword.Location = new System.Drawing.Point(124, 428);
+            this.lblAdminPassword.Name = "lblAdminPassword";
+            this.lblAdminPassword.Size = new System.Drawing.Size(132, 20);
+            this.lblAdminPassword.TabIndex = 6;
+            this.lblAdminPassword.Text = "Admin Password *";
+            // 
+            // pnlAdminPassword
+            // 
+            this.pnlAdminPassword.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlAdminPassword.Controls.Add(this.txtAdminPassword);
+            this.pnlAdminPassword.Location = new System.Drawing.Point(262, 425);
+            this.pnlAdminPassword.Name = "pnlAdminPassword";
+            this.pnlAdminPassword.Size = new System.Drawing.Size(244, 24);
+            this.pnlAdminPassword.TabIndex = 4;
+            // 
+            // txtAdminPassword
+            // 
+            this.txtAdminPassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtAdminPassword.Location = new System.Drawing.Point(0, 0);
+            this.txtAdminPassword.MaxLength = 100;
+            this.txtAdminPassword.Name = "txtAdminPassword";
+            this.txtAdminPassword.Size = new System.Drawing.Size(244, 22);
+            this.txtAdminPassword.TabIndex = 0;
+            this.txtAdminPassword.UseSystemPasswordChar = true;
+            // 
             // CreateAccount
             // 
+            this.AcceptButton = this.btnCreateAccount;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources.createAcc;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(634, 472);
+            this.Controls.Add(this.lblAdminPassword);
+            this.Controls.Add(this.pnlAdminPassword);
             this.Controls.Add(this.btnCreateAccount);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "CreateAccount";
-            this.Text = "CreateAccount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Create Admin Account";
             this.Load += new System.EventHandler(this.CreateAccount_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -131,7 +174,10 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.pnlAdminPassword.ResumeLayout(false);
+            this.pnlAdminPassword.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -140,6 +186,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlAdminPassword;
+        private System.Windows.Forms.TextBox txtAdminPassword;
+        private System.Windows.Forms.Label lblAdminPassword;
         private System.Windows.Forms.Button btnCreateAccount;
         private System.Windows.Forms.TextBox txtCreateUsername;
         private System.Windows.Forms.TextBox txtCreatePassword;

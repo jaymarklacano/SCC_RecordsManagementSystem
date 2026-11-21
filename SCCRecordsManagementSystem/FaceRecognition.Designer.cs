@@ -28,53 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timerScan = new System.Windows.Forms.Timer(this.components);
+            this.lblHelp = new System.Windows.Forms.Label();
+            this.lblAttendanceStatus = new System.Windows.Forms.Label();
+            this.lblStatusTitle = new System.Windows.Forms.Label();
+            this.lblCardTitle = new System.Windows.Forms.Label();
+            this.lblSessionCount = new System.Windows.Forms.Label();
+            this.lblFaceDataInfo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnFaceLogout = new System.Windows.Forms.Button();
             this.btnFaceDash = new System.Windows.Forms.Button();
             this.btnFaceRules = new System.Windows.Forms.Button();
             this.btnFaceObli = new System.Windows.Forms.Button();
             this.btnFaceReports = new System.Windows.Forms.Button();
-            this.btnFaceAttendace = new System.Windows.Forms.Button();
+            this.btnFaceAttendance = new System.Windows.Forms.Button();
             this.btnFaceEvent = new System.Windows.Forms.Button();
             this.btnFace = new System.Windows.Forms.Button();
             this.btnFaceOfficer = new System.Windows.Forms.Button();
             this.btnFaceStudent = new System.Windows.Forms.Button();
             this.btnFaceDept = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.cmbEvent = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.pctAttendanceCap = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlCameraStatus = new System.Windows.Forms.Panel();
+            this.lblCameraStatus = new System.Windows.Forms.Label();
+            this.pnlSession = new System.Windows.Forms.Panel();
+            this.cmbSession = new System.Windows.Forms.ComboBox();
+            this.lblSession = new System.Windows.Forms.Label();
+            this.pnlCamera = new System.Windows.Forms.Panel();
+            this.picCameraPreview = new System.Windows.Forms.PictureBox();
+            this.pnlStudentCard = new System.Windows.Forms.Panel();
             this.lblMessage = new System.Windows.Forms.Label();
-            this.lblTIme = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.lblYearLevel = new System.Windows.Forms.Label();
             this.lblDepartment = new System.Windows.Forms.Label();
             this.lblIDNumber = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pctStudentPic = new System.Windows.Forms.PictureBox();
+            this.lblTimeTitle = new System.Windows.Forms.Label();
+            this.lblYearTitle = new System.Windows.Forms.Label();
+            this.lblDepartmentTitle = new System.Windows.Forms.Label();
+            this.lblIdTitle = new System.Windows.Forms.Label();
+            this.lblNameTitle = new System.Windows.Forms.Label();
+            this.picStudentFace = new System.Windows.Forms.PictureBox();
             this.btnNextPerson = new System.Windows.Forms.Button();
-            this.btnRetry = new System.Windows.Forms.Button();
+            this.btnRestartCamera = new System.Windows.Forms.Button();
             this.cmbInOut = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblInOut = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctAttendanceCap)).BeginInit();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctStudentPic)).BeginInit();
+            this.pnlCameraStatus.SuspendLayout();
+            this.pnlSession.SuspendLayout();
+            this.pnlCamera.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCameraPreview)).BeginInit();
+            this.pnlStudentCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picStudentFace)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -87,7 +94,7 @@
             this.panel1.Controls.Add(this.btnFaceRules);
             this.panel1.Controls.Add(this.btnFaceObli);
             this.panel1.Controls.Add(this.btnFaceReports);
-            this.panel1.Controls.Add(this.btnFaceAttendace);
+            this.panel1.Controls.Add(this.btnFaceAttendance);
             this.panel1.Controls.Add(this.btnFaceEvent);
             this.panel1.Controls.Add(this.btnFace);
             this.panel1.Controls.Add(this.btnFaceOfficer);
@@ -108,6 +115,8 @@
             this.btnFaceLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceLogout.Location = new System.Drawing.Point(22, 560);
             this.btnFaceLogout.Name = "btnFaceLogout";
+            this.btnFaceLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceLogout.Click += new System.EventHandler(this.btnFaceLogout_Click);
             this.btnFaceLogout.Size = new System.Drawing.Size(277, 38);
             this.btnFaceLogout.TabIndex = 11;
             this.btnFaceLogout.Text = "   LogOut";
@@ -124,6 +133,8 @@
             this.btnFaceDash.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceDash.Location = new System.Drawing.Point(22, 123);
             this.btnFaceDash.Name = "btnFaceDash";
+            this.btnFaceDash.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceDash.Click += new System.EventHandler(this.btnFaceDash_Click);
             this.btnFaceDash.Size = new System.Drawing.Size(277, 36);
             this.btnFaceDash.TabIndex = 1;
             this.btnFaceDash.Text = "   Dashboard";
@@ -140,6 +151,8 @@
             this.btnFaceRules.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceRules.Location = new System.Drawing.Point(22, 465);
             this.btnFaceRules.Name = "btnFaceRules";
+            this.btnFaceRules.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceRules.Click += new System.EventHandler(this.btnFaceRules_Click);
             this.btnFaceRules.Size = new System.Drawing.Size(277, 36);
             this.btnFaceRules.TabIndex = 10;
             this.btnFaceRules.Text = "   Rules and Permission";
@@ -157,6 +170,8 @@
             this.btnFaceObli.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceObli.Location = new System.Drawing.Point(22, 427);
             this.btnFaceObli.Name = "btnFaceObli";
+            this.btnFaceObli.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceObli.Click += new System.EventHandler(this.btnFaceObli_Click);
             this.btnFaceObli.Size = new System.Drawing.Size(277, 36);
             this.btnFaceObli.TabIndex = 9;
             this.btnFaceObli.Text = "Obligations";
@@ -174,6 +189,8 @@
             this.btnFaceReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceReports.Location = new System.Drawing.Point(22, 389);
             this.btnFaceReports.Name = "btnFaceReports";
+            this.btnFaceReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceReports.Click += new System.EventHandler(this.btnFaceReports_Click);
             this.btnFaceReports.Size = new System.Drawing.Size(277, 36);
             this.btnFaceReports.TabIndex = 8;
             this.btnFaceReports.Text = "   Reports and Analysis";
@@ -181,22 +198,24 @@
             this.btnFaceReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFaceReports.UseVisualStyleBackColor = false;
             // 
-            // btnFaceAttendace
+            // btnFaceAttendance
             // 
-            this.btnFaceAttendace.BackColor = System.Drawing.Color.Transparent;
-            this.btnFaceAttendace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFaceAttendace.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFaceAttendace.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnFaceAttendace.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
-            this.btnFaceAttendace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFaceAttendace.Location = new System.Drawing.Point(22, 351);
-            this.btnFaceAttendace.Name = "btnFaceAttendace";
-            this.btnFaceAttendace.Size = new System.Drawing.Size(277, 36);
-            this.btnFaceAttendace.TabIndex = 7;
-            this.btnFaceAttendace.Text = "   Attendance Monitoring";
-            this.btnFaceAttendace.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFaceAttendace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnFaceAttendace.UseVisualStyleBackColor = false;
+            this.btnFaceAttendance.BackColor = System.Drawing.Color.Transparent;
+            this.btnFaceAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFaceAttendance.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFaceAttendance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnFaceAttendance.Image = global::SCCRecordsManagementSystem.Properties.Resources.icons8_pass_fail_24;
+            this.btnFaceAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFaceAttendance.Location = new System.Drawing.Point(22, 351);
+            this.btnFaceAttendance.Name = "btnFaceAttendance";
+            this.btnFaceAttendance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceAttendance.Click += new System.EventHandler(this.btnFaceAttendance_Click);
+            this.btnFaceAttendance.Size = new System.Drawing.Size(277, 36);
+            this.btnFaceAttendance.TabIndex = 7;
+            this.btnFaceAttendance.Text = "   Attendance Monitoring";
+            this.btnFaceAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFaceAttendance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFaceAttendance.UseVisualStyleBackColor = false;
             // 
             // btnFaceEvent
             // 
@@ -208,6 +227,8 @@
             this.btnFaceEvent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceEvent.Location = new System.Drawing.Point(22, 313);
             this.btnFaceEvent.Name = "btnFaceEvent";
+            this.btnFaceEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceEvent.Click += new System.EventHandler(this.btnFaceEvent_Click);
             this.btnFaceEvent.Size = new System.Drawing.Size(277, 36);
             this.btnFaceEvent.TabIndex = 6;
             this.btnFaceEvent.Text = "   Event Management";
@@ -225,6 +246,8 @@
             this.btnFace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFace.Location = new System.Drawing.Point(22, 275);
             this.btnFace.Name = "btnFace";
+            this.btnFace.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFace.Click += new System.EventHandler(this.btnFace_Click);
             this.btnFace.Size = new System.Drawing.Size(277, 36);
             this.btnFace.TabIndex = 5;
             this.btnFace.Text = "   Face Recognition";
@@ -242,6 +265,8 @@
             this.btnFaceOfficer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceOfficer.Location = new System.Drawing.Point(22, 237);
             this.btnFaceOfficer.Name = "btnFaceOfficer";
+            this.btnFaceOfficer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceOfficer.Click += new System.EventHandler(this.btnFaceOfficer_Click);
             this.btnFaceOfficer.Size = new System.Drawing.Size(277, 36);
             this.btnFaceOfficer.TabIndex = 4;
             this.btnFaceOfficer.Text = "   Officer Records";
@@ -259,6 +284,8 @@
             this.btnFaceStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceStudent.Location = new System.Drawing.Point(22, 199);
             this.btnFaceStudent.Name = "btnFaceStudent";
+            this.btnFaceStudent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceStudent.Click += new System.EventHandler(this.btnFaceStudent_Click);
             this.btnFaceStudent.Size = new System.Drawing.Size(277, 36);
             this.btnFaceStudent.TabIndex = 3;
             this.btnFaceStudent.Text = "   Student Records";
@@ -275,6 +302,8 @@
             this.btnFaceDept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFaceDept.Location = new System.Drawing.Point(22, 161);
             this.btnFaceDept.Name = "btnFaceDept";
+            this.btnFaceDept.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFaceDept.Click += new System.EventHandler(this.btnFaceDept_Click);
             this.btnFaceDept.Size = new System.Drawing.Size(277, 36);
             this.btnFaceDept.TabIndex = 2;
             this.btnFaceDept.Text = "   Departments";
@@ -285,263 +314,348 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.lblTitle);
             this.panel5.Location = new System.Drawing.Point(326, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(979, 48);
             this.panel5.TabIndex = 28;
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.GhostWhite;
-            this.label1.Location = new System.Drawing.Point(68, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Face Recognition";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.GhostWhite;
+            this.lblTitle.Location = new System.Drawing.Point(68, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(151, 21);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Face Recognition";
             // 
-            // panel2
+            // pnlCameraStatus
             // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(348, 62);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(475, 82);
-            this.panel2.TabIndex = 29;
+            this.pnlCameraStatus.Controls.Add(this.lblFaceDataInfo);
+            this.pnlCameraStatus.Controls.Add(this.lblCameraStatus);
+            this.pnlCameraStatus.Location = new System.Drawing.Point(348, 62);
+            this.pnlCameraStatus.Name = "pnlCameraStatus";
+            this.pnlCameraStatus.Size = new System.Drawing.Size(475, 82);
+            this.pnlCameraStatus.TabIndex = 29;
             // 
-            // label2
+            // lblCameraStatus
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(136, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 27);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Camera Active";
+            this.lblCameraStatus.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCameraStatus.Location = new System.Drawing.Point(10, 4);
+            this.lblCameraStatus.Name = "lblCameraStatus";
+            this.lblCameraStatus.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblCameraStatus.Size = new System.Drawing.Size(455, 46);
+            this.lblCameraStatus.TabIndex = 0;
+            this.lblCameraStatus.Text = "Camera is off.";
             // 
-            // panel3
+            // pnlSession
             // 
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.cmbInOut);
-            this.panel3.Controls.Add(this.cmbEvent);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(817, 62);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(476, 82);
-            this.panel3.TabIndex = 30;
+            this.pnlSession.Controls.Add(this.lblSessionCount);
+            this.pnlSession.Controls.Add(this.lblInOut);
+            this.pnlSession.Controls.Add(this.cmbInOut);
+            this.pnlSession.Controls.Add(this.cmbSession);
+            this.pnlSession.Controls.Add(this.lblSession);
+            this.pnlSession.Location = new System.Drawing.Point(817, 62);
+            this.pnlSession.Name = "pnlSession";
+            this.pnlSession.Size = new System.Drawing.Size(476, 82);
+            this.pnlSession.TabIndex = 30;
             // 
-            // cmbEvent
+            // cmbSession
             // 
-            this.cmbEvent.FormattingEnabled = true;
-            this.cmbEvent.Location = new System.Drawing.Point(97, 16);
-            this.cmbEvent.Name = "cmbEvent";
-            this.cmbEvent.Size = new System.Drawing.Size(337, 24);
-            this.cmbEvent.TabIndex = 2;
+            this.cmbSession.FormattingEnabled = true;
+            this.cmbSession.Location = new System.Drawing.Point(80, 12);
+            this.cmbSession.Name = "cmbSession";
+            this.cmbSession.SelectedIndexChanged += new System.EventHandler(this.cmbSession_SelectedIndexChanged);
+            this.cmbSession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSession.Size = new System.Drawing.Size(385, 24);
+            this.cmbSession.TabIndex = 2;
             // 
-            // label3
+            // lblSession
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(37, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 17);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Event :";
+            this.lblSession.AutoSize = true;
+            this.lblSession.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSession.Location = new System.Drawing.Point(10, 15);
+            this.lblSession.Name = "lblSession";
+            this.lblSession.Size = new System.Drawing.Size(54, 17);
+            this.lblSession.TabIndex = 1;
+            this.lblSession.Text = "Session:";
             // 
-            // panel4
+            // pnlCamera
             // 
-            this.panel4.Controls.Add(this.pctAttendanceCap);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(350, 150);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(461, 365);
-            this.panel4.TabIndex = 31;
+            this.pnlCamera.Controls.Add(this.picCameraPreview);
+            this.pnlCamera.Location = new System.Drawing.Point(350, 150);
+            this.pnlCamera.Name = "pnlCamera";
+            this.pnlCamera.Size = new System.Drawing.Size(461, 365);
+            this.pnlCamera.TabIndex = 31;
             // 
-            // pctAttendanceCap
+            // picCameraPreview
             // 
-            this.pctAttendanceCap.Location = new System.Drawing.Point(61, 21);
-            this.pctAttendanceCap.Name = "pctAttendanceCap";
-            this.pctAttendanceCap.Size = new System.Drawing.Size(326, 310);
-            this.pctAttendanceCap.TabIndex = 1;
-            this.pctAttendanceCap.TabStop = false;
+            this.picCameraPreview.Location = new System.Drawing.Point(8, 8);
+            this.picCameraPreview.Name = "picCameraPreview";
+            this.picCameraPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCameraPreview.BackColor = System.Drawing.Color.Black;
+            this.picCameraPreview.Size = new System.Drawing.Size(445, 349);
+            this.picCameraPreview.TabIndex = 1;
+            this.picCameraPreview.TabStop = false;
             // 
-            // label4
+            // pnlStudentCard
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(145, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 16);
-            this.label4.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.lblMessage);
-            this.panel6.Controls.Add(this.lblTIme);
-            this.panel6.Controls.Add(this.lblYearLevel);
-            this.panel6.Controls.Add(this.lblDepartment);
-            this.panel6.Controls.Add(this.lblIDNumber);
-            this.panel6.Controls.Add(this.lblFullName);
-            this.panel6.Controls.Add(this.label9);
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Controls.Add(this.label6);
-            this.panel6.Controls.Add(this.label5);
-            this.panel6.Controls.Add(this.pctStudentPic);
-            this.panel6.Location = new System.Drawing.Point(817, 150);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(476, 365);
-            this.panel6.TabIndex = 32;
+            this.pnlStudentCard.Controls.Add(this.lblAttendanceStatus);
+            this.pnlStudentCard.Controls.Add(this.lblStatusTitle);
+            this.pnlStudentCard.Controls.Add(this.lblCardTitle);
+            this.pnlStudentCard.Controls.Add(this.lblMessage);
+            this.pnlStudentCard.Controls.Add(this.lblTime);
+            this.pnlStudentCard.Controls.Add(this.lblYearLevel);
+            this.pnlStudentCard.Controls.Add(this.lblDepartment);
+            this.pnlStudentCard.Controls.Add(this.lblIDNumber);
+            this.pnlStudentCard.Controls.Add(this.lblFullName);
+            this.pnlStudentCard.Controls.Add(this.lblTimeTitle);
+            this.pnlStudentCard.Controls.Add(this.lblYearTitle);
+            this.pnlStudentCard.Controls.Add(this.lblDepartmentTitle);
+            this.pnlStudentCard.Controls.Add(this.lblIdTitle);
+            this.pnlStudentCard.Controls.Add(this.lblNameTitle);
+            this.pnlStudentCard.Controls.Add(this.picStudentFace);
+            this.pnlStudentCard.Location = new System.Drawing.Point(817, 150);
+            this.pnlStudentCard.Name = "pnlStudentCard";
+            this.pnlStudentCard.Size = new System.Drawing.Size(476, 365);
+            this.pnlStudentCard.TabIndex = 32;
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(94, 315);
+            this.lblMessage.Location = new System.Drawing.Point(15, 288);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(51, 16);
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMessage.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Size = new System.Drawing.Size(446, 70);
             this.lblMessage.TabIndex = 11;
-            this.lblMessage.Text = "label10";
+            this.lblMessage.Text = "";
             // 
-            // lblTIme
+            // lblTime
             // 
-            this.lblTIme.AutoSize = true;
-            this.lblTIme.Location = new System.Drawing.Point(332, 214);
-            this.lblTIme.Name = "lblTIme";
-            this.lblTIme.Size = new System.Drawing.Size(51, 16);
-            this.lblTIme.TabIndex = 10;
-            this.lblTIme.Text = "label10";
+            this.lblTime.Location = new System.Drawing.Point(320, 190);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Size = new System.Drawing.Size(145, 22);
+            this.lblTime.TabIndex = 10;
+            this.lblTime.Text = "-";
             // 
             // lblYearLevel
             // 
-            this.lblYearLevel.AutoSize = true;
-            this.lblYearLevel.Location = new System.Drawing.Point(332, 175);
+            this.lblYearLevel.Location = new System.Drawing.Point(320, 160);
             this.lblYearLevel.Name = "lblYearLevel";
-            this.lblYearLevel.Size = new System.Drawing.Size(51, 16);
+            this.lblYearLevel.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYearLevel.Size = new System.Drawing.Size(145, 22);
             this.lblYearLevel.TabIndex = 9;
-            this.lblYearLevel.Text = "label10";
+            this.lblYearLevel.Text = "-";
             // 
             // lblDepartment
             // 
-            this.lblDepartment.AutoSize = true;
-            this.lblDepartment.Location = new System.Drawing.Point(332, 138);
+            this.lblDepartment.Location = new System.Drawing.Point(320, 130);
             this.lblDepartment.Name = "lblDepartment";
-            this.lblDepartment.Size = new System.Drawing.Size(51, 16);
+            this.lblDepartment.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepartment.Size = new System.Drawing.Size(145, 22);
             this.lblDepartment.TabIndex = 8;
-            this.lblDepartment.Text = "label10";
+            this.lblDepartment.Text = "-";
             // 
             // lblIDNumber
             // 
-            this.lblIDNumber.AutoSize = true;
-            this.lblIDNumber.Location = new System.Drawing.Point(332, 106);
+            this.lblIDNumber.Location = new System.Drawing.Point(320, 100);
             this.lblIDNumber.Name = "lblIDNumber";
-            this.lblIDNumber.Size = new System.Drawing.Size(51, 16);
+            this.lblIDNumber.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIDNumber.Size = new System.Drawing.Size(145, 22);
             this.lblIDNumber.TabIndex = 7;
-            this.lblIDNumber.Text = "label10";
+            this.lblIDNumber.Text = "-";
             // 
             // lblFullName
             // 
-            this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(332, 68);
+            this.lblFullName.Location = new System.Drawing.Point(320, 50);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(51, 16);
+            this.lblFullName.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFullName.Size = new System.Drawing.Size(145, 46);
             this.lblFullName.TabIndex = 6;
-            this.lblFullName.Text = "label10";
+            this.lblFullName.Text = "-";
             // 
-            // label9
+            // lblTimeTitle
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(231, 213);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 17);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Time:";
+            this.lblTimeTitle.AutoSize = true;
+            this.lblTimeTitle.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeTitle.Location = new System.Drawing.Point(225, 190);
+            this.lblTimeTitle.Name = "lblTimeTitle";
+            this.lblTimeTitle.Size = new System.Drawing.Size(48, 17);
+            this.lblTimeTitle.TabIndex = 5;
+            this.lblTimeTitle.Text = "Time:";
             // 
-            // label8
+            // lblYearTitle
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(231, 175);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 17);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Year Level:";
+            this.lblYearTitle.AutoSize = true;
+            this.lblYearTitle.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYearTitle.Location = new System.Drawing.Point(225, 160);
+            this.lblYearTitle.Name = "lblYearTitle";
+            this.lblYearTitle.Size = new System.Drawing.Size(83, 17);
+            this.lblYearTitle.TabIndex = 4;
+            this.lblYearTitle.Text = "Year Level:";
             // 
-            // label7
+            // lblDepartmentTitle
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(231, 137);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 17);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Department:";
+            this.lblDepartmentTitle.AutoSize = true;
+            this.lblDepartmentTitle.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepartmentTitle.Location = new System.Drawing.Point(225, 130);
+            this.lblDepartmentTitle.Name = "lblDepartmentTitle";
+            this.lblDepartmentTitle.Size = new System.Drawing.Size(95, 17);
+            this.lblDepartmentTitle.TabIndex = 3;
+            this.lblDepartmentTitle.Text = "Department:";
             // 
-            // label6
+            // lblIdTitle
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(231, 106);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 17);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "ID Number:";
+            this.lblIdTitle.AutoSize = true;
+            this.lblIdTitle.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdTitle.Location = new System.Drawing.Point(225, 100);
+            this.lblIdTitle.Name = "lblIdTitle";
+            this.lblIdTitle.Size = new System.Drawing.Size(87, 17);
+            this.lblIdTitle.TabIndex = 2;
+            this.lblIdTitle.Text = "ID Number:";
             // 
-            // label5
+            // lblNameTitle
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(231, 68);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Full Name:";
+            this.lblNameTitle.AutoSize = true;
+            this.lblNameTitle.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameTitle.Location = new System.Drawing.Point(225, 50);
+            this.lblNameTitle.Name = "lblNameTitle";
+            this.lblNameTitle.Size = new System.Drawing.Size(81, 17);
+            this.lblNameTitle.TabIndex = 1;
+            this.lblNameTitle.Text = "Full Name:";
             // 
-            // pctStudentPic
+            // picStudentFace
             // 
-            this.pctStudentPic.Location = new System.Drawing.Point(21, 30);
-            this.pctStudentPic.Name = "pctStudentPic";
-            this.pctStudentPic.Size = new System.Drawing.Size(195, 258);
-            this.pctStudentPic.TabIndex = 0;
-            this.pctStudentPic.TabStop = false;
+            this.picStudentFace.Location = new System.Drawing.Point(15, 40);
+            this.picStudentFace.Name = "picStudentFace";
+            this.picStudentFace.BackColor = System.Drawing.Color.White;
+            this.picStudentFace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picStudentFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picStudentFace.Size = new System.Drawing.Size(200, 240);
+            this.picStudentFace.TabIndex = 0;
+            this.picStudentFace.TabStop = false;
             // 
             // btnNextPerson
             // 
             this.btnNextPerson.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNextPerson.Location = new System.Drawing.Point(450, 532);
             this.btnNextPerson.Name = "btnNextPerson";
+            this.btnNextPerson.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNextPerson.Click += new System.EventHandler(this.btnNextPerson_Click);
             this.btnNextPerson.Size = new System.Drawing.Size(253, 45);
             this.btnNextPerson.TabIndex = 33;
-            this.btnNextPerson.Text = "Next Person";
+            this.btnNextPerson.Text = "NEXT PERSON";
             this.btnNextPerson.UseVisualStyleBackColor = true;
             // 
-            // btnRetry
+            // btnRestartCamera
             // 
-            this.btnRetry.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRetry.Location = new System.Drawing.Point(936, 532);
-            this.btnRetry.Name = "btnRetry";
-            this.btnRetry.Size = new System.Drawing.Size(253, 45);
-            this.btnRetry.TabIndex = 34;
-            this.btnRetry.Text = "Retry";
-            this.btnRetry.UseVisualStyleBackColor = true;
+            this.btnRestartCamera.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestartCamera.Location = new System.Drawing.Point(936, 532);
+            this.btnRestartCamera.Name = "btnRestartCamera";
+            this.btnRestartCamera.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRestartCamera.Click += new System.EventHandler(this.btnRestartCamera_Click);
+            this.btnRestartCamera.Size = new System.Drawing.Size(253, 45);
+            this.btnRestartCamera.TabIndex = 34;
+            this.btnRestartCamera.Text = "RESTART / RELOAD";
+            this.btnRestartCamera.UseVisualStyleBackColor = true;
             // 
             // cmbInOut
             // 
             this.cmbInOut.FormattingEnabled = true;
-            this.cmbInOut.Location = new System.Drawing.Point(97, 46);
+            this.cmbInOut.Location = new System.Drawing.Point(80, 46);
             this.cmbInOut.Name = "cmbInOut";
-            this.cmbInOut.Size = new System.Drawing.Size(121, 24);
+            this.cmbInOut.SelectedIndexChanged += new System.EventHandler(this.cmbInOut_SelectedIndexChanged);
+            this.cmbInOut.Items.AddRange(new object[] {
+            "Log In",
+            "Log Out"});
+            this.cmbInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInOut.Size = new System.Drawing.Size(120, 24);
             this.cmbInOut.TabIndex = 1;
             // 
-            // label10
+            // lblInOut
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(37, 48);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 17);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "In/Out:";
+            this.lblInOut.AutoSize = true;
+            this.lblInOut.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInOut.Location = new System.Drawing.Point(10, 49);
+            this.lblInOut.Name = "lblInOut";
+            this.lblInOut.Size = new System.Drawing.Size(58, 17);
+            this.lblInOut.TabIndex = 3;
+            this.lblInOut.Text = "Action:";
+            // 
+            // lblFaceDataInfo
+            // 
+            this.lblFaceDataInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblFaceDataInfo.Font = new System.Drawing.Font("Cambria", 8.5F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFaceDataInfo.ForeColor = System.Drawing.Color.DimGray;
+            this.lblFaceDataInfo.Location = new System.Drawing.Point(10, 52);
+            this.lblFaceDataInfo.Name = "lblFaceDataInfo";
+            this.lblFaceDataInfo.Size = new System.Drawing.Size(455, 24);
+            this.lblFaceDataInfo.TabIndex = 0;
+            this.lblFaceDataInfo.Text = "";
+            // 
+            // lblSessionCount
+            // 
+            this.lblSessionCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblSessionCount.Font = new System.Drawing.Font("Cambria", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSessionCount.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblSessionCount.Location = new System.Drawing.Point(210, 48);
+            this.lblSessionCount.Name = "lblSessionCount";
+            this.lblSessionCount.Size = new System.Drawing.Size(255, 22);
+            this.lblSessionCount.TabIndex = 0;
+            this.lblSessionCount.Text = "";
+            this.lblSessionCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCardTitle
+            // 
+            this.lblCardTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblCardTitle.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCardTitle.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblCardTitle.Location = new System.Drawing.Point(15, 8);
+            this.lblCardTitle.Name = "lblCardTitle";
+            this.lblCardTitle.Size = new System.Drawing.Size(446, 26);
+            this.lblCardTitle.TabIndex = 0;
+            this.lblCardTitle.Text = "Waiting for a student...";
+            this.lblCardTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblStatusTitle
+            // 
+            this.lblStatusTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblStatusTitle.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatusTitle.Location = new System.Drawing.Point(225, 220);
+            this.lblStatusTitle.Name = "lblStatusTitle";
+            this.lblStatusTitle.Size = new System.Drawing.Size(90, 20);
+            this.lblStatusTitle.TabIndex = 0;
+            this.lblStatusTitle.Text = "Status:";
+            // 
+            // lblAttendanceStatus
+            // 
+            this.lblAttendanceStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblAttendanceStatus.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttendanceStatus.Location = new System.Drawing.Point(320, 220);
+            this.lblAttendanceStatus.Name = "lblAttendanceStatus";
+            this.lblAttendanceStatus.Size = new System.Drawing.Size(145, 22);
+            this.lblAttendanceStatus.TabIndex = 0;
+            this.lblAttendanceStatus.Text = "-";
+            // 
+            // lblHelp
+            // 
+            this.lblHelp.BackColor = System.Drawing.Color.Transparent;
+            this.lblHelp.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHelp.ForeColor = System.Drawing.Color.DimGray;
+            this.lblHelp.Location = new System.Drawing.Point(350, 585);
+            this.lblHelp.Name = "lblHelp";
+            this.lblHelp.Size = new System.Drawing.Size(943, 24);
+            this.lblHelp.TabIndex = 0;
+            this.lblHelp.Text = "Tip: one student at a time. Look straight at the camera until the box turns GREEN. Press NEXT PERSON to clear the card.";
+            this.lblHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timerScan
+            // 
+            this.timerScan.Interval = 100;
+            this.timerScan.Tick += new System.EventHandler(this.timerScan_Tick);
             // 
             // FaceRecognition
             // 
@@ -550,35 +664,47 @@
             this.BackgroundImage = global::SCCRecordsManagementSystem.Properties.Resources._891752403_1143943308365188_7410099486200290872_n2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1305, 619);
-            this.Controls.Add(this.btnRetry);
+            this.Controls.Add(this.lblHelp);
+            this.Controls.Add(this.btnRestartCamera);
             this.Controls.Add(this.btnNextPerson);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlStudentCard);
+            this.Controls.Add(this.pnlCamera);
+            this.Controls.Add(this.pnlSession);
+            this.Controls.Add(this.pnlCameraStatus);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FaceRecognition";
-            this.Text = "FaceRecognition";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SCC Records Management System - Face Recognition Attendance";
+            this.Shown += new System.EventHandler(this.FaceRecognition_Shown);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FaceRecognition_FormClosed);
+            this.Load += new System.EventHandler(this.FaceRecognition_Load);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctAttendanceCap)).EndInit();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctStudentPic)).EndInit();
+            this.pnlCameraStatus.ResumeLayout(false);
+            this.pnlCameraStatus.PerformLayout();
+            this.pnlSession.ResumeLayout(false);
+            this.pnlSession.PerformLayout();
+            this.pnlCamera.ResumeLayout(false);
+            this.pnlCamera.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCameraPreview)).EndInit();
+            this.pnlStudentCard.ResumeLayout(false);
+            this.pnlStudentCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picStudentFace)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private System.Windows.Forms.Timer timerScan;
+        private System.Windows.Forms.Label lblHelp;
+        private System.Windows.Forms.Label lblAttendanceStatus;
+        private System.Windows.Forms.Label lblStatusTitle;
+        private System.Windows.Forms.Label lblCardTitle;
+        private System.Windows.Forms.Label lblSessionCount;
+        private System.Windows.Forms.Label lblFaceDataInfo;
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnFaceLogout;
@@ -586,38 +712,37 @@
         private System.Windows.Forms.Button btnFaceRules;
         private System.Windows.Forms.Button btnFaceObli;
         private System.Windows.Forms.Button btnFaceReports;
-        private System.Windows.Forms.Button btnFaceAttendace;
+        private System.Windows.Forms.Button btnFaceAttendance;
         private System.Windows.Forms.Button btnFaceEvent;
         private System.Windows.Forms.Button btnFace;
         private System.Windows.Forms.Button btnFaceOfficer;
         private System.Windows.Forms.Button btnFaceStudent;
         private System.Windows.Forms.Button btnFaceDept;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbEvent;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pctStudentPic;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Panel pnlCameraStatus;
+        private System.Windows.Forms.Label lblCameraStatus;
+        private System.Windows.Forms.Panel pnlSession;
+        private System.Windows.Forms.Label lblSession;
+        private System.Windows.Forms.ComboBox cmbSession;
+        private System.Windows.Forms.Panel pnlCamera;
+        private System.Windows.Forms.Panel pnlStudentCard;
+        private System.Windows.Forms.Label lblTimeTitle;
+        private System.Windows.Forms.Label lblYearTitle;
+        private System.Windows.Forms.Label lblDepartmentTitle;
+        private System.Windows.Forms.Label lblIdTitle;
+        private System.Windows.Forms.Label lblNameTitle;
+        private System.Windows.Forms.PictureBox picStudentFace;
         private System.Windows.Forms.Button btnNextPerson;
-        private System.Windows.Forms.Button btnRetry;
-        private System.Windows.Forms.PictureBox pctAttendanceCap;
+        private System.Windows.Forms.Button btnRestartCamera;
+        private System.Windows.Forms.PictureBox picCameraPreview;
         private System.Windows.Forms.Label lblYearLevel;
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.Label lblIDNumber;
         private System.Windows.Forms.Label lblFullName;
-        private System.Windows.Forms.Label lblTIme;
+        private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblMessage;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblInOut;
         private System.Windows.Forms.ComboBox cmbInOut;
     }
 }

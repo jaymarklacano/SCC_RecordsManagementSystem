@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace SCCRecordsManagementSystem
 {
+    // Resets the password of any account (Admin or Officer).
+    // An Admin must type his/her password to allow the reset.
     public partial class ForgotPassword : Form
     {
         public ForgotPassword()
@@ -23,6 +25,7 @@ namespace SCCRecordsManagementSystem
             string username = txtUser.Text.Trim();
             string newPassword = txtNewPass.Text;
             string confirmPassword = txtNewConfirmPass.Text;
+            string adminPassword = txtAdminPassword.Text;
 
             // 1. Check if any fields are empty
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmPassword))
@@ -31,10 +34,26 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
+            if (newPassword.Length < 6)
+            {
+                MessageBox.Show("The new password must be at least 6 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNewPass.Focus();
+                return;
+            }
+
             // 2. Check if the new passwords match each other
             if (newPassword != confirmPassword)
             {
                 MessageBox.Show("New passwords do not match!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNewConfirmPass.Clear();
+                txtNewConfirmPass.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(adminPassword))
+            {
+                MessageBox.Show("Only an Admin can reset a password.\nPlease ask the Admin to type the Admin Password.", "Admin Password Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAdminPassword.Focus();
                 return;
             }
 
@@ -44,7 +63,44 @@ namespace SCCRecordsManagementSystem
                 {
                     conn.Open();
 
-                    // 3. Check if the username exists in the accounts table
+                    // 3. Check the Admin Password
+                    DataTable admins = new DataTable();
+
+                    using (var cmd = new MySqlCommand("SELECT password FROM accounts WHERE role = 'Admin'", conn))
+                    {
+                        using (var adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(admins);
+                        }
+                    }
+
+                    bool adminPasswordIsCorrect = false;
+
+                    foreach (DataRow row in admins.Rows)
+                    {
+                        try
+                        {
+                            if (BCrypt.Net.BCrypt.Verify(adminPassword, row["password"].ToString()))
+                            {
+                                adminPasswordIsCorrect = true;
+                                break;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            // Skip a damaged password hash
+                        }
+                    }
+
+                    if (adminPasswordIsCorrect == false)
+                    {
+                        MessageBox.Show("The Admin Password is wrong.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtAdminPassword.Clear();
+                        txtAdminPassword.Focus();
+                        return;
+                    }
+
+                    // 4. Check if the username exists in the accounts table
                     int accountId = -1;
                     string checkQuery = "SELECT account_id FROM accounts WHERE username = @username";
 
@@ -58,18 +114,17 @@ namespace SCCRecordsManagementSystem
                         }
                     }
 
-                    // Security Best Practice: Show a generic success message even if the username 
-                    // isn't found, so attackers can't guess valid usernames in your system.
                     if (accountId == -1)
                     {
-                        MessageBox.Show("If that username exists, the password has been reset successfully.", "Password Reset", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("The username \"" + username + "\" was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtUser.Focus();
                         return;
                     }
 
-                    // 4. Hash the new password securely using BCrypt
+                    // 5. Hash the new password securely using BCrypt
                     string hashedNewPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
 
-                    // 5. Update the password in the database for this account
+                    // 6. Update the password in the database for this account
                     string updateQuery = "UPDATE accounts SET password = @password WHERE account_id = @accountId";
 
                     using (var cmd = new MySqlCommand(updateQuery, conn))
@@ -86,7 +141,7 @@ namespace SCCRecordsManagementSystem
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Database.showError("The password was not changed.", ex);
                 }
             }
         }

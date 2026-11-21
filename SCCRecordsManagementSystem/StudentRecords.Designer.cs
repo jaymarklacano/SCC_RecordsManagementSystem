@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.lblAttendanceSummary = new System.Windows.Forms.Label();
+            this.lblTotalStudents = new System.Windows.Forms.Label();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -44,8 +47,7 @@
             this.btnStudentRec = new System.Windows.Forms.Button();
             this.btnStudentDepartment = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlDetails = new System.Windows.Forms.Panel();
             this.lblDetailsTitle = new System.Windows.Forms.Label();
             this.lblNumberCaption = new System.Windows.Forms.Label();
@@ -118,6 +120,8 @@
             this.btnStudentLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentLogout.Location = new System.Drawing.Point(22, 560);
             this.btnStudentLogout.Name = "btnStudentLogout";
+            this.btnStudentLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentLogout.Click += new System.EventHandler(this.btnStudentLogout_Click);
             this.btnStudentLogout.Size = new System.Drawing.Size(277, 38);
             this.btnStudentLogout.TabIndex = 11;
             this.btnStudentLogout.Text = "   LogOut";
@@ -134,6 +138,8 @@
             this.btnStudentDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentDashboard.Location = new System.Drawing.Point(22, 123);
             this.btnStudentDashboard.Name = "btnStudentDashboard";
+            this.btnStudentDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentDashboard.Click += new System.EventHandler(this.btnStudentDashboard_Click);
             this.btnStudentDashboard.Size = new System.Drawing.Size(277, 36);
             this.btnStudentDashboard.TabIndex = 1;
             this.btnStudentDashboard.Text = "   Dashboard";
@@ -150,6 +156,8 @@
             this.btnStudentRules.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentRules.Location = new System.Drawing.Point(22, 465);
             this.btnStudentRules.Name = "btnStudentRules";
+            this.btnStudentRules.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentRules.Click += new System.EventHandler(this.btnStudentRules_Click);
             this.btnStudentRules.Size = new System.Drawing.Size(277, 36);
             this.btnStudentRules.TabIndex = 10;
             this.btnStudentRules.Text = "   Rules and Permission";
@@ -167,6 +175,8 @@
             this.btnStudentObligation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentObligation.Location = new System.Drawing.Point(22, 427);
             this.btnStudentObligation.Name = "btnStudentObligation";
+            this.btnStudentObligation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentObligation.Click += new System.EventHandler(this.btnStudentObligation_Click);
             this.btnStudentObligation.Size = new System.Drawing.Size(277, 36);
             this.btnStudentObligation.TabIndex = 9;
             this.btnStudentObligation.Text = "Obligations";
@@ -184,6 +194,8 @@
             this.btnStudentReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentReports.Location = new System.Drawing.Point(22, 389);
             this.btnStudentReports.Name = "btnStudentReports";
+            this.btnStudentReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentReports.Click += new System.EventHandler(this.btnStudentReports_Click);
             this.btnStudentReports.Size = new System.Drawing.Size(277, 36);
             this.btnStudentReports.TabIndex = 8;
             this.btnStudentReports.Text = "   Reports and Analysis";
@@ -201,6 +213,8 @@
             this.btnStudentAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentAttendance.Location = new System.Drawing.Point(22, 351);
             this.btnStudentAttendance.Name = "btnStudentAttendance";
+            this.btnStudentAttendance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentAttendance.Click += new System.EventHandler(this.btnStudentAttendance_Click);
             this.btnStudentAttendance.Size = new System.Drawing.Size(277, 36);
             this.btnStudentAttendance.TabIndex = 7;
             this.btnStudentAttendance.Text = "   Attendance Monitoring";
@@ -218,6 +232,8 @@
             this.btnStudentEvent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentEvent.Location = new System.Drawing.Point(22, 313);
             this.btnStudentEvent.Name = "btnStudentEvent";
+            this.btnStudentEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentEvent.Click += new System.EventHandler(this.btnStudentEvent_Click);
             this.btnStudentEvent.Size = new System.Drawing.Size(277, 36);
             this.btnStudentEvent.TabIndex = 6;
             this.btnStudentEvent.Text = "   Event Management";
@@ -235,6 +251,8 @@
             this.btnStudentFace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentFace.Location = new System.Drawing.Point(22, 275);
             this.btnStudentFace.Name = "btnStudentFace";
+            this.btnStudentFace.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentFace.Click += new System.EventHandler(this.btnStudentFace_Click);
             this.btnStudentFace.Size = new System.Drawing.Size(277, 36);
             this.btnStudentFace.TabIndex = 5;
             this.btnStudentFace.Text = "   Face Recognition";
@@ -252,6 +270,8 @@
             this.btnStudentOfficer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentOfficer.Location = new System.Drawing.Point(22, 237);
             this.btnStudentOfficer.Name = "btnStudentOfficer";
+            this.btnStudentOfficer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentOfficer.Click += new System.EventHandler(this.btnStudentOfficer_Click);
             this.btnStudentOfficer.Size = new System.Drawing.Size(277, 36);
             this.btnStudentOfficer.TabIndex = 4;
             this.btnStudentOfficer.Text = "   Officer Records";
@@ -269,6 +289,8 @@
             this.btnStudentRec.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentRec.Location = new System.Drawing.Point(22, 199);
             this.btnStudentRec.Name = "btnStudentRec";
+            this.btnStudentRec.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentRec.Click += new System.EventHandler(this.btnStudentRec_Click);
             this.btnStudentRec.Size = new System.Drawing.Size(277, 36);
             this.btnStudentRec.TabIndex = 3;
             this.btnStudentRec.Text = "   Student Records";
@@ -285,6 +307,8 @@
             this.btnStudentDepartment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentDepartment.Location = new System.Drawing.Point(22, 161);
             this.btnStudentDepartment.Name = "btnStudentDepartment";
+            this.btnStudentDepartment.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentDepartment.Click += new System.EventHandler(this.btnStudentDepartment_Click);
             this.btnStudentDepartment.Size = new System.Drawing.Size(277, 36);
             this.btnStudentDepartment.TabIndex = 2;
             this.btnStudentDepartment.Text = "   Departments";
@@ -295,22 +319,22 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(118)))), ((int)(((byte)(159)))));
-            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.lblTitle);
             this.panel5.Location = new System.Drawing.Point(317, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(989, 58);
             this.panel5.TabIndex = 25;
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.GhostWhite;
-            this.label1.Location = new System.Drawing.Point(88, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Students Records";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.GhostWhite;
+            this.lblTitle.Location = new System.Drawing.Point(88, 20);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(155, 21);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Students Records";
             // 
             // pnlDetails
             // 
@@ -566,13 +590,15 @@
             this.txtSearch.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(405, 68);
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.MaxLength = 60;
             this.txtSearch.Size = new System.Drawing.Size(260, 28);
             this.txtSearch.TabIndex = 40;
-            this.txtSearch.Text = "Search Name/ID Number";
             // 
             // pnlPhoto
             // 
             this.pnlPhoto.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.pnlPhoto.Controls.Add(this.lblAttendanceSummary);
             this.pnlPhoto.Controls.Add(this.picPhoto);
             this.pnlPhoto.Controls.Add(this.lblPhotoName);
             this.pnlPhoto.Controls.Add(this.lblPhotoInfo);
@@ -644,6 +670,7 @@
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
             this.btnEdit.Location = new System.Drawing.Point(25, 362);
             this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             this.btnEdit.Size = new System.Drawing.Size(200, 40);
             this.btnEdit.TabIndex = 4;
             this.btnEdit.Text = "EDIT STUDENT";
@@ -659,6 +686,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(25, 412);
             this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             this.btnDelete.Size = new System.Drawing.Size(200, 40);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "DELETE STUDENT";
@@ -674,6 +702,7 @@
             this.btnClear.ForeColor = System.Drawing.Color.Black;
             this.btnClear.Location = new System.Drawing.Point(1140, 64);
             this.btnClear.Name = "btnClear";
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             this.btnClear.Size = new System.Drawing.Size(145, 30);
             this.btnClear.TabIndex = 46;
             this.btnClear.Text = "CLEAR FILTERS";
@@ -690,6 +719,7 @@
             "Not Registered"});
             this.cmbFace.Location = new System.Drawing.Point(972, 68);
             this.cmbFace.Name = "cmbFace";
+            this.cmbFace.SelectedIndexChanged += new System.EventHandler(this.filter_SelectedIndexChanged);
             this.cmbFace.Size = new System.Drawing.Size(160, 28);
             this.cmbFace.TabIndex = 45;
             // 
@@ -706,6 +736,7 @@
             "4th Year"});
             this.cmbYear.Location = new System.Drawing.Point(846, 68);
             this.cmbYear.Name = "cmbYear";
+            this.cmbYear.SelectedIndexChanged += new System.EventHandler(this.filter_SelectedIndexChanged);
             this.cmbYear.Size = new System.Drawing.Size(115, 28);
             this.cmbYear.TabIndex = 44;
             // 
@@ -716,6 +747,7 @@
             this.cmbDepartment.FormattingEnabled = true;
             this.cmbDepartment.Location = new System.Drawing.Point(675, 68);
             this.cmbDepartment.Name = "cmbDepartment";
+            this.cmbDepartment.SelectedIndexChanged += new System.EventHandler(this.filter_SelectedIndexChanged);
             this.cmbDepartment.Size = new System.Drawing.Size(165, 28);
             this.cmbDepartment.TabIndex = 43;
             // 
@@ -751,6 +783,8 @@
             this.dgvStudents.Location = new System.Drawing.Point(610, 299);
             this.dgvStudents.MultiSelect = false;
             this.dgvStudents.Name = "dgvStudents";
+            this.dgvStudents.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudents_CellDoubleClick);
+            this.dgvStudents.SelectionChanged += new System.EventHandler(this.dgvStudents_SelectionChanged);
             this.dgvStudents.ReadOnly = true;
             this.dgvStudents.RowHeadersVisible = false;
             this.dgvStudents.RowHeadersWidth = 51;
@@ -772,12 +806,36 @@
             this.lblEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEmpty.Visible = false;
             // 
+            // lblTotalStudents
+            // 
+            this.lblTotalStudents.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalStudents.Font = new System.Drawing.Font("Cambria", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalStudents.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblTotalStudents.Location = new System.Drawing.Point(610, 597);
+            this.lblTotalStudents.Name = "lblTotalStudents";
+            this.lblTotalStudents.Size = new System.Drawing.Size(675, 20);
+            this.lblTotalStudents.TabIndex = 0;
+            this.lblTotalStudents.Text = "Total: 0 student(s)";
+            // 
+            // lblAttendanceSummary
+            // 
+            this.lblAttendanceSummary.BackColor = System.Drawing.Color.Transparent;
+            this.lblAttendanceSummary.Font = new System.Drawing.Font("Cambria", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttendanceSummary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(57)))));
+            this.lblAttendanceSummary.Location = new System.Drawing.Point(6, 456);
+            this.lblAttendanceSummary.Name = "lblAttendanceSummary";
+            this.lblAttendanceSummary.Size = new System.Drawing.Size(238, 34);
+            this.lblAttendanceSummary.TabIndex = 0;
+            this.lblAttendanceSummary.Text = "";
+            this.lblAttendanceSummary.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // StudentRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1305, 619);
+            this.Controls.Add(this.lblTotalStudents);
             this.Controls.Add(this.lblEmpty);
             this.Controls.Add(this.dgvStudents);
             this.Controls.Add(this.cmbDepartment);
@@ -792,7 +850,10 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StudentRecords";
-            this.Text = "StudentRecords";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SCC Records Management System - Student Records";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StudentRecords_FormClosed);
+            this.Load += new System.EventHandler(this.StudentRecords_Load);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -807,6 +868,8 @@
         }
 
         #endregion
+        private System.Windows.Forms.Label lblAttendanceSummary;
+        private System.Windows.Forms.Label lblTotalStudents;
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnStudentLogout;
@@ -821,8 +884,7 @@
         private System.Windows.Forms.Button btnStudentRec;
         private System.Windows.Forms.Button btnStudentDepartment;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlDetails;
         private System.Windows.Forms.Label lblDetailsTitle;
         private System.Windows.Forms.Label lblNumberCaption;

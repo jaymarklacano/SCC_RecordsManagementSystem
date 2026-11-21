@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timerCamera = new System.Windows.Forms.Timer(this.components);
+            this.lblCaptureStatus = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblFormTitle = new System.Windows.Forms.Label();
             this.lblNumber = new System.Windows.Forms.Label();
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.lblFirstName = new System.Windows.Forms.Label();
@@ -60,14 +63,12 @@
             this.lblHint2 = new System.Windows.Forms.Label();
             this.lblHint3 = new System.Windows.Forms.Label();
             this.lblHint4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pktRegistration = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.picFace5 = new System.Windows.Forms.PictureBox();
+            this.picFace4 = new System.Windows.Forms.PictureBox();
+            this.picFace3 = new System.Windows.Forms.PictureBox();
+            this.picFace2 = new System.Windows.Forms.PictureBox();
+            this.picFace1 = new System.Windows.Forms.PictureBox();
+            this.picCameraPreview = new System.Windows.Forms.PictureBox();
             this.btnStartCamera = new System.Windows.Forms.Button();
             this.btnCapture = new System.Windows.Forms.Button();
             this.btnRetake = new System.Windows.Forms.Button();
@@ -76,18 +77,18 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pktRegistration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCameraPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblFormTitle);
             this.panel1.Controls.Add(this.lblNumber);
             this.panel1.Controls.Add(this.txtNumber);
             this.panel1.Controls.Add(this.lblFirstName);
@@ -115,17 +116,17 @@
             this.panel1.Size = new System.Drawing.Size(620, 512);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // lblFormTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(30, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 22);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Student Information";
+            this.lblFormTitle.AutoSize = true;
+            this.lblFormTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblFormTitle.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFormTitle.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblFormTitle.Location = new System.Drawing.Point(30, 28);
+            this.lblFormTitle.Name = "lblFormTitle";
+            this.lblFormTitle.Size = new System.Drawing.Size(187, 22);
+            this.lblFormTitle.TabIndex = 23;
+            this.lblFormTitle.Text = "Student Information";
             // 
             // lblNumber
             // 
@@ -322,7 +323,7 @@
             // 
             this.txtContact.Font = new System.Drawing.Font("Cambria", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContact.Location = new System.Drawing.Point(196, 368);
-            this.txtContact.MaxLength = 20;
+            this.txtContact.MaxLength = 13;
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(330, 28);
             this.txtContact.TabIndex = 41;
@@ -358,26 +359,26 @@
             this.chkReRegister.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkReRegister.Location = new System.Drawing.Point(30, 444);
             this.chkReRegister.Name = "chkReRegister";
+            this.chkReRegister.CheckedChanged += new System.EventHandler(this.chkReRegister_CheckedChanged);
             this.chkReRegister.Size = new System.Drawing.Size(411, 24);
             this.chkReRegister.TabIndex = 44;
             this.chkReRegister.Text = "Re-register face images (capture 5 new pictures)";
             this.chkReRegister.UseVisualStyleBackColor = true;
-            this.chkReRegister.Visible = false;
             // 
             // lblNote
             // 
-            this.lblNote.AutoSize = true;
             this.lblNote.BackColor = System.Drawing.Color.Transparent;
             this.lblNote.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNote.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNote.Location = new System.Drawing.Point(62, 468);
+            this.lblNote.Location = new System.Drawing.Point(30, 472);
             this.lblNote.Name = "lblNote";
-            this.lblNote.Size = new System.Drawing.Size(0, 17);
+            this.lblNote.Size = new System.Drawing.Size(570, 36);
             this.lblNote.TabIndex = 45;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.Controls.Add(this.lblCaptureStatus);
             this.panel2.Controls.Add(this.progressFaces);
             this.panel2.Controls.Add(this.lblProgress);
             this.panel2.Controls.Add(this.lblHint5);
@@ -385,13 +386,12 @@
             this.panel2.Controls.Add(this.lblHint2);
             this.panel2.Controls.Add(this.lblHint3);
             this.panel2.Controls.Add(this.lblHint4);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.pictureBox5);
-            this.panel2.Controls.Add(this.pictureBox4);
-            this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.pktRegistration);
+            this.panel2.Controls.Add(this.picFace5);
+            this.panel2.Controls.Add(this.picFace4);
+            this.panel2.Controls.Add(this.picFace3);
+            this.panel2.Controls.Add(this.picFace2);
+            this.panel2.Controls.Add(this.picFace1);
+            this.panel2.Controls.Add(this.picCameraPreview);
             this.panel2.Location = new System.Drawing.Point(664, 23);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(620, 512);
@@ -477,69 +477,71 @@
             this.lblHint4.TabIndex = 9;
             this.lblHint4.Text = "4. Slightly up";
             // 
-            // button1
+            // picFace5
             // 
-            this.button1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(427, 453);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(221, 45);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "CAPTURE";
-            this.button1.UseVisualStyleBackColor = true;
+            this.picFace5.BackColor = System.Drawing.Color.White;
+            this.picFace5.Location = new System.Drawing.Point(370, 366);
+            this.picFace5.Name = "picFace5";
+            this.picFace5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFace5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFace5.Size = new System.Drawing.Size(95, 81);
+            this.picFace5.TabIndex = 5;
+            this.picFace5.TabStop = false;
             // 
-            // pictureBox5
+            // picFace4
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.White;
-            this.pictureBox5.Location = new System.Drawing.Point(370, 366);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(95, 81);
-            this.pictureBox5.TabIndex = 5;
-            this.pictureBox5.TabStop = false;
+            this.picFace4.BackColor = System.Drawing.Color.White;
+            this.picFace4.Location = new System.Drawing.Point(370, 279);
+            this.picFace4.Name = "picFace4";
+            this.picFace4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFace4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFace4.Size = new System.Drawing.Size(95, 81);
+            this.picFace4.TabIndex = 4;
+            this.picFace4.TabStop = false;
             // 
-            // pictureBox4
+            // picFace3
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.White;
-            this.pictureBox4.Location = new System.Drawing.Point(370, 279);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(95, 81);
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
+            this.picFace3.BackColor = System.Drawing.Color.White;
+            this.picFace3.Location = new System.Drawing.Point(370, 192);
+            this.picFace3.Name = "picFace3";
+            this.picFace3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFace3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFace3.Size = new System.Drawing.Size(95, 81);
+            this.picFace3.TabIndex = 3;
+            this.picFace3.TabStop = false;
             // 
-            // pictureBox3
+            // picFace2
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.Location = new System.Drawing.Point(370, 192);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(95, 81);
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
+            this.picFace2.BackColor = System.Drawing.Color.White;
+            this.picFace2.Location = new System.Drawing.Point(370, 105);
+            this.picFace2.Name = "picFace2";
+            this.picFace2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFace2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFace2.Size = new System.Drawing.Size(95, 81);
+            this.picFace2.TabIndex = 2;
+            this.picFace2.TabStop = false;
             // 
-            // pictureBox2
+            // picFace1
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Location = new System.Drawing.Point(370, 105);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(95, 81);
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.picFace1.BackColor = System.Drawing.Color.White;
+            this.picFace1.Location = new System.Drawing.Point(370, 18);
+            this.picFace1.Name = "picFace1";
+            this.picFace1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFace1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFace1.Size = new System.Drawing.Size(95, 81);
+            this.picFace1.TabIndex = 1;
+            this.picFace1.TabStop = false;
             // 
-            // pictureBox1
+            // picCameraPreview
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(370, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(95, 81);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pktRegistration
-            // 
-            this.pktRegistration.BackColor = System.Drawing.Color.White;
-            this.pktRegistration.Location = new System.Drawing.Point(22, 18);
-            this.pktRegistration.Name = "pktRegistration";
-            this.pktRegistration.Size = new System.Drawing.Size(334, 409);
-            this.pktRegistration.TabIndex = 0;
-            this.pktRegistration.TabStop = false;
+            this.picCameraPreview.BackColor = System.Drawing.Color.Black;
+            this.picCameraPreview.Location = new System.Drawing.Point(22, 18);
+            this.picCameraPreview.Name = "picCameraPreview";
+            this.picCameraPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCameraPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picCameraPreview.Size = new System.Drawing.Size(334, 409);
+            this.picCameraPreview.TabIndex = 0;
+            this.picCameraPreview.TabStop = false;
             // 
             // btnStartCamera
             // 
@@ -571,7 +573,7 @@
             this.btnCapture.TabIndex = 8;
             this.btnCapture.Text = "CAPTURE FACE";
             this.btnCapture.UseVisualStyleBackColor = false;
-            this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click_1);
+            this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
             // 
             // btnRetake
             // 
@@ -637,6 +639,22 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // lblCaptureStatus
+            // 
+            this.lblCaptureStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblCaptureStatus.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptureStatus.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblCaptureStatus.Location = new System.Drawing.Point(18, 484);
+            this.lblCaptureStatus.Name = "lblCaptureStatus";
+            this.lblCaptureStatus.Size = new System.Drawing.Size(590, 24);
+            this.lblCaptureStatus.TabIndex = 0;
+            this.lblCaptureStatus.Text = "Click START CAMERA to begin the face registration.";
+            // 
+            // timerCamera
+            // 
+            this.timerCamera.Interval = 50;
+            this.timerCamera.Tick += new System.EventHandler(this.timerCamera_Tick);
+            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -655,33 +673,37 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Registration";
-            this.Text = "Registration";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SCC Records Management System - Student Registration";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Registration_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Registration_FormClosed);
+            this.Load += new System.EventHandler(this.Registration_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pktRegistration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFace1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCameraPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private System.Windows.Forms.Timer timerCamera;
+        private System.Windows.Forms.Label lblCaptureStatus;
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pktRegistration;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox picCameraPreview;
+        private System.Windows.Forms.PictureBox picFace5;
+        private System.Windows.Forms.PictureBox picFace4;
+        private System.Windows.Forms.PictureBox picFace3;
+        private System.Windows.Forms.PictureBox picFace2;
+        private System.Windows.Forms.PictureBox picFace1;
         private System.Windows.Forms.Label lblHint4;
         private System.Windows.Forms.Label lblHint3;
         private System.Windows.Forms.ProgressBar progressFaces;
@@ -692,7 +714,7 @@
         private System.Windows.Forms.Button btnStartCamera;
         private System.Windows.Forms.Button btnCapture;
         private System.Windows.Forms.Button btnRetake;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblFormTitle;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.Label lblFirstName;

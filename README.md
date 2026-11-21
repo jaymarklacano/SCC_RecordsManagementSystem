@@ -1,473 +1,579 @@
-# SCC Records Management and Face Attendance
+# SCC Records Management System with Face Recognition Attendance
 
-C# Windows Forms student project for managing students, departments, officers,
-multi-day events, face-recognition attendance, absence obligations, and reports.
+A **C# Windows Forms** student project for managing students, departments, officers and
+school events. Attendance is recorded with **face recognition** using the computer's webcam.
+All data is saved in a **MySQL / MariaDB** database.
 
-## 1. This branch preserves the original project
+The code is written in a simple, beginner style. It follows the example in
+`Sample Code/ConnectDatabase` (a `ConnectDB` database class and simple model classes like `PersonalInfo`).
 
-`feature/preserve-original-forms` starts from `main`, not from the previous face-recognition branch.
-All original forms, designer files, resources, class names, sample code, and the original SQL filename remain.
-The existing blue sidebar is still part of **each individual form**, not a separate UserControl.
-The original absolute-positioned layouts use fixed sizing to keep added controls aligned.
+---
 
-Application logic is in the existing form code:
+## Table of Contents
 
-| Original file | What it does |
+1. [Project Overview](#1-project-overview)
+2. [Main Features](#2-main-features)
+3. [System Requirements](#3-system-requirements)
+4. [Required Software and Versions](#4-required-software-and-versions)
+5. [Visual Studio Requirements](#5-visual-studio-requirements)
+6. [Database Setup](#6-database-setup)
+7. [How to Import the SQL File](#7-how-to-import-the-sql-file)
+8. [How to Configure the Database Connection](#8-how-to-configure-the-database-connection)
+9. [Required NuGet Packages](#9-required-nuget-packages)
+10. [Webcam Requirements](#10-webcam-requirements)
+11. [How to Build the Project](#11-how-to-build-the-project)
+12. [How to Run the Project](#12-how-to-run-the-project)
+13. [How to Register a Student](#13-how-to-register-a-student)
+14. [How to Capture the 5 Face Pictures](#14-how-to-capture-the-5-face-pictures)
+15. [How Face Recognition Works](#15-how-face-recognition-works)
+16. [How to Record Attendance](#16-how-to-record-attendance)
+17. [How to View Attendance Records](#17-how-to-view-attendance-records)
+18. [The Other Menus](#18-the-other-menus)
+19. [Project Files](#19-project-files)
+20. [Common Errors and Troubleshooting](#20-common-errors-and-troubleshooting)
+
+---
+
+## 1. Project Overview
+
+| Item | Value |
 |---|---|
-| `Form1.cs` (`lnkCreateAccount`) | Admin/officer login and login history |
-| `CreateAccount.cs`, `ForgotPassword.cs` | Admin-created administrator accounts and admin-only password resets |
-| `Dashboard.cs` | Counts, selectable session chart, recent attendance and clock |
-| `StudentRecords.cs`, `Registration.cs` | Search, details with attendance summary, create/edit/delete, five-picture webcam registration |
-| `Departments.cs`, `AddDepartment.cs` | Department CRUD |
-| `Event Management.cs`, `AddEvent.cs` | Event CRUD, morning/afternoon schedules, saved participant roster |
-| `FaceRecognition.cs` | Webcam detection, recognition, session login/logout |
-| `AttendanceMonitoring.cs` | Event/session attendance history and filtering |
-| `Officerr Records.cs` | Officer CRUD and officer account/password management |
-| `Obligations.cs` | Ten points per absent session, deductions, clearing, adjustment history, CSV |
-| `ReportsAndAnalysis.cs` | Session totals, student attendance, missing logout, most-absent students, CSV |
-| `RulesPermission.cs`, `LoginHistory.cs` | Informational rules, officer module permissions, account management, login audit |
+| Language | C# 7.3 |
+| Project type | Windows Forms App (**.NET Framework 4.7.2**) |
+| Database | MySQL / MariaDB (tested with **XAMPP MariaDB 10.4**) |
+| Database name | `scc_management` |
+| SQL file | `scc_records_management (1).sql` (in the repository root folder) |
+| Solution file | `SCCRecordsManagementSystem/SCCRecordsManagementSystem.sln` |
+| Face detection | Haar Cascade (`haarcascade_frontalface_default.xml`) from OpenCV |
+| Face recognition | LBPH face recognizer from OpenCV (through the **OpenCvSharp4** NuGet package) |
+| Starter login | Username **admin**, password **admin123** |
 
-`Database.cs` follows the sample's `MySqlConnection`, `MySqlCommand`,
-`DataTable`, and `Dictionary<string, object>` approach.
-`Program.cs` contains only the entry point and small common window/control operations.
-There are **no Models, Services, or Helpers folders**. The officer editor is a small form
-class inside `Officerr Records.cs`. Shared face-image operations stay in `Registration.cs`.
-Original filenames such as `Form1.cs` and `Officerr Records.cs` are intentionally not renamed.
+Attendance is **based on events**. An event can last one or more days, and every day can
+have a **Morning**, **Afternoon** and/or **Evening** session. Every session is a separate
+attendance. Students scan their face to **Log In**, and if the event needs it, they scan again to **Log Out**.
 
-## 2. Features and attendance rules
+---
 
-- Student CRUD with unique student numbers and optional unique email addresses.
-- Exactly **five valid webcam face pictures** required for a new student. Student data
-  and images save in one transaction; failed saves do not leave partial registrations.
-- Edit student details without recapturing, or replace all five face images.
-- Multi-day events generate Morning and/or Afternoon sessions for **every date** in the range.
-- Separate login and optional logout for each student/session. Repeated scans do not create duplicates.
-- Active events can require logout; a missing required logout is flagged **Missing**.
-  A recorded login still counts as **Present**; missing logout does not add another absence.
-- **Pending** means a roster student has not logged in and the session has not ended.
-  **Absent** means the session ended without a login. Only absent sessions earn points.
-- Each absent student/session adds **10 points**. Deductions/clearings leave absence counts intact.
-- Admins create officer accounts. Officers use the same login screen and initially have
-  ordinary operational access, but cannot manage officers, administrators, permissions or password resets.
-- Admins may revoke officer access to operational modules in Rules and Permission.
-  Dashboard remains available to every signed-in account. Permission checks also protect save operations.
-- Rules are informational notices; editing their descriptions does **not** change the fixed ten-point policy.
+## 2. Main Features
 
-### Event roster (important)
+**Login and accounts**
+- Log in as **Admin** or **Officer** (passwords are hashed with BCrypt).
+- Create a new Admin account (an existing Admin must type the Admin password).
+- Forgot password / reset password (an Admin must type the Admin password).
+- Every log in and log out is saved in the **Login History** (Admin only).
 
-Saving an event includes currently **Active** students who have five saved faces and
-match its department (or All Departments). Use **View roster** to inspect participants.
-Editing an event **before its first session starts** refreshes this roster and regenerates its sessions.
+**Dashboard**
+- Total students (active and face registered), total officers (and admin accounts),
+  total events (ongoing and upcoming).
+- Today's attendance overview: present, absent and pending, with a pie chart.
+- Recent attendance activities (the last 15 scans), a live date and time, and a **Refresh** button.
+- **Login History** button (Admin only).
 
-Students registered or re-activated later are added automatically to every matching event
-that still has a session ending in the future. A session that had already ended before the
-student was registered is never counted as an absence.
-For events that have not started yet, saving a student also follows their latest department and
-status (for example, an Inactive student leaves the upcoming roster).
+**Departments**
+- Add, edit, delete and search departments (courses).
+- A department that still has students, officers or events cannot be deleted.
+- **View Students** opens Student Records filtered to that department.
 
-Once an event has started, only its name and venue can change. Its schedule, department and
-logout setting are locked, and existing roster rows keep their department/year snapshot.
-This protects attendance and obligation history.
-For attendance, the student must still be Active and fully face-registered.
+**Student Records**
+- Add, view, edit, delete, search and filter students (department, year level, face status).
+- Duplicate prevention for student number and email.
+- Student details with photo, attendance summary and obligation balance.
 
-A two-day event with both sessions enabled produces four independent attendance periods:
-Day 1 Morning, Day 1 Afternoon, Day 2 Morning, Day 2 Afternoon.
+**Student Face Registration**
+- A new student **must** have exactly **5 valid face pictures** before he/she can be saved.
+- Live webcam preview with a colored box around the face and helpful tips.
+- Only pictures with **exactly one clear face** are accepted (not too dark, not too bright, not blurry, not too far).
+- **Retake All Faces** to start over. Faces can be re-registered when editing a student.
+- Warns you when the new face looks like another registered student.
 
-## 3. Requirements
+**Face Recognition (attendance)**
+- The webcam starts automatically. The open session is selected automatically.
+- Choose **Log In** or **Log Out**.
+- Recognizes the student, shows the student card and saves the attendance automatically.
+- Duplicate attendance is blocked: *"Attendance already recorded at 7:53 AM."*
+- Re-checks that the student is active, has `face_registered = 1` and still has exactly five
+  saved face pictures, and is on the selected event roster immediately before recording.
+  The student row is locked during this database transaction so registration changes cannot
+  race the final attendance check.
+- Clear messages for: no face, more than one face, unknown face, webcam unavailable or
+  unplugged, no open session, no registered faces, and database errors.
 
-- **64-bit Windows 10 or 11**.
-- **Visual Studio 2022**, with the **.NET desktop development** workload.
-- **.NET Framework 4.7.2 Developer Pack / targeting pack**.
-- .NET SDK installed by Visual Studio (the project uses SDK-style project loading).
-- **XAMPP 8.2.x** with **MariaDB 10.4.x**, or a compatible MySQL installation.
-  The import and database workflows were tested against MariaDB **10.4.34**.
-- **Microsoft Visual C++ Redistributable 2015-2022, x64** for native OpenCV.
-- A USB or built-in webcam, working lighting, and Windows camera permission.
-- At least **1366 x 768** display at **100% Windows scaling** for the original fixed-size forms.
-- Internet for initial NuGet restore.
+**Event Management**
+- Add, edit and delete events (one day or several days, at most 31 days).
+- Choose the sessions (Morning, Afternoon, Evening) and their times.
+- Choose the department and year level that must attend (or all).
+- Option: **Log out Needed** (students must also scan when leaving).
+- See the **Sessions** and the **Students (Roster)** of each event with their attendance.
 
-In Visual Studio Installer choose **Modify > .NET desktop development**.
-Under Individual components ensure the .NET Framework 4.7.2 targeting pack is selected.
-Do not retarget this project to .NET Core, x86, or another framework just to fix a missing targeting pack.
+**Attendance Monitoring**
+- View all attendance records per event, session, date, department and year level.
+- Search by student number or name. Filter by status: Present, Absent, Pending.
+- Attendance count and attendance rate.
+- Manual entry when the camera cannot recognize a student: **Mark Present**, **Mark Log Out**, **Remove**.
+- **Export CSV** (opens in Excel).
 
-## 4. Database installation
+**Reports and Analysis**
+- 7 report types: Attendance per Session, Attendance per Department, Student Attendance Summary,
+  Most Absent Students, Missing Log Out, Detailed Attendance List and Obligation Balances.
+- Chart of present/absent per department. Export to CSV.
 
-**Back up an existing database first. Re-importing the included SQL deletes application data,
-including accounts, faces, attendance, rosters and obligations. It is a fresh setup, not a migration
-from the previous feature branch.**
+**Obligations**
+- Every **absence = 10 points**. The absent count and the balance of every student are shown.
+- **Add Points**, **Deduct Points** or **Clear to 0** (every change needs a reason and is saved).
+- Search and filters (department, year level, with balance, cleared, with absences).
+- **View Details** shows every absence and every adjustment of a student.
 
-1. Start XAMPP Control Panel.
-2. Start **Apache** and **MySQL**.
-3. Open `http://localhost/phpmyadmin`.
-4. Choose **Import** at server level.
-5. Select [`scc_records_management (1).sql`](./scc_records_management%20%281%29.sql) from this repository's root.
-6. Click **Import / Go**.
-7. Confirm the `scc_records_management` database appears without errors.
+**Officer Records**
+- Officers log in with their own username and password and use the same menus as the Admin,
+  except the menus the Admin did not allow in **Rules and Permission**.
+- **Only the Admin** can add, edit and delete officers and create their username and password.
+- Officers have the same information as students (ID number, name, course, year level, and so on).
+  **Find Student** copies the details of an existing student.
+- Search and filters (course, position, school year), and last log in.
 
-The script contains `CREATE DATABASE`, `USE`, tables, keys, constraints, indexes,
-two reporting views, four starter departments, rules, officer permissions and a starter administrator.
-Your importing account needs permission to create tables and views.
+**Rules and Permission** (Admin only)
+- Add, edit, delete, search and activate or deactivate rules.
+- Choose which menus the **Officer** role may open.
 
-From a MySQL command prompt, the equivalent is:
+---
 
-```sql
-SOURCE C:/your-folder/SCC_RecordsManagementSystem/scc_records_management (1).sql;
-```
+## 3. System Requirements
 
-Default login:
-
-```text
-Username: admin
-Password: admin123
-```
-
-Change it after setup using **Rules and Permission > Manage Accounts > Reset Password**.
-Passwords are stored as BCrypt hashes, not plain text.
-
-### Tables
-
-| Table/view | Purpose |
+| Requirement | Minimum |
 |---|---|
-| `accounts`, `officers` | Admin/officer credentials and officer personal details |
-| `departments`, `students` | Department and student information |
-| `face_images` | Five numbered PNG face crops for each registered student |
-| `attendance_events`, `event_sessions` | Dates, department scope, times, logout setting |
-| `event_students` | Saved event roster, including department/year at enrollment |
-| `event_attendance` | One row per student/session, with login and optional logout |
-| `obligation_adjustments` | Event-scoped point deductions, reasons, actor and timestamp |
-| `login_history` | Successful logins and explicit logout times |
-| `rules`, `role_permissions` | Informational rules and officer module permissions |
-| `password_resets` | Preserved original table; not used by current admin-reset workflow |
-| `attendance_records` | View deriving Present / Absent / Pending and logout status |
-| `obligation_balances` | View calculating absences, points, deductions and balance |
+| Operating system | Windows 10 or Windows 11 (64-bit recommended) |
+| RAM | 4 GB (8 GB recommended) |
+| Webcam | Built-in laptop camera or USB webcam |
+| Disk space | About 1 GB for the project, packages and database |
+| Internet | Only needed the first time, to download the NuGet packages |
 
-Deleting a student cascades their images, roster entries, attendance and adjustments.
-Deleting an event cascades its sessions, roster, attendance and event-specific adjustments.
-Deleting an officer removes their login account. Audit rows retain the username or show a deleted account.
-A department referenced by students, officers, events or saved rosters cannot be deleted.
-Prefer marking a student **Inactive** when history must be retained rather than deleting them.
+---
 
-## 5. Configure the connection
+## 4. Required Software and Versions
 
-Open [`Database.cs`](./SCCRecordsManagementSystem/Database.cs). Edit:
+| Software | Version | Download |
+|---|---|---|
+| Visual Studio Community | 2019 or 2022 | https://visualstudio.microsoft.com/ |
+| .NET Framework | 4.7.2 or newer (already part of Windows 10/11) | |
+| XAMPP (Apache + MySQL/MariaDB + phpMyAdmin) | 7.4 / 8.x (MariaDB 10.4 or newer) | https://www.apachefriends.org/ |
+| Microsoft Visual C++ Redistributable | 2015-2022 (x64 **and** x86) | https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist |
+
+> You may use **MySQL 8.0.16+** instead of XAMPP. See the MySQL 8 note in
+> [Troubleshooting](#20-common-errors-and-troubleshooting).
+
+---
+
+## 5. Visual Studio Requirements
+
+When installing Visual Studio, open the **Visual Studio Installer** and select:
+
+1. Workload: **.NET desktop development**.
+2. In **Individual components**, make sure **.NET Framework 4.7.2 targeting pack** is checked.
+3. Also keep **NuGet package manager** checked (it is checked by default).
+
+---
+
+## 6. Database Setup
+
+1. Install **XAMPP**.
+2. Open the **XAMPP Control Panel**.
+3. Click **Start** beside **Apache** and **MySQL**. Both should turn green.
+4. Click **Admin** beside **MySQL**. **phpMyAdmin** opens in your browser
+   (or go to http://localhost/phpmyadmin).
+
+---
+
+## 7. How to Import the SQL File
+
+The SQL file creates the database **`scc_management`** by itself, with all tables, views,
+starter departments, starter rules, permissions and the Admin account.
+
+1. Open **phpMyAdmin** (http://localhost/phpmyadmin).
+2. Click the **Import** tab at the top (you do not need to create a database first).
+3. Click **Choose File** and select `scc_records_management (1).sql` from the repository root folder.
+4. Leave the other settings as they are and click **Import** (or **Go**) at the bottom.
+5. Wait for the green message *"Import has been successfully finished"*.
+6. On the left side you should now see the database **scc_management** with 14 tables and 2 views.
+
+> **Warning:** importing the file again **deletes all saved records** (students, faces, attendance...).
+> Use **Export** in phpMyAdmin first if you want a backup.
+
+**What the database contains**
+
+| Table / View | What it stores |
+|---|---|
+| `accounts` | Usernames, BCrypt passwords and the role (Admin or Officer) |
+| `departments` | Courses (BSIT, BSBA, BEED, BSED by default) |
+| `students` | Student information, status and `face_registered` (1 = all 5 faces saved) |
+| `face_images` | The 5 face pictures of each student (160 x 160 PNG, numbers 1 to 5) |
+| `officers` | Officer information linked to one `accounts` row |
+| `events` | Event name, venue, dates, sessions, department/year level, log out needed |
+| `event_sessions` | One row for every Morning / Afternoon / Evening of every event day |
+| `event_students` | The students required to attend each event (the roster) |
+| `event_attendance` | Time in and time out of a student in a session |
+| `obligation_adjustments` | Points added (+) or deducted (-) by an Admin/Officer, with the reason |
+| `login_history` | Every log in and log out |
+| `rules`, `role_permissions` | Rules and the menus that each role may open |
+| `password_resets` | Kept from the original database (reserved) |
+| `attendance_records` (VIEW) | Status of every student in every session: Present, Absent or Pending |
+| `obligation_summary` (VIEW) | Absent count x 10 + adjustments = balance (never below 0) |
+
+**Relationships:** deleting a student also deletes his/her face pictures, attendance and
+obligation adjustments (`ON DELETE CASCADE`). Deleting an event deletes its sessions, roster and
+attendance. Deleting an officer's account deletes the officer. A department that is still used
+cannot be deleted (`ON DELETE RESTRICT`).
+
+---
+
+## 8. How to Configure the Database Connection
+
+The connection string is in **`SCCRecordsManagementSystem/Database.cs`** (line 16):
 
 ```csharp
-private static string connectionString =
-    "Server=localhost;Database=scc_records_management;Uid=root;Pwd=;";
+private static string connectionString = "Server=localhost;Database=scc_management;Uid=root;Pwd=;";
 ```
 
-This matches a local XAMPP installation with no root password.
-Change `Server`, `Uid`, and `Pwd` as needed; add `Port=3307;` if your MySQL port is different.
-For a classroom project the connection string remains in source as requested.
-Use a restricted database account, not an unrestricted root account, for any real deployment.
+The default XAMPP account is user `root` with **no password**, so it works without changes.
+If your MySQL has a password, a different user or a different port, change it, for example:
 
-Attendance boundaries and saved scan timestamps use **the database server's current local time**.
-Set the database server and Windows PC to the campus time zone. The dashboard clock uses Windows time.
-Verify database time with `SELECT NOW();` before an event.
+```csharp
+private static string connectionString = "Server=localhost;Port=3307;Database=scc_management;Uid=root;Pwd=mypassword;";
+```
 
-## 6. NuGet packages (exact direct references)
+---
 
-The project targets **.NET Framework 4.7.2**, C# 7.3, Any CPU with Prefer 32-bit disabled.
+## 9. Required NuGet Packages
 
-| Package | Version | Purpose |
+These are the **only** NuGet packages used by the project (they are already listed in
+`SCCRecordsManagementSystem/packages.config`):
+
+| Package | Version | Used for |
 |---|---|---|
-| BCrypt.Net-Next | **4.2.0** | Password hashing |
-| MySql.Data | **6.9.12** | MySQL/MariaDB connector, matching the sample's API style |
-| OpenCvSharp4 | **4.11.0.20250507** | Webcam, Haar detection, LBPH face recognition |
-| OpenCvSharp4.runtime.win | **4.11.0.20250507** | Matching native Windows OpenCV runtime |
+| **MySql.Data** | **6.9.12** | Connecting to MySQL / MariaDB |
+| **BCrypt.Net-Next** | **4.2.0** | Hashing and checking passwords |
+| **OpenCvSharp4** | **4.11.0.20250507** | Webcam, face detection and LBPH face recognition |
+| **OpenCvSharp4.runtime.win** | **4.11.0.20250507** | The native OpenCV files for Windows (`OpenCvSharpExtern.dll`) |
 
-NuGet restores transitive dependencies automatically.
-The original `packages.config` and old checked-in package/build files were preserved, but
-**PackageReference entries in the `.csproj` are now authoritative**. Do not copy the instructor's
-external MySql.Data DLL into the project. Its broken external HintPath is no longer used.
+These 4 packages are installed **automatically** as dependencies of OpenCvSharp4
+(do not install them by hand): `System.Buffers 4.6.1`, `System.Memory 4.6.3`,
+`System.Numerics.Vectors 4.6.1`, `System.Runtime.CompilerServices.Unsafe 6.1.2`.
 
-### Visual Studio installation steps
+The chart in the Dashboard and Reports uses `System.Windows.Forms.DataVisualization`,
+which is already part of .NET Framework (no NuGet package needed).
 
-1. Open `SCCRecordsManagementSystem/SCCRecordsManagementSystem.sln`.
+### Option A - Restore (easiest)
+
+Because the packages are already listed in the project, Visual Studio can download them for you:
+
+1. Open the solution in Visual Studio.
+2. In **Solution Explorer**, right-click the **Solution** (the top item).
+3. Click **Restore NuGet Packages**.
+4. Wait until the status bar says *"Restore completed"*.
+
+### Option B - Install with the NuGet Package Manager window
+
+Use this if restore did not work or if a package is missing:
+
+1. Open the solution in Visual Studio.
 2. Go to **Tools**.
 3. Select **NuGet Package Manager**.
-4. Select **Manage NuGet Packages for Solution**.
-5. Open **Browse**.
-6. Search for a package from the table above.
-7. Select its exact documented version.
-8. Select the **SCCRecordsManagementSystem** project.
+4. Select **Manage NuGet Packages for Solution...**.
+5. Open the **Browse** tab.
+6. Search for the package name (for example `MySql.Data`).
+7. On the right side, select the version from the table above (for example **6.9.12**).
+8. Check the **SCCRecordsManagementSystem** project.
 9. Click **Install**.
-10. Accept the license prompt. Repeat for the other packages if missing.
+10. Accept any license prompt (**I Accept**).
+11. Repeat steps 6 to 10 for `BCrypt.Net-Next`, `OpenCvSharp4` and `OpenCvSharp4.runtime.win`.
 
-Usually no manual installation is needed: right-click the solution and choose **Restore NuGet Packages**.
-For Package Manager Console:
+### Option C - Package Manager Console
+
+Go to **Tools > NuGet Package Manager > Package Manager Console** and run:
 
 ```powershell
-Install-Package BCrypt.Net-Next -Version 4.2.0 -ProjectName SCCRecordsManagementSystem
 Install-Package MySql.Data -Version 6.9.12 -ProjectName SCCRecordsManagementSystem
+Install-Package BCrypt.Net-Next -Version 4.2.0 -ProjectName SCCRecordsManagementSystem
 Install-Package OpenCvSharp4 -Version 4.11.0.20250507 -ProjectName SCCRecordsManagementSystem
 Install-Package OpenCvSharp4.runtime.win -Version 4.11.0.20250507 -ProjectName SCCRecordsManagementSystem
 ```
 
-`System.Windows.Forms.DataVisualization` is a built-in .NET Framework reference for the original charts.
-The included `haarcascade_frontalface_default.xml` is copied beside the executable.
-Keep its original OpenCV license notice.
+If the packages are listed but the files are missing, this command downloads them again:
 
-## 7. Build and run
+```powershell
+Update-Package -reinstall -ProjectName SCCRecordsManagementSystem
+```
 
-1. Open the solution above in Visual Studio 2022 on Windows.
-2. Restore NuGet packages and select **Debug / Any CPU**. Do not enable Prefer 32-bit.
-3. Choose **Build > Rebuild Solution**.
-4. Start MySQL and import/configure the database.
-5. Press **F5**, or **Ctrl+F5** to run without debugging.
-6. Log in using the starter account or an admin-created officer account.
-7. Use the existing sidebar buttons to switch pages. Use **LogOut** to return to login.
-8. Use the top-right X to close. Explicit LogOut records the logout time; closing/crashing
-   the application leaves the history logout field empty (it is not a heartbeat).
+---
 
-On Windows the output is normally `SCCRecordsManagementSystem/bin/Debug/net472/`.
-If moving the app, copy the **whole output directory**, including native runtime files and detector XML.
-Do not run an old executable from the repository's previously checked-in build folders.
+## 10. Webcam Requirements
 
-## 8. Register, view, edit and delete students
+- Any built-in or USB webcam that works in the Windows **Camera** app.
+- The program tries camera **0** (built-in) first, then cameras **1** and **2** (USB).
+- Only **one program** can use the webcam at a time. Close Zoom, Teams, Messenger, OBS, the Camera app, etc.
+- Windows must allow desktop apps to use the camera:
+  **Settings > Privacy & security > Camera > Let desktop apps access your camera = On**.
+- Use **good lighting** (light in front of the face, not behind) and a plain background.
 
-1. Create needed departments in **Departments** first.
-2. Open **Student Records > Add Students**.
-3. Enter unique student ID, first/last names, department, year and gender.
-   Middle name, email and contact number are optional. Email/phone formats are validated.
-4. The webcam starts automatically when the Add Student window opens (or click **Start Camera**).
-   The app tries the built-in camera first, then USB cameras 1 and 2.
-   Windows Settings > Privacy & security > Camera must allow camera access and access for
-   desktop applications. Close Teams/Zoom/Camera if they hold the webcam.
-5. The preview works like a mirror. A **green box** means the face is good; an **orange box**
-   means the message under the preview tells you what to fix (move closer, move to the center,
-   more light, less light, hold still, only one person). Small faces far in the background
-   (posters, people walking behind) are ignored, so they do not cause "multiple faces".
-6. Follow the live tip, then click **Capture**. Five poses are suggested in order: straight,
-   slightly left, slightly right, slightly up, and normal/smile.
-7. After each capture the message shows **Face N of 5 captured. Next: ...** for two seconds.
-   No face, multiple faces, small/edge/dark/bright/blurry faces and repeated identical frames are
-   rejected with "The picture was not saved."
-8. **Retake All** asks for confirmation, clears the captured images and starts the camera again.
-   **Reset** clears inputs and new captures.
-9. **Save Registration** is rejected until all five pictures are present.
-   Cancel closes without saving.
+---
 
-Select a row in Student Records to view its picture and details. The details panel also shows an
-attendance summary: present and absent sessions, current obligation balance and last scan time.
-Search by name/ID; filter by department, year or Active/Inactive.
-Use **Edit** or double-click to update details. Checking **Re-register all 5 face pictures**
-starts the camera; the first new capture clears the old thumbnails so old and new pictures are
-never mixed. Unchecking it shows the saved pictures again, and saving keeps them.
-If a saved picture is damaged, the editor still opens and requires five new captures to repair it.
-Capture is blocked while the camera is stopped or its latest frame read has failed.
-**Delete** asks for confirmation and removes related records; use Inactive instead to keep history.
+## 11. How to Build the Project
 
-## 9. Create events and record attendance
+1. Do steps 6 to 8 (database) first.
+2. Open `SCCRecordsManagementSystem/SCCRecordsManagementSystem.sln` in Visual Studio.
+3. Restore or install the NuGet packages (section 9).
+4. At the top toolbar, choose **Debug** and **Any CPU**.
+5. Go to **Build > Rebuild Solution**.
+6. The **Output** window should say: `Rebuild All: 1 succeeded, 0 failed`.
 
-1. Register participants first (students registered later are still added automatically).
-2. Open **Event Management > Add Events**.
-3. Enter name, venue, start/end dates and department scope.
-4. Enable Morning and/or Afternoon, set start/end times, and optionally require logout.
-   Enabled sessions cannot overlap; each end must follow its start. Overnight sessions are not supported.
-   The same schedule repeats each day; use separate events when different days need different times.
-5. Save, then check **View roster**. Before the event starts, **Edit > Save** refreshes participants.
-   The editor previews the number of sessions. After the event starts, protected schedule controls
-   are disabled; only name and venue remain editable.
-6. Open **Face Recognition** during a session. The first active session is selected automatically.
-   If multiple sessions/events are open, select the correct one. The line under the session list
-   shows how many students and face pictures were loaded (for example
-   "3 student(s) with registered faces (15 face pictures loaded)").
-7. Choose **Log In**. Stand alone in front of the camera. The box around the face shows what is
-   happening: **gray** = no face, **orange** = fix the face (message shown), **gold** = recognizing
-   (1/3, 2/3), **green** = recognized, **red** = unknown face.
-   Attendance is recorded automatically after three consecutive matching frames.
-8. The result card shows **Student Recognized**, the student's information, **Status: Present**
-   and the saved time. If it was already recorded, it shows the original time instead.
-   The card stays while the student is in front of the camera and clears about 3 seconds after
-   they leave, so the same student is not processed again and again. The camera keeps running.
-9. For departure, choose **Log Out** and scan again **before the session end time**.
-10. **Another Person** clears the card. **Restart / Reload** reloads active sessions and trained faces.
-    Use it after registration changes, a session transition or reconnecting the camera.
+When the build succeeds, these files are copied to `bin\Debug` automatically:
+- `haarcascade_frontalface_default.xml` (the face detector file)
+- `dll\x64\OpenCvSharpExtern.dll` and `dll\x86\OpenCvSharpExtern.dll` (native OpenCV)
 
-The database enforces one student/session record, and transactions serialize competing scans.
-An existing login/logout returns its original time instead of creating duplicates.
-Logging out before logging in, scanning a closed session, an inactive student or a student
-outside the roster is refused with an explanation.
-No manual presence button substitutes for face recognition.
+---
 
-The event list supports **All Events / Upcoming / In Progress / Completed** and name/venue search.
-**In Progress** covers the whole event, including gaps between sessions; it does not mean a scan is
-currently allowed. Select **Sessions** to see each session's opening/closing time, Open/Closed/Upcoming
-status, expected students, Present/Absent/Pending counts and missing required logouts.
-Double-click an event to edit it. The roster also shows each participant's current Active/Inactive state.
+## 12. How to Run the Project
 
-### How recognition works
+1. Make sure **MySQL** is running in the XAMPP Control Panel.
+2. In Visual Studio, press **F5** (or click **Start**).
+3. Log in with username **admin** and password **admin123**.
+4. **Change the starter password** later with *Forgot Password* (type the Admin password to allow it).
 
-Both screens use the same helper methods in `Registration.cs` (`Detect`, `CheckFace`, `PrepareFace`).
+**Suggested first steps**
 
-1. **Detect:** the Haar classifier finds faces of at least 60 x 60 pixels. Faces smaller than 60%
-   of the biggest face are ignored (background faces), so only a real second person counts as
-   "multiple faces".
-2. **Check:** exactly one face, at least 90 pixels wide, not touching the edge of the picture,
-   brightness between 60 and 200, and sharp enough (not blurry).
-3. **Register:** five 160 x 160 color PNG crops are saved in the database.
-4. **Prepare:** for training and matching, each face becomes grayscale, 100 x 100, with equalized contrast.
-5. **Train:** LBPH trains on the saved pictures of Active students who have all five pictures,
-   labeled by student ID. A damaged picture is skipped and reported instead of stopping attendance.
-6. **Match:** lower distance is better; `MatchThreshold = 70` in `FaceRecognition.cs` is the cutoff.
-   The same student must match in three frames in a row before the database is written.
-   A face is only called **unknown** after five non-matching frames in a row, so one unclear frame
-   does not show a wrong "unknown" message.
+1. **Departments**: check or add your courses.
+2. **Student Records**: add students and register their 5 face pictures.
+3. **Event Management**: add an event with the sessions of today.
+4. **Face Recognition**: let the students scan their faces.
+5. **Attendance Monitoring / Reports and Analysis / Obligations**: view the results.
+6. **Officer Records**: create officer accounts (Admin only).
 
-The preview is mirrored only on screen; the saved and compared pictures are not mirrored.
+---
 
-This is a classroom-level recognizer, **not biometric identity proof or liveness detection**.
-Printed photos may fool it, similar faces may be confused, and the threshold must be evaluated
-with the actual students, webcam and lighting. Do not blindly increase the threshold:
-it can accept unknown people. No Python or external recognition service is used.
-The app does not upload face images. Obtain consent and protect database backups.
+## 13. How to Register a Student
 
-## 10. Attendance, obligations and reports
+1. Click **Student Records** in the left menu.
+2. Click **ADD STUDENT**.
+3. Fill in the student information. Fields with `*` are required:
+   - **Student Number** (3 to 20 letters, numbers or `-`, must be unique), for example `2026-001`
+   - **First Name**, **Middle Name** (optional), **Last Name** (letters, spaces, `.`, `'` and `-` only)
+   - **Department**, **Year Level**, **Gender**, **Status** (Active / Inactive)
+   - **Email** (optional, must be unique) and **Contact Number** (optional, `09XXXXXXXXX` or `+639XXXXXXXXX`)
+4. Capture the **5 face pictures** (next section).
+5. Click **SAVE STUDENT**. The student is saved only when all 5 faces are captured.
 
-All record grids have readable headings, alternating row colors, formatted dates, sortable headings,
-and draggable column order. Scroll horizontally for additional details. Empty lists and database
-errors are explained; failed refreshes clear stale records instead of leaving them looking current.
+The new student is also added to the roster of every current or upcoming event that his/her
+department and year level must attend.
 
-**Dashboard**
+**Edit:** select a student and click **EDIT STUDENT** (or double-click the row). You can keep
+the saved faces, or check the face option to capture 5 new pictures (re-register).
 
-- Student, officer and event totals refresh every 15 seconds.
-- Select an event session above the chart to inspect its Present/Absent/Pending totals.
-  Selection is retained during refresh; initially an active session is preferred.
-- Recent attendance includes the latest 20 logins across events. The clock uses Windows time.
-- Login History is available only to admins.
+**Delete:** select a student, click **DELETE STUDENT** and confirm. His/her face pictures,
+attendance and obligation records are deleted too.
 
-**Departments**
+---
 
-- Search by code, name or department head; inspect student/officer counts.
-- Add, edit (also by double-click) or delete with confirmation.
-- Referenced departments cannot be deleted. Cancel closes the editor without saving.
+## 14. How to Capture the 5 Face Pictures
 
-**Attendance Monitoring**
+1. In the student registration page, click **START CAMERA**. The live preview appears.
+2. Look at the camera. Follow the tip shown for each picture (look straight, turn slightly, and so on).
+3. The box around the face shows if the picture is good:
+   - **Green** = good, you can capture.
+   - **Orange** = something must be fixed (read the message).
+4. Click **CAPTURE FACE**. The progress shows *"Face 1 of 5 captured"* ... *"Face 5 of 5 captured"*.
+5. A picture is **not accepted** when:
+   - no face is detected,
+   - more than one face is detected,
+   - the face is too small (too far), too dark, too bright or blurry,
+   - it is exactly the same as a picture already captured.
+6. Click **RETAKE ALL FACES** to delete the captured pictures and start again.
+7. After **5 of 5**, click **SAVE STUDENT**.
 
-- Select event, session, department, year and optional date; search student name/ID.
-- Present, Absent and Pending are three independent checkboxes. All checked shows all statuses;
-  none checked shows no records.
-- Filter logout state separately, for example **Missing** to find required departures not scanned.
-- **Today** enables today's date filter; **Clear filters** restores all events, sessions and statuses.
-- **Refresh** updates time-dependent statuses; **Export CSV** saves the filtered, sorted visible grid.
-- Rows include session start/end, time in/out, presence status and logout status.
+---
+
+## 15. How Face Recognition Works
+
+The project uses **OpenCV** through the **OpenCvSharp4** C# library (no Python):
+
+1. **Face detection** - the **Haar Cascade** file `haarcascade_frontalface_default.xml` finds
+   where the faces are in the camera picture.
+2. **Preparation** - every face is cut out, changed to gray, resized to 100 x 100 pixels and its
+   light is equalized. The same preparation is used when registering and when recognizing.
+3. **Training** - when the Face Recognition page opens, the **LBPH** (Local Binary Patterns
+   Histograms) recognizer learns the 5 pictures of every **active** student with **exactly 5** faces.
+4. **Recognition** - for every face in the camera, LBPH returns the most similar student and a
+   **distance** (smaller = more similar). A face is accepted when the distance is **70 or lower**.
+5. **Confirmation** - the same student must be matched in **3 camera pictures in a row** before
+   the attendance is saved. After **5 pictures in a row** with no match, the face is called **Unknown**.
+
+Why 5 pictures? Different angles and expressions give the recognizer more examples, so it
+recognizes the student more reliably.
+
+You can change the numbers at the top of `FaceRecognition.cs` (`matchThreshold`, `matchesNeeded`, `missesNeeded`).
+
+---
+
+## 16. How to Record Attendance
+
+1. Create an event in **Event Management** (section 18) with a session that is **open now**.
+2. Click **Face Recognition** in the left menu. The webcam starts by itself.
+3. Select the **session** (only sessions that are open right now are listed) and choose **Log In** or **Log Out**.
+4. Students stand in front of the camera **one at a time**.
+5. When recognized, the student card shows:
+
+   ```
+   Student Recognized
+   Name: Juan Dela Cruz
+   Student ID: 2026-001
+   Status: Present
+   Time: 7:53 AM
+   Attendance Successfully Recorded
+   ```
+
+6. The program waits for the next student. Click **NEXT PERSON** to clear the card right away.
+7. Click **RESTART / RELOAD** after registering new students or creating a new event.
+
+**Rules**
+- A student can only log in **once per session**. A second scan shows *"Attendance already recorded at 7:53 AM."*
+- **Log Out** works only after a Log In, and only once.
+- Only students on the event's roster can be recorded.
+- When a session ends without a Log In, the student becomes **Absent** (10 obligation points).
+
+| Message | Meaning |
+|---|---|
+| No face detected | Nobody is in front of the camera |
+| More than one face | Only one person at a time |
+| Unknown face | The face is not registered, or the picture is not clear |
+| No open session | No event session is going on right now |
+| Webcam not found / disconnected | Check the cable, privacy settings or other apps |
+| Database error | MySQL is not running, or the connection settings are wrong |
+
+---
+
+## 17. How to View Attendance Records
+
+Open **Attendance Monitoring**:
+
+- Choose the **Event**, **Session**, **Date**, **Department** and **Year Level**.
+- Search by **student number or name**.
+- Check **Present**, **Absent** and/or **Pending** (session not finished yet). **Today** shows today only.
+- **Log Out** filter: Logged Out, Waiting, Missing Log Out or Not Required.
+- **Clear Filters** shows everything again.
+- The summary shows the counts and the attendance rate.
+- **Mark Present**, **Mark Log Out** and **Remove** fix records by hand (for example when the camera cannot recognize a student).
+- **Export CSV** saves the list so it can be opened in Excel.
+
+Open **Reports and Analysis** for summaries, the department chart and the most absent students.
+
+---
+
+## 18. The Other Menus
+
+**Event Management**
+1. Click **+ Add Event**. Enter the name, venue, organizer, start and end date.
+2. Check **Morning**, **Afternoon** and/or **Evening** and set their times.
+3. Choose who must attend (department and year level, or all).
+4. Check **Log out Needed** if students must also scan when they leave.
+5. Click **Save Event**. One session is created for every checked session of every day.
+6. Search events or filter by status (Upcoming, In Progress, Completed). Double-click an event to edit it.
+7. Select an event to see its **Sessions** or **Students (Roster)** below.
+   After a session has started, only the name, venue and organizer can be changed.
 
 **Obligations**
+- The balance is: **absences x 10 + added points - deducted points** (never below 0).
+- Select a student, type the **points** and a **reason**, then click **Add Points**, **Deduct Points** or **Clear to 0**.
+- **View Details** (or double-click) shows each absence and each adjustment.
+  The Admin can delete a wrong adjustment there.
 
-- Search and filter by event, department and year.
-- All Events shows totals; select **one event** to adjust a selected student's balance.
-- Choose **Deduct / Clear**, enter a positive deduction or select Clear balance to zero,
-  and enter a required reason.
-- Deductions cannot exceed the current balance. They cannot carry over to another event.
-- The adjustment dialog displays the balance, limits the deduction, requires confirmation, and
-  refuses zero-balance adjustments. The database checks the balance again when saving.
-- **History** (or double-click a row) shows each adjustment with event, reason, time and account.
-- **Export CSV** saves the visible obligation list for Excel.
-- Clearing points never clears the absence count. Later missed sessions can add new points.
-- Summary cards count distinct students. All-event rows may separate historical department/year
-  snapshots when a student changed course or year; their points are still correctly totaled.
+**Officer Records** (add/edit/delete = Admin only)
+1. Click **Add Officer**. Type the ID number and click **Find Student** to copy a student's details, or type them.
+2. Choose the **Position** and **School Year**.
+3. Create the officer's **Username** and **Password** (at least 6 characters).
+4. Click **SAVE OFFICER**. The officer can now log in.
 
-**Reports and Analysis**
+**Rules and Permission** (Admin only)
+- **New Rule**, type the description, check **Active**, then click **Add Rule** / **Save Changes**. **Delete Rule** removes it.
+- Select the **Officer** role, check the menus officers may open, then click **Save Permissions**.
 
-- Choose event, date range, department, optional student name/ID and report type, then Generate.
-  Selecting an event fills the From/To dates with that event's dates. Changing the report type,
-  event or department regenerates automatically; press Enter in the search box to generate.
-- Sessions: present/absent totals and attendance percentages by session and department.
-- Most absent: students ranked by absent session count and points earned in the selected date range.
-- Obligations: current event balances across **all dates**; this is explicitly labeled.
-- Student attendance: one row per student/completed session, including status and login/logout times.
-- Missing logout: completed-session rows where a required logout was not recorded.
-- The chart uses the selected completed-session date range. Present/Absent checkboxes control its series.
-- **Export CSV** saves the currently generated grid for Excel. Empty reports cannot be exported.
-  Exports preserve visible column order and neutralize spreadsheet formula prefixes.
+**Login History** (Admin only, button on the Dashboard)
+- Search by username or name, filter by role and date (**Today**, **Last 7 Days**, **Last 30 Days**).
 
-**Officer Records**
+---
 
-Only admins can add/edit/delete officers and set their username/password.
-Details include officer number, name, department, year, gender, optional email/contact,
-position and school year. Leave password blank when editing to keep it.
-Search by officer number, name, username or position, and filter by department/year.
-Double-click a row to edit it. Deletion also removes the officer's login.
-Officers are separate from students: an officer who also needs student attendance must
-be registered separately in Student Records with five face pictures.
+## 19. Project Files
 
-**Rules and Permission / Login History**
+```
+SCC_RecordsManagementSystem/
+|-- README.md
+|-- scc_records_management (1).sql      <- import this in phpMyAdmin
+|-- Sample Code/ConnectDatabase/        <- the coding style reference
+`-- SCCRecordsManagementSystem/
+    |-- SCCRecordsManagementSystem.sln  <- open this in Visual Studio
+    |-- Database.cs                     <- connection string and shared database methods
+    |-- AccountInfo.cs, StudentInfo.cs, OfficerInfo.cs, EventInfo.cs   <- model classes
+    |-- haarcascade_frontalface_default.xml   <- face detector file
+    `-- (the forms below)
+```
 
-Admins can add/edit/delete informational rules and change officer module access.
-**Manage Accounts** lists every login with role, creation date and last login. From there admins can
-create another administrator, reset the selected account's password, or delete another administrator.
-You cannot delete the account you are signed in with; officer logins are managed in Officer Records.
-There is no unauthenticated password reset.
-Open Login History from Dashboard to search usernames and filter successful logins by date.
-Refresh and CSV export are available. **No explicit logout** is not proof that someone is online:
-closing or crashing the application also leaves the logout time empty.
+| Form | File | What it does |
+|---|---|---|
+| Login | `Form1.cs` (class `lnkCreateAccount`) | Log in, opens Create Account and Forgot Password |
+| Create Account | `CreateAccount.cs` | New Admin account (needs the Admin password) |
+| Forgot Password | `ForgotPassword.cs` | Reset a password (needs the Admin password) |
+| Dashboard | `Dashboard.cs` | Totals, today's chart, recent scans, clock |
+| Login History | `LoginHistory.cs` | Log in / log out list (Admin only) |
+| Departments | `Departments.cs`, `AddDepartment.cs` | Department CRUD |
+| Student Records | `StudentRecords.cs` | Student list, search, filters, details, delete |
+| Registration | `Registration.cs` | Add / edit student and capture 5 faces |
+| Face Recognition | `FaceRecognition.cs` | Webcam attendance |
+| Event Management | `EventManagement.cs`, `AddEvent.cs` | Event CRUD, sessions and roster |
+| Attendance Monitoring | `AttendanceMonitoring.cs` | Attendance records, filters, manual entry, CSV |
+| Reports and Analysis | `ReportsAndAnalysis.cs` | Reports, chart, CSV |
+| Obligations | `Obligations.cs`, `ObligationDetails.cs` | Points, adjustments, details |
+| Officer Records | `OfficerRecords.cs`, `AddOfficer.cs` | Officer CRUD and accounts |
+| Rules and Permission | `RulesPermission.cs` | Rules CRUD and role permissions |
 
-## 11. Troubleshooting
+Edit layouts and controls in each form's `*.Designer.cs` file. For example, the
+Departments and Event Management grid columns (including **Edit** / **Delete**) are
+defined there, so they can be edited in Visual Studio's Designer. Their
+`DataPropertyName` values match the SQL column names. The corresponding `.cs` files
+contain the data loading and click handlers; refreshing or filtering does not recreate
+the columns or change their order.
 
-| Problem | What to check |
+**Useful methods in `Database.cs`** (like `ConnectDB` in the sample code):
+`GetConnection()`, `saveUpdateDeleteData()`, `GetData()`, `GetValue()`, `GetCount()`,
+`searchAndGetStudentInfo()`, `searchAndGetOfficerInfo()`, `searchAndGetEventInfo()`,
+`loadDepartmentComboBox()`, `isAllowed()`, `showError()`.
+
+---
+
+## 20. Common Errors and Troubleshooting
+
+| Problem | Solution |
 |---|---|
-| Database operation failed | Start MySQL; check credentials/port in Database.cs; import the correct SQL, including views. |
-| ID, username, email or name already exists | Choose a unique identifier/email/department name. Do not reuse another student's ID. |
-| Cannot delete department | It is referenced by students, officers or event history; keep it or remove dependent records intentionally. |
-| Face detector missing | Rebuild and keep `haarcascade_frontalface_default.xml` beside the executable. |
-| Camera library could not load | Restore both matching OpenCvSharp packages, use Windows x64, install Visual C++ 2015-2022 x64. |
-| Webcam unavailable | Connect a camera (cameras 0, 1 and 2 are tried), allow Windows desktop camera access, close other camera apps. |
-| Webcam disconnected | Reconnect and use Start Camera / Restart. |
-| No face / multiple faces / poor quality | Follow the message under the preview: face the camera, remove other people from view, move closer, move to the center, improve or soften the lighting, hold still. |
-| Box stays gold ("Recognizing your face...") | Look straight at the camera with similar lighting to registration; if it never turns green, re-register the student. |
-| Unknown face | Check Active status and five pictures; re-register under similar lighting, then Restart / Reload. |
-| Missing/incomplete saved faces | Students without exactly five pictures are not loaded. Damaged pictures are skipped and counted in red under the session list; edit the student and capture five new images. |
-| No active event | Check database server time and session times; wait/start correct event, then Restart / Reload. |
-| Student not on roster | Check the event's department scope and the student's Active status/five pictures, then save the student again. Completed events never add new students. |
-| Cannot edit schedule | Event has already started. Its history is protected; create a replacement event if necessary. |
-| Password forgotten | Ask admin to reset it. If all admin passwords are lost, restore a backup or intentionally re-import (erases data). |
-| Form clipped | Use at least 1366 x 768 and 100% Windows display scaling. |
-| Target framework missing | Install .NET Framework 4.7.2 Developer Pack in Visual Studio Installer. |
-| Linux resource/chart/native errors | Run on Windows. The app uses Windows Forms, Windows chart controls and a Windows native camera package. |
+| *"Cannot connect to the database"* | Start **MySQL** in XAMPP. Check the connection string in `Database.cs`. |
+| *"Unknown database 'scc_management'"* | Import `scc_records_management (1).sql` (section 7). |
+| MySQL in XAMPP does not start (port 3306 is used) | Another MySQL is running. Stop it, or change the port in XAMPP and add `Port=...;` to the connection string. |
+| *"Authentication method 'caching_sha2_password' not supported"* (MySQL 8) | Run in MySQL: `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';` (put your password between the quotes). |
+| SQL import error on `CHECK` | Use XAMPP with MariaDB 10.4+ or MySQL 8.0.16+. Older versions are not supported. |
+| Build error: *"This project references NuGet package(s) that are missing"* | Right-click the Solution > **Restore NuGet Packages**, then **Rebuild**. |
+| Build error: *"The type or namespace name 'MySql' / 'OpenCvSharp' / 'BCrypt' could not be found"* | The package is not installed. Install it with the exact version from section 9. |
+| *"Unable to load DLL 'OpenCvSharpExtern'"* | Install the **Visual C++ Redistributable 2015-2022** (x64 and x86). Reinstall `OpenCvSharp4.runtime.win 4.11.0.20250507`. Rebuild and check that `bin\Debug\dll\x64\OpenCvSharpExtern.dll` exists. |
+| *"Face detector file is missing"* | `haarcascade_frontalface_default.xml` must be in `bin\Debug`. In Solution Explorer, select the file > Properties > **Copy to Output Directory = Copy if newer**. Rebuild. |
+| *"No webcam found"* | Plug in the webcam, close other apps using it, turn on camera access for desktop apps in Windows Privacy settings. |
+| Webcam picture is black | Another app is using the camera, or the camera cover/switch is closed. |
+| A registration capture is rejected after a camera read fails | Wait for a new valid webcam frame. The last displayed picture is not reused as a new capture. |
+| *"No face detected"* | Move closer, face the camera, improve the light. |
+| *"More than one face"* | Only one person in front of the camera. |
+| Student is always *"Unknown"* | Check that the student is **Active**, has **5 faces**, and is on the event roster. Click **RESTART / RELOAD**. Re-register the faces in good light. |
+| Wrong student is recognized | Re-register both students' faces in good light. You can lower `matchThreshold` in `FaceRecognition.cs` (for example 60). |
+| *"No open session"* in Face Recognition | The current time must be between the start and end of a session. Check the event dates/times and the computer's clock. |
+| *"Attendance already recorded"* | This is correct: a student can only log in once per session. |
+| Face registration is reported incomplete during attendance | Open Student Records, edit the student, and re-register all five face pictures. Attendance is not recorded unless the student is active, marked as face registered, and has exactly five saved pictures. |
+| *"Access Denied"* when opening a menu | Officers can only open the menus allowed in **Rules and Permission**. Log in as Admin to change them. |
+| Forgot the Admin password | In phpMyAdmin, open `scc_management` > SQL and run the query below. The password becomes **admin123**. |
 
-## 12. Verification and Windows acceptance checklist
-
-Verified in the development environment:
-
-- All original form source compiles together: **0 compiler errors and warnings**.
-  Linux compilation used a temporary resource-build compatibility package, not added to this project.
-- Fresh and repeated SQL imports on MariaDB 10.4.34 (14 tables, 2 views, 16 foreign keys).
-- **106 C# database workflow checks passed** (0 failed): five-image requirement,
-  validation, duplicates, student CRUD/re-registration, multi-day sessions, automatic roster updates,
-  absence cutoff for late registrations, login/logout duplicates, every attendance filter, absence points,
-  deductions/clearing/history, report filters, officers, permissions, account deletion rules, cascades
-  and CSV safety. These used a temporary C# harness and synthetic images, not live face recognition.
-  They were run before the face detection update, which did not change the database or save code.
-- **27 Mono form checks passed** (0 failed): original forms open, student attendance summary, saved face
-  thumbnails, event status list, locked-schedule notice, attendance/obligation/login-history grids,
-  Manage Accounts button and friendly missing-camera-library feedback.
-  Dashboard and Reports and Analysis were skipped (2) because Mono does not implement Windows charts.
-- After the face detection update:
-  - **13 real OpenCV checks passed** (0 failed) using the exact `Detect`/`CheckFace`/`PrepareFace` code,
-    OpenCvSharp 4.11.0.20250507 (Linux runtime) and public OpenCV sample photos: one face accepted;
-    no face, two people, dark, blurry, edge and far-away faces rejected; a small background face ignored;
-    five pictures registered for two people; both recognized (distance 45 and 34); 11 unregistered
-    people from a group photo all stayed unknown.
-  - **9 Mono form checks passed** (0 failed) for Add/Edit Student and Face Recognition: automatic camera
-    start, damaged/valid saved pictures, re-register check/uncheck, no-session and camera-library messages.
-  - SQL file re-imported on MariaDB 10.4; the new training query loads only Active students with five pictures.
-- All original files remain; there are no deleted original forms or separated sidebar files.
-
-**Not claimed as verified:** real webcam recognition accuracy, Windows chart rendering,
-and end-to-end Visual Studio execution. Linux/Mono is not a substitute for these.
-Before using at an actual event, test on the target Windows PC:
-
-1. Import SQL into a test database and build in Visual Studio.
-2. Log in as admin, create an officer, and confirm that officer cannot manage accounts.
-3. Add a department; create two students with five real captures each.
-4. Verify 0/4 pictures cannot save; verify no-face/multiple-face/poor-light capture rejection.
-5. Edit/search/view a student, re-register faces and confirm five images remain.
-6. Create a two-day morning/afternoon event and inspect all four sessions/roster.
-7. Recognize each registered student, then an unregistered person. Confirm no unknown attendance.
-8. Repeat a scan and verify only one row; log out and repeat logout.
-9. Disconnect/reconnect webcam and temporarily stop MySQL; verify clear errors and successful retry.
-10. After a session ends, check absent count, 10-point penalties, partial deduction and clear-to-zero.
-11. Check all attendance/report filters and export a CSV.
-12. Check dashboard session selection/chart, both new detailed report types, permissions, password reset and login history.
-13. Delete disposable test students/events and verify dependent records are removed.
+```sql
+UPDATE accounts
+SET password = '$2a$11$ImieFcUoeFA4gmZBkIB1m.TAvs7tQi5eExMCNZ0s4ZV0CcaFKxmfa'
+WHERE username = 'admin';
+```
