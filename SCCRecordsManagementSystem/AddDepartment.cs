@@ -51,9 +51,9 @@ namespace SCCRecordsManagementSystem
 
         private void LoadDepartmentData(int id)
         {
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
                     string query = "SELECT department_name, department_code, department_head, contact_email, description, academic_level FROM departments WHERE department_id = @id";
@@ -91,10 +91,12 @@ namespace SCCRecordsManagementSystem
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("Could not load the department details.", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                btnAddDept.Enabled = false;
+                Database.showError("Could not load the department details.", ex);
+                this.Close();
             }
         }
 
@@ -169,9 +171,9 @@ namespace SCCRecordsManagementSystem
         {
             bool isDuplicate = false;
 
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
 
@@ -205,11 +207,11 @@ namespace SCCRecordsManagementSystem
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("Could not check for duplicate departments.", ex);
-                    isDuplicate = true;
-                }
+            }
+            catch (Exception ex)
+            {
+                Database.showError("Could not check for duplicate departments.", ex);
+                isDuplicate = true;
             }
 
             return isDuplicate;
@@ -234,9 +236,9 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
                     string query;
@@ -301,10 +303,10 @@ namespace SCCRecordsManagementSystem
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("The department was not saved.", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Database.showError("The department was not saved.", ex);
             }
         }
 

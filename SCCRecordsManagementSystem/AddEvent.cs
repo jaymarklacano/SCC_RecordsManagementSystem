@@ -21,7 +21,7 @@ namespace SCCRecordsManagementSystem
         private bool scheduleLocked = false;
 
         // true while the form is being filled (so the change events do nothing).
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         // An event may last at most 31 days.
         private const int MAXIMUM_DAYS = 31;
@@ -41,39 +41,50 @@ namespace SCCRecordsManagementSystem
 
         private void AddEvent_Load(object sender, EventArgs e)
         {
+            btnSaveEvent.Enabled = false;
             isLoading = true;
-
-            Database.loadDepartmentComboBox(cmbEventDepartment, "All Departments");
-            cmbEventYear.SelectedIndex = 0;
-
-            if (eventId == 0)
+            try
             {
-                lblTitle.Text = "Add Event";
-                this.Text = "SCC Records Management System - Add Event";
-                btnSaveEvent.Text = "Save Event";
-                setDefaultValues();
-            }
-            else
-            {
-                lblTitle.Text = "Edit Event";
-                this.Text = "SCC Records Management System - Edit Event";
-                btnSaveEvent.Text = "Update Event";
+                Database.loadDepartmentComboBox(cmbEventDepartment, "All Departments");
+                cmbEventYear.SelectedIndex = 0;
 
-                bool found = loadEventToEdit();
-
-                if (found == false)
+                if (eventId == 0)
                 {
-                    MessageBox.Show("This event was not found. It may have been deleted already.", "Event Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    this.Close();
-                    return;
+                    lblTitle.Text = "Add Event";
+                    this.Text = "SCC Records Management System - Add Event";
+                    btnSaveEvent.Text = "Save Event";
+                    setDefaultValues();
+                }
+                else
+                {
+                    lblTitle.Text = "Edit Event";
+                    this.Text = "SCC Records Management System - Edit Event";
+                    btnSaveEvent.Text = "Update Event";
+
+                    bool found = loadEventToEdit();
+
+                    if (found == false)
+                    {
+                        MessageBox.Show("This event was not found. It may have been deleted already.", "Event Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        this.Close();
+                        return;
+                    }
                 }
             }
-
-            isLoading = false;
+            catch (MySqlException ex)
+            {
+                Database.showError("Could not load the event or its schedule. Close and reopen this window before saving.", ex);
+                return;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             enableControls();
             updateExpectedStudents();
             updateScheduleInfo();
+            btnSaveEvent.Enabled = true;
             txtEventName.Focus();
         }
 
@@ -542,8 +553,16 @@ namespace SCCRecordsManagementSystem
 
         private void btnSaveEvent_Click(object sender, EventArgs e)
         {
-            if (validateEvent() == false)
+            try
             {
+                if (validateEvent() == false)
+                {
+                    return;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Database.showError("Could not verify the event schedule. No changes were saved.", ex);
                 return;
             }
 
@@ -560,11 +579,12 @@ namespace SCCRecordsManagementSystem
             this.Cursor = Cursors.WaitCursor;
             btnSaveEvent.Enabled = false;
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             MySqlTransaction transaction = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 // A transaction saves everything together: if one step fails, nothing is saved.
@@ -765,8 +785,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
 
                 this.Cursor = Cursors.Default;
                 btnSaveEvent.Enabled = true;
@@ -824,21 +843,28 @@ namespace SCCRecordsManagementSystem
             }
 
             isLoading = true;
-
-            if (eventId == 0)
+            btnSaveEvent.Enabled = false;
+            try
             {
-                setDefaultValues();
+                if (eventId == 0)
+                {
+                    setDefaultValues();
+                }
+                else if (!loadEventToEdit())
+                {
+                    MessageBox.Show("This event could not be reloaded. Close this window and reopen it from Event Management.");
+                    return;
+                }
             }
-            else
+            finally
             {
-                loadEventToEdit();
+                isLoading = false;
             }
-
-            isLoading = false;
 
             enableControls();
             updateExpectedStudents();
             updateScheduleInfo();
+            btnSaveEvent.Enabled = cmbEventDepartment.DataSource != null;
             txtEventName.Focus();
         }
 

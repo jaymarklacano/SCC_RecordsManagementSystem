@@ -14,7 +14,7 @@ namespace SCCRecordsManagementSystem
     public partial class LoginHistory : Form
     {
         // true while the filters are being changed by the code (so the change events do nothing).
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         public LoginHistory()
         {
@@ -24,11 +24,17 @@ namespace SCCRecordsManagementSystem
         private void LoginHistory_Load(object sender, EventArgs e)
         {
             isLoading = true;
-            txtUserName.Text = "";
-            cmbRoleFilter.SelectedIndex = 0;
-            dtpStartDate.Value = DateTime.Today.AddDays(-30);
-            dtpEndDate.Value = DateTime.Today;
-            isLoading = false;
+            try
+            {
+                txtUserName.Text = "";
+                cmbRoleFilter.SelectedIndex = 0;
+                dtpStartDate.Value = DateTime.Today.AddDays(-30);
+                dtpEndDate.Value = DateTime.Today;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadLoginHistory();
         }
@@ -74,11 +80,12 @@ namespace SCCRecordsManagementSystem
                            "AND lh.logged_in >= @startDate AND lh.logged_in < @endDate " +
                            "ORDER BY lh.logged_in DESC";
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             DataTable loginTable = new DataTable();
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -97,12 +104,15 @@ namespace SCCRecordsManagementSystem
             }
             catch (Exception ex)
             {
+                dtgLoginRecords.DataSource = null;
+                lblNoRecord.Visible = false;
+                lblListInfo.Text = "Login history unavailable. Click Refresh to try again.";
                 Database.showError("The login history could not be loaded.", ex);
+                return;
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             dtgLoginRecords.DataSource = loginTable;
@@ -187,9 +197,15 @@ namespace SCCRecordsManagementSystem
         private void setDateRange(DateTime startDate, DateTime endDate)
         {
             isLoading = true;
-            dtpStartDate.Value = startDate;
-            dtpEndDate.Value = endDate;
-            isLoading = false;
+            try
+            {
+                dtpStartDate.Value = startDate;
+                dtpEndDate.Value = endDate;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadLoginHistory();
         }
@@ -222,9 +238,15 @@ namespace SCCRecordsManagementSystem
             }
 
             isLoading = true;
-            txtUserName.Text = "";
-            cmbRoleFilter.SelectedIndex = 0;
-            isLoading = false;
+            try
+            {
+                txtUserName.Text = "";
+                cmbRoleFilter.SelectedIndex = 0;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             setDateRange(firstDate, DateTime.Today);
         }

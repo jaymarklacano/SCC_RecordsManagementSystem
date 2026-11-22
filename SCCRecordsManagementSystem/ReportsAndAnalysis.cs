@@ -16,7 +16,7 @@ namespace SCCRecordsManagementSystem
     public partial class ReportsAndAnalysis : Form
     {
         // true while the filters are being filled (so the change events do nothing).
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         // The filters used by every attendance query of this page.
         // Only FINISHED sessions are counted, so every student is already Present or Absent.
@@ -35,15 +35,25 @@ namespace SCCRecordsManagementSystem
         private void ReportsAndAnalysis_Load(object sender, EventArgs e)
         {
             isLoading = true;
-
-            Database.loadEventComboBox(cmbEventSelect, "All Events");
-            Database.loadDepartmentComboBox(cmbDepartment, "All Departments");
-            cmbYearLevel.SelectedIndex = 0;
-            cmbReportType.SelectedIndex = 0;
-            setDefaultDates();
-            showEventDetails();
-
-            isLoading = false;
+            try
+            {
+                Database.loadEventComboBox(cmbEventSelect, "All Events");
+                Database.loadDepartmentComboBox(cmbDepartment, "All Departments");
+                cmbYearLevel.SelectedIndex = 0;
+                cmbReportType.SelectedIndex = 0;
+                setDefaultDates();
+                showEventDetails();
+            }
+            catch (MySqlException ex)
+            {
+                clearReport("Filters unavailable. Reopen Reports and Analysis to retry.");
+                Database.showError("Could not load the report filters.", ex);
+                return;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             GenerateReport();
         }
@@ -142,8 +152,20 @@ namespace SCCRecordsManagementSystem
             }
 
             isLoading = true;
-            showEventDetails();
-            isLoading = false;
+            try
+            {
+                showEventDetails();
+            }
+            catch (MySqlException ex)
+            {
+                clearReport("Could not load the selected event. Select it again to retry.");
+                Database.showError("Could not load the event schedule.", ex);
+                return;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             GenerateReport();
         }
@@ -167,26 +189,36 @@ namespace SCCRecordsManagementSystem
         private void btnClearFilters_Click(object sender, EventArgs e)
         {
             isLoading = true;
-
-            if (cmbEventSelect.Items.Count > 0)
+            try
             {
-                cmbEventSelect.SelectedIndex = 0;
-            }
+                if (cmbEventSelect.Items.Count > 0)
+                {
+                    cmbEventSelect.SelectedIndex = 0;
+                }
 
-            if (cmbDepartment.Items.Count > 0)
+                if (cmbDepartment.Items.Count > 0)
+                {
+                    cmbDepartment.SelectedIndex = 0;
+                }
+
+                cmbYearLevel.SelectedIndex = 0;
+                cmbReportType.SelectedIndex = 0;
+                txtSearchStudent.Text = "";
+                chkPresent.Checked = true;
+                chkAbsent.Checked = true;
+                setDefaultDates();
+                showEventDetails();
+            }
+            catch (MySqlException ex)
             {
-                cmbDepartment.SelectedIndex = 0;
+                clearReport("Could not reset the filters. Try Clear Filters again.");
+                Database.showError("Could not load the default report dates.", ex);
+                return;
             }
-
-            cmbYearLevel.SelectedIndex = 0;
-            cmbReportType.SelectedIndex = 0;
-            txtSearchStudent.Text = "";
-            chkPresent.Checked = true;
-            chkAbsent.Checked = true;
-            setDefaultDates();
-            showEventDetails();
-
-            isLoading = false;
+            finally
+            {
+                isLoading = false;
+            }
 
             GenerateReport();
         }
@@ -208,10 +240,11 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 this.Cursor = Cursors.WaitCursor;
                 conn.Open();
 
@@ -258,7 +291,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
+                if (conn != null) conn.Dispose();
                 this.Cursor = Cursors.Default;
             }
         }
@@ -661,24 +694,40 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Title = "Export Report";
-            saveDialog.Filter = "CSV file (*.csv)|*.csv";
-            saveDialog.FileName = cmbReportType.Text.Replace(" ", "_") + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".csv";
-
-            if (saveDialog.ShowDialog() != DialogResult.OK)
+            string fileName;
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
-                saveDialog.Dispose();
-                return;
-            }
+                saveDialog.Title = "Export Report";
+                saveDialog.Filter = "CSV file (*.csv)|*.csv";
+                saveDialog.FileName = cmbReportType.Text.Replace(" ", "_") + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".csv";
 
-            string fileName = saveDialog.FileName;
-            saveDialog.Dispose();
+                if (saveDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                fileName = saveDialog.FileName;
+            }
 
             try
             {
-                StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8);
+                writeCsv(fileName);
+                MessageBox.Show("The report (" + dtgRecord.Rows.Count + " row(s)) was exported to:\n" + fileName, "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("The file could not be saved. If it is open in Excel, close it and try again.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("You are not allowed to save in that folder. Please choose another folder.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void writeCsv(string fileName)
+        {
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8))
+            {
                 // 1. Report title, filters and summary
                 writer.WriteLine(csvValue("SCC Records Management System - " + cmbReportType.Text));
                 writer.WriteLine(csvValue("Event: " + cmbEventSelect.Text + "   Department: " + cmbDepartment.Text + "   Year Level: " + cmbYearLevel.Text));
@@ -739,18 +788,6 @@ namespace SCCRecordsManagementSystem
 
                     writer.WriteLine(line);
                 }
-
-                writer.Close();
-
-                MessageBox.Show("The report (" + dtgRecord.Rows.Count + " row(s)) was exported to:\n" + fileName, "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (IOException)
-            {
-                MessageBox.Show("The file could not be saved. If it is open in Excel, close it and try again.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show("You are not allowed to save in that folder. Please choose another folder.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

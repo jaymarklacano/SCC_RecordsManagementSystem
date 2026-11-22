@@ -34,6 +34,19 @@ namespace SCCRecordsManagementSystem
 
         private void AddOfficer_Load(object sender, EventArgs e)
         {
+            btnSaveOfficer.Enabled = false;
+            try
+            {
+                loadOfficerForm();
+            }
+            catch (MySqlException ex)
+            {
+                Database.showError("Could not load the officer form. Close and reopen it before saving.", ex);
+            }
+        }
+
+        private void loadOfficerForm()
+        {
             Database.loadDepartmentComboBox(cmbDepartment, "Select Course");
 
             if (officerIdToEdit == 0)
@@ -62,8 +75,10 @@ namespace SCCRecordsManagementSystem
                     MessageBox.Show("This officer no longer exists. The list will be refreshed.", "Officer Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
+                    return;
                 }
             }
+            btnSaveOfficer.Enabled = true;
         }
 
         // ------------------------------------------------------------------
@@ -150,7 +165,12 @@ namespace SCCRecordsManagementSystem
             else
             {
                 // In edit mode the saved information is shown again.
-                loadOfficerToEdit();
+                btnSaveOfficer.Enabled = false;
+                btnSaveOfficer.Enabled = loadOfficerToEdit() && cmbDepartment.DataSource != null;
+                if (!btnSaveOfficer.Enabled)
+                {
+                    MessageBox.Show("The officer could not be reloaded. Close this window and reopen it from Officer Records.");
+                }
             }
         }
 
@@ -447,8 +467,16 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            if (checkDuplicateOfficer() == false)
+            try
             {
+                if (checkDuplicateOfficer() == false)
+                {
+                    return;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Database.showError("Could not check the officer and account details. No changes were saved.", ex);
                 return;
             }
 
@@ -510,11 +538,12 @@ namespace SCCRecordsManagementSystem
                 contactNumber = txtContact.Text.Trim();
             }
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             MySqlTransaction transaction = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
                 transaction = conn.BeginTransaction();
 
@@ -608,8 +637,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             return saved;

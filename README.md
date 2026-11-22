@@ -548,8 +548,13 @@ the columns or change their order.
 
 ## 20. Common Errors and Troubleshooting
 
+If an action fails, read the message before retrying. A database error is **not** a count of zero or proof that a record does not exist. If a save or attendance result is uncertain, refresh the list and check the student and event session first. Do not re-import the SQL file to fix a temporary connection problem: importing it again deletes existing records.
+
 | Problem | Solution |
 |---|---|
+| Attendance Monitoring filters did not load | Restore the database connection, then click **Refresh**. The screen reloads missing filters before displaying attendance. |
+| Officer permission checkboxes and Save are disabled after an error | Restore the connection, select **Admin**, then **Officer** again. Permissions cannot be edited until they load. |
+| Visual Studio pauses on an exception even though there is a handler | **Debug > Windows > Exception Settings** may be set to break when an exception is *thrown*. Press **F5** to continue to the handler and read the app's message. If the same error repeats, investigate it rather than just hiding debugger breaks. |
 | *"Cannot connect to the database"* | Start **MySQL** in XAMPP. Check the connection string in `Database.cs`. |
 | *"Unknown database 'scc_management'"* | Import `scc_records_management (1).sql` (section 7). |
 | MySQL in XAMPP does not start (port 3306 is used) | Another MySQL is running. Stop it, or change the port in XAMPP and add `Port=...;` to the connection string. |

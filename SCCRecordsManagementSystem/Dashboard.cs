@@ -51,17 +51,24 @@ namespace SCCRecordsManagementSystem
 
         private void loadDashboard()
         {
-            bool totalsLoaded = loadTotals();
-
-            // When the totals could not be loaded the database is not available,
-            // so we stop here to avoid showing the same error message many times.
-            if (totalsLoaded == false)
+            try
             {
-                return;
-            }
+                if (loadTotals() == false) return;
 
-            loadTodayAttendanceChart();
-            loadRecentActivities();
+                loadTodayAttendanceChart();
+                loadRecentActivities();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                lblTotalAll.Text = lblTotalOfficer.Text = lblAllEvent.Text = "-";
+                lblStudentDetails.Text = lblOfficerDetails.Text = lblEventDetails.Text = "";
+                chtAttendanceOverview.Series["Series1"].Points.Clear();
+                chtAttendanceOverview.Titles.Clear();
+                dtgRecentEvent.DataSource = null;
+                lblNoActivity.Visible = false;
+                lblTodaySummary.Text = "Dashboard unavailable. Click Refresh to try again.";
+                Database.showError("Could not refresh the dashboard.", ex);
+            }
         }
 
         private bool loadTotals()

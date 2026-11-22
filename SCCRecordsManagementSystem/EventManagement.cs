@@ -38,122 +38,131 @@ namespace SCCRecordsManagementSystem
         public void LoadEvents()
         {
             isLoading = true;
-
-            // Remember the selected event so it is selected again after refreshing.
-            int previousEventId = selectedEventId;
-            string search = txtSearchEvent.Text.Trim();
-            string status = cmbStatus.Text;
-
-            if (status == "")
-            {
-                status = "All Events";
-            }
-
-            // The inner SELECT computes the status of every event from its first and last session.
-            string query = "SELECT * FROM (" +
-                           "SELECT e.event_id, e.event_name, e.venue, " +
-                           "IF(e.start_date = e.end_date, DATE_FORMAT(e.start_date, '%b %d, %Y'), " +
-                           "CONCAT(DATE_FORMAT(e.start_date, '%b %d'), ' - ', DATE_FORMAT(e.end_date, '%b %d, %Y'))) AS event_dates, " +
-                           "CONCAT_WS(', ', IF(e.morning_enabled = 1, 'Morning', NULL), IF(e.afternoon_enabled = 1, 'Afternoon', NULL), " +
-                           "IF(e.evening_enabled = 1, 'Evening', NULL)) AS periods, " +
-                           "CONCAT(IFNULL(d.department_code, 'All Departments'), ' - ', IFNULL(e.year_level, 'All Years')) AS participants, " +
-                           "IF(e.requires_logout = 1, 'Yes', 'No') AS log_out, " +
-                           "(SELECT COUNT(*) FROM event_students r WHERE r.event_id = e.event_id) AS students, " +
-                           "CASE WHEN NOW() < (SELECT MIN(es.starts_at) FROM event_sessions es WHERE es.event_id = e.event_id) THEN 'Upcoming' " +
-                           "WHEN NOW() >= (SELECT MAX(es.ends_at) FROM event_sessions es WHERE es.event_id = e.event_id) THEN 'Completed' " +
-                           "ELSE 'In Progress' END AS status, " +
-                           "e.start_date " +
-                           "FROM events e " +
-                           "LEFT JOIN departments d ON d.department_id = e.department_id " +
-                           "WHERE e.event_name LIKE @search OR e.venue LIKE @search OR e.organizer LIKE @search" +
-                           ") x " +
-                           "WHERE (@status = 'All Events' OR x.status = @status) " +
-                           "ORDER BY x.start_date DESC, x.event_name";
-
-            MySqlConnection conn = Database.GetConnection();
-
             try
             {
-                conn.Open();
+                // Remember the selected event so it is selected again after refreshing.
+                int previousEventId = selectedEventId;
+                string search = txtSearchEvent.Text.Trim();
+                string status = cmbStatus.Text;
 
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@search", "%" + search + "%");
-                cmd.Parameters.AddWithValue("@status", status);
-
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                DataTable eventTable = new DataTable();
-                adapter.Fill(eventTable);
-
-                dtgEventManagement.DataSource = eventTable;
-
-                adapter.Dispose();
-                cmd.Dispose();
-
-                // Color the status: green = in progress, blue = upcoming, gray = completed.
-                for (int i = 0; i < dtgEventManagement.Rows.Count; i++)
+                if (status == "")
                 {
-                    DataGridViewCell statusCell = dtgEventManagement.Rows[i].Cells["colEventStatus"];
+                    status = "All Events";
+                }
 
-                    if (statusCell.Value.ToString() == "In Progress")
+                // The inner SELECT computes the status of every event from its first and last session.
+                string query = "SELECT * FROM (" +
+                               "SELECT e.event_id, e.event_name, e.venue, " +
+                               "IF(e.start_date = e.end_date, DATE_FORMAT(e.start_date, '%b %d, %Y'), " +
+                               "CONCAT(DATE_FORMAT(e.start_date, '%b %d'), ' - ', DATE_FORMAT(e.end_date, '%b %d, %Y'))) AS event_dates, " +
+                               "CONCAT_WS(', ', IF(e.morning_enabled = 1, 'Morning', NULL), IF(e.afternoon_enabled = 1, 'Afternoon', NULL), " +
+                               "IF(e.evening_enabled = 1, 'Evening', NULL)) AS periods, " +
+                               "CONCAT(IFNULL(d.department_code, 'All Departments'), ' - ', IFNULL(e.year_level, 'All Years')) AS participants, " +
+                               "IF(e.requires_logout = 1, 'Yes', 'No') AS log_out, " +
+                               "(SELECT COUNT(*) FROM event_students r WHERE r.event_id = e.event_id) AS students, " +
+                               "CASE WHEN NOW() < (SELECT MIN(es.starts_at) FROM event_sessions es WHERE es.event_id = e.event_id) THEN 'Upcoming' " +
+                               "WHEN NOW() >= (SELECT MAX(es.ends_at) FROM event_sessions es WHERE es.event_id = e.event_id) THEN 'Completed' " +
+                               "ELSE 'In Progress' END AS status, " +
+                               "e.start_date " +
+                               "FROM events e " +
+                               "LEFT JOIN departments d ON d.department_id = e.department_id " +
+                               "WHERE e.event_name LIKE @search OR e.venue LIKE @search OR e.organizer LIKE @search" +
+                               ") x " +
+                               "WHERE (@status = 'All Events' OR x.status = @status) " +
+                               "ORDER BY x.start_date DESC, x.event_name";
+
+                MySqlConnection conn = null;
+
+                try
+                {
+                    conn = Database.GetConnection();
+                    conn.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@search", "%" + search + "%");
+                    cmd.Parameters.AddWithValue("@status", status);
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable eventTable = new DataTable();
+                    adapter.Fill(eventTable);
+
+                    dtgEventManagement.DataSource = eventTable;
+
+                    adapter.Dispose();
+                    cmd.Dispose();
+
+                    // Color the status: green = in progress, blue = upcoming, gray = completed.
+                    for (int i = 0; i < dtgEventManagement.Rows.Count; i++)
                     {
-                        statusCell.Style.ForeColor = Color.DarkGreen;
-                        statusCell.Style.Font = new Font("Cambria", 9F, FontStyle.Bold);
+                        DataGridViewCell statusCell = dtgEventManagement.Rows[i].Cells["colEventStatus"];
+
+                        if (statusCell.Value.ToString() == "In Progress")
+                        {
+                            statusCell.Style.ForeColor = Color.DarkGreen;
+                            statusCell.Style.Font = new Font("Cambria", 9F, FontStyle.Bold);
+                        }
+                        else if (statusCell.Value.ToString() == "Upcoming")
+                        {
+                            statusCell.Style.ForeColor = Color.RoyalBlue;
+                        }
+                        else
+                        {
+                            statusCell.Style.ForeColor = Color.DimGray;
+                        }
                     }
-                    else if (statusCell.Value.ToString() == "Upcoming")
+
+                    lblTotalEvents.Text = "Total: " + eventTable.Rows.Count + " event(s)";
+
+                    // Empty-state message
+                    if (eventTable.Rows.Count == 0)
                     {
-                        statusCell.Style.ForeColor = Color.RoyalBlue;
+                        if (search == "" && status == "All Events")
+                        {
+                            lblNoEvent.Text = "No events yet. Click \"+ Add Event\" to create one.";
+                        }
+                        else
+                        {
+                            lblNoEvent.Text = "No event matches your search or filter.";
+                        }
+
+                        lblNoEvent.Visible = true;
+                        lblNoEvent.BringToFront();
                     }
                     else
                     {
-                        statusCell.Style.ForeColor = Color.DimGray;
+                        lblNoEvent.Visible = false;
+                    }
+
+                    // Select the same event as before
+                    dtgEventManagement.ClearSelection();
+
+                    for (int i = 0; i < dtgEventManagement.Rows.Count; i++)
+                    {
+                        if (Convert.ToInt32(dtgEventManagement.Rows[i].Cells["colEventId"].Value) == previousEventId)
+                        {
+                            dtgEventManagement.Rows[i].Selected = true;
+                            dtgEventManagement.CurrentCell = dtgEventManagement.Rows[i].Cells["colEventName"];
+                        }
                     }
                 }
-
-                lblTotalEvents.Text = "Total: " + eventTable.Rows.Count + " event(s)";
-
-                // Empty-state message
-                if (eventTable.Rows.Count == 0)
+                catch (Exception ex)
                 {
-                    if (search == "" && status == "All Events")
-                    {
-                        lblNoEvent.Text = "No events yet. Click \"+ Add Event\" to create one.";
-                    }
-                    else
-                    {
-                        lblNoEvent.Text = "No event matches your search or filter.";
-                    }
-
-                    lblNoEvent.Visible = true;
-                    lblNoEvent.BringToFront();
-                }
-                else
-                {
+                    dtgEventManagement.DataSource = null;
+                    showSelectedEvent();
                     lblNoEvent.Visible = false;
+                    lblTotalEvents.Text = "Event list unavailable.";
+                    Database.showError("Could not load the events.", ex);
+                    return;
                 }
-
-                // Select the same event as before
-                dtgEventManagement.ClearSelection();
-
-                for (int i = 0; i < dtgEventManagement.Rows.Count; i++)
+                finally
                 {
-                    if (Convert.ToInt32(dtgEventManagement.Rows[i].Cells["colEventId"].Value) == previousEventId)
-                    {
-                        dtgEventManagement.Rows[i].Selected = true;
-                        dtgEventManagement.CurrentCell = dtgEventManagement.Rows[i].Cells["colEventName"];
-                    }
+                    if (conn != null) conn.Dispose();
                 }
-            }
-            catch (Exception ex)
-            {
-                Database.showError("Could not load the events.", ex);
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                isLoading = false;
             }
-
-            isLoading = false;
             showSelectedEvent();
         }
 
@@ -255,10 +264,11 @@ namespace SCCRecordsManagementSystem
                            "GROUP BY es.session_id, es.session_date, es.session_name, es.starts_at, es.ends_at " +
                            "ORDER BY es.starts_at";
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -312,8 +322,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
         }
 
@@ -331,10 +340,11 @@ namespace SCCRecordsManagementSystem
                            "WHERE r.event_id = @id " +
                            "ORDER BY s.last_name, s.first_name";
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -376,8 +386,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
         }
 

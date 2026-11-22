@@ -14,7 +14,7 @@ namespace SCCRecordsManagementSystem
     public partial class RulesPermission : Form
     {
         // true while the grid or combo boxes are being filled (so the change events do nothing).
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         // The rule shown in the Rule Details panel. 0 means a new rule is being typed.
         private int selectedRuleId = 0;
@@ -26,11 +26,18 @@ namespace SCCRecordsManagementSystem
 
         private void RulesPermission_Load(object sender, EventArgs e)
         {
+            btnSavePermission.Enabled = false;
             isLoading = true;
-            cmbRuleStatus.SelectedIndex = 0;
-            cmbRole.SelectedIndex = 0;
-            txtSearchRule.Text = "";
-            isLoading = false;
+            try
+            {
+                cmbRuleStatus.SelectedIndex = 0;
+                cmbRole.SelectedIndex = 0;
+                txtSearchRule.Text = "";
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadRules();
             clearRuleDetails();
@@ -65,11 +72,12 @@ namespace SCCRecordsManagementSystem
                            "AND (@status = 0 OR (@status = 1 AND active = 1) OR (@status = 2 AND active = 0)) " +
                            "ORDER BY rule_id";
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             DataTable ruleTable = new DataTable();
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -84,40 +92,51 @@ namespace SCCRecordsManagementSystem
             }
             catch (Exception ex)
             {
+                dtgRules.DataSource = null;
+                clearRuleDetails();
+                lblNoRule.Text = "Rules unavailable.";
+                lblNoRule.Visible = true;
                 Database.showError("The rules could not be loaded.", ex);
+                return;
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             isLoading = true;
-            dtgRules.DataSource = ruleTable;
-
-            if (dtgRules.Columns.Contains("Rule ID"))
+            try
             {
-                dtgRules.Columns["Rule ID"].FillWeight = 40;
-                dtgRules.Columns["Description"].FillWeight = 300;
-                dtgRules.Columns["Status"].FillWeight = 50;
-                dtgRules.Columns["Last Updated"].FillWeight = 90;
-            }
+                dtgRules.DataSource = ruleTable;
 
-            // Inactive rules are shown in gray so they are easy to spot.
-            foreach (DataGridViewRow row in dtgRules.Rows)
-            {
-                if (row.Cells["Status"].Value.ToString() == "Inactive")
+                if (dtgRules.Columns.Contains("Rule ID"))
                 {
-                    row.DefaultCellStyle.ForeColor = Color.Gray;
+                    dtgRules.Columns["Rule ID"].FillWeight = 40;
+                    dtgRules.Columns["Description"].FillWeight = 300;
+                    dtgRules.Columns["Status"].FillWeight = 50;
+                    dtgRules.Columns["Last Updated"].FillWeight = 90;
                 }
-            }
 
-            dtgRules.ClearSelection();
-            isLoading = false;
+                // Inactive rules are shown in gray so they are easy to spot.
+                foreach (DataGridViewRow row in dtgRules.Rows)
+                {
+                    if (row.Cells["Status"].Value.ToString() == "Inactive")
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                    }
+                }
+
+                dtgRules.ClearSelection();
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             // Show the empty message when nothing matches.
             if (ruleTable.Rows.Count == 0)
             {
+                lblNoRule.Text = "No matching rules.";
                 lblNoRule.Visible = true;
                 lblNoRule.BringToFront();
             }
@@ -191,8 +210,14 @@ namespace SCCRecordsManagementSystem
         private void btnAddRule_Click(object sender, EventArgs e)
         {
             isLoading = true;
-            dtgRules.ClearSelection();
-            isLoading = false;
+            try
+            {
+                dtgRules.ClearSelection();
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             clearRuleDetails();
             txtDescriptionD.Focus();
@@ -252,8 +277,16 @@ namespace SCCRecordsManagementSystem
         // Adds a new rule or saves the changes of the selected rule.
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            if (isRuleValid() == false)
+            try
             {
+                if (isRuleValid() == false)
+                {
+                    return;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Database.showError("Could not check for an existing rule. No changes were saved.", ex);
                 return;
             }
 
@@ -326,6 +359,10 @@ namespace SCCRecordsManagementSystem
         {
             string role = cmbRole.Text;
 
+            chkPermission.Enabled = false;
+            btnSavePermission.Enabled = false;
+            btnCheckAll.Enabled = false;
+            btnUncheckAll.Enabled = false;
             // Uncheck everything first.
             for (int i = 0; i < chkPermission.Items.Count; i++)
             {
@@ -340,24 +377,28 @@ namespace SCCRecordsManagementSystem
                     chkPermission.SetItemChecked(i, true);
                 }
 
-                chkPermission.Enabled = false;
-                btnSavePermission.Enabled = false;
-                btnCheckAll.Enabled = false;
-                btnUncheckAll.Enabled = false;
                 lblRoleNote.Text = "Admin has full access.";
                 return;
             }
 
-            chkPermission.Enabled = true;
-            btnSavePermission.Enabled = true;
-            btnCheckAll.Enabled = true;
-            btnUncheckAll.Enabled = true;
-            lblRoleNote.Text = "Tick the allowed menus.";
-
+            lblRoleNote.Text = "Permissions not loaded. Select the role again to retry.";
+            if (role != "Officer")
+            {
+                return;
+            }
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@role", role);
 
-            DataTable permissionTable = Database.GetData("SELECT module, allowed FROM role_permissions WHERE role = @role", parameters);
+            DataTable permissionTable;
+            try
+            {
+                permissionTable = Database.GetData("SELECT module, allowed FROM role_permissions WHERE role = @role", parameters);
+            }
+            catch (MySqlException ex)
+            {
+                Database.showError("Officer permissions could not be loaded. Editing is disabled.", ex);
+                return;
+            }
 
             foreach (DataRow row in permissionTable.Rows)
             {
@@ -369,6 +410,11 @@ namespace SCCRecordsManagementSystem
                     chkPermission.SetItemChecked(index, true);
                 }
             }
+            chkPermission.Enabled = true;
+            btnCheckAll.Enabled = true;
+            btnUncheckAll.Enabled = true;
+            btnSavePermission.Enabled = true;
+            lblRoleNote.Text = "Tick the allowed menus.";
         }
 
         // Shows a table of every menu and which roles can open it.
@@ -435,9 +481,8 @@ namespace SCCRecordsManagementSystem
         {
             string role = cmbRole.Text;
 
-            if (role == "Admin")
+            if (!btnSavePermission.Enabled || role != "Officer")
             {
-                MessageBox.Show("The Admin always has full access.", "Permissions", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -450,12 +495,13 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             MySqlTransaction transaction = null;
             bool saved = false;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 // A transaction makes sure that all the menus are saved or none of them.
@@ -502,8 +548,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             if (saved)

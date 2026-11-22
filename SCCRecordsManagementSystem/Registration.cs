@@ -68,6 +68,20 @@ namespace SCCRecordsManagementSystem
 
         private void Registration_Load(object sender, EventArgs e)
         {
+            btnSave.Enabled = false;
+            try
+            {
+                loadRegistrationForm();
+            }
+            catch (MySqlException ex)
+            {
+                setStatus("Registration unavailable. Return to Student Records and reopen this form.", Color.Firebrick);
+                Database.showError("Could not load registration details. Saving is disabled.", ex);
+            }
+        }
+
+        private void loadRegistrationForm()
+        {
             facePictureBoxes[0] = picFace1;
             facePictureBoxes[1] = picFace2;
             facePictureBoxes[2] = picFace3;
@@ -101,6 +115,7 @@ namespace SCCRecordsManagementSystem
 
             updateProgress();
             updateCaptureButtons();
+            btnSave.Enabled = true;
             txtNumber.Focus();
         }
 
@@ -205,39 +220,32 @@ namespace SCCRecordsManagementSystem
 
             using (MySqlConnection conn = Database.GetConnection())
             {
-                try
+                conn.Open();
+                string query = "SELECT image_number, image_data FROM face_images WHERE student_id = @id ORDER BY image_number";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    conn.Open();
-                    string query = "SELECT image_number, image_data FROM face_images WHERE student_id = @id ORDER BY image_number";
+                    cmd.Parameters.AddWithValue("@id", studentIdToEdit);
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@id", studentIdToEdit);
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            int imageNumber = Convert.ToInt32(reader["image_number"]);
+                            byte[] imageBytes = (byte[])reader["image_data"];
+
+                            if (imageNumber >= 1 && imageNumber <= 5)
                             {
-                                int imageNumber = Convert.ToInt32(reader["image_number"]);
-                                byte[] imageBytes = (byte[])reader["image_data"];
+                                Bitmap picture = bytesToBitmap(imageBytes);
 
-                                if (imageNumber >= 1 && imageNumber <= 5)
+                                if (picture != null)
                                 {
-                                    Bitmap picture = bytesToBitmap(imageBytes);
-
-                                    if (picture != null)
-                                    {
-                                        showImage(facePictureBoxes[imageNumber - 1], picture);
-                                        pictureCount = pictureCount + 1;
-                                    }
+                                    showImage(facePictureBoxes[imageNumber - 1], picture);
+                                    pictureCount = pictureCount + 1;
                                 }
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Database.showError("Could not load the saved face pictures.", ex);
                 }
             }
 
@@ -473,7 +481,7 @@ namespace SCCRecordsManagementSystem
             {
                 stopCamera();
                 setStatus("Could not start the webcam.", Color.Firebrick);
-                MessageBox.Show("Could not start the webcam.\n\n" + ex.Message, "Webcam Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Database.showError("Could not start the webcam. Check camera access in Windows and close other camera apps.", ex);
             }
             finally
             {
@@ -488,9 +496,10 @@ namespace SCCRecordsManagementSystem
             for (int cameraIndex = 0; cameraIndex < 3; cameraIndex++)
             {
                 VideoCapture capture = new VideoCapture(cameraIndex, VideoCaptureAPIs.DSHOW);
-
-                if (capture.IsOpened() == true)
+                bool ready = false;
+                try
                 {
+                    if (!capture.IsOpened()) continue;
                     capture.Set(VideoCaptureProperties.FrameWidth, 640);
                     capture.Set(VideoCaptureProperties.FrameHeight, 480);
 
@@ -501,6 +510,7 @@ namespace SCCRecordsManagementSystem
                         {
                             if (capture.Read(testFrame) == true && testFrame.Empty() == false)
                             {
+                                ready = true;
                                 return capture;
                             }
 
@@ -509,8 +519,10 @@ namespace SCCRecordsManagementSystem
                     }
                 }
 
-                capture.Release();
-                capture.Dispose();
+                finally
+                {
+                    if (!ready) capture.Dispose();
+                }
             }
 
             return null;
@@ -519,10 +531,10 @@ namespace SCCRecordsManagementSystem
         private void stopCamera()
         {
             timerCamera.Stop();
+            hasFreshCameraFrame = false;
 
             if (camera != null)
             {
-                camera.Release();
                 camera.Dispose();
                 camera = null;
             }
@@ -539,7 +551,6 @@ namespace SCCRecordsManagementSystem
                 cameraFrame = null;
             }
 
-            hasFreshCameraFrame = false;
             showImage(picCameraPreview, null);
         }
 
@@ -609,7 +620,7 @@ namespace SCCRecordsManagementSystem
             {
                 stopCamera();
                 updateCaptureButtons();
-                setStatus("Camera error: " + ex.Message, Color.Firebrick);
+                setStatus("Camera stopped. Reconnect it and click START CAMERA. " + Database.friendlyMessage(ex), Color.Firebrick);
             }
         }
 
@@ -752,29 +763,28 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            if (cameraFrame == null || cameraFrame.Empty() == true)
-            {
-                holdStatus("The webcam is not running. Click START CAMERA first.", Color.Firebrick);
-                return;
-            }
-
             if (capturedFaces.Count >= 5)
             {
                 holdStatus("All 5 face pictures are already captured.", Color.DarkGreen);
                 return;
             }
 
-            Rect[] faces = detectFaces(cameraFrame);
-            string problem = checkFaceQuality(cameraFrame, faces);
-
-            if (problem != "")
-            {
-                holdStatus(problem + " The picture was NOT saved.", Color.Firebrick);
-                return;
-            }
-
             try
             {
+                if (cameraFrame == null || cameraFrame.Empty())
+                {
+                    holdStatus("No camera frame is available. Wait for a new picture or restart the webcam.", Color.Firebrick);
+                    return;
+                }
+
+                Rect[] faces = detectFaces(cameraFrame);
+                string problem = checkFaceQuality(cameraFrame, faces);
+                if (problem != "")
+                {
+                    holdStatus(problem + " The picture was NOT saved.", Color.Firebrick);
+                    return;
+                }
+
                 using (Mat faceCrop = new Mat(cameraFrame, faces[0]))
                 using (Mat resizedFace = new Mat())
                 {
@@ -792,13 +802,14 @@ namespace SCCRecordsManagementSystem
                         }
                     }
 
+                    showImage(facePictureBoxes[capturedFaces.Count], matToBitmap(resizedFace));
                     capturedFaces.Add(pngBytes);
-                    showImage(facePictureBoxes[capturedFaces.Count - 1], matToBitmap(resizedFace));
                 }
             }
             catch (Exception ex)
             {
-                holdStatus("The picture could not be captured: " + ex.Message, Color.Firebrick);
+                hasFreshCameraFrame = false;
+                holdStatus("Picture not captured. Wait for a new frame or restart the camera. " + Database.friendlyMessage(ex), Color.Firebrick);
                 return;
             }
 
@@ -888,7 +899,13 @@ namespace SCCRecordsManagementSystem
             else
             {
                 // In edit mode we load the saved information again.
-                loadStudentToEdit();
+                btnSave.Enabled = false;
+                if (!loadStudentToEdit())
+                {
+                    MessageBox.Show("This student could not be reloaded. Return to Student Records and reopen the student.");
+                    return;
+                }
+                btnSave.Enabled = cmbDepartment.DataSource != null;
             }
 
             updateProgress();
@@ -1146,11 +1163,6 @@ namespace SCCRecordsManagementSystem
                     }
                 }
             }
-            catch (Exception)
-            {
-                // The face check is only a warning. When it fails, the student can still be saved.
-                return "";
-            }
             finally
             {
                 for (int i = 0; i < trainingFaces.Count; i++)
@@ -1194,8 +1206,16 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            if (checkDuplicateStudent() == false)
+            try
             {
+                if (checkDuplicateStudent() == false)
+                {
+                    return;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Database.showError("Could not check for a duplicate student. No changes were saved.", ex);
                 return;
             }
 
@@ -1205,9 +1225,22 @@ namespace SCCRecordsManagementSystem
                 setStatus("Checking if this face is already registered...", Color.MidnightBlue);
                 lblCaptureStatus.Refresh();
 
-                string similarStudent = findSimilarRegisteredFace();
-
-                this.Cursor = Cursors.Default;
+                string similarStudent;
+                try
+                {
+                    similarStudent = findSimilarRegisteredFace();
+                }
+                catch (Exception ex) when (ex is MySqlException || ex is OpenCVException ||
+                    ex is DllNotFoundException || ex is TypeInitializationException)
+                {
+                    setStatus("The face check failed. Your captured pictures are still here.", Color.Firebrick);
+                    Database.showError("Could not compare the registered faces. The student was not saved.", ex);
+                    return;
+                }
+                finally
+                {
+                    this.Cursor = Cursors.Default;
+                }
 
                 if (similarStudent != "")
                 {

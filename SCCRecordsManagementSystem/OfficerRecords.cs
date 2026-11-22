@@ -14,7 +14,7 @@ namespace SCCRecordsManagementSystem
     public partial class OfficerRecords : Form
     {
         // true while the filters are being filled (so the change events do nothing).
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         public OfficerRecords()
         {
@@ -24,13 +24,17 @@ namespace SCCRecordsManagementSystem
         private void OfficerRecords_Load(object sender, EventArgs e)
         {
             isLoading = true;
-
-            Database.loadDepartmentComboBox(cmbDepartmentOfficer, "All Courses");
-            loadPositionComboBox();
-            loadSchoolYearComboBox();
-            txtSearchOfficer.Text = "";
-
-            isLoading = false;
+            try
+            {
+                Database.loadDepartmentComboBox(cmbDepartmentOfficer, "All Courses");
+                loadPositionComboBox();
+                loadSchoolYearComboBox();
+                txtSearchOfficer.Text = "";
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             // Only the Admin can add, edit or delete officers. Officers can only view the list.
             if (AccountInfo.Instantiate.currentUser.Role == "Admin")
@@ -99,18 +103,22 @@ namespace SCCRecordsManagementSystem
         private void btnShowAllOfficers_Click(object sender, EventArgs e)
         {
             isLoading = true;
-
-            if (cmbDepartmentOfficer.Items.Count > 0)
+            try
             {
-                cmbDepartmentOfficer.SelectedIndex = 0;
+                if (cmbDepartmentOfficer.Items.Count > 0)
+                {
+                    cmbDepartmentOfficer.SelectedIndex = 0;
+                }
+
+                // Fill the filters again because a new position or school year may have been added.
+                loadPositionComboBox();
+                loadSchoolYearComboBox();
+                txtSearchOfficer.Text = "";
             }
-
-            // Fill the filters again because a new position or school year may have been added.
-            loadPositionComboBox();
-            loadSchoolYearComboBox();
-            txtSearchOfficer.Text = "";
-
-            isLoading = false;
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadOfficers();
         }
@@ -151,12 +159,13 @@ namespace SCCRecordsManagementSystem
                            "OR CONCAT(o.first_name, ' ', o.last_name) LIKE @search OR a.username LIKE @search OR o.position LIKE @search) " +
                            "ORDER BY o.school_year DESC, o.last_name, o.first_name";
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             DataTable officerTable = new DataTable();
             int totalOfficers = 0;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -177,12 +186,16 @@ namespace SCCRecordsManagementSystem
             }
             catch (Exception ex)
             {
+                dtgOfficer.DataSource = null;
+                lblNoRecord.Visible = false;
+                lblTotalOfficers.Text = "-";
+                lblListInfo.Text = "Officer list unavailable.";
                 Database.showError("The officer list could not be loaded.", ex);
+                return;
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             dtgOfficer.DataSource = officerTable;
@@ -310,21 +323,25 @@ namespace SCCRecordsManagementSystem
             string selectedSchoolYear = cmbSchoolYearOfficer.Text;
 
             isLoading = true;
-
-            loadPositionComboBox();
-            loadSchoolYearComboBox();
-
-            if (cmbPositionOfficer.Items.Contains(selectedPosition))
+            try
             {
-                cmbPositionOfficer.SelectedItem = selectedPosition;
-            }
+                loadPositionComboBox();
+                loadSchoolYearComboBox();
 
-            if (cmbSchoolYearOfficer.Items.Contains(selectedSchoolYear))
+                if (cmbPositionOfficer.Items.Contains(selectedPosition))
+                {
+                    cmbPositionOfficer.SelectedItem = selectedPosition;
+                }
+
+                if (cmbSchoolYearOfficer.Items.Contains(selectedSchoolYear))
+                {
+                    cmbSchoolYearOfficer.SelectedItem = selectedSchoolYear;
+                }
+            }
+            finally
             {
-                cmbSchoolYearOfficer.SelectedItem = selectedSchoolYear;
+                isLoading = false;
             }
-
-            isLoading = false;
 
             LoadOfficers();
         }

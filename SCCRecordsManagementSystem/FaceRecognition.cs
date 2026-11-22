@@ -194,10 +194,11 @@ namespace SCCRecordsManagementSystem
 
             DataTable sessionTable = new DataTable();
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -215,25 +216,29 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             isLoadingSessions = true;
-            cmbSession.DisplayMember = "session_display";
-            cmbSession.ValueMember = "session_id";
-            cmbSession.DataSource = sessionTable;
-
-            // Select the same session as before (when it is still open).
-            for (int i = 0; i < sessionTable.Rows.Count; i++)
+            try
             {
-                if (Convert.ToInt32(sessionTable.Rows[i]["session_id"]) == previousSessionId)
+                cmbSession.DisplayMember = "session_display";
+                cmbSession.ValueMember = "session_id";
+                cmbSession.DataSource = sessionTable;
+
+                // Select the same session as before (when it is still open).
+                for (int i = 0; i < sessionTable.Rows.Count; i++)
                 {
-                    cmbSession.SelectedIndex = i;
+                    if (Convert.ToInt32(sessionTable.Rows[i]["session_id"]) == previousSessionId)
+                    {
+                        cmbSession.SelectedIndex = i;
+                    }
                 }
             }
-
-            isLoadingSessions = false;
+            finally
+            {
+                isLoadingSessions = false;
+            }
 
             if (sessionTable.Rows.Count == 0)
             {
@@ -261,10 +266,11 @@ namespace SCCRecordsManagementSystem
 
             DataTable faceTable = new DataTable();
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -282,8 +288,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             List<Mat> trainingFaces = new List<Mat>();
@@ -359,9 +364,10 @@ namespace SCCRecordsManagementSystem
             for (int cameraIndex = 0; cameraIndex < 3; cameraIndex++)
             {
                 VideoCapture capture = new VideoCapture(cameraIndex, VideoCaptureAPIs.DSHOW);
-
-                if (capture.IsOpened() == true)
+                bool ready = false;
+                try
                 {
+                    if (!capture.IsOpened()) continue;
                     capture.Set(VideoCaptureProperties.FrameWidth, 640);
                     capture.Set(VideoCaptureProperties.FrameHeight, 480);
 
@@ -372,6 +378,7 @@ namespace SCCRecordsManagementSystem
                         {
                             if (capture.Read(testFrame) == true && testFrame.Empty() == false)
                             {
+                                ready = true;
                                 return capture;
                             }
 
@@ -380,8 +387,10 @@ namespace SCCRecordsManagementSystem
                     }
                 }
 
-                capture.Release();
-                capture.Dispose();
+                finally
+                {
+                    if (!ready) capture.Dispose();
+                }
             }
 
             return null;
@@ -393,7 +402,6 @@ namespace SCCRecordsManagementSystem
 
             if (camera != null)
             {
-                camera.Release();
                 camera.Dispose();
                 camera = null;
             }
@@ -459,7 +467,7 @@ namespace SCCRecordsManagementSystem
             {
                 stopCamera();
                 setCameraStatus("Recognition error. Click RESTART / RELOAD.", Color.Firebrick);
-                showMessage("Recognition failed: " + ex.Message + "\nClick RESTART / RELOAD to try again.", Color.Firebrick);
+                showMessage("Scanning stopped. Click RESTART / RELOAD to try again.\n" + Database.friendlyMessage(ex), Color.Firebrick);
             }
         }
 
@@ -589,10 +597,11 @@ namespace SCCRecordsManagementSystem
 
             DataTable studentTable = new DataTable();
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -614,8 +623,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             if (studentTable.Rows.Count == 0)
@@ -682,11 +690,13 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             MySqlTransaction transaction = null;
+            bool commitAttempted = false;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
                 transaction = conn.BeginTransaction();
 
@@ -817,6 +827,7 @@ namespace SCCRecordsManagementSystem
                     cmdInsert.ExecuteNonQuery();
                     cmdInsert.Dispose();
 
+                    commitAttempted = true;
                     transaction.Commit();
 
                     string message = "Attendance Successfully Recorded\nLog In at " + serverTime.ToString("h:mm tt") + ".";
@@ -856,6 +867,7 @@ namespace SCCRecordsManagementSystem
                     cmdUpdate.ExecuteNonQuery();
                     cmdUpdate.Dispose();
 
+                    commitAttempted = true;
                     transaction.Commit();
 
                     lblTime.Text = timeIn.ToString("h:mm tt") + " - " + serverTime.ToString("h:mm tt");
@@ -867,6 +879,14 @@ namespace SCCRecordsManagementSystem
             }
             catch (Exception ex)
             {
+                // A lost connection during COMMIT does not tell us whether the server saved it.
+                if (commitAttempted)
+                {
+                    stopCamera();
+                    showAttendanceResult("Check record", "Could not confirm the result.\nCheck Attendance Monitoring before restarting the scanner.", Color.Firebrick);
+                    setCameraStatus("Scanning paused. " + Database.friendlyMessage(ex), Color.Firebrick);
+                    return;
+                }
                 if (transaction != null)
                 {
                     try
@@ -889,8 +909,7 @@ namespace SCCRecordsManagementSystem
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
         }
 
@@ -912,10 +931,11 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmdPresent = new MySqlCommand("SELECT COUNT(*) FROM event_attendance WHERE session_id = @session", conn);
@@ -935,13 +955,11 @@ namespace SCCRecordsManagementSystem
             }
             catch (Exception)
             {
-                // Only a small counter, so the error is ignored on purpose.
-                lblSessionCount.Text = "";
+                lblSessionCount.Text = "Attendance count unavailable.";
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
         }
 

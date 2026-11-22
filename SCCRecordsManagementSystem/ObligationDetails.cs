@@ -25,17 +25,23 @@ namespace SCCRecordsManagementSystem
 
         private void ObligationDetails_Load(object sender, EventArgs e)
         {
-            bool found = LoadStudentInfo();
-
-            if (found == false)
+            btnDeleteAdjustment.Enabled = false;
+            try
             {
-                MessageBox.Show("This student no longer exists. The list will be refreshed.", "Student Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Close();
+                if (!LoadStudentInfo())
+                {
+                    MessageBox.Show("This student no longer exists. The list will be refreshed.", "Student Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.Close();
+                    return;
+                }
+                LoadAbsences();
+                LoadAdjustments();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Database.showError("Could not load the obligation details. Close this window and try again.", ex);
                 return;
             }
-
-            LoadAbsences();
-            LoadAdjustments();
 
             // Only the Admin can delete an adjustment.
             if (AccountInfo.Instantiate.currentUser.Role == "Admin")

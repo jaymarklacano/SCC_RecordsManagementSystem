@@ -14,7 +14,7 @@ namespace SCCRecordsManagementSystem
     public partial class Obligations : Form
     {
         // true while the filters are being filled (so the change events do nothing).
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         // Information of the student selected in the list.
         private int selectedStudentId = 0;
@@ -30,15 +30,19 @@ namespace SCCRecordsManagementSystem
         private void Obligations_Load(object sender, EventArgs e)
         {
             isLoading = true;
-
-            Database.loadDepartmentComboBox(cmbDepartmentObli, "All Departments");
-            cmbYearLevelObli.SelectedIndex = 0;
-            cmbBalanceFilter.SelectedIndex = 0;
-            txtSearchObli.Text = "";
-            txtReason.Text = "";
-            nudPoints.Value = 10;
-
-            isLoading = false;
+            try
+            {
+                Database.loadDepartmentComboBox(cmbDepartmentObli, "All Departments");
+                cmbYearLevelObli.SelectedIndex = 0;
+                cmbBalanceFilter.SelectedIndex = 0;
+                txtSearchObli.Text = "";
+                txtReason.Text = "";
+                nudPoints.Value = 10;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadObligations();
             LoadSummaryCards();
@@ -90,11 +94,12 @@ namespace SCCRecordsManagementSystem
                            balanceCondition +
                            "ORDER BY balance DESC, full_name";
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
             DataTable obligationTable = new DataTable();
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -110,20 +115,29 @@ namespace SCCRecordsManagementSystem
             }
             catch (Exception ex)
             {
-                Database.showError("The obligation list could not be loaded.", ex);
+                dtgObligation.DataSource = null;
+                clearSelectedStudent();
+                lblNoRecord.Visible = false;
+                lblListInfo.Text = "Obligation list unavailable. " + Database.friendlyMessage(ex);
+                return;
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             // Remember the selected student so it can be selected again.
             int studentToSelect = selectedStudentId;
 
             isLoading = true;
-            dtgObligation.DataSource = obligationTable;
-            isLoading = false;
+            try
+            {
+                dtgObligation.DataSource = obligationTable;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             if (dtgObligation.Columns.Contains("student_id"))
             {
@@ -214,10 +228,11 @@ namespace SCCRecordsManagementSystem
                 yearLevel = cmbYearLevelObli.Text;
             }
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(
@@ -250,12 +265,16 @@ namespace SCCRecordsManagementSystem
             }
             catch (Exception ex)
             {
+                lblTotalStudents.Text = "-";
+                lblWithAbsence.Text = "-";
+                lblWithoutAbsence.Text = "-";
+                lblUnpaidPoints.Text = "-";
+                lblTotalEvent.Text = "-";
                 Database.showError("The obligation summary could not be loaded.", ex);
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
         }
 
@@ -278,17 +297,21 @@ namespace SCCRecordsManagementSystem
         private void btnShowAllRecord_Click(object sender, EventArgs e)
         {
             isLoading = true;
-
-            if (cmbDepartmentObli.Items.Count > 0)
+            try
             {
-                cmbDepartmentObli.SelectedIndex = 0;
+                if (cmbDepartmentObli.Items.Count > 0)
+                {
+                    cmbDepartmentObli.SelectedIndex = 0;
+                }
+
+                cmbYearLevelObli.SelectedIndex = 0;
+                cmbBalanceFilter.SelectedIndex = 0;
+                txtSearchObli.Text = "";
             }
-
-            cmbYearLevelObli.SelectedIndex = 0;
-            cmbBalanceFilter.SelectedIndex = 0;
-            txtSearchObli.Text = "";
-
-            isLoading = false;
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadObligations();
             LoadSummaryCards();

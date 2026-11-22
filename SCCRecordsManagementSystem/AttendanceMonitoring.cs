@@ -15,7 +15,7 @@ namespace SCCRecordsManagementSystem
     public partial class AttendanceMonitoring : Form
     {
         // true while the filters are being filled (so the change events do nothing).
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         // The selected record, so it can be selected again after refreshing.
         private int selectedSessionId = 0;
@@ -30,15 +30,35 @@ namespace SCCRecordsManagementSystem
         {
             isLoading = true;
 
-            Database.loadEventComboBox(cmbSelectEvent, "All Events");
-            Database.loadDepartmentComboBox(cmbDepartmentAttend, "All Departments");
-            cmbYearLevelAttend.SelectedIndex = 0;
-            cmbLogoutStatus.SelectedIndex = 0;
-            dtpDate.Value = DateTime.Today;
-            dtpDate.Checked = false;
-            loadSessionComboBox();
+            try
+            {
+                Database.loadEventComboBox(cmbSelectEvent, "All Events");
+                Database.loadDepartmentComboBox(cmbDepartmentAttend, "All Departments");
 
-            isLoading = false;
+                if (cmbYearLevelAttend.Items.Count > 0)
+                {
+                    cmbYearLevelAttend.SelectedIndex = 0;
+                }
+
+                if (cmbLogoutStatus.Items.Count > 0)
+                {
+                    cmbLogoutStatus.SelectedIndex = 0;
+                }
+
+                dtpDate.Value = DateTime.Today;
+                dtpDate.Checked = false;
+                loadSessionComboBox();
+            }
+            catch (Exception ex)
+            {
+                Database.showError("Could not prepare the attendance filters.", ex);
+                lblSummary.Text = "Filters unavailable. Click Refresh to try again.";
+                return;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadAttendance();
         }
@@ -50,6 +70,11 @@ namespace SCCRecordsManagementSystem
         // Fills the Session ComboBox with the sessions of the selected event.
         private void loadSessionComboBox()
         {
+            // Never leave sessions or actionable rows from the previously selected event on screen.
+            cmbSession.DataSource = null;
+            dtgAttendanceMon.DataSource = null;
+            updateSelectedRecord();
+            lblSummary.Text = "Sessions unavailable. Click Refresh to reload the filters.";
             int eventId = Database.getSelectedId(cmbSelectEvent);
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -89,14 +114,30 @@ namespace SCCRecordsManagementSystem
             }
 
             isLoading = true;
-            loadSessionComboBox();
-            isLoading = false;
+            try
+            {
+                loadSessionComboBox();
+            }
+            catch (MySqlException ex)
+            {
+                Database.showError("Could not load this event's sessions. Click Refresh to try again.", ex);
+                return;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadAttendance();
         }
 
         private void cmbSession_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isLoading == true)
+            {
+                return;
+            }
+
             LoadAttendance();
         }
 
@@ -109,9 +150,15 @@ namespace SCCRecordsManagementSystem
         private void btnToday_Click(object sender, EventArgs e)
         {
             isLoading = true;
-            dtpDate.Value = DateTime.Today;
-            dtpDate.Checked = true;
-            isLoading = false;
+            try
+            {
+                dtpDate.Value = DateTime.Today;
+                dtpDate.Checked = true;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadAttendance();
         }
@@ -119,35 +166,46 @@ namespace SCCRecordsManagementSystem
         private void btnClearFilters_Click(object sender, EventArgs e)
         {
             isLoading = true;
-
-            if (cmbSelectEvent.Items.Count > 0)
+            try
             {
-                cmbSelectEvent.SelectedIndex = 0;
-            }
+                if (cmbSelectEvent.Items.Count > 0)
+                {
+                    cmbSelectEvent.SelectedIndex = 0;
+                }
 
-            if (cmbDepartmentAttend.Items.Count > 0)
+                if (cmbDepartmentAttend.Items.Count > 0)
+                {
+                    cmbDepartmentAttend.SelectedIndex = 0;
+                }
+
+                cmbYearLevelAttend.SelectedIndex = 0;
+                cmbLogoutStatus.SelectedIndex = 0;
+                dtpDate.Value = DateTime.Today;
+                dtpDate.Checked = false;
+                txtSearchAttendance.Text = "";
+                chkPresent.Checked = true;
+                chkAbsent.Checked = true;
+                chkPending.Checked = true;
+                loadSessionComboBox();
+            }
+            finally
             {
-                cmbDepartmentAttend.SelectedIndex = 0;
+                isLoading = false;
             }
-
-            cmbYearLevelAttend.SelectedIndex = 0;
-            cmbLogoutStatus.SelectedIndex = 0;
-            dtpDate.Value = DateTime.Today;
-            dtpDate.Checked = false;
-            txtSearchAttendance.Text = "";
-            chkPresent.Checked = true;
-            chkAbsent.Checked = true;
-            chkPending.Checked = true;
-            loadSessionComboBox();
-
-            isLoading = false;
 
             LoadAttendance();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            LoadAttendance();
+            if (cmbSelectEvent.DataSource == null || cmbDepartmentAttend.DataSource == null || cmbSession.DataSource == null)
+            {
+                AttendanceMonitoring_Load(sender, e);
+            }
+            else
+            {
+                LoadAttendance();
+            }
         }
 
         // Returns the checked statuses, for example: 'Present', 'Absent'
@@ -189,7 +247,7 @@ namespace SCCRecordsManagementSystem
 
         public void LoadAttendance()
         {
-            if (isLoading == true)
+            if (isLoading || cmbSession.DataSource == null || cmbDepartmentAttend.DataSource == null)
             {
                 return;
             }
@@ -233,10 +291,11 @@ namespace SCCRecordsManagementSystem
                            "AND (@logout = 'All' OR logout_status = @logout) " +
                            "ORDER BY starts_at DESC, full_name";
 
-            MySqlConnection conn = Database.GetConnection();
+            MySqlConnection conn = null;
 
             try
             {
+                conn = Database.GetConnection();
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -373,12 +432,12 @@ namespace SCCRecordsManagementSystem
             catch (Exception ex)
             {
                 dtgAttendanceMon.DataSource = null;
+                lblNoRecord.Visible = false;
                 lblSummary.Text = "Could not load the attendance: " + Database.friendlyMessage(ex);
             }
             finally
             {
-                conn.Close();
-                conn.Dispose();
+                if (conn != null) conn.Dispose();
             }
 
             updateSelectedRecord();
@@ -563,24 +622,40 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Title = "Export Attendance";
-            saveDialog.Filter = "CSV file (*.csv)|*.csv";
-            saveDialog.FileName = "attendance_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".csv";
-
-            if (saveDialog.ShowDialog() != DialogResult.OK)
+            string fileName;
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
-                saveDialog.Dispose();
-                return;
-            }
+                saveDialog.Title = "Export Attendance";
+                saveDialog.Filter = "CSV file (*.csv)|*.csv";
+                saveDialog.FileName = "attendance_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".csv";
 
-            string fileName = saveDialog.FileName;
-            saveDialog.Dispose();
+                if (saveDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                fileName = saveDialog.FileName;
+            }
 
             try
             {
-                StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8);
+                writeCsv(fileName);
+                MessageBox.Show(dtgAttendanceMon.Rows.Count + " record(s) were exported to:\n" + fileName, "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("The file could not be saved. If it is open in Excel, close it and try again.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("You are not allowed to save in that folder. Please choose another folder.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void writeCsv(string fileName)
+        {
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8))
+            {
                 // 1. The header line (only the visible columns)
                 string line = "";
 
@@ -628,18 +703,6 @@ namespace SCCRecordsManagementSystem
 
                     writer.WriteLine(line);
                 }
-
-                writer.Close();
-
-                MessageBox.Show(dtgAttendanceMon.Rows.Count + " record(s) were exported to:\n" + fileName, "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (IOException)
-            {
-                MessageBox.Show("The file could not be saved. If it is open in Excel, close it and try again.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show("You are not allowed to save in that folder. Please choose another folder.", "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

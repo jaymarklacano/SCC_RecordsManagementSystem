@@ -57,9 +57,9 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            using (var conn = Database.GetConnection())
+            try
             {
-                try
+                using (var conn = Database.GetConnection())
                 {
                     conn.Open();
 
@@ -139,10 +139,10 @@ namespace SCCRecordsManagementSystem
                     // Close the form after successful reset
                     this.Close();
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("The password was not changed.", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Database.showError("The password was not changed.", ex);
             }
         }
     }

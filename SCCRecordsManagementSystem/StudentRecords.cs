@@ -18,7 +18,7 @@ namespace SCCRecordsManagementSystem
         private int selectedStudentId = 0;
 
         // true while the ComboBoxes or the table are being filled.
-        private bool isLoading = false;
+        private bool isLoading = true;
 
         // Used when another page (Departments) opens this page for one department only.
         private int departmentIdFromOtherPage = 0;
@@ -37,18 +37,22 @@ namespace SCCRecordsManagementSystem
         private void StudentRecords_Load(object sender, EventArgs e)
         {
             isLoading = true;
-
-            Database.loadDepartmentComboBox(cmbDepartment, "All Departments");
-
-            if (departmentIdFromOtherPage > 0)
+            try
             {
-                cmbDepartment.SelectedValue = departmentIdFromOtherPage;
+                Database.loadDepartmentComboBox(cmbDepartment, "All Departments");
+
+                if (departmentIdFromOtherPage > 0)
+                {
+                    cmbDepartment.SelectedValue = departmentIdFromOtherPage;
+                }
+
+                cmbYear.SelectedIndex = 0;
+                cmbFace.SelectedIndex = 0;
             }
-
-            cmbYear.SelectedIndex = 0;
-            cmbFace.SelectedIndex = 0;
-
-            isLoading = false;
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadStudents();
             txtSearch.Focus();
@@ -57,49 +61,48 @@ namespace SCCRecordsManagementSystem
         public void LoadStudents()
         {
             isLoading = true;
-
-            // Remember the selected student so we can select it again after refreshing.
-            int studentIdToSelect = selectedStudentId;
-
-            string search = txtSearch.Text.Trim();
-            int departmentId = Database.getSelectedId(cmbDepartment);
-
-            string query = "SELECT s.student_id, s.student_number, " +
-                           "CONCAT(s.last_name, ', ', s.first_name, IF(s.middle_name IS NULL OR s.middle_name = '', '', CONCAT(' ', LEFT(s.middle_name, 1), '.'))) AS full_name, " +
-                           "d.department_code, s.year_level, s.gender, s.status, " +
-                           "CASE WHEN s.face_registered = 1 THEN 'Registered' ELSE 'Not Registered' END AS face_status " +
-                           "FROM students s " +
-                           "JOIN departments d ON d.department_id = s.department_id " +
-                           "WHERE (s.student_number LIKE @search OR s.first_name LIKE @search OR s.last_name LIKE @search " +
-                           "OR CONCAT(s.first_name, ' ', s.last_name) LIKE @search) ";
-
-            // The filters are only added when something is selected.
-            if (departmentId > 0)
+            try
             {
-                query = query + "AND s.department_id = @departmentId ";
-            }
+                // Remember the selected student so we can select it again after refreshing.
+                int studentIdToSelect = selectedStudentId;
 
-            if (cmbYear.SelectedIndex > 0)
-            {
-                query = query + "AND s.year_level = @yearLevel ";
-            }
+                string search = txtSearch.Text.Trim();
+                int departmentId = Database.getSelectedId(cmbDepartment);
 
-            if (cmbFace.SelectedIndex == 1)
-            {
-                query = query + "AND s.face_registered = 1 ";
-            }
-            else if (cmbFace.SelectedIndex == 2)
-            {
-                query = query + "AND s.face_registered = 0 ";
-            }
+                string query = "SELECT s.student_id, s.student_number, " +
+                               "CONCAT(s.last_name, ', ', s.first_name, IF(s.middle_name IS NULL OR s.middle_name = '', '', CONCAT(' ', LEFT(s.middle_name, 1), '.'))) AS full_name, " +
+                               "d.department_code, s.year_level, s.gender, s.status, " +
+                               "CASE WHEN s.face_registered = 1 THEN 'Registered' ELSE 'Not Registered' END AS face_status " +
+                               "FROM students s " +
+                               "JOIN departments d ON d.department_id = s.department_id " +
+                               "WHERE (s.student_number LIKE @search OR s.first_name LIKE @search OR s.last_name LIKE @search " +
+                               "OR CONCAT(s.first_name, ' ', s.last_name) LIKE @search) ";
 
-            query = query + "ORDER BY s.last_name, s.first_name";
+                // The filters are only added when something is selected.
+                if (departmentId > 0)
+                {
+                    query = query + "AND s.department_id = @departmentId ";
+                }
 
-            DataTable dt = new DataTable();
+                if (cmbYear.SelectedIndex > 0)
+                {
+                    query = query + "AND s.year_level = @yearLevel ";
+                }
 
-            using (MySqlConnection conn = Database.GetConnection())
-            {
-                try
+                if (cmbFace.SelectedIndex == 1)
+                {
+                    query = query + "AND s.face_registered = 1 ";
+                }
+                else if (cmbFace.SelectedIndex == 2)
+                {
+                    query = query + "AND s.face_registered = 0 ";
+                }
+
+                query = query + "ORDER BY s.last_name, s.first_name";
+
+                DataTable dt = new DataTable();
+
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
 
@@ -119,62 +122,69 @@ namespace SCCRecordsManagementSystem
                         }
                     }
                 }
-                catch (Exception ex)
+
+                dgvStudents.DataSource = dt;
+
+                if (dgvStudents.Columns["student_id"] != null)
                 {
-                    Database.showError("Could not load the students.", ex);
+                    dgvStudents.Columns["student_id"].Visible = false;
+                    dgvStudents.Columns["student_number"].HeaderText = "Student ID";
+                    dgvStudents.Columns["full_name"].HeaderText = "Full Name";
+                    dgvStudents.Columns["full_name"].FillWeight = 180;
+                    dgvStudents.Columns["department_code"].HeaderText = "Course";
+                    dgvStudents.Columns["year_level"].HeaderText = "Year";
+                    dgvStudents.Columns["gender"].HeaderText = "Gender";
+                    dgvStudents.Columns["status"].HeaderText = "Status";
+                    dgvStudents.Columns["face_status"].HeaderText = "Face";
+                    dgvStudents.Columns["face_status"].FillWeight = 110;
+                }
+
+                lblTotalStudents.Text = "Total: " + dt.Rows.Count + " student(s)";
+
+                // Empty-state message
+                if (dt.Rows.Count == 0)
+                {
+                    lblEmpty.Text = "No students found.\nClick \"ADD STUDENT\" to register a student, or change the search and filters.";
+                    lblEmpty.Visible = true;
+                    lblEmpty.BringToFront();
+                }
+                else
+                {
+                    lblEmpty.Visible = false;
+                }
+
+                // Select the same student again (if he/she is still in the list).
+                dgvStudents.ClearSelection();
+
+                foreach (DataGridViewRow row in dgvStudents.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["student_id"].Value) == studentIdToSelect)
+                    {
+                        row.Selected = true;
+                        dgvStudents.CurrentCell = row.Cells["student_number"];
+                        break;
+                    }
+                }
+
+                if (dgvStudents.SelectedRows.Count == 0 && dgvStudents.Rows.Count > 0)
+                {
+                    dgvStudents.Rows[0].Selected = true;
+                    dgvStudents.CurrentCell = dgvStudents.Rows[0].Cells["student_number"];
                 }
             }
-
-            dgvStudents.DataSource = dt;
-
-            if (dgvStudents.Columns["student_id"] != null)
+            catch (Exception ex)
             {
-                dgvStudents.Columns["student_id"].Visible = false;
-                dgvStudents.Columns["student_number"].HeaderText = "Student ID";
-                dgvStudents.Columns["full_name"].HeaderText = "Full Name";
-                dgvStudents.Columns["full_name"].FillWeight = 180;
-                dgvStudents.Columns["department_code"].HeaderText = "Course";
-                dgvStudents.Columns["year_level"].HeaderText = "Year";
-                dgvStudents.Columns["gender"].HeaderText = "Gender";
-                dgvStudents.Columns["status"].HeaderText = "Status";
-                dgvStudents.Columns["face_status"].HeaderText = "Face";
-                dgvStudents.Columns["face_status"].FillWeight = 110;
-            }
-
-            lblTotalStudents.Text = "Total: " + dt.Rows.Count + " student(s)";
-
-            // Empty-state message
-            if (dt.Rows.Count == 0)
-            {
-                lblEmpty.Text = "No students found.\nClick \"ADD STUDENT\" to register a student, or change the search and filters.";
-                lblEmpty.Visible = true;
-                lblEmpty.BringToFront();
-            }
-            else
-            {
+                dgvStudents.DataSource = null;
+                clearStudentDetails();
                 lblEmpty.Visible = false;
+                lblTotalStudents.Text = "Student list unavailable.";
+                Database.showError("Could not load the students.", ex);
+                return;
             }
-
-            // Select the same student again (if he/she is still in the list).
-            dgvStudents.ClearSelection();
-
-            foreach (DataGridViewRow row in dgvStudents.Rows)
+            finally
             {
-                if (Convert.ToInt32(row.Cells["student_id"].Value) == studentIdToSelect)
-                {
-                    row.Selected = true;
-                    dgvStudents.CurrentCell = row.Cells["student_number"];
-                    break;
-                }
+                isLoading = false;
             }
-
-            if (dgvStudents.SelectedRows.Count == 0 && dgvStudents.Rows.Count > 0)
-            {
-                dgvStudents.Rows[0].Selected = true;
-                dgvStudents.CurrentCell = dgvStudents.Rows[0].Cells["student_number"];
-            }
-
-            isLoading = false;
             showSelectedStudent();
         }
 
@@ -202,16 +212,22 @@ namespace SCCRecordsManagementSystem
         private void btnClear_Click(object sender, EventArgs e)
         {
             isLoading = true;
-            txtSearch.Clear();
-
-            if (cmbDepartment.Items.Count > 0)
+            try
             {
-                cmbDepartment.SelectedIndex = 0;
-            }
+                txtSearch.Clear();
 
-            cmbYear.SelectedIndex = 0;
-            cmbFace.SelectedIndex = 0;
-            isLoading = false;
+                if (cmbDepartment.Items.Count > 0)
+                {
+                    cmbDepartment.SelectedIndex = 0;
+                }
+
+                cmbYear.SelectedIndex = 0;
+                cmbFace.SelectedIndex = 0;
+            }
+            finally
+            {
+                isLoading = false;
+            }
 
             LoadStudents();
             txtSearch.Focus();
@@ -271,7 +287,17 @@ namespace SCCRecordsManagementSystem
             int studentId = Convert.ToInt32(dgvStudents.CurrentRow.Cells["student_id"].Value);
 
             // Database.searchAndGetStudentInfo returns a StudentInfo object (like PersonalInfo in the sample code).
-            StudentInfo student = Database.searchAndGetStudentInfo(studentId);
+            StudentInfo student;
+            try
+            {
+                student = Database.searchAndGetStudentInfo(studentId);
+            }
+            catch (MySqlException ex)
+            {
+                clearStudentDetails();
+                Database.showError("Could not load the selected student.", ex);
+                return;
+            }
 
             if (student == null)
             {
@@ -341,9 +367,9 @@ namespace SCCRecordsManagementSystem
         {
             Image photo = null;
 
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
                     string query = "SELECT image_data FROM face_images WHERE student_id = @id ORDER BY image_number LIMIT 1";
@@ -369,11 +395,11 @@ namespace SCCRecordsManagementSystem
                         }
                     }
                 }
-                catch (Exception)
-                {
-                    // When the picture cannot be loaded we simply show no picture.
-                    photo = null;
-                }
+            }
+            catch (Exception)
+            {
+                // When the picture cannot be loaded we simply show no picture.
+                photo = null;
             }
 
             showPhoto(photo);
@@ -394,9 +420,9 @@ namespace SCCRecordsManagementSystem
 
         private void loadAttendanceSummary(int studentId)
         {
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
 
@@ -428,10 +454,10 @@ namespace SCCRecordsManagementSystem
                         }
                     }
                 }
-                catch (Exception)
-                {
-                    lblAttendanceSummary.Text = "Attendance summary is not available.";
-                }
+            }
+            catch (Exception)
+            {
+                lblAttendanceSummary.Text = "Attendance summary is not available.";
             }
         }
 
@@ -479,9 +505,9 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
 
@@ -504,10 +530,10 @@ namespace SCCRecordsManagementSystem
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("The student was not deleted.", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Database.showError("The student was not deleted.", ex);
             }
 
             selectedStudentId = 0;

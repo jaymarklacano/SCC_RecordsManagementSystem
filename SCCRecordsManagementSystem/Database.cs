@@ -25,6 +25,8 @@ namespace SCCRecordsManagementSystem
         // Changes a technical error into a message that a normal user can understand.
         public static string friendlyMessage(Exception ex)
         {
+            // Keep the failure location available in Visual Studio, not in the user's dialog.
+            System.Diagnostics.Trace.TraceError("{0}\n{1}", ex.GetType().FullName, ex.StackTrace);
             MySqlException mysqlError = ex as MySqlException;
 
             if (mysqlError == null && ex.InnerException != null)
@@ -71,10 +73,10 @@ namespace SCCRecordsManagementSystem
                     return "One of the values is not valid (it failed a database rule).";
                 }
 
-                return "Database error: " + mysqlError.Message;
+                return "The database could not complete the request (error " + mysqlError.Number + "). Please contact the administrator if this continues.";
             }
 
-            return "Something went wrong: " + ex.Message;
+            return "If the problem continues, contact the administrator.";
         }
 
         // Shows a simple error message box.
@@ -118,47 +120,35 @@ namespace SCCRecordsManagementSystem
         // inside the dictionary to show a success message.
         public static bool saveUpdateDeleteData(string query, Dictionary<string, object> parameters)
         {
-            bool success = false;
-            MySqlConnection conn = GetConnection();
-
+            int result;
             try
             {
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                addParameters(cmd, parameters);
-
-                int result = cmd.ExecuteNonQuery();
-
-                if (result > 0)
+                using (MySqlConnection conn = GetConnection())
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    success = true;
-
-                    if (parameters != null && parameters.ContainsKey("@command"))
-                    {
-                        object value = parameters["@command"];
-                        displayInsertUpdateDelete(value);
-                    }
+                    conn.Open();
+                    addParameters(cmd, parameters);
+                    result = cmd.ExecuteNonQuery();
                 }
-                else
-                {
-                    MessageBox.Show("No records were affected. The record may have been deleted already.",
-                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                cmd.Dispose();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is MySqlException || ex is ArgumentException || ex is InvalidOperationException)
             {
-                showError("The changes were not saved.", ex);
-            }
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
+                showError("Could not confirm the changes. Refresh and check the record before retrying.", ex);
+                return false;
             }
 
-            return success;
+            if (result == 0)
+            {
+                MessageBox.Show("No records were affected. The record may have been deleted already.",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            if (parameters != null && parameters.ContainsKey("@command"))
+            {
+                displayInsertUpdateDelete(parameters["@command"]);
+            }
+            return true;
         }
 
         public static void displayInsertUpdateDelete(object value)
@@ -196,58 +186,35 @@ namespace SCCRecordsManagementSystem
         }
 
         // Runs a SELECT query and returns the rows as a DataTable.
-        // When there is an error, an empty table is returned and a message is shown.
+        // Only a successful query may return an empty table. On failure, stop the calling action.
         public static DataTable GetData(string query, Dictionary<string, object> parameters)
         {
             DataTable table = new DataTable();
 
             using (MySqlConnection conn = GetConnection())
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
             {
-                try
-                {
-                    conn.Open();
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        addParameters(cmd, parameters);
-
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                        {
-                            adapter.Fill(table);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    showError("Could not load the records.", ex);
-                }
+                conn.Open();
+                addParameters(cmd, parameters);
+                adapter.Fill(table);
             }
 
             return table;
         }
 
         // Runs a SELECT query that returns only ONE value (example: SELECT COUNT(*) ...).
-        // Returns null when nothing was found or when there was an error.
+        // An empty result is not the same as a failed duplicate or permission check.
         public static object GetValue(string query, Dictionary<string, object> parameters)
         {
             object value = null;
 
             using (MySqlConnection conn = GetConnection())
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
-                try
-                {
-                    conn.Open();
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        addParameters(cmd, parameters);
-                        value = cmd.ExecuteScalar();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    showError("Could not read from the database.", ex);
-                }
+                conn.Open();
+                addParameters(cmd, parameters);
+                value = cmd.ExecuteScalar();
             }
 
             if (value == DBNull.Value)
@@ -374,7 +341,16 @@ namespace SCCRecordsManagementSystem
             parameters.Add("@role", role);
             parameters.Add("@module", module);
 
-            object allowed = GetValue("SELECT allowed FROM role_permissions WHERE role = @role AND module = @module", parameters);
+            object allowed;
+            try
+            {
+                allowed = GetValue("SELECT allowed FROM role_permissions WHERE role = @role AND module = @module", parameters);
+            }
+            catch (MySqlException ex)
+            {
+                showError("Could not verify access. This menu was not opened.", ex);
+                return false;
+            }
 
             if (allowed != null && Convert.ToInt32(allowed) == 1)
             {
@@ -389,29 +365,28 @@ namespace SCCRecordsManagementSystem
         // Saves the log out time of the current user in the login history.
         public static void saveLogoutTime()
         {
-            if (Instantiate.currentUser.LoginId > 0)
+            int loginId = Instantiate.currentUser.LoginId;
+            Instantiate.currentUser = new AccountInfo();
+            if (loginId > 0)
             {
-                using (MySqlConnection conn = GetConnection())
+                try
                 {
-                    try
+                    using (MySqlConnection conn = GetConnection())
                     {
                         conn.Open();
 
                         using (MySqlCommand cmd = new MySqlCommand("UPDATE login_history SET logged_out = NOW() WHERE login_id = @id", conn))
                         {
-                            cmd.Parameters.AddWithValue("@id", Instantiate.currentUser.LoginId);
+                            cmd.Parameters.AddWithValue("@id", loginId);
                             cmd.ExecuteNonQuery();
                         }
                     }
-                    catch (Exception)
-                    {
-                        // Not important enough to stop the user from logging out,
-                        // so the error is ignored on purpose.
-                    }
+                }
+                catch (Exception ex) when (ex is MySqlException || ex is ArgumentException || ex is InvalidOperationException)
+                {
+                    showError("Logging out locally. The logout time could not be saved.", ex);
                 }
             }
-
-            Instantiate.currentUser = new AccountInfo();
         }
 
         // Called by the FormClosed event of every page.
@@ -443,42 +418,35 @@ namespace SCCRecordsManagementSystem
 
             using (MySqlConnection conn = GetConnection())
             {
-                try
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    conn.Open();
+                    cmd.Parameters.AddWithValue("@id", studentId);
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@id", studentId);
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                studentInfo = new StudentInfo();
-                                studentInfo.StudentId = Convert.ToInt32(reader["student_id"]);
-                                studentInfo.StudentNumber = reader["student_number"].ToString();
-                                studentInfo.FirstName = reader["first_name"].ToString();
-                                studentInfo.MiddleName = reader["middle_name"].ToString();
-                                studentInfo.LastName = reader["last_name"].ToString();
-                                studentInfo.DepartmentId = Convert.ToInt32(reader["department_id"]);
-                                studentInfo.DepartmentCode = reader["department_code"].ToString();
-                                studentInfo.DepartmentName = reader["department_name"].ToString();
-                                studentInfo.YearLevel = reader["year_level"].ToString();
-                                studentInfo.Gender = reader["gender"].ToString();
-                                studentInfo.Email = reader["email"].ToString();
-                                studentInfo.ContactNumber = reader["contact_number"].ToString();
-                                studentInfo.Status = reader["status"].ToString();
-                                studentInfo.FaceRegistered = Convert.ToInt32(reader["face_registered"]) == 1;
-                                studentInfo.FaceImageCount = Convert.ToInt32(reader["face_count"]);
-                                studentInfo.CreatedAt = Convert.ToDateTime(reader["created_at"]);
-                            }
+                            studentInfo = new StudentInfo();
+                            studentInfo.StudentId = Convert.ToInt32(reader["student_id"]);
+                            studentInfo.StudentNumber = reader["student_number"].ToString();
+                            studentInfo.FirstName = reader["first_name"].ToString();
+                            studentInfo.MiddleName = reader["middle_name"].ToString();
+                            studentInfo.LastName = reader["last_name"].ToString();
+                            studentInfo.DepartmentId = Convert.ToInt32(reader["department_id"]);
+                            studentInfo.DepartmentCode = reader["department_code"].ToString();
+                            studentInfo.DepartmentName = reader["department_name"].ToString();
+                            studentInfo.YearLevel = reader["year_level"].ToString();
+                            studentInfo.Gender = reader["gender"].ToString();
+                            studentInfo.Email = reader["email"].ToString();
+                            studentInfo.ContactNumber = reader["contact_number"].ToString();
+                            studentInfo.Status = reader["status"].ToString();
+                            studentInfo.FaceRegistered = Convert.ToInt32(reader["face_registered"]) == 1;
+                            studentInfo.FaceImageCount = Convert.ToInt32(reader["face_count"]);
+                            studentInfo.CreatedAt = Convert.ToDateTime(reader["created_at"]);
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    showError("Could not load the student.", ex);
                 }
             }
 
@@ -498,42 +466,35 @@ namespace SCCRecordsManagementSystem
 
             using (MySqlConnection conn = GetConnection())
             {
-                try
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    conn.Open();
+                    cmd.Parameters.AddWithValue("@id", officerId);
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@id", officerId);
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                officerInfo = new OfficerInfo();
-                                officerInfo.OfficerId = Convert.ToInt32(reader["officer_id"]);
-                                officerInfo.AccountId = Convert.ToInt32(reader["account_id"]);
-                                officerInfo.Username = reader["username"].ToString();
-                                officerInfo.OfficerNumber = reader["officer_number"].ToString();
-                                officerInfo.FirstName = reader["first_name"].ToString();
-                                officerInfo.MiddleName = reader["middle_name"].ToString();
-                                officerInfo.LastName = reader["last_name"].ToString();
-                                officerInfo.DepartmentId = Convert.ToInt32(reader["department_id"]);
-                                officerInfo.DepartmentCode = reader["department_code"].ToString();
-                                officerInfo.YearLevel = reader["year_level"].ToString();
-                                officerInfo.Gender = reader["gender"].ToString();
-                                officerInfo.Email = reader["email"].ToString();
-                                officerInfo.ContactNumber = reader["contact_number"].ToString();
-                                officerInfo.Position = reader["position"].ToString();
-                                officerInfo.SchoolYear = reader["school_year"].ToString();
-                                officerInfo.CreatedAt = Convert.ToDateTime(reader["created_at"]);
-                            }
+                            officerInfo = new OfficerInfo();
+                            officerInfo.OfficerId = Convert.ToInt32(reader["officer_id"]);
+                            officerInfo.AccountId = Convert.ToInt32(reader["account_id"]);
+                            officerInfo.Username = reader["username"].ToString();
+                            officerInfo.OfficerNumber = reader["officer_number"].ToString();
+                            officerInfo.FirstName = reader["first_name"].ToString();
+                            officerInfo.MiddleName = reader["middle_name"].ToString();
+                            officerInfo.LastName = reader["last_name"].ToString();
+                            officerInfo.DepartmentId = Convert.ToInt32(reader["department_id"]);
+                            officerInfo.DepartmentCode = reader["department_code"].ToString();
+                            officerInfo.YearLevel = reader["year_level"].ToString();
+                            officerInfo.Gender = reader["gender"].ToString();
+                            officerInfo.Email = reader["email"].ToString();
+                            officerInfo.ContactNumber = reader["contact_number"].ToString();
+                            officerInfo.Position = reader["position"].ToString();
+                            officerInfo.SchoolYear = reader["school_year"].ToString();
+                            officerInfo.CreatedAt = Convert.ToDateTime(reader["created_at"]);
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    showError("Could not load the officer.", ex);
                 }
             }
 
@@ -547,56 +508,49 @@ namespace SCCRecordsManagementSystem
 
             using (MySqlConnection conn = GetConnection())
             {
-                try
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM events WHERE event_id = @id", conn))
                 {
-                    conn.Open();
+                    cmd.Parameters.AddWithValue("@id", eventId);
 
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM events WHERE event_id = @id", conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@id", eventId);
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
+                            eventInfo = new EventInfo();
+                            eventInfo.EventId = Convert.ToInt32(reader["event_id"]);
+                            eventInfo.EventName = reader["event_name"].ToString();
+                            eventInfo.Venue = reader["venue"].ToString();
+                            eventInfo.Organizer = reader["organizer"].ToString();
+                            eventInfo.StartDate = Convert.ToDateTime(reader["start_date"]);
+                            eventInfo.EndDate = Convert.ToDateTime(reader["end_date"]);
+
+                            if (reader["department_id"] == DBNull.Value)
                             {
-                                eventInfo = new EventInfo();
-                                eventInfo.EventId = Convert.ToInt32(reader["event_id"]);
-                                eventInfo.EventName = reader["event_name"].ToString();
-                                eventInfo.Venue = reader["venue"].ToString();
-                                eventInfo.Organizer = reader["organizer"].ToString();
-                                eventInfo.StartDate = Convert.ToDateTime(reader["start_date"]);
-                                eventInfo.EndDate = Convert.ToDateTime(reader["end_date"]);
-
-                                if (reader["department_id"] == DBNull.Value)
-                                {
-                                    eventInfo.DepartmentId = 0;
-                                }
-                                else
-                                {
-                                    eventInfo.DepartmentId = Convert.ToInt32(reader["department_id"]);
-                                }
-
-                                eventInfo.YearLevel = reader["year_level"].ToString();
-                                eventInfo.RequiresLogout = Convert.ToInt32(reader["requires_logout"]) == 1;
-
-                                eventInfo.MorningEnabled = Convert.ToInt32(reader["morning_enabled"]) == 1;
-                                eventInfo.MorningStart = (TimeSpan)reader["morning_start"];
-                                eventInfo.MorningEnd = (TimeSpan)reader["morning_end"];
-
-                                eventInfo.AfternoonEnabled = Convert.ToInt32(reader["afternoon_enabled"]) == 1;
-                                eventInfo.AfternoonStart = (TimeSpan)reader["afternoon_start"];
-                                eventInfo.AfternoonEnd = (TimeSpan)reader["afternoon_end"];
-
-                                eventInfo.EveningEnabled = Convert.ToInt32(reader["evening_enabled"]) == 1;
-                                eventInfo.EveningStart = (TimeSpan)reader["evening_start"];
-                                eventInfo.EveningEnd = (TimeSpan)reader["evening_end"];
+                                eventInfo.DepartmentId = 0;
                             }
+                            else
+                            {
+                                eventInfo.DepartmentId = Convert.ToInt32(reader["department_id"]);
+                            }
+
+                            eventInfo.YearLevel = reader["year_level"].ToString();
+                            eventInfo.RequiresLogout = Convert.ToInt32(reader["requires_logout"]) == 1;
+
+                            eventInfo.MorningEnabled = Convert.ToInt32(reader["morning_enabled"]) == 1;
+                            eventInfo.MorningStart = (TimeSpan)reader["morning_start"];
+                            eventInfo.MorningEnd = (TimeSpan)reader["morning_end"];
+
+                            eventInfo.AfternoonEnabled = Convert.ToInt32(reader["afternoon_enabled"]) == 1;
+                            eventInfo.AfternoonStart = (TimeSpan)reader["afternoon_start"];
+                            eventInfo.AfternoonEnd = (TimeSpan)reader["afternoon_end"];
+
+                            eventInfo.EveningEnabled = Convert.ToInt32(reader["evening_enabled"]) == 1;
+                            eventInfo.EveningStart = (TimeSpan)reader["evening_start"];
+                            eventInfo.EveningEnd = (TimeSpan)reader["evening_end"];
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    showError("Could not load the event.", ex);
                 }
             }
 

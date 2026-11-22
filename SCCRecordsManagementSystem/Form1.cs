@@ -61,9 +61,9 @@ namespace SCCRecordsManagementSystem
                 return;
             }
 
-            using (var conn = Database.GetConnection())
+            try
             {
-                try
+                using (var conn = Database.GetConnection())
                 {
                     conn.Open();
 
@@ -144,10 +144,10 @@ namespace SCCRecordsManagementSystem
                     dashboard.Show();
                     this.Hide();
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("Log in failed.", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Database.showError("Log in failed.", ex);
             }
         }
 

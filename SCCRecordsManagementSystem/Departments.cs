@@ -32,11 +32,11 @@ namespace SCCRecordsManagementSystem
         public void LoadDepartments()
         {
             isLoading = true;
-            string search = txtSearchDepartment.Text.Trim();
-
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                string search = txtSearchDepartment.Text.Trim();
+
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
                     string query = "SELECT d.department_id, d.department_name, d.department_code, d.department_head, d.contact_email, d.academic_level, " +
@@ -81,13 +81,20 @@ namespace SCCRecordsManagementSystem
                     }
 
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("Could not load the departments.", ex);
-                }
             }
-
-            isLoading = false;
+            catch (Exception ex)
+            {
+                dtgDepartment.DataSource = null;
+                clearDepartmentDetails();
+                lblNoDepartment.Visible = false;
+                lblTotalDepartments.Text = "Department list unavailable.";
+                Database.showError("Could not load the departments.", ex);
+                return;
+            }
+            finally
+            {
+                isLoading = false;
+            }
             showSelectedDepartmentDetails();
         }
 
@@ -138,9 +145,9 @@ namespace SCCRecordsManagementSystem
 
             int departmentId = Convert.ToInt32(dtgDepartment.CurrentRow.Cells["colDepartmentId"].Value);
 
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
                     string query = "SELECT d.*, " +
@@ -191,11 +198,11 @@ namespace SCCRecordsManagementSystem
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    clearDepartmentDetails();
-                    Database.showError("Could not load the department details.", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                clearDepartmentDetails();
+                Database.showError("Could not load the department details.", ex);
             }
         }
 
@@ -229,9 +236,9 @@ namespace SCCRecordsManagementSystem
 
         private void DeleteDepartment(int departmentId, string departmentCode)
         {
-            using (MySqlConnection conn = Database.GetConnection())
+            try
             {
-                try
+                using (MySqlConnection conn = Database.GetConnection())
                 {
                     conn.Open();
 
@@ -281,10 +288,10 @@ namespace SCCRecordsManagementSystem
 
                     MessageBox.Show("Department deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
-                {
-                    Database.showError("The department was not deleted.", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Database.showError("The department was not deleted.", ex);
             }
 
             LoadDepartments();
