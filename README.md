@@ -44,8 +44,8 @@ The code is written in a simple, beginner style. It follows the example in
 | Database name | `scc_management` |
 | SQL file | `scc_records_management (1).sql` (in the repository root folder) |
 | Solution file | `SCCRecordsManagementSystem/SCCRecordsManagementSystem.sln` |
-| Face detection | Haar Cascade (`haarcascade_frontalface_default.xml`) from OpenCV |
-| Face recognition | LBPH face recognizer from OpenCV (through the **OpenCvSharp4** NuGet package) |
+| Face detection | **YuNet** model (`face_detection_yunet_2023mar.onnx`) from OpenCV, through the **OpenCvSharp4** NuGet package |
+| Face recognition | **SFace** model (`face_recognition_sface_2021dec.onnx`) from OpenCV, run with OpenCV DNN (through **OpenCvSharp4**) |
 | Starter login | Username **admin**, password **admin123** |
 
 Attendance is **based on events**. An event can last one or more days, and every day can
@@ -82,7 +82,8 @@ attendance. Students scan their face to **Log In**, and if the event needs it, t
 **Student Face Registration**
 - A new student **must** have exactly **5 valid face pictures** before he/she can be saved.
 - Live webcam preview with a colored box around the face and helpful tips.
-- Only pictures with **exactly one clear face** are accepted (not too dark, not too bright, not blurry, not too far).
+- Only pictures with **exactly one clear face** are accepted (not too dark, not too bright, not blurry, not too far, head not turned too much).
+- Pictures 2 to 5 must look like the earlier pictures, so all 5 pictures are surely of the same student.
 - **Retake All Faces** to start over. Faces can be re-registered when editing a student.
 - Warns you when the new face looks like another registered student.
 
@@ -141,7 +142,7 @@ attendance. Students scan their face to **Log In**, and if the event needs it, t
 
 | Requirement | Minimum |
 |---|---|
-| Operating system | Windows 10 or Windows 11 (64-bit recommended) |
+| Operating system | Windows 10 or Windows 11, **64-bit** (the OpenCV files are 64-bit only) |
 | RAM | 4 GB (8 GB recommended) |
 | Webcam | Built-in laptop camera or USB webcam |
 | Disk space | About 1 GB for the project, packages and database |
@@ -156,7 +157,7 @@ attendance. Students scan their face to **Log In**, and if the event needs it, t
 | Visual Studio Community | 2019 or 2022 | https://visualstudio.microsoft.com/ |
 | .NET Framework | 4.7.2 or newer (already part of Windows 10/11) | |
 | XAMPP (Apache + MySQL/MariaDB + phpMyAdmin) | 7.4 / 8.x (MariaDB 10.4 or newer) | https://www.apachefriends.org/ |
-| Microsoft Visual C++ Redistributable | 2015-2022 (x64 **and** x86) | https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist |
+| Microsoft Visual C++ Redistributable (recommended) | 2015-2022 (x64) | https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist |
 
 > You may use **MySQL 8.0.16+** instead of XAMPP. See the MySQL 8 note in
 > [Troubleshooting](#20-common-errors-and-troubleshooting).
@@ -205,7 +206,7 @@ starter departments, starter rules, permissions and the Admin account.
 | `accounts` | Usernames, BCrypt passwords and the role (Admin or Officer) |
 | `departments` | Courses (BSIT, BSBA, BEED, BSED by default) |
 | `students` | Student information, status and `face_registered` (1 = all 5 faces saved) |
-| `face_images` | The 5 face pictures of each student (160 x 160 PNG, numbers 1 to 5) |
+| `face_images` | The 5 face pictures of each student (112 x 112 PNG lined up by the eyes, numbers 1 to 5) |
 | `officers` | Officer information linked to one `accounts` row |
 | `events` | Event name, venue, dates, sessions, department/year level, log out needed |
 | `event_sessions` | One row for every Morning / Afternoon / Evening of every event day |
@@ -251,8 +252,8 @@ These are the **only** NuGet packages used by the project (they are already list
 |---|---|---|
 | **MySql.Data** | **6.9.12** | Connecting to MySQL / MariaDB |
 | **BCrypt.Net-Next** | **4.2.0** | Hashing and checking passwords |
-| **OpenCvSharp4** | **4.11.0.20250507** | Webcam, face detection and LBPH face recognition |
-| **OpenCvSharp4.runtime.win** | **4.11.0.20250507** | The native OpenCV files for Windows (`OpenCvSharpExtern.dll`) |
+| **OpenCvSharp4** | **4.13.0.20261107** | Webcam, face detection (YuNet) and face recognition (SFace) |
+| **OpenCvSharp4.runtime.win** | **4.13.0.20261107** | The native 64-bit OpenCV files for Windows (`OpenCvSharpExtern.dll`) |
 
 These 4 packages are installed **automatically** as dependencies of OpenCvSharp4
 (do not install them by hand): `System.Buffers 4.6.1`, `System.Memory 4.6.3`,
@@ -293,8 +294,8 @@ Go to **Tools > NuGet Package Manager > Package Manager Console** and run:
 ```powershell
 Install-Package MySql.Data -Version 6.9.12 -ProjectName SCCRecordsManagementSystem
 Install-Package BCrypt.Net-Next -Version 4.2.0 -ProjectName SCCRecordsManagementSystem
-Install-Package OpenCvSharp4 -Version 4.11.0.20250507 -ProjectName SCCRecordsManagementSystem
-Install-Package OpenCvSharp4.runtime.win -Version 4.11.0.20250507 -ProjectName SCCRecordsManagementSystem
+Install-Package OpenCvSharp4 -Version 4.13.0.20261107 -ProjectName SCCRecordsManagementSystem
+Install-Package OpenCvSharp4.runtime.win -Version 4.13.0.20261107 -ProjectName SCCRecordsManagementSystem
 ```
 
 If the packages are listed but the files are missing, this command downloads them again:
@@ -325,9 +326,14 @@ Update-Package -reinstall -ProjectName SCCRecordsManagementSystem
 5. Go to **Build > Rebuild Solution**.
 6. The **Output** window should say: `Rebuild All: 1 succeeded, 0 failed`.
 
+The program must run as **64-bit** because the OpenCV files are 64-bit only. This is already set
+in the project: **Project > Properties > Build > "Prefer 32-bit"** is **unchecked**. Keep it unchecked.
+
 When the build succeeds, these files are copied to `bin\Debug` automatically:
-- `haarcascade_frontalface_default.xml` (the face detector file)
-- `dll\x64\OpenCvSharpExtern.dll` and `dll\x86\OpenCvSharpExtern.dll` (native OpenCV)
+- `face_detection_yunet_2023mar.onnx` (the face detector model, about 230 KB)
+- `face_recognition_sface_2021dec.onnx` (the face recognizer model, about 37 MB)
+- `FACE_MODELS_LICENSE.txt` (the licenses of the 2 models)
+- `dll\x64\OpenCvSharpExtern.dll` and `dll\x64\opencv_videoio_ffmpeg4130_64.dll` (native OpenCV)
 
 ---
 
@@ -384,31 +390,63 @@ attendance and obligation records are deleted too.
    - no face is detected,
    - more than one face is detected,
    - the face is too small (too far), too dark, too bright or blurry,
+   - the head is turned too much to the side,
+   - picture 2, 3, 4 or 5 does not look like the earlier pictures (another person is in front of the camera),
    - it is exactly the same as a picture already captured.
 6. Click **RETAKE ALL FACES** to delete the captured pictures and start again.
 7. After **5 of 5**, click **SAVE STUDENT**.
+
+Every saved picture is the face **lined up by the eyes** (turned so the eyes are level) and resized to
+**112 x 112** pixels. This is the picture format that the face recognizer needs.
 
 ---
 
 ## 15. How Face Recognition Works
 
-The project uses **OpenCV** through the **OpenCvSharp4** C# library (no Python):
+The project uses **OpenCV** through the **OpenCvSharp4** C# library (no Python). Two small
+pre-trained models (`.onnx` files) from the OpenCV model zoo do the work. The same code is in
+`Registration.cs` and `FaceRecognition.cs` (section *"Face detection and face recognition"*):
 
-1. **Face detection** - the **Haar Cascade** file `haarcascade_frontalface_default.xml` finds
-   where the faces are in the camera picture.
-2. **Preparation** - every face is cut out, changed to gray, resized to 100 x 100 pixels and its
-   light is equalized. The same preparation is used when registering and when recognizing.
-3. **Training** - when the Face Recognition page opens, the **LBPH** (Local Binary Patterns
-   Histograms) recognizer learns the 5 pictures of every **active** student with **exactly 5** faces.
-4. **Recognition** - for every face in the camera, LBPH returns the most similar student and a
-   **distance** (smaller = more similar). A face is accepted when the distance is **70 or lower**.
-5. **Confirmation** - the same student must be matched in **3 camera pictures in a row** before
+1. **Face detection (YuNet)** - `detectFaces()` finds every face in the camera picture. For each face
+   it gives a box and **5 points**: the 2 eyes, the nose and the 2 mouth corners.
+2. **Quality check** - `checkFaceQuality()` accepts only **one** face that is big enough, not at the
+   edge, not too dark/bright, not blurry, and not turned too much (the nose must be between the eyes).
+3. **Alignment** - `alignFace()` turns and resizes the face to **112 x 112** pixels so that the eyes,
+   nose and mouth are always at the same place. Registration saves this aligned picture.
+4. **Face feature (SFace)** - `getFaceFeature()` changes the aligned face into **128 numbers**
+   (the "face feature"). Pictures of the same person give similar numbers.
+5. **Comparing** - `compareFaces()` multiplies the two features number by number and adds the results.
+   The answer is the **similarity**: 1.00 = the same picture, about 0 = different people.
+   Two faces are the **same person** when the similarity is **0.50 or higher** (`matchThreshold`).
+6. **Loading** - when the Face Recognition page opens, the features of the 5 pictures of every
+   **active** student with **exactly 5** faces are calculated (about 0.02 seconds per picture; the
+   page shows the progress). They are remembered while the program is open, so
+   **RESTART / RELOAD** and opening the page again are fast.
+7. **Recognition** - the camera face is compared with **every** registered picture. The best
+   similarity wins. The status line shows it, for example *"(similarity 0.71, 0.50 needed)"*.
+8. **Confirmation** - the same student must be matched in **3 camera pictures in a row** before
    the attendance is saved. After **5 pictures in a row** with no match, the face is called **Unknown**.
 
-Why 5 pictures? Different angles and expressions give the recognizer more examples, so it
-recognizes the student more reliably.
+**Extra checks during registration** (`Registration.cs`)
+- Pictures 2 to 5 must have a similarity of at least **0.40** with one of the earlier pictures
+  (`samePersonThreshold`), so a different person can not be mixed in.
+- When saving, the 5 new pictures are compared with the other students. If **3 or more** pictures
+  match the same student (0.50 or higher, `sameFaceThreshold`), a *"Possible Duplicate Face"* warning is shown.
 
-You can change the numbers at the top of `FaceRecognition.cs` (`matchThreshold`, `matchesNeeded`, `missesNeeded`).
+Why 5 pictures? Different angles and expressions give more examples, so the student is
+recognized more reliably (the best of the 5 similarities is used).
+
+You can change the numbers at the top of `FaceRecognition.cs` (`matchThreshold`, `matchesNeeded`,
+`missesNeeded`). A **higher** `matchThreshold` (for example 0.55) means fewer wrong matches but more
+*"Unknown"*; a **lower** one (for example 0.45) means the opposite. Use the same number for
+`sameFaceThreshold` in `Registration.cs`.
+
+**Students registered with an older version of this program** (160 x 160 face pictures) still work:
+their pictures are lined up automatically when they are loaded. For the best accuracy, re-register
+their faces (Student Records > Edit Student > capture 5 new pictures).
+
+**Model licenses:** YuNet (MIT License) and SFace (Apache License 2.0) from the
+[OpenCV model zoo](https://github.com/opencv/opencv_zoo). See `FACE_MODELS_LICENSE.txt`.
 
 ---
 
@@ -442,7 +480,7 @@ You can change the numbers at the top of `FaceRecognition.cs` (`matchThreshold`,
 |---|---|
 | No face detected | Nobody is in front of the camera |
 | More than one face | Only one person at a time |
-| Unknown face | The face is not registered, or the picture is not clear |
+| Unknown face | The face is not registered, or the picture is not clear (the similarity is below 0.50) |
 | No open session | No event session is going on right now |
 | Webcam not found / disconnected | Check the cable, privacy settings or other apps |
 | Database error | MySQL is not running, or the connection settings are wrong |
@@ -510,7 +548,10 @@ SCC_RecordsManagementSystem/
     |-- SCCRecordsManagementSystem.sln  <- open this in Visual Studio
     |-- Database.cs                     <- connection string and shared database methods
     |-- AccountInfo.cs, StudentInfo.cs, OfficerInfo.cs, EventInfo.cs   <- model classes
-    |-- haarcascade_frontalface_default.xml   <- face detector file
+    |-- FaceInfo.cs                     <- model class for one detected face (box + 5 points)
+    |-- face_detection_yunet_2023mar.onnx    <- face detector model (YuNet)
+    |-- face_recognition_sface_2021dec.onnx  <- face recognizer model (SFace)
+    |-- FACE_MODELS_LICENSE.txt         <- licenses of the 2 models
     `-- (the forms below)
 ```
 
@@ -562,15 +603,20 @@ If an action fails, read the message before retrying. A database error is **not*
 | SQL import error on `CHECK` | Use XAMPP with MariaDB 10.4+ or MySQL 8.0.16+. Older versions are not supported. |
 | Build error: *"This project references NuGet package(s) that are missing"* | Right-click the Solution > **Restore NuGet Packages**, then **Rebuild**. |
 | Build error: *"The type or namespace name 'MySql' / 'OpenCvSharp' / 'BCrypt' could not be found"* | The package is not installed. Install it with the exact version from section 9. |
-| *"Unable to load DLL 'OpenCvSharpExtern'"* | Install the **Visual C++ Redistributable 2015-2022** (x64 and x86). Reinstall `OpenCvSharp4.runtime.win 4.11.0.20250507`. Rebuild and check that `bin\Debug\dll\x64\OpenCvSharpExtern.dll` exists. |
-| *"Face detector file is missing"* | `haarcascade_frontalface_default.xml` must be in `bin\Debug`. In Solution Explorer, select the file > Properties > **Copy to Output Directory = Copy if newer**. Rebuild. |
+| *"Unable to load DLL 'OpenCvSharpExtern'"* / *"OpenCV files are missing"* | Reinstall `OpenCvSharp4.runtime.win 4.13.0.20261107` and rebuild. Check that `bin\Debug\dll\x64\OpenCvSharpExtern.dll` exists. Install the **Visual C++ Redistributable 2015-2022 (x64)**. On Windows **N / KN** editions, also install the **Media Feature Pack** (Settings > Apps > Optional features), because OpenCV needs Windows Media Foundation. |
+| *"OpenCV needs 64-bit"* / `BadImageFormatException` | The program is running as 32-bit. **Project > Properties > Build**: Platform target **Any CPU** (or **x64**) and **uncheck "Prefer 32-bit"**. Rebuild. Windows must be 64-bit. |
+| *"The face model files were not found"* | `face_detection_yunet_2023mar.onnx` and `face_recognition_sface_2021dec.onnx` must be in `bin\Debug`. In Solution Explorer, select each file > Properties > **Copy to Output Directory = Copy if newer**. Rebuild. |
+| *"The face model files are damaged"* | The `.onnx` files were changed or only partly downloaded (the SFace file must be about 37 MB). Download the project again and rebuild. |
 | *"No webcam found"* | Plug in the webcam, close other apps using it, turn on camera access for desktop apps in Windows Privacy settings. |
 | Webcam picture is black | Another app is using the camera, or the camera cover/switch is closed. |
 | A registration capture is rejected after a camera read fails | Wait for a new valid webcam frame. The last displayed picture is not reused as a new capture. |
 | *"No face detected"* | Move closer, face the camera, improve the light. |
 | *"More than one face"* | Only one person in front of the camera. |
-| Student is always *"Unknown"* | Check that the student is **Active**, has **5 faces**, and is on the event roster. Click **RESTART / RELOAD**. Re-register the faces in good light. |
-| Wrong student is recognized | Re-register both students' faces in good light. You can lower `matchThreshold` in `FaceRecognition.cs` (for example 60). |
+| Student is always *"Unknown"* | Check that the student is **Active**, has **5 faces**, and is on the event roster. Click **RESTART / RELOAD**. Look at the similarity in the status line: if it is close to 0.50, re-register the faces in the **same place and light** as the attendance camera. Students registered with an older version of the program should be re-registered. |
+| *"... picture(s) could not be used - re-register those students"* | Some saved face pictures are damaged or no face was found in them. Edit those students and capture 5 new pictures. |
+| Wrong student is recognized | Re-register both students' faces in good light. You can **raise** `matchThreshold` in `FaceRecognition.cs` (for example 0.55). |
+| The Face Recognition page takes long to open the first time | The features of all registered pictures are calculated once (about 0.02 seconds per picture). The next openings are fast while the program stays open. |
+| *"This face does not look like the earlier pictures"* when capturing | Only the student being registered may be in front of the camera. If an earlier picture was bad (blurry, another person), click **RETAKE ALL FACES**. |
 | *"No open session"* in Face Recognition | The current time must be between the start and end of a session. Check the event dates/times and the computer's clock. |
 | *"Attendance already recorded"* | This is correct: a student can only log in once per session. |
 | Face registration is reported incomplete during attendance | Open Student Records, edit the student, and re-register all five face pictures. Attendance is not recorded unless the student is active, marked as face registered, and has exactly five saved pictures. |

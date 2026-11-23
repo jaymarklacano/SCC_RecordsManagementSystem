@@ -115,7 +115,7 @@ CREATE TABLE face_images (
   face_image_id INT(11) NOT NULL AUTO_INCREMENT,
   student_id    INT(11) NOT NULL,
   image_number  TINYINT(4) NOT NULL,                 -- 1 to 5
-  image_data    MEDIUMBLOB NOT NULL,                 -- 160 x 160 PNG picture of the face
+  image_data    MEDIUMBLOB NOT NULL,                 -- 112 x 112 PNG picture of the face (lined up by the eyes)
   created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (face_image_id),
   UNIQUE KEY uq_face_images_student_number (student_id, image_number),

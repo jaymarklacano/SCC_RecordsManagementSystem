@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using OpenCvSharp;
-using OpenCvSharp.Face;
+using OpenCvSharp.Dnn;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,16 +16,31 @@ namespace SCCRecordsManagementSystem
 {
     public partial class FaceRecognition : Form
     {
-        // Webcam, face detector and face recognizer objects from OpenCvSharp.
+        // Webcam, face detector (YuNet) and face recognizer (SFace) objects from OpenCvSharp.
         private VideoCapture camera = null;
-        private CascadeClassifier faceDetector = null;
-        private LBPHFaceRecognizer faceRecognizer = null;
+        private FaceDetectorYN faceDetector = null;
+        private OpenCvSharp.Size faceDetectorSize = new OpenCvSharp.Size(0, 0);
+        private Net faceRecognizer = null;
         private Mat cameraFrame = null;
         private int failedFrameCount = 0;
 
-        // A face is accepted as a student when the LBPH "distance" is 70 or lower.
-        // A smaller distance means the faces are more alike (0 = exactly the same picture).
-        private const double matchThreshold = 70;
+        // The 2 face model files. They are copied next to the program when the project is built.
+        private const string detectorFileName = "face_detection_yunet_2023mar.onnx";
+        private const string recognizerFileName = "face_recognition_sface_2021dec.onnx";
+
+        // The face features of the registered students (5 pictures per student), loaded when the screen opens.
+        // registeredStudentIds[i] is the student of registeredFeatures[i].
+        private List<int> registeredStudentIds = new List<int>();
+        private List<float[]> registeredFeatures = new List<float[]>();
+
+        // Face features that were already calculated, by face_image_id. "static" = remembered while the
+        // program is open, so opening this screen again is fast. (Re-registered faces get a new face_image_id.)
+        private static Dictionary<int, float[]> savedFeatures = new Dictionary<int, float[]>();
+
+        // "Similarity" tells how much two faces look alike: 1.0 = exactly the same, 0 or lower = not alike at all.
+        // A face is accepted as a student when the similarity with one of his/her 5 pictures is 0.50 or higher.
+        // (The same number is used in Registration.cs.)
+        private const double matchThreshold = 0.50;
 
         // The same student must be matched in 3 camera pictures in a row before attendance is recorded.
         private const int matchesNeeded = 3;
@@ -101,27 +116,19 @@ namespace SCCRecordsManagementSystem
                 // 2. This line checks that the OpenCV files (OpenCvSharpExtern.dll) were copied next to the program.
                 Cv2.GetVersionString();
 
-                // 3. Face detector file
-                string detectorPath = Path.Combine(Application.StartupPath, "haarcascade_frontalface_default.xml");
+                // 3. Face detector and face recognizer files
+                string modelProblem = loadFaceModels();
 
-                if (File.Exists(detectorPath) == false)
-                {
-                    setCameraStatus("The face detector file is missing. Rebuild the project.", Color.Firebrick);
-                    showMessage("The file \"haarcascade_frontalface_default.xml\" was not found.\nRebuild the project in Visual Studio.", Color.Firebrick);
-                    return;
-                }
-
-                faceDetector = new CascadeClassifier(detectorPath);
-
-                if (faceDetector.Empty() == true)
+                if (modelProblem != "")
                 {
                     stopCamera();
-                    setCameraStatus("The face detector file is damaged.", Color.Firebrick);
+                    setCameraStatus("The face model files are missing or damaged. Rebuild the project.", Color.Firebrick);
+                    showMessage(modelProblem, Color.Firebrick);
                     return;
                 }
 
-                // 4. Teach the recognizer the faces of the registered students
-                bool hasFaces = trainRecognizer();
+                // 4. Read the 5 face pictures of every registered student
+                bool hasFaces = loadRegisteredFaces();
 
                 if (hasFaces == false)
                 {
@@ -164,6 +171,13 @@ namespace SCCRecordsManagementSystem
                 stopCamera();
                 setCameraStatus("OpenCV files are missing. See the README (NuGet packages).", Color.Firebrick);
                 showMessage("Restore the NuGet packages (OpenCvSharp4.runtime.win) and rebuild the project.", Color.Firebrick);
+            }
+            catch (BadImageFormatException)
+            {
+                stopCamera();
+                setCameraStatus("OpenCV needs 64-bit. See the README (Troubleshooting).", Color.Firebrick);
+                showMessage("The OpenCV files are 64-bit, but the program is running as 32-bit.\n" +
+                    "Project > Properties > Build > uncheck \"Prefer 32-bit\", then rebuild.", Color.Firebrick);
             }
             catch (Exception ex)
             {
@@ -252,12 +266,15 @@ namespace SCCRecordsManagementSystem
             return true;
         }
 
-        // Loads the 5 face pictures of every registered student and trains the LBPH recognizer.
+        // Reads the 5 face pictures of every registered student and changes each picture into its face feature.
         // Returns false when there are no registered faces.
-        private bool trainRecognizer()
+        private bool loadRegisteredFaces()
         {
+            registeredStudentIds.Clear();
+            registeredFeatures.Clear();
+
             // Only ACTIVE students that have exactly 5 face pictures are used.
-            string query = "SELECT s.student_id, f.image_data " +
+            string query = "SELECT s.student_id, f.face_image_id, f.image_data " +
                            "FROM students s " +
                            "JOIN face_images f ON f.student_id = s.student_id " +
                            "WHERE s.status = 'Active' AND s.face_registered = 1 " +
@@ -291,66 +308,83 @@ namespace SCCRecordsManagementSystem
                 if (conn != null) conn.Dispose();
             }
 
-            List<Mat> trainingFaces = new List<Mat>();
-            List<int> trainingLabels = new List<int>();
             List<int> studentIds = new List<int>();
-            int damagedPictures = 0;
+            int unusablePictures = 0;
 
-            try
+            for (int i = 0; i < faceTable.Rows.Count; i++)
             {
-                for (int i = 0; i < faceTable.Rows.Count; i++)
+                int studentId = Convert.ToInt32(faceTable.Rows[i]["student_id"]);
+                int faceImageId = Convert.ToInt32(faceTable.Rows[i]["face_image_id"]);
+                float[] feature;
+
+                // A picture that was already read before is not read again (this makes RESTART / RELOAD fast).
+                if (savedFeatures.ContainsKey(faceImageId) == true)
                 {
-                    int studentId = Convert.ToInt32(faceTable.Rows[i]["student_id"]);
+                    feature = savedFeatures[faceImageId];
+                }
+                else
+                {
                     byte[] imageBytes = (byte[])faceTable.Rows[i]["image_data"];
 
-                    Mat facePicture = Cv2.ImDecode(imageBytes, ImreadModes.Color);
-
-                    // A damaged picture is skipped so that one bad record does not stop the attendance of everybody.
-                    if (facePicture.Empty() == true)
+                    try
                     {
-                        facePicture.Dispose();
-                        damagedPictures = damagedPictures + 1;
-                        continue;
+                        feature = getSavedFaceFeature(imageBytes);
+                    }
+                    catch (OpenCVException)
+                    {
+                        // A damaged picture can not be read. It is skipped below.
+                        feature = null;
                     }
 
-                    trainingFaces.Add(prepareFaceForRecognition(facePicture));
-                    facePicture.Dispose();
-
-                    // The "label" of each picture is the student_id, so the recognizer answers with the student_id.
-                    trainingLabels.Add(studentId);
-
-                    if (studentIds.Contains(studentId) == false)
-                    {
-                        studentIds.Add(studentId);
-                    }
+                    savedFeatures[faceImageId] = feature;
                 }
 
-                if (trainingFaces.Count == 0)
+                // Show the progress, because reading many pictures takes a few seconds.
+                if ((i + 1) % 10 == 0)
                 {
-                    setCameraStatus("No registered faces yet.", Color.Firebrick);
-                    showMessage("NO REGISTERED FACES\nAdd students with 5 face pictures in Student Records first,\nthen click RESTART / RELOAD.", Color.Firebrick);
-                    lblFaceDataInfo.Text = "0 students with registered faces.";
-                    lblFaceDataInfo.ForeColor = Color.Firebrick;
-                    return false;
+                    lblFaceDataInfo.Text = "Reading the registered faces... " + (i + 1) + " of " + faceTable.Rows.Count + " pictures";
+                    lblFaceDataInfo.ForeColor = Color.MidnightBlue;
+                    lblFaceDataInfo.Refresh();
                 }
 
-                faceRecognizer = LBPHFaceRecognizer.Create();
-                faceRecognizer.Train(trainingFaces, trainingLabels);
+                // A damaged picture (or a picture without a face) is skipped so that
+                // one bad record does not stop the attendance of everybody.
+                if (feature == null)
+                {
+                    unusablePictures = unusablePictures + 1;
+                    continue;
+                }
+
+                registeredStudentIds.Add(studentId);
+                registeredFeatures.Add(feature);
+
+                if (studentIds.Contains(studentId) == false)
+                {
+                    studentIds.Add(studentId);
+                }
             }
-            finally
+
+            if (registeredFeatures.Count == 0)
             {
-                for (int i = 0; i < trainingFaces.Count; i++)
+                setCameraStatus("No registered faces yet.", Color.Firebrick);
+                showMessage("NO REGISTERED FACES\nAdd students with 5 face pictures in Student Records first,\nthen click RESTART / RELOAD.", Color.Firebrick);
+                lblFaceDataInfo.Text = "0 students with registered faces.";
+                lblFaceDataInfo.ForeColor = Color.Firebrick;
+
+                if (unusablePictures > 0)
                 {
-                    trainingFaces[i].Dispose();
+                    lblFaceDataInfo.Text = lblFaceDataInfo.Text + " " + unusablePictures + " picture(s) could not be used - re-register those students.";
                 }
+
+                return false;
             }
 
-            lblFaceDataInfo.Text = studentIds.Count + " student(s) with registered faces (" + trainingLabels.Count + " face pictures loaded).";
+            lblFaceDataInfo.Text = studentIds.Count + " student(s) with registered faces (" + registeredFeatures.Count + " face pictures loaded).";
             lblFaceDataInfo.ForeColor = Color.DimGray;
 
-            if (damagedPictures > 0)
+            if (unusablePictures > 0)
             {
-                lblFaceDataInfo.Text = lblFaceDataInfo.Text + " " + damagedPictures + " damaged picture(s) skipped - re-register those students.";
+                lblFaceDataInfo.Text = lblFaceDataInfo.Text + " " + unusablePictures + " picture(s) could not be used - re-register those students.";
                 lblFaceDataInfo.ForeColor = Color.Firebrick;
             }
 
@@ -406,17 +440,7 @@ namespace SCCRecordsManagementSystem
                 camera = null;
             }
 
-            if (faceDetector != null)
-            {
-                faceDetector.Dispose();
-                faceDetector = null;
-            }
-
-            if (faceRecognizer != null)
-            {
-                faceRecognizer.Dispose();
-                faceRecognizer = null;
-            }
+            // The face models stay loaded (RESTART / RELOAD is faster). They are unloaded when the form closes.
 
             if (cameraFrame != null)
             {
@@ -459,7 +483,7 @@ namespace SCCRecordsManagementSystem
 
                 failedFrameCount = 0;
 
-                Rect[] faces = detectFaces(cameraFrame);
+                List<FaceInfo> faces = detectFaces(cameraFrame);
                 Scalar boxColor = recognizeFace(faces);
                 showCameraFrame(cameraFrame, faces, boxColor);
             }
@@ -474,9 +498,9 @@ namespace SCCRecordsManagementSystem
         // Decides what to do with the faces of the current camera picture.
         // Returns the color of the box around the face:
         //   Gray = no face, Orange = problem, Gold = checking, Red = unknown, Green = recognized
-        private Scalar recognizeFace(Rect[] faces)
+        private Scalar recognizeFace(List<FaceInfo> faces)
         {
-            if (faces.Length > 0)
+            if (faces.Count > 0)
             {
                 lastFaceSeenTime = DateTime.Now;
             }
@@ -489,7 +513,7 @@ namespace SCCRecordsManagementSystem
                 sameMatchCount = 0;
                 unknownCount = 0;
 
-                if (faces.Length == 0)
+                if (faces.Count == 0)
                 {
                     setCameraStatus(problem, Color.DimGray);
 
@@ -508,19 +532,38 @@ namespace SCCRecordsManagementSystem
                 return Scalar.Orange;
             }
 
-            // Ask the recognizer who this is
-            int studentId;
-            double distance;
+            // 1. Get the face feature of the face in front of the camera
+            float[] cameraFeature;
 
-            using (Mat faceCrop = new Mat(cameraFrame, faces[0]))
+            using (Mat alignedFace = alignFace(cameraFrame, faces[0]))
             {
-                using (Mat preparedFace = prepareFaceForRecognition(faceCrop))
+                if (alignedFace == null)
                 {
-                    faceRecognizer.Predict(preparedFace, out studentId, out distance);
+                    setCameraStatus("The face is not clear. Please look straight at the camera.", Color.Firebrick);
+                    return Scalar.Orange;
+                }
+
+                cameraFeature = getFaceFeature(alignedFace);
+            }
+
+            // 2. Find the registered picture that looks the most like this face
+            int studentId = 0;
+            double bestSimilarity = -1;
+
+            for (int i = 0; i < registeredFeatures.Count; i++)
+            {
+                double similarity = compareFaces(cameraFeature, registeredFeatures[i]);
+
+                if (similarity > bestSimilarity)
+                {
+                    bestSimilarity = similarity;
+                    studentId = registeredStudentIds[i];
                 }
             }
 
-            if (studentId <= 0 || distance > matchThreshold)
+            string similarityText = " (similarity " + bestSimilarity.ToString("0.00") + ", " + matchThreshold.ToString("0.00") + " needed)";
+
+            if (bestSimilarity < matchThreshold)
             {
                 // One unclear picture is normal, so we wait for 5 in a row before saying "unknown".
                 candidateStudentId = 0;
@@ -529,7 +572,7 @@ namespace SCCRecordsManagementSystem
 
                 if (unknownCount < missesNeeded)
                 {
-                    setCameraStatus("Recognizing your face...", Color.MidnightBlue);
+                    setCameraStatus("Recognizing your face..." + similarityText, Color.MidnightBlue);
                     return Scalar.Gold;
                 }
 
@@ -543,7 +586,7 @@ namespace SCCRecordsManagementSystem
                     showMessage("UNKNOWN FACE\nThis face is not registered. No attendance was recorded.", Color.Firebrick);
                 }
 
-                setCameraStatus("Unknown face. This person is not registered or the face is not clear.", Color.Firebrick);
+                setCameraStatus("Unknown face. This person is not registered or the face is not clear." + similarityText, Color.Firebrick);
                 return Scalar.Red;
             }
 
@@ -561,7 +604,7 @@ namespace SCCRecordsManagementSystem
 
             if (sameMatchCount < matchesNeeded)
             {
-                setCameraStatus("Recognizing your face... " + sameMatchCount + "/" + matchesNeeded, Color.MidnightBlue);
+                setCameraStatus("Recognizing your face... " + sameMatchCount + "/" + matchesNeeded + similarityText, Color.MidnightBlue);
                 return Scalar.Gold;
             }
 
@@ -578,7 +621,7 @@ namespace SCCRecordsManagementSystem
                 return Scalar.Gold;
             }
 
-            showRecognizedStudent(studentId, faces[0]);
+            showRecognizedStudent(studentId, faces[0].Box);
             return Scalar.LimeGreen;
         }
 
@@ -1047,61 +1090,150 @@ namespace SCCRecordsManagementSystem
         }
 
         // ------------------------------------------------------------------
-        // Face detection (the same code as in Registration.cs)
+        // Face detection and face recognition
+        // (the same code is in Registration.cs)
+        //
+        // How it works:
+        //   1. YuNet finds the face and 5 points on it (eyes, nose and mouth corners).
+        //   2. The face is turned and resized to 112 x 112 so the eyes are always at the same place ("aligned").
+        //   3. SFace changes the aligned face into 128 numbers (the "face feature").
+        //   4. Two faces are compared by their features. The result is the "similarity".
         // ------------------------------------------------------------------
 
-        // Finds the faces in a picture. Returns a rectangle for every face.
-        private Rect[] detectFaces(Mat picture)
+        // Loads the 2 face model files. Returns "" when everything is OK,
+        // otherwise a message that explains the problem.
+        private string loadFaceModels()
         {
-            Rect[] foundFaces;
-
-            using (Mat gray = new Mat())
+            // Already loaded
+            if (faceDetector != null && faceRecognizer != null)
             {
-                // The detector works with black and white pictures.
-                Cv2.CvtColor(picture, gray, ColorConversionCodes.BGR2GRAY);
-                Cv2.EqualizeHist(gray, gray);
-                foundFaces = faceDetector.DetectMultiScale(gray, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(60, 60));
+                return "";
             }
 
-            // Faces smaller than 60% of the biggest face are ignored (they are usually not real faces).
-            int biggestWidth = 0;
+            string detectorPath = Path.Combine(Application.StartupPath, detectorFileName);
+            string recognizerPath = Path.Combine(Application.StartupPath, recognizerFileName);
 
-            for (int i = 0; i < foundFaces.Length; i++)
+            if (File.Exists(detectorPath) == false || File.Exists(recognizerPath) == false)
             {
-                if (foundFaces[i].Width > biggestWidth)
+                return "The face model files were not found in:\n" + Application.StartupPath + "\n\n" +
+                    "Needed files:\n- " + detectorFileName + "\n- " + recognizerFileName + "\n\n" +
+                    "Rebuild the project in Visual Studio so the files are copied again.";
+            }
+
+            try
+            {
+                // The detector is created for a 640 x 480 picture. detectFaces() creates it again when the picture size is different.
+                faceDetectorSize = new OpenCvSharp.Size(640, 480);
+                faceDetector = FaceDetectorYN.Create(detectorPath, "", faceDetectorSize, 0.8f, 0.3f, 5000);
+                faceRecognizer = CvDnn.ReadNetFromOnnx(recognizerPath);
+            }
+            catch (OpenCVException)
+            {
+                unloadFaceModels();
+                return "The face model files are damaged.\nDownload the project again (or copy the .onnx files again) and rebuild it.";
+            }
+
+            if (faceRecognizer == null || faceRecognizer.Empty() == true)
+            {
+                unloadFaceModels();
+                return "The face recognizer file \"" + recognizerFileName + "\" is damaged.\nDownload the project again and rebuild it.";
+            }
+
+            return "";
+        }
+
+        private void unloadFaceModels()
+        {
+            if (faceDetector != null)
+            {
+                faceDetector.Dispose();
+                faceDetector = null;
+            }
+
+            if (faceRecognizer != null)
+            {
+                faceRecognizer.Dispose();
+                faceRecognizer = null;
+            }
+        }
+
+        // Finds the faces in a picture. Returns one FaceInfo (box + 5 points) for every face.
+        private List<FaceInfo> detectFaces(Mat picture)
+        {
+            // YuNet must know the size of the picture. When the size changes, the detector is created again.
+            if (faceDetectorSize != picture.Size())
+            {
+                faceDetector.Dispose();
+                faceDetectorSize = picture.Size();
+                faceDetector = FaceDetectorYN.Create(Path.Combine(Application.StartupPath, detectorFileName), "", faceDetectorSize, 0.8f, 0.3f, 5000);
+            }
+
+            List<FaceInfo> foundFaces = new List<FaceInfo>();
+
+            using (Mat result = new Mat())
+            {
+                faceDetector.Detect(picture, result);
+
+                // Every row of the result is one face with 15 numbers:
+                // x, y, width, height, the 5 points (x and y of each) and the score.
+                for (int row = 0; row < result.Rows; row++)
                 {
-                    biggestWidth = foundFaces[i].Width;
+                    FaceInfo face = new FaceInfo();
+                    face.Box = new Rect((int)result.At<float>(row, 0), (int)result.At<float>(row, 1),
+                                        (int)result.At<float>(row, 2), (int)result.At<float>(row, 3));
+
+                    face.Landmarks = new Point2f[5];
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        face.Landmarks[i] = new Point2f(result.At<float>(row, 4 + i * 2), result.At<float>(row, 5 + i * 2));
+                    }
+
+                    face.Score = result.At<float>(row, 14);
+                    foundFaces.Add(face);
                 }
             }
 
-            List<Rect> realFaces = new List<Rect>();
+            // People far behind the student have small faces. A real second person in front of
+            // the camera has a face of similar size, so faces smaller than 60% of the biggest face are ignored.
+            int biggestWidth = 0;
 
-            for (int i = 0; i < foundFaces.Length; i++)
+            for (int i = 0; i < foundFaces.Count; i++)
             {
-                if (foundFaces[i].Width >= biggestWidth * 0.6)
+                if (foundFaces[i].Box.Width > biggestWidth)
+                {
+                    biggestWidth = foundFaces[i].Box.Width;
+                }
+            }
+
+            List<FaceInfo> realFaces = new List<FaceInfo>();
+
+            for (int i = 0; i < foundFaces.Count; i++)
+            {
+                if (foundFaces[i].Box.Width >= biggestWidth * 0.6)
                 {
                     realFaces.Add(foundFaces[i]);
                 }
             }
 
-            return realFaces.ToArray();
+            return realFaces;
         }
 
         // Returns "" when the picture has exactly ONE clear face.
         // Otherwise returns a message that tells the student what to fix.
-        private string checkFaceQuality(Mat picture, Rect[] faces)
+        private string checkFaceQuality(Mat picture, List<FaceInfo> faces)
         {
-            if (faces.Length == 0)
+            if (faces.Count == 0)
             {
                 return "No face detected. Waiting for a student...";
             }
 
-            if (faces.Length > 1)
+            if (faces.Count > 1)
             {
                 return "Multiple faces detected. One student at a time, please.";
             }
 
-            Rect face = faces[0];
+            Rect face = faces[0].Box;
 
             if (face.Width < 90)
             {
@@ -1111,6 +1243,16 @@ namespace SCCRecordsManagementSystem
             if (face.X < 3 || face.Y < 3 || face.Right > picture.Width - 3 || face.Bottom > picture.Height - 3)
             {
                 return "Face is too close to the edge. Please move to the center.";
+            }
+
+            // The nose must be between the 2 eyes. If not, the head is turned too much to the side.
+            Point2f rightEye = faces[0].Landmarks[0];
+            Point2f leftEye = faces[0].Landmarks[1];
+            Point2f nose = faces[0].Landmarks[2];
+
+            if (nose.X <= Math.Min(rightEye.X, leftEye.X) || nose.X >= Math.Max(rightEye.X, leftEye.X))
+            {
+                return "The head is turned too much. Please face the camera.";
             }
 
             using (Mat faceCrop = new Mat(picture, face))
@@ -1151,24 +1293,159 @@ namespace SCCRecordsManagementSystem
             return "";
         }
 
-        // The same preparation as Registration.cs: gray, 100 x 100 and equalized light.
-        private Mat prepareFaceForRecognition(Mat colorFace)
+        // Turns and resizes the face to 112 x 112 so that the eyes, nose and mouth are always at the same place.
+        // Returns null when the face can not be lined up.
+        private Mat alignFace(Mat picture, FaceInfo face)
         {
-            Mat grayFace = new Mat();
-            Cv2.CvtColor(colorFace, grayFace, ColorConversionCodes.BGR2GRAY);
-            Cv2.Resize(grayFace, grayFace, new OpenCvSharp.Size(100, 100));
-            Cv2.EqualizeHist(grayFace, grayFace);
-            return grayFace;
+            // Where the 5 points must be in the 112 x 112 picture (the SFace model was trained like this).
+            Point2f[] targetPoints = new Point2f[]
+            {
+                new Point2f(38.2946f, 51.6963f),   // right eye
+                new Point2f(73.5318f, 51.5014f),   // left eye
+                new Point2f(56.0252f, 71.7366f),   // nose tip
+                new Point2f(41.5493f, 92.3655f),   // right mouth corner
+                new Point2f(70.7299f, 92.2041f)    // left mouth corner
+            };
+
+            // "transform" tells how to move, turn and resize the picture so the 5 points land on the target points.
+            using (Mat transform = Cv2.EstimateAffinePartial2D(InputArray.Create(face.Landmarks), InputArray.Create(targetPoints),
+                                                               null, RobustEstimationAlgorithms.LMEDS))
+            {
+                if (transform == null || transform.Empty() == true)
+                {
+                    return null;
+                }
+
+                Mat alignedFace = new Mat();
+                Cv2.WarpAffine(picture, alignedFace, transform, new OpenCvSharp.Size(112, 112));
+                return alignedFace;
+            }
         }
 
-        // Shows the webcam picture like a mirror, with a colored box around every face.
-        private void showCameraFrame(Mat picture, Rect[] faces, Scalar boxColor)
+        // Changes an aligned 112 x 112 face into its 128-number "face feature" (with SFace).
+        private float[] getFaceFeature(Mat alignedFace)
+        {
+            using (Mat blob = CvDnn.BlobFromImage(alignedFace, 1.0, new OpenCvSharp.Size(112, 112), new Scalar(0, 0, 0), true, false))
+            {
+                faceRecognizer.SetInput(blob);
+
+                using (Mat output = faceRecognizer.Forward())
+                {
+                    float[] feature = new float[output.Cols];
+
+                    for (int i = 0; i < feature.Length; i++)
+                    {
+                        feature[i] = output.At<float>(0, i);
+                    }
+
+                    // Make the length of the feature 1, so comparing two features gives a number from -1 to 1.
+                    double length = 0;
+
+                    for (int i = 0; i < feature.Length; i++)
+                    {
+                        length = length + feature[i] * feature[i];
+                    }
+
+                    length = Math.Sqrt(length);
+
+                    for (int i = 0; i < feature.Length; i++)
+                    {
+                        feature[i] = (float)(feature[i] / length);
+                    }
+
+                    return feature;
+                }
+            }
+        }
+
+        // Compares two face features. 1.0 = exactly the same face, 0.50 or more = the same person.
+        private double compareFaces(float[] firstFeature, float[] secondFeature)
+        {
+            double similarity = 0;
+
+            for (int i = 0; i < firstFeature.Length; i++)
+            {
+                similarity = similarity + firstFeature[i] * secondFeature[i];
+            }
+
+            return similarity;
+        }
+
+        // Gets the face feature of a picture saved in the database. Returns null when the picture can not be used.
+        private float[] getSavedFaceFeature(byte[] imageBytes)
+        {
+            using (Mat savedFace = Cv2.ImDecode(imageBytes, ImreadModes.Color))
+            {
+                if (savedFace.Empty() == true)
+                {
+                    return null;
+                }
+
+                using (Mat alignedFace = alignSavedFace(savedFace))
+                {
+                    if (alignedFace == null)
+                    {
+                        return null;
+                    }
+
+                    return getFaceFeature(alignedFace);
+                }
+            }
+        }
+
+        // New pictures are saved already aligned (112 x 112), so they are used as they are.
+        // Pictures saved by the older version of this program (160 x 160) are aligned here first.
+        // Returns null when no face is found in the picture.
+        private Mat alignSavedFace(Mat savedFace)
+        {
+            if (savedFace.Width == 112 && savedFace.Height == 112)
+            {
+                return savedFace.Clone();
+            }
+
+            // The face fills the whole old picture, so a border is added around it first. YuNet finds the face better that way.
+            int border = savedFace.Width * 3 / 10;
+
+            using (Mat biggerPicture = new Mat())
+            {
+                Cv2.CopyMakeBorder(savedFace, biggerPicture, border, border, border, border, BorderTypes.Replicate);
+
+                List<FaceInfo> faces = detectFaces(biggerPicture);
+
+                if (faces.Count == 0)
+                {
+                    return null;
+                }
+
+                // Use the biggest face
+                FaceInfo biggestFace = faces[0];
+
+                for (int i = 1; i < faces.Count; i++)
+                {
+                    if (faces[i].Box.Width > biggestFace.Box.Width)
+                    {
+                        biggestFace = faces[i];
+                    }
+                }
+
+                return alignFace(biggerPicture, biggestFace);
+            }
+        }
+
+        // Shows the webcam picture like a mirror, with a colored box and the 5 face points on every face.
+        private void showCameraFrame(Mat picture, List<FaceInfo> faces, Scalar boxColor)
         {
             using (Mat display = picture.Clone())
             {
-                for (int i = 0; i < faces.Length; i++)
+                for (int i = 0; i < faces.Count; i++)
                 {
-                    Cv2.Rectangle(display, faces[i], boxColor, 3);
+                    Cv2.Rectangle(display, faces[i].Box, boxColor, 3);
+
+                    for (int p = 0; p < faces[i].Landmarks.Length; p++)
+                    {
+                        OpenCvSharp.Point point = new OpenCvSharp.Point((int)faces[i].Landmarks[p].X, (int)faces[i].Landmarks[p].Y);
+                        Cv2.Circle(display, point, 3, boxColor, -1);
+                    }
                 }
 
                 Cv2.Flip(display, display, FlipMode.Y);
@@ -1226,6 +1503,7 @@ namespace SCCRecordsManagementSystem
         private void FaceRecognition_FormClosed(object sender, FormClosedEventArgs e)
         {
             stopCamera();
+            unloadFaceModels();
             showImage(picStudentFace, null);
             Database.exitIfNoFormIsOpen(this);
         }
