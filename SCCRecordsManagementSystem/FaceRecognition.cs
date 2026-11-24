@@ -33,9 +33,13 @@ namespace SCCRecordsManagementSystem
         private List<int> registeredStudentIds = new List<int>();
         private List<float[]> registeredFeatures = new List<float[]>();
 
-        // Face features that were already calculated, by face_image_id. "static" = remembered while the
-        // program is open, so opening this screen again is fast. (Re-registered faces get a new face_image_id.)
-        private static Dictionary<int, float[]> savedFeatures = new Dictionary<int, float[]>();
+        // Five brightness variants for each saved face image, cached by face_image_id while the program is open.
+        // (Re-registered faces get a new face_image_id.)
+        private static Dictionary<int, List<float[]>> savedFeatures = new Dictionary<int, List<float[]>>();
+
+        // Small exposure changes help match faces captured in slightly different lighting.
+        // Values are applied to each pixel; 1.0 keeps the original brightness.
+        private readonly double[] brightnessLevels = new double[] { 0.95, 0.90, 0.85, 1.00, 1.10 };
 
         // "Similarity" tells how much two faces look alike: 1.0 = exactly the same, 0 or lower = not alike at all.
         // A face is accepted as a student when the similarity with one of his/her 5 pictures is 0.50 or higher.
@@ -266,7 +270,7 @@ namespace SCCRecordsManagementSystem
             return true;
         }
 
-        // Reads the 5 face pictures of every registered student and changes each picture into its face feature.
+        // Reads the 5 face pictures of every registered student and makes five brightness features per picture.
         // Returns false when there are no registered faces.
         private bool loadRegisteredFaces()
         {
@@ -315,12 +319,12 @@ namespace SCCRecordsManagementSystem
             {
                 int studentId = Convert.ToInt32(faceTable.Rows[i]["student_id"]);
                 int faceImageId = Convert.ToInt32(faceTable.Rows[i]["face_image_id"]);
-                float[] feature;
+                List<float[]> features;
 
-                // A picture that was already read before is not read again (this makes RESTART / RELOAD fast).
+                // A picture that was already processed is not read again (this makes RESTART / RELOAD faster).
                 if (savedFeatures.ContainsKey(faceImageId) == true)
                 {
-                    feature = savedFeatures[faceImageId];
+                    features = savedFeatures[faceImageId];
                 }
                 else
                 {
@@ -328,15 +332,15 @@ namespace SCCRecordsManagementSystem
 
                     try
                     {
-                        feature = getSavedFaceFeature(imageBytes);
+                        features = getSavedFaceFeatures(imageBytes);
                     }
                     catch (OpenCVException)
                     {
                         // A damaged picture can not be read. It is skipped below.
-                        feature = null;
+                        features = null;
                     }
 
-                    savedFeatures[faceImageId] = feature;
+                    savedFeatures[faceImageId] = features;
                 }
 
                 // Show the progress, because reading many pictures takes a few seconds.
@@ -349,14 +353,17 @@ namespace SCCRecordsManagementSystem
 
                 // A damaged picture (or a picture without a face) is skipped so that
                 // one bad record does not stop the attendance of everybody.
-                if (feature == null)
+                if (features == null || features.Count == 0)
                 {
                     unusablePictures = unusablePictures + 1;
                     continue;
                 }
 
-                registeredStudentIds.Add(studentId);
-                registeredFeatures.Add(feature);
+                for (int brightnessIndex = 0; brightnessIndex < features.Count; brightnessIndex++)
+                {
+                    registeredStudentIds.Add(studentId);
+                    registeredFeatures.Add(features[brightnessIndex]);
+                }
 
                 if (studentIds.Contains(studentId) == false)
                 {
@@ -379,7 +386,9 @@ namespace SCCRecordsManagementSystem
                 return false;
             }
 
-            lblFaceDataInfo.Text = studentIds.Count + " student(s) with registered faces (" + registeredFeatures.Count + " face pictures loaded).";
+            int usablePictureCount = registeredFeatures.Count / brightnessLevels.Length;
+            lblFaceDataInfo.Text = studentIds.Count + " student(s) with registered faces (" + usablePictureCount +
+                " face pictures, " + registeredFeatures.Count + " brightness features loaded).";
             lblFaceDataInfo.ForeColor = Color.DimGray;
 
             if (unusablePictures > 0)
@@ -1371,8 +1380,9 @@ namespace SCCRecordsManagementSystem
             return similarity;
         }
 
-        // Gets the face feature of a picture saved in the database. Returns null when the picture can not be used.
-        private float[] getSavedFaceFeature(byte[] imageBytes)
+        // Makes features from the original aligned image and four gently changed brightness versions.
+        // Only features are kept in memory; the original face image in the database is not changed.
+        private List<float[]> getSavedFaceFeatures(byte[] imageBytes)
         {
             using (Mat savedFace = Cv2.ImDecode(imageBytes, ImreadModes.Color))
             {
@@ -1388,7 +1398,19 @@ namespace SCCRecordsManagementSystem
                         return null;
                     }
 
-                    return getFaceFeature(alignedFace);
+                    List<float[]> features = new List<float[]>();
+
+                    for (int i = 0; i < brightnessLevels.Length; i++)
+                    {
+                        using (Mat brightnessVersion = new Mat())
+                        {
+                            // ConvertTo scales pixel brightness and clips values outside the image's valid range.
+                            alignedFace.ConvertTo(brightnessVersion, alignedFace.Type(), brightnessLevels[i], 0);
+                            features.Add(getFaceFeature(brightnessVersion));
+                        }
+                    }
+
+                    return features;
                 }
             }
         }

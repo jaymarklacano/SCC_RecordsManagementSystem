@@ -418,11 +418,12 @@ pre-trained models (`.onnx` files) from the OpenCV model zoo do the work. The sa
 5. **Comparing** - `compareFaces()` multiplies the two features number by number and adds the results.
    The answer is the **similarity**: 1.00 = the same picture, about 0 = different people.
    Two faces are the **same person** when the similarity is **0.50 or higher** (`matchThreshold`).
-6. **Loading** - when the Face Recognition page opens, the features of the 5 pictures of every
-   **active** student with **exactly 5** faces are calculated (about 0.02 seconds per picture; the
-   page shows the progress). They are remembered while the program is open, so
-   **RESTART / RELOAD** and opening the page again are fast.
-7. **Recognition** - the camera face is compared with **every** registered picture. The best
+6. **Loading** - when the Face Recognition page opens, five gentle brightness versions are made
+   for each of the 5 pictures of every **active** student with **exactly 5** faces: slightly dark 1
+   (0.95), slightly dark 2 (0.90), slightly dark 3 (0.85), normal (1.00), and slightly bright (1.10).
+   The face features are calculated once and cached while the program is open, so **RESTART / RELOAD**
+   and opening the page again are faster.
+7. **Recognition** - the camera face is compared with every registered brightness feature. The best
    similarity wins. The status line shows it, for example *"(similarity 0.71, 0.50 needed)"*.
 8. **Confirmation** - the same student must be matched in **3 camera pictures in a row** before
    the attendance is saved. After **5 pictures in a row** with no match, the face is called **Unknown**.
