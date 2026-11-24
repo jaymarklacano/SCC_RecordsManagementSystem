@@ -85,7 +85,7 @@ attendance. Students scan their face to **Log In**, and if the event needs it, t
 - Only pictures with **exactly one clear face** are accepted (not too dark, not too bright, not blurry, not too far, head not turned too much).
 - Pictures 2 to 5 must look like the earlier pictures, so all 5 pictures are surely of the same student.
 - **Retake All Faces** to start over. Faces can be re-registered when editing a student.
-- Warns you when the new face looks like another registered student.
+- Blocks saving when the new face matches another registered student; there is no override option.
 
 **Face Recognition (attendance)**
 - The webcam starts automatically. The open session is selected automatically.
@@ -432,7 +432,11 @@ pre-trained models (`.onnx` files) from the OpenCV model zoo do the work. The sa
 - Pictures 2 to 5 must have a similarity of at least **0.40** with one of the earlier pictures
   (`samePersonThreshold`), so a different person can not be mixed in.
 - When saving, the 5 new pictures are compared with the other students. If **3 or more** pictures
-  match the same student (0.50 or higher, `sameFaceThreshold`), a *"Possible Duplicate Face"* warning is shown.
+  match the same student (0.50 or higher, `sameFaceThreshold`), saving is **blocked** with a
+  *"Face Already Registered"* message showing the existing student's name and ID. There is no option
+  to save anyway. This applies when adding a student or replacing their face pictures, and checks
+  both active and inactive registered students. When editing, the student's own record is excluded
+  so they can re-register their own face. Captured pictures remain available to retake.
 
 Why 5 pictures? Different angles and expressions give more examples, so the student is
 recognized more reliably (the best of the 5 similarities is used).

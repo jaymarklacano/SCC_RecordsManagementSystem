@@ -1564,15 +1564,12 @@ namespace SCCRecordsManagementSystem
 
                 if (similarStudent != "")
                 {
-                    DialogResult answer = MessageBox.Show("This face looks like a student who is already registered:\n\n" + similarStudent + "\n\n" +
-                        "Saving the same person two times can cause wrong attendance.\nDo you still want to save?",
-                        "Possible Duplicate Face", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (answer != DialogResult.Yes)
-                    {
-                        setStatus("Saving was cancelled.", Color.Firebrick);
-                        return;
-                    }
+                    MessageBox.Show("This face matches a student who is already registered:\n\n" + similarStudent + "\n\n" +
+                        "The student was NOT saved. The same face cannot be registered to another student.\n" +
+                        "Open the existing student record to update it, or retake the pictures if the wrong face was captured.",
+                        "Face Already Registered", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    holdStatus("The student was NOT saved. This face is already registered.", Color.Firebrick);
+                    return;
                 }
             }
 
